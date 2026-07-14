@@ -1,0 +1,122 @@
+stages:
+  - validate
+  - build
+  - deploy
+
+default:
+  image: node:22-bookworm-slim
+  interruptible: true
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_COMMIT_TAG
+
+.npm_job:
+  before_script:
+    - npm config set cache "$CI_PROJECT_DIR/.npm"
+  cache:
+    key:
+      files:
+        - frontend/package-lock.json
+        - backend/package-lock.json
+    paths:
+      - .npm/
+    policy: pull-push
+
+frontend_lint:
+  extends: .npm_job
+  stage: validate
+  script:
+    - cd frontend
+    - npm ci --prefer-offline --no-audit
+    - npm run lint
+  allow_failure: true
+
+backend_validate:
+  extends: .npm_job
+  stage: validate
+  script:
+    - cd backend
+    - npm ci --prefer-offline --no-audit
+    - find . -path ./node_modules -prune -o -name '*.js' -print -exec node --check {} \;
+    - npm audit --omit=dev --audit-level=high
+
+frontend_build:
+  extends: .npm_job
+  stage: build
+  needs: []
+  variables:
+    NEXT_TELEMETRY_DISABLED: "1"
+  script:
+    - cd frontend
+    - npm ci --prefer-offline --no-audit
+    - export NEXT_PUBLIC_API_URL="${NEXT_PUBLIC_API_URL:-http://localhost:5000}"
+    - npm run build
+    - mkdir -p ../release/frontend/.next
+    - cp -a .next/standalone/. ../release/frontend/
+    - cp -a .next/static ../release/frontend/.next/static
+    - cp -a public ../release/frontend/public
+  artifacts:
+    name: "frontend-${CI_COMMIT_SHORT_SHA}"
+    paths:
+      - release/frontend/
+    expire_in: 7 days
+
+backend_build:
+  extends: .npm_job
+  stage: build
+  needs: []
+  script:
+    - mkdir -p release/backend
+    - tar --exclude='backend/node_modules' --exclude='backend/.env' --exclude='backend/uploads' -cf - backend | tar -xf - --strip-components=1 -C release/backend
+    - cd release/backend
+    - npm ci --omit=dev --prefer-offline --no-audit
+  artifacts:
+    name: "backend-${CI_COMMIT_SHORT_SHA}"
+    paths:
+      - release/backend/
+    expire_in: 7 days
+
+deploy_production:
+  stage: deploy
+  image: alpine:3.22
+  needs:
+    - job: frontend_build
+      artifacts: true
+    - job: backend_build
+      artifacts: true
+  resource_group: production
+  environment:
+    name: production
+    url: $PRODUCTION_URL
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apk add --no-cache bash openssh-client rsync
+    - test -n "$DEPLOY_HOST"
+    - test -n "$DEPLOY_USER"
+    - test -n "$DEPLOY_PATH"
+    - test -f "$SSH_PRIVATE_KEY"
+    - test -f "$SSH_KNOWN_HOSTS"
+    - eval "$(ssh-agent -s)"
+    - chmod 400 "$SSH_PRIVATE_KEY"
+    - ssh-add "$SSH_PRIVATE_KEY"
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - cp "$SSH_KNOWN_HOSTS" ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - export RELEASE_ID="${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_ID}"
+    - ssh "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH/releases/$RELEASE_ID/frontend' '$DEPLOY_PATH/releases/$RELEASE_ID/backend'"
+    - rsync -az --delete release/frontend/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/releases/$RELEASE_ID/frontend/"
+    - rsync -az --delete release/backend/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/releases/$RELEASE_ID/backend/"
+    - rsync -az scripts/deploy-production.sh "$DEPLOY_USER@$DEPLOY_HOST:/tmp/proowrx-deploy-production.sh"
+    - ssh "$DEPLOY_USER@$DEPLOY_HOST" "bash /tmp/proowrx-deploy-production.sh '$DEPLOY_PATH' '$RELEASE_ID' '${FRONTEND_PORT:-3000}' '${BACKEND_PORT:-5000}'"
+

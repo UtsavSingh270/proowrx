@@ -1,0 +1,560 @@
+/* ══════════════════════════════════════════
+   NAVBAR — Premium 2025
+   ══════════════════════════════════════════ */
+
+/* ── Contact strip — above navbar, scrolls with page ── */
+.topbar {
+  background: var(--navy);
+  padding: 7px 0;
+  font-size: 0.77rem;
+  position: relative;
+  z-index: 1002; /* above nav-wrapper so it sits cleanly above */
+}
+
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-left {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.topbar-left a,
+.topbar-socials a {
+  color: rgba(255,255,255,0.65);
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.topbar-left a:hover,
+.topbar-socials a:hover { color: var(--gold); }
+
+.topbar-socials {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.topbar-socials a {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.topbar-socials a:hover {
+  background: var(--gold);
+  color: var(--navy) !important;
+}
+
+/* Light-mode topbar — softer look */
+html:not(.dark) .topbar {
+  background: #1a2d50;
+}
+
+/* Dark-mode topbar stays as-is (navy) */
+
+/* ── Sticky wrapper — only navbar, sticks after topbar scrolls ── */
+.nav-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+}
+
+/* ── Main navbar ──────────────────────────── */
+.navbar {
+  position: relative;
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s var(--ease), background 0.3s var(--ease);
+  /* NO backdrop-filter here — it creates a containing block that breaks
+     position:fixed children (the mobile drawer). Applied only on .scrolled. */
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 4px 24px rgba(10, 22, 40, 0.10);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* When mobile drawer is open: no blur, solid background */
+.navbar.mobile-open {
+  background: rgba(255, 255, 255, 0.99);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  height: 68px;
+  gap: 0;
+}
+
+/* ── Logo ─────────────────────────────────── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.nav-logo:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+.nav-logo img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Desktop links ────────────────────────── */
+.nav-links {
+  display: flex;
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 11px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-2);
+  border-radius: var(--r-sm);
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--navy);
+  background: var(--surface);
+}
+
+.nav-link.active {
+  color: var(--navy);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.nav-chevron {
+  transition: transform 0.25s var(--ease);
+  flex-shrink: 0;
+}
+
+.nav-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* ── Mega Menu ────────────────────────────── */
+.mega-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border-radius: var(--r-lg);
+  box-shadow: 0 20px 60px rgba(10, 22, 40, 0.16), 0 0 0 1px var(--border);
+  min-width: 400px;
+  padding: 14px;
+  animation: fadeUp 0.18s var(--ease) both;
+  z-index: 100;
+  /* Safari fix */
+  -webkit-transform: translateX(-50%);
+}
+
+.mega-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mega-section-heading {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 8px 14px 4px;
+  margin-top: 4px;
+  user-select: none;
+}
+
+.mega-section-heading:first-child {
+  margin-top: 0;
+}
+
+.mega-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 14px;
+  border-radius: var(--r-sm);
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.mega-item:hover {
+  background: var(--surface);
+}
+
+.mega-item:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.mega-icon {
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  background: var(--gold-pale);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mega-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.mega-desc {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--text-3);
+  line-height: 1.3;
+}
+
+.mega-arrow {
+  margin-left: auto;
+  color: var(--text-3);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.mega-item:hover .mega-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ── Nav Actions ──────────────────────────── */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.nav-cta {
+  padding: 9px 18px;
+  font-size: 0.80rem;
+}
+
+/* ── Hamburger ────────────────────────────── */
+.hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--navy);
+  padding: 7px;
+  margin-left: auto;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.hamburger:hover {
+  background: var(--surface);
+  border-color: var(--gold);
+}
+
+.hamburger:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Mobile Backdrop — defined further below with correct z-index */
+
+/* ── Mobile Drawer — slides DOWN from top ─── */
+/*
+  CRITICAL: drawer must live OUTSIDE the <nav> element.
+  <nav> gets backdrop-filter: blur on .scrolled — in Chrome/Safari,
+  backdrop-filter on an ancestor creates a new containing block for
+  position:fixed children, breaking their viewport-relative placement.
+  By keeping the drawer as a sibling of <nav> (inside .nav-wrapper),
+  position:fixed works correctly and the slide-from-top animation works.
+*/
+/*
+  Drawer is now OUTSIDE nav-wrapper in the DOM.
+  nav-wrapper: z-index 1001  →  always on top of the drawer.
+  mobile-drawer: z-index 999 →  below navbar, above page content.
+  Starts at top: 0, slides into view from above; navbar visually pins on top.
+*/
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 100vh;            /* fallback */
+  max-height: 100dvh;
+  background: var(--white);
+  z-index: 999;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  transform: translateY(-110%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 60px rgba(8, 15, 32, 0.18);
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-drawer.open {
+  transform: translateY(0);
+}
+
+/* Backdrop sits below drawer */
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.40);
+  z-index: 998;
+  backdrop-filter: none;
+}
+
+.mobile-drawer-inner {
+  padding: 76px 16px 48px; /* 76px = navbar height (68px) + 8px gap */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Mobile nav groups ────────────────────── */
+.mobile-nav-group {
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-nav-group:last-of-type {
+  border-bottom: none;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  border-radius: var(--r-sm);
+  transition: background 0.18s;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: var(--surface);
+}
+
+.mobile-nav-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Chevron for accordion */
+.mobile-chevron {
+  color: var(--text-3);
+  transition: transform 0.25s var(--ease);
+  flex-shrink: 0;
+}
+
+.mobile-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* ── Accordion sub-list ───────────────────── */
+.mobile-sub-list {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.32s var(--ease);
+}
+
+.mobile-sub-list.open {
+  max-height: 700px;
+}
+
+.mobile-sub-heading {
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 10px 8px 4px 22px;
+  margin-top: 2px;
+}
+
+.mobile-nav-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 8px 11px 22px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-2);
+  border-radius: var(--r-sm);
+  transition: background 0.18s, color 0.18s;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.mobile-nav-sub:hover,
+.mobile-nav-sub:active {
+  background: var(--gold-pale);
+  color: var(--navy);
+}
+
+.mobile-nav-sub:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.mobile-sub-icon {
+  font-size: 1rem;
+  width: 28px;
+  height: 28px;
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Theme toggle ─────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle:hover {
+  background: var(--surface);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: rotate(15deg);
+}
+
+/* ── Mobile theme row ─────────────────────── */
+.mobile-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-theme-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+/* ── Mobile CTA ───────────────────────────── */
+.mobile-cta-btn {
+  margin-top: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Responsive ───────────────────────────── */
+@media (max-width: 1100px) {
+  .nav-link { padding: 8px 8px; font-size: 0.77rem; }
+}
+
+@media (max-width: 960px) {
+  .nav-links         { display: none; }
+  .nav-actions .nav-cta { display: none; }
+  /* Reorder: logo → hamburger (pushed right) → theme toggle (far right) */
+  .hamburger         { order: 2; margin-left: auto; display: flex; }
+  .nav-actions       { order: 3; margin-left: 8px; }
+  .mobile-drawer     { display: block; }
+  .topbar            { display: none; }
+}
+
+/* Very small screens — tighten horizontal padding, keep top push */
+@media (max-width: 480px) {
+  .mobile-drawer-inner { padding: 76px 12px 48px; }
+}

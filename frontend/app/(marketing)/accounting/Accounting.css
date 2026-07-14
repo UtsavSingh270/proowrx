@@ -1,0 +1,298 @@
+﻿/* ═══════════════════════════════════════════
+   ACCOUNTING PAGE STYLES
+═══════════════════════════════════════════ */
+
+/* ── Intro ─────────────────────────────────── */
+.acc-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: stretch;
+}
+
+.acc-intro-image {
+  position: relative;
+  min-height: 420px;
+}
+
+.acc-intro-image img {
+  border-radius: var(--r-lg);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: var(--shadow-lg);
+  display: block;
+}
+
+.acc-intro-badge {
+  position: absolute;
+  bottom: -20px;
+  left: 32px;
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: 16px 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+
+.acc-intro-badge strong {
+  font-size: 1.1rem;
+  font-family: 'Noto Sans', sans-serif;
+  color: var(--navy);
+}
+
+.acc-intro-badge span {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+/* ── Services Grid ─────────────────────────── */
+.acc-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.acc-svc-card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+  transition: all 0.35s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.acc-svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--acc-color, var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.acc-svc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+.acc-svc-card:hover::before {
+  transform: scaleX(1);
+}
+
+.acc-svc-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: all 0.3s;
+}
+
+.acc-svc-card:hover .acc-svc-icon {
+  transform: scale(1.1);
+}
+
+.acc-svc-card h4 {
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.acc-svc-card p {
+  font-size: 0.83rem;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+/* ── Software ─────────────────────────────── */
+.acc-software-section {
+  background: var(--white);
+}
+
+.acc-software-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.acc-software-chip {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-full);
+  padding: 10px 24px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy);
+  transition: all 0.25s var(--ease);
+  cursor: default;
+}
+
+.acc-software-chip:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Why Grid ─────────────────────────────── */
+.acc-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.acc-why-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  transition: all 0.3s var(--ease);
+}
+
+.acc-why-card:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.acc-why-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.acc-why-card h4 {
+  font-size: 0.95rem;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.acc-why-card p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.60);
+  line-height: 1.65;
+}
+
+/* ── Process ─────────────────────────────── */
+.acc-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.acc-process-step {
+  text-align: center;
+  padding: 32px 20px;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  transition: all 0.3s var(--ease);
+}
+
+.acc-process-step:hover {
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.acc-step-num {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 14px;
+  transition: opacity 0.3s;
+}
+
+.acc-process-step:hover .acc-step-num {
+  opacity: 1;
+}
+
+.acc-process-step h4 {
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.acc-process-step p {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+/* ── CTA ─────────────────────────────────── */
+.acc-cta-section {
+  background: var(--grad-hero);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.acc-cta-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.acc-cta-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,162,39,0.14) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 1100px) {
+  .acc-services-grid { grid-template-columns: repeat(2, 1fr); }
+  .acc-intro { gap: 48px; }
+}
+
+@media (max-width: 960px) {
+  .acc-intro { grid-template-columns: 1fr; gap: 40px; }
+  .acc-intro-image { display: none; }
+  .acc-why-grid { grid-template-columns: repeat(2, 1fr); }
+  .acc-process-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .acc-services-grid { grid-template-columns: 1fr; }
+  .acc-why-grid { grid-template-columns: 1fr; }
+  .acc-process-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Dark mode ───────────────────────────── */
+html.dark .acc-software-section {
+  background: transparent;
+}
+
+html.dark .acc-software-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+html.dark .acc-software-chip:hover {
+  background: #f0a500;
+  border-color: #f0a500;
+  color: #080f20;
+}

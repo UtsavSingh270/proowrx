@@ -1,0 +1,323 @@
+﻿/* ═══════════════════════════════════════════
+   DATA SECURITY PAGE STYLES
+═══════════════════════════════════════════ */
+
+/* ── Hero ─────────────────────────────────── */
+.ds-hero { position: relative; }
+
+/* Shield visual inside hero */
+.ds-hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-hero-shield-wrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-hero-shield-wrap > svg {
+  color: rgba(14,165,233,0.22);
+  filter: drop-shadow(0 0 40px rgba(14,165,233,0.18));
+  animation: float 6s ease-in-out infinite;
+}
+
+.ds-shield-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  border-radius: var(--r-full);
+  padding: 8px 14px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.ds-shield-badge-1 { top: 20px; right: -10px; }
+.ds-shield-badge-1 svg { color: var(--gold); }
+
+.ds-shield-badge-2 { top: 50%; right: -30px; transform: translateY(-50%); }
+.ds-shield-badge-2 svg { color: var(--sky); }
+
+.ds-shield-badge-3 { bottom: 20px; right: -10px; }
+.ds-shield-badge-3 svg { color: var(--emerald); }
+
+/* ── Promise ─────────────────────────────── */
+.ds-promise {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: stretch;
+}
+
+.ds-promise-point {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.ds-promise-image {
+  position: relative;
+  min-height: 380px;
+}
+
+.ds-promise-image img {
+  border-radius: var(--r-lg);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: var(--shadow-lg);
+  display: block;
+}
+
+/* ── Pillars ─────────────────────────────── */
+.ds-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.ds-pillar {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 36px 32px;
+  transition: all 0.35s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-pillar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--pillar-color, var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.ds-pillar:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px var(--pillar-glow, rgba(0,0,0,0.08));
+  border-color: transparent;
+}
+
+.ds-pillar:hover::before {
+  transform: scaleX(1);
+}
+
+.ds-pillar-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ds-pillar-icon {
+  width: 64px; height: 64px;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.ds-pillar:hover .ds-pillar-icon {
+  transform: scale(1.1);
+}
+
+.ds-pillar-num {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+}
+
+.ds-pillar h3 {
+  font-size: 1.25rem;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.ds-pillar-desc {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.ds-pillar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ds-pillar-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 1.4;
+}
+
+.ds-pillar-list li svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Feature Cards ───────────────────────── */
+.ds-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ds-feature-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  transition: all 0.3s var(--ease);
+}
+
+.ds-feature-card:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: var(--teal);
+  transform: translateY(-4px);
+}
+
+.ds-feature-icon {
+  width: 50px; height: 50px;
+  border-radius: var(--r-sm);
+  background: rgba(31,158,142,0.15);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.3s;
+}
+
+.ds-feature-card:hover .ds-feature-icon {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.ds-feature-card h4 {
+  font-size: 0.95rem;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.ds-feature-card p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.58);
+  line-height: 1.65;
+}
+
+/* ── Trust Band ──────────────────────────── */
+.ds-trust-band {
+  background: var(--navy-mid);
+  padding: 0;
+}
+
+.ds-trust-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-trust-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 56px;
+}
+
+.ds-trust-num {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.ds-trust-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.50);
+  text-align: center;
+  max-width: 100px;
+}
+
+.ds-trust-divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* ── CTA ─────────────────────────────────── */
+.ds-cta-section {
+  background: var(--grad-hero);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ds-cta-glow {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(31,158,142,0.12) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 1100px) {
+  .ds-promise { gap: 48px; }
+}
+
+@media (max-width: 960px) {
+  .ds-promise { grid-template-columns: 1fr; gap: 40px; }
+  .ds-promise-image { display: none; }
+  .ds-pillars-grid { grid-template-columns: 1fr; }
+  .ds-features-grid { grid-template-columns: repeat(2, 1fr); }
+  .ds-trust-inner { flex-wrap: wrap; }
+  .ds-trust-stat { padding: 28px 32px; }
+  .ds-hero-shield { display: none; }
+}
+
+@media (max-width: 640px) {
+  .ds-features-grid { grid-template-columns: 1fr; }
+  .ds-trust-divider { display: none; }
+}

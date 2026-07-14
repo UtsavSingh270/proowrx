@@ -1,0 +1,115 @@
+﻿.cta-banner {
+  padding: 50px 0;
+  background: linear-gradient(135deg, #080C18 0%, #0c1630 60%, #080C18 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta-banner-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,184,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,184,0.022) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.cta-banner-orb {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,184,0.07) 0%, transparent 65%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cta-banner-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-banner-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(0,212,184,0.12);
+  border: 1px solid rgba(0,212,184,0.28);
+  color: #00D4B8;
+  margin-bottom: 20px;
+}
+
+.cta-banner-heading {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 18px;
+  max-width: 640px;
+}
+
+.cta-banner-sub {
+  font-size: 0.97rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.78;
+  max-width: 460px;
+  margin: 0 auto 36px;
+}
+
+.cta-banner-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.cta-banner-assurances {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-banner-assurance {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.45);
+}
+
+@media (max-width: 768px) {
+  .cta-banner { padding: 72px 0; }
+  .cta-banner-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .cta-banner-buttons .btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+  .cta-banner-assurances {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}

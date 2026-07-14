@@ -61,11 +61,10 @@ pm2 save
 
 ## Important repository cleanup
 
-`backend/.env` and `backend/node_modules` are currently tracked by Git. Before production deployment:
+`backend/.env` and `backend/node_modules` were previously tracked by Git. Before production deployment:
 
 1. Rotate every credential contained in `backend/.env`.
 2. Remove the tracked environment file and dependencies from Git history/index.
-3. Add root ignore rules for `.env*`, `node_modules/`, build output, and uploads.
+3. Keep the backend ignore rules in `backend/.gitignore`.
 
 Do not rely on deleting the local files alone; already-committed secrets remain in Git history until it is rewritten.
-

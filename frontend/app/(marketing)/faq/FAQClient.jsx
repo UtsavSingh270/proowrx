@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
-import FaqAskBot from '../../../components/FaqAskBot';
-import { faqs } from '../../../data/faqs';
+import CtaBanner from '@/components/shared/CtaBanner';
+import FaqAskBot from '@/components/feedback/FaqAskBot';
+import { faqs } from '@/data/faqs';
 import './InfoPages.css';
 
 export default function FAQ() {

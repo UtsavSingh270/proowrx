@@ -1,5 +1,5 @@
 import AboutClient from './AboutClient';
-import { serverTeamMembers } from '../../../lib/serverApi';
+import { serverTeamMembers } from '@/lib/serverApi';
 
 export const metadata = {
   title: 'About Us',

@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
-import CtaBanner from '../../../components/CtaBanner';
-import BookMeetingModal from '../../../components/BookMeetingModal';
+import CtaBanner from '@/components/shared/CtaBanner';
+import TeamCultureMedia from './TeamCultureMedia';
 import './OurTeam.css';
 
 function SocialMediaIcons({ socialMedia }) {
@@ -85,9 +85,8 @@ const values = [
   { emoji: '🌏', title: 'Global Standards', desc: 'Australian-owned, globally-minded, and built to the highest professional standards.' },
 ];
 
-export default function OurTeamClient({ initialMembers }) {
+export default function OurTeamClient({ initialMembers, initialCultureItems }) {
   const r1 = useReveal(), r2 = useReveal(), r3 = useReveal();
-  const [booking, setBooking] = useState(null);
 
   const sourceTeam = (initialMembers || []).map(member => ({
     name: member.name,
@@ -108,15 +107,20 @@ export default function OurTeamClient({ initialMembers }) {
   return (
     <div>
       <section
-        className="page-hero page-hero--img"
-        style={{ '--hero-bg': 'url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1800&q=85")' }}
+        className="page-hero page-hero--img team-page-hero"
+        style={{ '--hero-bg': 'url("/images/our-team/Proowrx_Logo.jpg")' }}
       >
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <span className="chip chip-gold" style={{ marginBottom: 16 }}>Our Team</span>
-          <h1>The People Behind Proowrx</h1>
-          <p>A powerhouse leadership team striving to make Proowrx the first-choice outsourcing partner for Australian financial professionals.</p>
+        <div className="container team-hero-content">
+          <div className="team-hero-heading">
+            <span className="chip chip-gold">Our Team</span>
+            <h1>The People Behind Proowrx</h1>
+          </div>
+          <div className="team-hero-people-space" aria-hidden="true" />
+          <p className="team-hero-description">A powerhouse leadership team striving to make Proowrx the first-choice outsourcing partner for Australian financial professionals.</p>
         </div>
       </section>
+
+      <TeamCultureMedia initialItems={initialCultureItems || []} />
 
       {/* Team Section */}
       <section className="section" style={{ background: 'var(--surface)' }}>
@@ -161,15 +165,6 @@ export default function OurTeamClient({ initialMembers }) {
                       ))}
                     </div>
                   )}
-                  {member.bookable && (
-                    <button
-                      type="button"
-                      className="btn btn-outline-gold team-member-book-btn"
-                      onClick={() => setBooking(member)}
-                    >
-                      <Calendar size={14} /> Book a Meeting
-                    </button>
-                  )}
                 </div>
               </div>
             ))}
@@ -196,8 +191,6 @@ export default function OurTeamClient({ initialMembers }) {
           )}
         </div>
       </section>
-
-      {booking && <BookMeetingModal person={booking} onClose={() => setBooking(null)} />}
 
       {/* Values Section */}
       <section className="section">

@@ -1,6 +1,5 @@
 import { Inter, Noto_Sans } from 'next/font/google';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import ThemeProvider from '../components/ThemeProvider';
+import ThemeProvider from '@/components/providers/ThemeProvider';
 import '../styles/globals.css';
 import '../styles/dark-mode.css';
 
@@ -19,7 +18,6 @@ const notoSans = Noto_Sans({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://proowrx.com';
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -46,7 +44,7 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: 'Proowrx',
   url: SITE_URL,
-  logo: 'https://proowrx.com/wp-content/uploads/2022/05/Proowrx_Final_Logo-removebg-previewnew-1.png',
+  logo: `${SITE_URL}/Proowrx_Logo.png`,
   sameAs: [
     'https://www.facebook.com/proowrx/',
     'https://www.instagram.com/proowrx/',
@@ -97,9 +95,8 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider>{children}</ThemeProvider>
-        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>
   );

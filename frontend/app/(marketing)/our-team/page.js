@@ -1,5 +1,5 @@
 import OurTeamClient from './OurTeamClient';
-import { serverTeamMembers } from '../../../lib/serverApi';
+import { serverTeamMembers, serverWorkLife } from '@/lib/serverApi';
 
 export const metadata = {
   title: 'Our Team',
@@ -15,6 +15,9 @@ export const metadata = {
 export const revalidate = 3600;
 
 export default async function Page() {
-  const members = await serverTeamMembers.getAll().catch(() => []);
-  return <OurTeamClient initialMembers={members || []} />;
+  const [members, cultureItems] = await Promise.all([
+    serverTeamMembers.getAll().catch(() => []),
+    serverWorkLife.getAll().catch(() => []),
+  ]);
+  return <OurTeamClient initialMembers={members || []} initialCultureItems={cultureItems || []} />;
 }

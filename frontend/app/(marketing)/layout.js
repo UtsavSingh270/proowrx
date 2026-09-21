@@ -1,18 +1,25 @@
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import ContactPopup from '../../components/ContactPopup';
-import Chatbot from '../../components/Chatbot';
-import SiteEffects from '../../components/SiteEffects';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import ContactPopup from '@/components/layout/ContactPopup';
+import Chatbot from '@/components/feedback/Chatbot';
+import SiteEffects from '@/components/providers/SiteEffects';
+import AnalyticsTracker from '@/features/analytics/AnalyticsTracker';
+import CookieConsent from '@/components/feedback/CookieConsent';
+import MarketingCta from '@/components/shared/MarketingCta';
+import './marketing-theme.css';
 
 export default function MarketingLayout({ children }) {
   return (
-    <>
+    <div className="marketing-site">
       <SiteEffects />
+      <AnalyticsTracker />
+      <CookieConsent />
       <ContactPopup />
       <Chatbot />
       <Navbar />
       {children}
+      <MarketingCta />
       <Footer />
-    </>
+    </div>
   );
 }

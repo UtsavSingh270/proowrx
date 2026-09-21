@@ -58,8 +58,17 @@ export const posts = {
   getOneFull(id) {
     return apiClient.get(`/posts/${id}?view=1`);
   },
+  getByAuthor(authorId, page = 1, limit = 6) {
+    return apiClient.get(`/posts/author/${authorId}?page=${page}&limit=${limit}`);
+  },
   toggleLike(id) {
     return apiClient.post(`/posts/${id}/like`, { deviceId: getDeviceId() });
+  },
+  getComments(id) {
+    return apiClient.get(`/posts/${id}/comments`);
+  },
+  addComment(id, data) {
+    return apiClient.post(`/posts/${id}/comments`, data);
   },
 };
 
@@ -90,6 +99,9 @@ export const adminPosts = {
   },
   setStatus(id, s) {
     return apiClient.patch(`/posts/${id}/status`, { status: s });
+  },
+  setFeatured(id, featured) {
+    return apiClient.patch(`/posts/${id}/featured`, { featured });
   },
   remove(id) {
     return apiClient.delete(`/posts/${id}`);
@@ -157,12 +169,21 @@ export const upload = {
       body: formData,
     });
 
-    if (!response.ok) {
-      const err = await response.json().catch(() => ({ error: response.statusText }));
-      throw new Error(err.error || response.statusText);
+    const responseText = await response.text();
+    let responseData = {};
+    if (responseText.trim()) {
+      try {
+        responseData = JSON.parse(responseText);
+      } catch {
+        throw new Error('The upload service returned an invalid response.');
+      }
     }
 
-    return response.json();
+    if (!response.ok) {
+      throw new Error(responseData.error || response.statusText);
+    }
+
+    return responseData;
   },
   async uploadFile(file) {
     return this.uploadImage(file);
@@ -239,6 +260,18 @@ export const contact = {
   },
 };
 
+export const newsletter = {
+  subscribe(email) {
+    return apiClient.post('/newsletter', { email, source: 'website_footer' });
+  },
+  getAll() {
+    return apiClient.get('/newsletter');
+  },
+  remove(id) {
+    return apiClient.delete(`/newsletter/${id}`);
+  },
+};
+
 export const meetings = {
   getBooked(person, date) {
     return apiClient.get(`/meetings/booked?person=${encodeURIComponent(person)}&date=${date}`);
@@ -254,6 +287,21 @@ export const meetings = {
   },
   remove(id) {
     return apiClient.delete(`/meetings/${id}`);
+  },
+};
+
+export const analytics = {
+  getSummary(range = '30d') {
+    return apiClient.get(`/analytics/summary?range=${encodeURIComponent(range)}`);
+  },
+  getExcludedIps() {
+    return apiClient.get('/analytics/excluded-ips');
+  },
+  addExcludedIp(data) {
+    return apiClient.post('/analytics/excluded-ips', data);
+  },
+  removeExcludedIp(id) {
+    return apiClient.delete(`/analytics/excluded-ips/${id}`);
   },
 };
 

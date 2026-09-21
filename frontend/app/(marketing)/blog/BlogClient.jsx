@@ -1,148 +1,219 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useDeferredValue, useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Clock, Calendar, Tag, User, Eye, Heart } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
-import { viewsOf, likesOf, postSlug } from '../../../data/seedStats';
+import { ArrowLeft, ArrowRight, Calendar, ChevronLeft, ChevronRight, Clock, Eye, Heart, Lightbulb, Search, ShieldCheck, Tag, TrendingUp, User, X } from 'lucide-react';
+import CtaBanner from '@/components/shared/CtaBanner';
+import { viewsOf, likesOf, postSlug } from '@/data/seedStats';
+import { posts as postsApi } from '@/services/api';
 import './Blog.css';
 
-function useReveal() {
-  const ref = useRef(null);
+const PAGE_SIZE = 6;
+const BLOG_FAQS = [
+  ['What topics does the Proowrx blog cover?', 'We publish practical guidance about mortgage processing, accounting outsourcing, virtual assistance, back-office operations, data security and sustainable business growth for Australian firms.'],
+  ['Who are these insights written for?', 'Our articles are created for Australian mortgage brokers, accounting practices, financial-services teams and business owners exploring reliable offshore or outsourced support.'],
+  ['How can outsourcing help a mortgage brokerage?', 'A well-structured outsourcing model can increase processing capacity, improve turnaround consistency and give brokers more time for clients, compliance and business development.'],
+  ['How often is the blog updated?', 'New articles are published as our specialists identify useful operational lessons, regulatory considerations and practical opportunities for mortgage and accounting businesses.'],
+];
+
+function fmtNum(value) {
+  if (value >= 1000) return `${(value / 1000).toFixed(1).replace(/\.0$/, '')}k`;
+  return String(value || 0);
+}
+
+function formatPostedTime(value, referenceTime) {
+  const postedAt = new Date(value);
+  if (Number.isNaN(postedAt.getTime())) return '';
+  const elapsed = Math.max(0, referenceTime - postedAt.getTime());
+  const hours = Math.floor(elapsed / 3600000);
+  if (elapsed < 60000) return 'Just now';
+  if (hours < 1) {
+    const minutes = Math.max(1, Math.floor(elapsed / 60000));
+    return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+  }
+  if (hours < 24) return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+  return postedAt.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function searchableText(post) {
+  return [
+    post.title, post.author, post.excerpt, post.description, post.summary,
+    post.category, ...(post.tags || []), post.authorProfile?.name,
+    post.authorProfile?.title, post.authorProfile?.bio,
+  ].filter(Boolean).join(' ').toLocaleLowerCase();
+}
+
+function PostCard({ post, referenceTime, index }) {
+  return (
+    <article className="blog-card blog-card-enter" style={{ '--blog-card-index': index % PAGE_SIZE }}>
+      <Link href={`/blog/${postSlug(post)}`} className="blog-card-img" aria-label={`Read ${post.title}`}>
+        {post.image ? <Image src={post.image} alt={post.title} fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" /> : <div className="blog-image-placeholder" />}
+        <span className="blog-cat blog-cat--overlay" style={{ background: post.categoryGlow, color: post.categoryColor }}><Tag size={11} /> {post.category}</span>
+      </Link>
+      <div className="blog-card-body">
+        <div className="blog-card-details">
+          <span className="blog-time"><Clock size={12} /> {formatPostedTime(post.createdAt, referenceTime)}</span>
+          {post.author && <span className="blog-author"><User size={12} /> {post.author}</span>}
+        </div>
+        <h3 className="blog-card-title"><Link href={`/blog/${postSlug(post)}`}>{post.title}</Link></h3>
+        <p className="blog-card-excerpt">{post.excerpt}</p>
+        {!!post.tags?.length && <div className="blog-tags">{post.tags.slice(0, 3).map(tag => <span key={tag} className="blog-tag">{tag}</span>)}</div>}
+        <Link href={`/blog/${postSlug(post)}`} className="blog-card-link">Read Article <ArrowRight size={14} /></Link>
+      </div>
+    </article>
+  );
+}
+
+function LatestPostCard({ post, large = false }) {
+  return (
+    <article className={`blog-latest-card${large ? ' blog-latest-card--large' : ''}`}>
+      <Link href={`/blog/${postSlug(post)}`} className="blog-latest-media" aria-label={`Read ${post.title}`}>
+        {post.image ? <Image src={post.image} alt={post.title} fill sizes={large ? '(max-width: 760px) 100vw, 58vw' : '(max-width: 760px) 100vw, 34vw'} /> : <div className="blog-image-placeholder" />}
+      </Link>
+      <div className="blog-latest-copy">
+        <div className="blog-latest-meta"><span>{post.author || 'Proowrx Team'}</span><span>•</span><span>{post.date}</span></div>
+        <h3><Link href={`/blog/${postSlug(post)}`}>{post.title}</Link></h3>
+        <p>{post.excerpt}</p>
+        {!!post.tags?.length && <div className="blog-tags">{post.tags.slice(0, 3).map(tag => <span key={tag} className="blog-tag">{tag}</span>)}</div>}
+      </div>
+      <Link href={`/blog/${postSlug(post)}`} className="blog-latest-arrow" aria-label={`Open ${post.title}`}><ArrowRight size={18} /></Link>
+    </article>
+  );
+}
+
+export default function BlogClient({ allPosts: initialPosts, generatedAt }) {
+  const [allPosts, setAllPosts] = useState(initialPosts || []);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('All');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [referenceTime, setReferenceTime] = useState(generatedAt);
+  const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase());
+
+  const featured = useMemo(() => allPosts.filter(post => post.featured).slice(0, 6), [allPosts]);
+  const latestPosts = useMemo(() => allPosts.filter(post => !post.featured).slice(0, 3), [allPosts]);
+  const categories = useMemo(() => ['All', ...new Set(allPosts.map(post => post.category).filter(Boolean))], [allPosts]);
+  const filteredPosts = useMemo(() => allPosts.filter(post => {
+    const matchesCategory = category === 'All' || post.category === category;
+    const matchesSearch = !deferredQuery || searchableText(post).includes(deferredQuery);
+    return matchesCategory && matchesSearch;
+  }), [allPosts, category, deferredQuery]);
+  const visiblePosts = filteredPosts.slice(0, visibleCount);
+  const displayedSlide = featured.length ? activeSlide % featured.length : 0;
+  const currentFeatured = featured[displayedSlide];
+
   useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { el.classList.add('visible'); obs.unobserve(el); } },
-      { threshold: 0.08 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
+    postsApi.getAll().then(freshPosts => {
+      if (Array.isArray(freshPosts)) setAllPosts(freshPosts);
+    }).catch(() => {});
   }, []);
-  return ref;
-}
 
-function fmtNum(n) {
-  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
-  return String(n);
-}
+  useEffect(() => {
+    if (window.location.hash === '#blog-library') {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
+  }, []);
+  useEffect(() => {
+    const timer = window.setInterval(() => setReferenceTime(Date.now()), 60000);
+    return () => window.clearInterval(timer);
+  }, []);
+  useEffect(() => {
+    if (featured.length < 2) return undefined;
+    const timer = window.setInterval(() => setActiveSlide(index => (index + 1) % featured.length), 6500);
+    return () => window.clearInterval(timer);
+  }, [featured.length]);
+  useEffect(() => {
+    if (featured.length < 2) return;
+    const nextImage = featured[(activeSlide + 1) % featured.length]?.image;
+    if (nextImage) {
+      const preload = new window.Image();
+      preload.src = nextImage;
+    }
+  }, [activeSlide, featured]);
 
-export default function BlogClient({ allPosts }) {
-  const r1 = useReveal(), r2 = useReveal();
-
-  const featured = allPosts.find(p => p.featured) || allPosts[0];
-  const rest = allPosts.filter(p => p !== featured);
+  function moveSlide(direction) {
+    setActiveSlide(index => (index + direction + featured.length) % featured.length);
+  }
 
   return (
-    <div>
-      {/* ── Hero ── */}
-      <section className="page-hero page-hero--img blog-hero"
-        style={{ '--hero-bg': 'url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1800&q=85")' }}
-      >
-        <div className="page-hero-orb-1" />
-        <div className="page-hero-orb-2" />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <span className="chip chip-gold" style={{ marginBottom: 20 }}>Insights & Resources</span>
-          <h1>Proowrx Blog</h1>
-          <p>Industry insights, outsourcing guides, and practical tips for Australian mortgage brokers and accountants.</p>
-        </div>
-      </section>
-
-      {!featured ? (
-        <section className="section">
-          <div className="container" style={{ textAlign: 'center', padding: '40px 0' }}>
-            <p className="section-body" style={{ margin: '0 auto' }}>
-              No articles published yet — check back soon.
-            </p>
-          </div>
-        </section>
-      ) : (
-        <>
-      {/* ── Featured Post ── */}
-      <section className="section">
-        <div className="container">
-          <div ref={r1} className="reveal" style={{ marginBottom: 16 }}>
-            <span className="chip chip-gold section-eyebrow">Featured Article</span>
-          </div>
-          <div className="blog-featured reveal reveal-delay-1">
-            <div className="blog-featured-img">
-              {featured.image && <img src={featured.image} alt={featured.title} loading="lazy" decoding="async" />}
-              <div className="blog-featured-img-overlay" />
-            </div>
-            <div className="blog-featured-body">
-              <div className="blog-meta">
-                <span className="blog-cat" style={{ background: featured.categoryGlow, color: featured.categoryColor }}>
-                  <Tag size={11} /> {featured.category}
-                </span>
-                <span className="blog-date"><Calendar size={12} /> {featured.date}</span>
-                <span className="blog-time"><Clock size={12} /> {featured.readTime}</span>
+    <div className="blog-page">
+      {currentFeatured ? (
+        <section className="blog-featured-hero" aria-label="Featured blog posts">
+          <div className="blog-featured-heading"><div><strong>Featured insights</strong></div><span>{String(displayedSlide + 1).padStart(2, '0')} / {String(featured.length).padStart(2, '0')}</span></div>
+            <article className="blog-featured-slider">
+              <div className="blog-featured-media">
+                {currentFeatured.image ? <Image key={currentFeatured.image} src={currentFeatured.image} alt={currentFeatured.title} fill priority fetchPriority="high" sizes="(max-width: 900px) 100vw, 56vw" /> : <div className="blog-image-placeholder" />}
+                <div className="blog-featured-shade" />
+                <span className="blog-featured-number">{String(displayedSlide + 1).padStart(2, '0')}</span>
               </div>
-              {featured.author && (
-                <div className="blog-author-row">
-                  <span className="blog-author"><User size={12} /> {featured.author}</span>
-                  <span className="blog-stat"><Eye size={12} /> {fmtNum(viewsOf(featured))}</span>
-                  <span className="blog-stat"><Heart size={12} /> {fmtNum(likesOf(featured))}</span>
+              <div className="blog-featured-content">
+                <div className="blog-meta"><span className="blog-cat" style={{ background: currentFeatured.categoryGlow, color: currentFeatured.categoryColor }}><Tag size={11} /> {currentFeatured.category}</span><span className="blog-date"><Calendar size={12} /> {currentFeatured.date}</span></div>
+                <h2>{currentFeatured.title}</h2><p>{currentFeatured.excerpt}</p>
+                <div className="blog-author-row">{currentFeatured.author && <span className="blog-author"><User size={12} /> {currentFeatured.author}</span>}<span className="blog-stat"><Eye size={12} /> {fmtNum(viewsOf(currentFeatured))}</span><span className="blog-stat"><Heart size={12} /> {fmtNum(likesOf(currentFeatured))}</span></div>
+                <Link href={`/blog/${postSlug(currentFeatured)}`} className="btn btn-gold">Read Featured Article <ArrowRight size={15} /></Link>
+                <div className="blog-slider-controls">
+                  <button onClick={() => moveSlide(-1)} aria-label="Previous featured post"><ChevronLeft size={19} /></button>
+                  <div>{featured.map((post, index) => <button key={postSlug(post)} className={index === displayedSlide ? 'active' : ''} onClick={() => setActiveSlide(index)} aria-label={`Show featured post ${index + 1}`} />)}</div>
+                  <button onClick={() => moveSlide(1)} aria-label="Next featured post"><ChevronRight size={19} /></button>
                 </div>
-              )}
-              <h2 className="blog-featured-title">{featured.title}</h2>
-              <p className="blog-featured-excerpt">{featured.excerpt}</p>
-              <div className="blog-tags">
-                {(featured.tags || []).map(t => <span key={t} className="blog-tag">{t}</span>)}
               </div>
-              <Link href={`/blog/${postSlug(featured)}`} className="btn btn-gold blog-read-btn">
-                Read Article <ArrowRight size={15} />
-              </Link>
+            </article>
+        </section>
+      ) : <section className="blog-featured-empty"><div><span className="blog-kicker">Editor&apos;s selection</span><h1>Featured insights coming soon.</h1><p>Mark posts as Featured in the dashboard to display them here.</p></div></section>}
+
+      {latestPosts.length > 0 && <section className="blog-latest-section">
+        <div className="container">
+          <div className="blog-latest-heading"><div><span className="blog-kicker">Fresh from our team</span><h2>Latest blogs</h2></div><button type="button" onClick={() => document.getElementById('blog-library')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>Explore all articles <ArrowRight size={14} /></button></div>
+          <div className="blog-latest-layout">
+            <div className="blog-latest-row">
+              {latestPosts[0] && <LatestPostCard post={latestPosts[0]} large />}
+              <div className="blog-latest-stack">{latestPosts.slice(1, 3).map(post => <LatestPostCard key={postSlug(post)} post={post} />)}</div>
             </div>
+          </div>
+        </div>
+      </section>}
+
+      {!!allPosts.length && <section className="blog-value-section">
+        <div className="container">
+          <div className="blog-value-intro"><span className="blog-kicker">Built for practical growth</span><h2>Insights you can apply, not just admire.</h2><p>Each article turns industry experience into clear ideas for stronger operations, safer processes and sustainable business growth.</p></div>
+          <div className="blog-value-grid">
+            <article><span><TrendingUp size={20} /></span><h3>Grow efficiently</h3><p>Discover practical ways to improve capacity, turnaround times and client experience.</p></article>
+            <article><span><Lightbulb size={20} /></span><h3>Work smarter</h3><p>Explore workflows, outsourcing strategies and ideas your team can use immediately.</p></article>
+            <article><span><ShieldCheck size={20} /></span><h3>Operate confidently</h3><p>Stay informed about data security, compliance and dependable back-office operations.</p></article>
+          </div>
+        </div>
+      </section>}
+
+      {!!allPosts.length && <section className="blog-library-section" id="blog-library">
+        <div className="container">
+          <div className="blog-library-heading"><span className="blog-kicker">Explore the library</span><h2>Find your next useful read</h2><p>Search by article, writer, summary or tag.</p></div>
+          <div className="blog-search-wrap"><Search size={20} /><input value={query} onChange={event => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE); }} placeholder="Search articles, authors, topics or tags..." aria-label="Search blog posts" />{query && <button onClick={() => { setQuery(''); setVisibleCount(PAGE_SIZE); }} aria-label="Clear search"><X size={17} /></button>}</div>
+          <div className="blog-category-tabs" role="tablist" aria-label="Blog categories">{categories.map(item => <button key={item} role="tab" aria-selected={category === item} className={category === item ? 'active' : ''} onClick={() => { setCategory(item); setVisibleCount(PAGE_SIZE); }}>{item}<span>{item === 'All' ? allPosts.length : allPosts.filter(post => post.category === item).length}</span></button>)}</div>
+          <div className="blog-results-row">{(query || category !== 'All') && <button onClick={() => { setQuery(''); setCategory('All'); }}><ArrowLeft size={13} /> Reset filters</button>}</div>
+          {visiblePosts.length ? <div className="blog-grid">{visiblePosts.map((post, index) => <PostCard key={postSlug(post)} post={post} referenceTime={referenceTime} index={index} />)}</div> : <div className="blog-empty-search"><Search size={28} /><h3>No matching articles</h3><p>Try another keyword or category.</p></div>}
+          {visibleCount < filteredPosts.length && <div className="blog-load-more"><button className="btn btn-outline" onClick={() => setVisibleCount(count => count + PAGE_SIZE)}>Load 6 More Articles <ArrowRight size={15} /></button></div>}
+        </div>
+      </section>}
+
+      <section className="blog-topic-hubs">
+        <div className="container">
+          <div className="blog-topic-heading"><span className="blog-kicker">Explore our expertise</span><h2>Guidance for every stage of operational growth</h2><p>Go beyond individual articles with practical resources connected to the services and challenges Australian financial professionals manage every day.</p></div>
+          <div className="blog-topic-grid">
+            <article><span>Mortgage Operations</span><h3>Mortgage processing and broker support</h3><p>Learn how experienced loan-processing support can strengthen capacity, improve file consistency and keep applications moving efficiently.</p><Link href="/mortgage">Explore mortgage services <ArrowRight size={14} /></Link></article>
+            <article><span>Accounting Support</span><h3>Accounting and bookkeeping outsourcing</h3><p>Explore scalable support for bookkeeping, tax preparation, BAS, SMSF administration and everyday accounting workflows.</p><Link href="/accounting">Explore accounting services <ArrowRight size={14} /></Link></article>
+            <article><span>Flexible Capacity</span><h3>Virtual assistants and pay-per-application</h3><p>Compare flexible resourcing models for recurring administration, client follow-ups and application-based mortgage processing.</p><Link href="/virtual-assistant">Explore virtual assistance <ArrowRight size={14} /></Link></article>
+            <article><span>Secure Outsourcing</span><h3>Data security and operational confidence</h3><p>Understand the controls, access practices and secure working habits that support responsible outsourced operations.</p><Link href="/data-security">Explore data security <ArrowRight size={14} /></Link></article>
           </div>
         </div>
       </section>
 
-      {/* ── Post Grid ── */}
-      {rest.length > 0 && (
-        <section className="section" style={{ background: 'var(--surface)', paddingTop: 0 }}>
-          <div className="container">
-            <div ref={r2} className="reveal" style={{ marginBottom: 48 }}>
-              <span className="chip chip-sky section-eyebrow">Latest Articles</span>
-              <h2 className="section-title" style={{ marginTop: 12 }}>More from the Blog</h2>
-            </div>
-            <div className="blog-grid">
-              {rest.map((post, i) => (
-                <article key={postSlug(post)} className={`blog-card reveal reveal-delay-${(i % 3) + 1}`}>
-                  <div className="blog-card-img">
-                    {post.image && <img src={post.image} alt={post.title} loading="lazy" decoding="async" />}
-                    <span className="blog-cat blog-cat--overlay" style={{ background: post.categoryGlow, color: post.categoryColor }}>
-                      <Tag size={11} /> {post.category}
-                    </span>
-                  </div>
-                  <div className="blog-card-body">
-                    <div className="blog-meta">
-                      <span className="blog-date"><Calendar size={12} /> {post.date}</span>
-                      <span className="blog-time"><Clock size={12} /> {post.readTime}</span>
-                    </div>
-                    {post.author && (
-                      <div className="blog-author-row">
-                        <span className="blog-author"><User size={12} /> {post.author}</span>
-                        <span className="blog-stat"><Eye size={12} /> {fmtNum(viewsOf(post))}</span>
-                        <span className="blog-stat"><Heart size={12} /> {fmtNum(likesOf(post))}</span>
-                      </div>
-                    )}
-                    <h3 className="blog-card-title">{post.title}</h3>
-                    <p className="blog-card-excerpt">{post.excerpt}</p>
-                    <div className="blog-tags">
-                      {(post.tags || []).map(t => <span key={t} className="blog-tag">{t}</span>)}
-                    </div>
-                    <Link href={`/blog/${postSlug(post)}`} className="blog-card-link">
-                      Read Article <ArrowRight size={14} />
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-        </>
-      )}
-
+      <section className="blog-faq-section">
+        <div className="container blog-faq-layout">
+          <div className="blog-faq-intro"><span className="blog-kicker">Common questions</span><h2>About Proowrx insights</h2><p>Quick answers about our articles, expertise and the businesses these resources are designed to support.</p><Link href="/contact" className="btn btn-outline">Ask our team <ArrowRight size={14} /></Link></div>
+          <div className="blog-faq-list">{BLOG_FAQS.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div>
+        </div>
+      </section>
       <CtaBanner />
     </div>
   );

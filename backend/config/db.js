@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 const dns = require("dns");
 
-// Force Node to use Google DNS
-dns.setServers(["8.8.8.8", "8.8.4.4"]);
+const dnsServers = (process.env.DNS_SERVERS || "1.1.1.1,8.8.8.8")
+  .split(",")
+  .map(server => server.trim())
+  .filter(Boolean);
+
+if (dnsServers.length) dns.setServers(dnsServers);
 
 async function connectDB() {
   const uri = process.env.MONGODB_URI;
@@ -13,19 +17,10 @@ async function connectDB() {
   }
 
   try {
-    console.log("Mongo URI:", uri);
-
-    // Test SRV resolution first
-    const records = await dns.promises.resolveSrv(
-      "_mongodb._tcp.cluster0.ivbkhlo.mongodb.net"
-    );
-    console.log("SRV Records:", records);
-
     await mongoose.connect(uri);
-
     console.log("✅ MongoDB connected");
   } catch (err) {
-    console.error(err);
+    console.error("MongoDB connection failed:", err.message);
     process.exit(1);
   }
 }

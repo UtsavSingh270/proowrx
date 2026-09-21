@@ -11,6 +11,7 @@ const pages = {
     sections: [
       ['Information We Collect', 'We may collect your name, email address, phone number, company details, enquiry content, and information required to provide services or respond to requests.'],
       ['How We Use Information', 'We use information to respond to enquiries, provide requested resources, manage meetings, improve our services, and communicate with you about relevant Proowrx offerings.'],
+      ['Cookies and Website Analytics', 'Optional first-party analytics cookies are used only after you accept them. They help us understand page visits, anonymous sessions, device type, browser, referral source, and campaign performance. We do not store form content or raw IP addresses in analytics, and analytics records are automatically deleted after 395 days. You can reject optional cookies or change your choice at any time using Cookie Settings in the footer.'],
       ['Data Protection', 'We take reasonable steps to protect personal information from misuse, unauthorised access, loss, and disclosure.'],
       ['Contact', 'For privacy questions, contact support@proowrx.com.'],
     ],

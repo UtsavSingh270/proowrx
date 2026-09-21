@@ -17,25 +17,32 @@
   --navy-mid:     #0d1b38;
   --navy-soft:    #1a3464;
 
-  --gold:         #f0a500;
-  --gold-light:   #fbbf24;
-  --gold-pale:    rgba(240,165,0,0.12);
+  --brand-gold:   #f0a500;
+  --gold:         #1a3464;
+  --gold-light:   #274b86;
+  --gold-pale:    rgba(26,52,100,0.10);
+  --accent-contrast: #ffffff;
 
-  --sky:          #0ea5e9;
-  --sky-dark:     #0369a1;
-  --sky-glow:     rgba(14,165,233,0.18);
+  /* Mode-aware accent: navy on light surfaces, gold in dark mode */
+  --mode-accent:      #1a3464;
+  --mode-accent-soft: rgba(26,52,100,0.10);
+  --mode-accent-line: rgba(26,52,100,0.28);
 
-  --violet:       #7c3aed;
-  --violet-light: #a78bfa;
-  --violet-glow:  rgba(124,58,237,0.15);
+  --sky:          #d99a00;
+  --sky-dark:     #a66f00;
+  --sky-glow:     rgba(240,165,0,0.18);
 
-  --emerald:      #10b981;
-  --emerald-glow: rgba(16,185,129,0.15);
+  --violet:       #c08200;
+  --violet-light: #ffd16a;
+  --violet-glow:  rgba(240,165,0,0.15);
+
+  --emerald:      #b77b00;
+  --emerald-glow: rgba(240,165,0,0.15);
 
   /* keep old names for backwards compat */
-  --teal:         #0ea5e9;
-  --teal-dark:    #0369a1;
-  --teal-glow:    rgba(14,165,233,0.18);
+  --teal:         #d99a00;
+  --teal-dark:    #a66f00;
+  --teal-glow:    rgba(240,165,0,0.18);
 
   /* ── Neutrals ────────────────────────── */
   --white:        #ffffff;
@@ -50,19 +57,19 @@
   /* ── Gradients ───────────────────────── */
   --grad-hero:    linear-gradient(135deg, #040b18 0%, #091630 45%, #060e24 100%);
   --grad-card:    linear-gradient(145deg, #ffffff 0%, #f0f5ff 100%);
-  --grad-gold:    linear-gradient(135deg, #f0a500, #fbbf24);
-  --grad-sky:     linear-gradient(135deg, #0369a1, #0ea5e9);
-  --grad-violet:  linear-gradient(135deg, #7c3aed, #a855f7);
-  --grad-rainbow: linear-gradient(90deg, #f0a500, #7c3aed, #0ea5e9);
+  --grad-gold:    linear-gradient(135deg, #1a3464, #274b86);
+  --grad-sky:     linear-gradient(135deg, #a66f00, #f0a500);
+  --grad-violet:  linear-gradient(135deg, #c08200, #ffd16a);
+  --grad-rainbow: linear-gradient(90deg, #a66f00, #f0a500, #ffd16a);
 
   /* ── Shadows ─────────────────────────── */
   --shadow-sm:    0 2px 8px rgba(8,15,32,0.07);
   --shadow-md:    0 8px 28px rgba(8,15,32,0.11);
   --shadow-lg:    0 20px 60px rgba(8,15,32,0.16);
   --shadow-xl:    0 40px 100px rgba(8,15,32,0.22);
-  --shadow-gold:  0 8px 32px rgba(240,165,0,0.35);
-  --shadow-sky:   0 8px 32px rgba(14,165,233,0.28);
-  --shadow-violet: 0 8px 32px rgba(124,58,237,0.28);
+  --shadow-gold:  0 8px 32px rgba(26,52,100,0.28);
+  --shadow-sky:   0 8px 32px rgba(240,165,0,0.24);
+  --shadow-violet: 0 8px 32px rgba(240,165,0,0.24);
 
   /* ── Radii ───────────────────────────── */
   --r-sm:   8px;
@@ -152,7 +159,7 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal, .reveal-left, .reveal-right, .reveal-scale {
+  .reveal, .reveal-left, .reveal-right, .reveal-scale, .site-reveal {
     opacity: 1 !important;
     transform: none !important;
   }
@@ -160,13 +167,25 @@ button {
 
 /* ── Layout ──────────────────────────────── */
 .container {
+  width: 100%;
   max-width: 1220px;
   margin: 0 auto;
   padding: 0 28px;
 }
 
-.section    { padding: 50px 0; }
-.section-sm { padding: 50px 0; }
+.section    { padding: 40px 0; }
+.section-sm { padding: 40px 0; }
+
+/* Keep top-level marketing sections rhythmically consistent. Hero sections
+   retain their dedicated sizing and spacing. */
+section[class*="-section"]:not([class*="hero"]),
+.cta-banner,
+.contact-strip,
+.ds-trust-band,
+.worklife-gallery-scroll {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
 
 /* ── Buttons ─────────────────────────────── */
 .btn {
@@ -197,13 +216,13 @@ button {
 
 .btn-gold {
   background: var(--grad-gold);
-  color: #1a0a00;
+  color: var(--accent-contrast);
   box-shadow: var(--shadow-gold);
   font-weight: 800;
 }
 .btn-gold:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 48px rgba(240,165,0,0.45);
+  box-shadow: 0 16px 48px color-mix(in srgb, var(--gold) 40%, transparent);
 }
 
 .btn-ghost {
@@ -269,27 +288,27 @@ button {
 }
 
 .chip-gold {
-  background: var(--gold-pale);
-  color: var(--gold);
-  border: 1px solid rgba(240,165,0,0.30);
+  background: var(--mode-accent-soft);
+  color: var(--mode-accent);
+  border: 1px solid var(--mode-accent-line);
 }
 
 .chip-sky {
-  background: var(--sky-glow);
-  color: var(--sky);
-  border: 1px solid rgba(14,165,233,0.30);
+  background: var(--mode-accent-soft);
+  color: var(--mode-accent);
+  border: 1px solid var(--mode-accent-line);
 }
 
 .chip-teal {
-  background: var(--sky-glow);
-  color: var(--sky);
-  border: 1px solid rgba(14,165,233,0.30);
+  background: var(--mode-accent-soft);
+  color: var(--mode-accent);
+  border: 1px solid var(--mode-accent-line);
 }
 
 .chip-violet {
-  background: var(--violet-glow);
-  color: var(--violet-light);
-  border: 1px solid rgba(124,58,237,0.30);
+  background: var(--mode-accent-soft);
+  color: var(--mode-accent);
+  border: 1px solid var(--mode-accent-line);
 }
 
 .chip-white {
@@ -299,15 +318,67 @@ button {
 }
 
 .chip-emerald {
-  background: var(--emerald-glow);
-  color: var(--emerald);
-  border: 1px solid rgba(16,185,129,0.30);
+  background: var(--mode-accent-soft);
+  color: var(--mode-accent);
+  border: 1px solid var(--mode-accent-line);
+}
+
+/* Fixed dark surfaces always need the high-contrast gold accent. */
+.page-hero .chip,
+.growth-hero .chip,
+.growth-hero .growth-eyebrow,
+.cta-banner .cta-banner-pill,
+.home .hero .hero-pill,
+.home .security-section .pill {
+  color: var(--gold);
+  background: var(--gold-pale);
+  border-color: rgba(240,165,0,0.30);
+}
+
+/* Permanently dark surfaces use the original logo gold in every theme. */
+.page-hero,
+.growth-hero,
+.cta-banner,
+.footer,
+.topbar,
+.home .hero,
+.home .stats-bar,
+.home .security-section {
+  --gold: #f0a500;
+  --gold-light: #fbbf24;
+  --gold-pale: rgba(240,165,0,0.12);
+  --mode-accent: #f0a500;
+  --mode-accent-soft: rgba(240,165,0,0.12);
+  --mode-accent-line: rgba(240,165,0,0.30);
+  --grad-gold: linear-gradient(135deg,#f0a500,#fbbf24);
+  --shadow-gold: 0 8px 32px rgba(240,165,0,0.35);
+  --accent-contrast: #1a0a00;
 }
 
 .chip-dark {
   background: var(--navy);
-  color: var(--gold);
+  color: var(--white);
   border: 1px solid rgba(240,165,0,0.20);
+}
+
+/* Dark and navy interactive surfaces always use a high-contrast foreground. */
+.btn-navy,
+.nav-cta,
+.chip-dark {
+  color: var(--white) !important;
+}
+
+:is(
+  .page-hero,
+  .growth-hero,
+  .cta-banner,
+  .worklife-hero,
+  .mortgage-why-section,
+  .acc-why-section,
+  .contact-strip,
+  .ds-trust-band
+) :is(h1, h2, h3, h4) {
+  color: var(--white);
 }
 
 /* ── Section Typography ──────────────────── */
@@ -319,8 +390,9 @@ button {
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
   color: var(--navy);
-  margin-bottom: 20px;
+  margin: 0 0 20px;
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 .section-title--white { color: var(--white); }
@@ -330,6 +402,12 @@ button {
   color: var(--text-2);
   line-height: 1.78;
   max-width: 600px;
+}
+
+.section > .container > :is(header, .section-head) {
+  max-width: 760px;
+  margin: 0 auto 36px;
+  text-align: center;
 }
 
 .section-body--white { color: rgba(255,255,255,0.70); }
@@ -488,14 +566,68 @@ button {
 .reveal-delay-5 { transition-delay: 0.54s; }
 .reveal-delay-6 { transition-delay: 0.66s; }
 
+.site-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .62s var(--ease-out), transform .62s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.site-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+/* Hero content enters once on route render without any scroll listener. */
+.page-hero > .container,
+.hero > .container,
+.post-hero-content {
+  animation: siteHeroEnter .7s var(--ease-out) both;
+}
+
+@keyframes siteHeroEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Shared hover language for interactive marketing cards. */
+@media (hover: hover) and (pointer: fine) {
+  :where(.value-card, .quality-tile, .svc-process-card, .model-card,
+    .acc-svc-card, .acc-process-step, .team-member-card, .team-value-card,
+    .career-perk, .career-role-card, .va-task-card, .va-plan-card,
+    .ppa-why-card, .ppa-package, .resource-card, .book-meeting-card) {
+    transition-property: transform, box-shadow, border-color;
+    transition-duration: .28s;
+    transition-timing-function: var(--ease-out);
+  }
+
+  :where(.value-card, .quality-tile, .svc-process-card, .model-card,
+    .acc-svc-card, .acc-process-step, .team-member-card, .team-value-card,
+    .career-perk, .career-role-card, .va-task-card, .va-plan-card,
+    .ppa-why-card, .ppa-package, .resource-card, .book-meeting-card):hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(240,165,0,.55);
+  }
+
+  :where(.blog-card-link, .svc-link, .footer-links a, .blog-most-read-link) svg {
+    transition: transform .22s var(--ease-out);
+  }
+
+  :where(.blog-card-link, .svc-link, .footer-links a, .blog-most-read-link):hover svg {
+    transform: translateX(4px);
+  }
+}
+
 /* ── Page Hero — 2025 Modern System ─────── */
 .page-hero {
   background: var(--grad-hero);
-  min-height: 68vh;
-  min-height: 68dvh; /* Use dvh so mobile browser chrome doesn't count */
+  min-height: clamp(460px, 58vh, 620px);
+  min-height: clamp(460px, 58dvh, 620px);
   display: flex;
   align-items: center;
-  padding: 50px 0 68px;
+  padding: clamp(40px, 9vh, 60px) 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -530,31 +662,34 @@ button {
 
 /* Background-image variant — set --hero-bg on the element */
 .page-hero--img {
-  background:
-    linear-gradient(135deg, rgba(4,11,24,0.94) 0%, rgba(9,22,48,0.87) 55%, rgba(4,11,24,0.80) 100%),
-    var(--hero-bg, none);
-  background-size: cover;
-  background-position: center;
+  background: var(--grad-hero);
 }
 
-/* Split layout — text left, visual right */
+/* All inner-page heroes use one centered, text-only layout. */
 .page-hero--split {
-  text-align: left;
+  text-align: center;
 }
 
 .page-hero--split > .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   align-items: center;
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 
 /* Centered layout container */
 .page-hero:not(.page-hero--split) > .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 
 /* Shared hero content slot */
@@ -564,7 +699,9 @@ button {
   animation: fadeUp 0.8s var(--ease-out) both;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
 .page-hero:not(.page-hero--split) .page-hero-content {
@@ -574,9 +711,7 @@ button {
 
 /* Right-side visual slot */
 .page-hero-visual {
-  position: relative;
-  z-index: 1;
-  animation: fadeIn 0.9s var(--ease-out) 0.2s both;
+  display: none !important;
 }
 
 .page-hero-visual img {
@@ -616,6 +751,7 @@ button {
 /* CTA row inside hero */
 .page-hero-actions {
   display: flex;
+  justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
   margin-top: 32px;
@@ -623,7 +759,11 @@ button {
 }
 
 .page-hero--split .page-hero-actions {
-  justify-content: flex-start;
+  justify-content: center;
+}
+
+.page-hero--split .page-hero-stats {
+  justify-content: center;
 }
 
 /* Small stat row inside hero */
@@ -670,7 +810,8 @@ button {
 .page-hero-content h1 {
   font-size: clamp(2.2rem, 5vw, 4rem);
   color: var(--white);
-  margin-bottom: 22px;
+  max-width: 980px;
+  margin: 0 auto 22px;
   position: relative;
   z-index: 1;
   animation: fadeUp 0.8s var(--ease-out) both;
@@ -691,6 +832,11 @@ button {
 .page-hero:not(.page-hero--split) p {
   margin: 0 auto;
   max-width: 640px;
+}
+
+.page-hero:not(.page-hero--split) .page-hero-actions,
+.page-hero:not(.page-hero--split) .page-hero-stats {
+  justify-content: center;
 }
 
 .page-hero .chip,
@@ -733,8 +879,6 @@ button {
 
 @media (max-width: 960px) {
   .page-hero--split > .container {
-    grid-template-columns: 1fr;
-    gap: 40px;
     text-align: center;
   }
   .page-hero--split { text-align: center; }
@@ -744,7 +888,15 @@ button {
 }
 
 @media (max-width: 640px) {
-  .page-hero { padding: 64px 0 52px; min-height: auto; }
+  .page-hero { padding: 56px 0; min-height: auto; }
+  .page-hero-actions {
+    width: 100%;
+    margin-top: 26px;
+  }
+  .page-hero-actions .btn {
+    width: min(100%, 340px);
+    justify-content: center;
+  }
   .page-hero-stats { gap: 20px; }
 }
 
@@ -776,7 +928,7 @@ button {
 
 /* ── Responsive ──────────────────────────── */
 @media (max-width: 960px) {
-  .section { padding: 50px 0; }
+  .section { padding: 40px 0; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
 
@@ -792,17 +944,17 @@ button {
 }
 
 @media (max-width: 640px) {
-  .section { padding: 60px 0; }
+  .section { padding: 40px 0; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .page-hero { padding: 64px 0 48px; }
+  .page-hero { padding: 56px 0; }
   .container { padding: 0 18px; }
 }
 
 /* ── Extra-small screens (320–375px) ─────── */
 @media (max-width: 375px) {
   .container { padding: 0 14px; }
-  .section { padding: 48px 0; }
-  .page-hero { padding: 56px 0 40px; }
+  .section { padding: 40px 0; }
+  .page-hero { padding: 48px 0; }
   .page-hero h1, .page-hero-content h1 {
     font-size: clamp(1.7rem, 8vw, 2.4rem);
   }

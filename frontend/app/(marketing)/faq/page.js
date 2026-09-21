@@ -1,5 +1,5 @@
 import FAQClient from './FAQClient';
-import { faqs } from '../../../data/faqs';
+import { faqs } from '@/data/faqs';
 
 export const metadata = {
   title: 'FAQ',

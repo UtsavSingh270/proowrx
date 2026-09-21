@@ -1,0 +1,774 @@
+/* Marketing website: unified white visual system. Dashboard styles remain isolated. */
+.marketing-site {
+  --white: #ffffff;
+  --surface: #f7f9fc;
+  --surface-2: #eef3fa;
+  --navy: #0b1f42;
+  --navy-mid: #17345f;
+  --navy-soft: #234a80;
+  --text-1: #0b1f42;
+  --text-2: #405475;
+  --text-3: #71809a;
+  --border: rgba(11, 31, 66, 0.11);
+  --border-light: rgba(11, 31, 66, 0.08);
+  --gold: #d99a00;
+  --gold-light: #f0ad08;
+  --gold-pale: rgba(217, 154, 0, 0.1);
+  --mode-accent: #173f78;
+  --mode-accent-soft: rgba(23, 63, 120, 0.08);
+  --mode-accent-line: rgba(23, 63, 120, 0.2);
+  --grad-gold: linear-gradient(135deg, #173f78, #245a9b);
+  --grad-card: linear-gradient(145deg, #ffffff, #f8faff);
+  --shadow-sm: 0 2px 10px rgba(11, 31, 66, 0.06);
+  --shadow-md: 0 10px 30px rgba(11, 31, 66, 0.09);
+  --shadow-lg: 0 22px 54px rgba(11, 31, 66, 0.12);
+  min-height: 100vh;
+  color: var(--text-1);
+  background: #fff;
+}
+
+.marketing-site main,
+.marketing-site .home,
+.marketing-site .growth-page,
+.marketing-site .info-page,
+.marketing-site .worklife-page {
+  color: var(--text-1);
+  background: #fff;
+}
+
+/* Shared white hero language. */
+.marketing-site :is(.page-hero, .growth-hero, .post-hero) {
+  min-height: clamp(400px, 52dvh, 540px);
+  color: var(--text-1);
+  background: linear-gradient(145deg, #ffffff 0%, #f7f9fd 62%, #eef4fb 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.marketing-site :is(.page-hero, .growth-hero, .post-hero)::before {
+  background-image: linear-gradient(rgba(23,63,120,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23,63,120,.035) 1px, transparent 1px);
+}
+
+.marketing-site :is(.page-hero, .growth-hero, .post-hero)::after {
+  background: radial-gradient(circle, rgba(217,154,0,.1), transparent 68%);
+}
+
+.marketing-site :is(.page-hero, .growth-hero, .post-hero) :is(h1, h2, h3),
+.marketing-site :is(.page-hero-title, .post-hero-title, .growth-hero h1) {
+  color: var(--navy) !important;
+}
+
+.marketing-site :is(.page-hero, .growth-hero, .post-hero) p,
+.marketing-site :is(.page-hero-sub, .post-hero-meta, .growth-hero p) {
+  color: var(--text-2) !important;
+}
+
+.marketing-site .page-hero :is(.chip, .section-eyebrow),
+.marketing-site .growth-hero .growth-eyebrow {
+  color: var(--navy-soft);
+  background: var(--mode-accent-soft);
+  border-color: var(--mode-accent-line);
+}
+
+.marketing-site :is(.page-hero-stat-num, .career-hero-stat-num) { color: var(--navy); }
+.marketing-site :is(.page-hero-stat-label, .career-hero-stat-label) { color: var(--text-3); }
+.marketing-site .page-hero-stat-divider { background: var(--border); }
+
+/* Home hero keeps imagery but becomes light, open and readable. */
+.marketing-site .home .hero {
+  --gold: #173f78;
+  --gold-light: #245a9b;
+  --gold-pale: rgba(23,63,120,.09);
+  --accent-contrast: #fff;
+  min-height: clamp(570px, 72dvh, 720px);
+  color: var(--navy);
+  background: #fff;
+}
+
+.marketing-site .home .hero-slide-overlay {
+  background: linear-gradient(90deg, rgba(255,255,255,.99) 0%, rgba(255,255,255,.96) 38%, rgba(255,255,255,.55) 66%, rgba(255,255,255,.14) 100%);
+}
+
+.marketing-site .home :is(.hero-heading, .hero-sub, .hero-slide-count) { color: var(--navy); }
+.marketing-site .home .hero-sub { color: var(--text-2); }
+.marketing-site .home .hero-pill { color: var(--navy-soft); background: rgba(255,255,255,.82); border-color: rgba(23,63,120,.2); box-shadow: var(--shadow-sm); }
+.marketing-site .home .hero-slider-dots button { background: rgba(23,63,120,.25); }
+.marketing-site .home .hero-slider-dots button.active { background: var(--navy-soft); }
+
+/* All standard and alternate content sections use clean white surfaces. */
+.marketing-site :is(
+  .section, .growth-section, .growth-section.alt, .blog-featured-section,
+  .blog-library-section, .blog-most-read-section, .blog-topic-hubs,
+  .blog-faq-section, .blog-value-section, .post-section, .post-related-section,
+  .worklife-gallery-section, .worklife-gallery-scroll, .worklife-video-section,
+  .services-section, .process-section, .why-section, .why-feat-section,
+  .outsrc-section, .testi-section, .team-core-section
+) {
+  color: var(--text-1);
+  background: #fff !important;
+}
+
+.marketing-site :is(.section, .growth-section, .blog-featured-section, .blog-most-read-section, .blog-faq-section, .worklife-video-section):nth-of-type(even) {
+  background: var(--surface) !important;
+}
+
+.marketing-site :is(
+  .mortgage-why-section, .acc-why-section, .career-culture-section,
+  .team-culture-section, .diff-section, .acc-software-section,
+  .security-section, .stats-bar, .contact-strip, .ds-trust-band
+) {
+  color: var(--text-1);
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+.marketing-site :is(
+  .mortgage-why-section, .acc-why-section, .career-culture-section,
+  .team-culture-section, .diff-section, .acc-software-section,
+  .security-section, .stats-bar, .contact-strip, .ds-trust-band
+) :is(h2, h3, h4, p, span, li) {
+  color: inherit;
+}
+
+.marketing-site :is(.section-title, .section-title--white, .section-heading, .growth-head h2) { color: var(--navy) !important; }
+.marketing-site :is(.section-body, .section-body--white, .section-sub, .growth-head p) { color: var(--text-2) !important; }
+
+/* Consistent cards and controls. */
+.marketing-site :is(
+  .value-card, .quality-tile, .svc-card, .svc-process-card, .model-card,
+  .acc-svc-card, .acc-process-step, .team-member-card, .team-value-card,
+  .career-perk, .career-role-card, .va-task-card, .va-plan-card,
+  .ppa-why-card, .ppa-package, .resource-card, .growth-card, .growth-metric,
+  .blog-card, .blog-most-read-card, .blog-topic-grid article,
+  .blog-faq-list details, .post-related-card, .post-sidebar-card,
+  .why-card, .why-feat-card, .outsrc-card, .testi-card, .process-node
+) {
+  color: var(--text-1);
+  background: #fff !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.marketing-site :is(
+  .value-card, .quality-tile, .svc-card, .model-card, .growth-card,
+  .team-member-card, .career-perk, .resource-card, .blog-card,
+  .blog-most-read-card, .post-related-card, .why-card, .why-feat-card,
+  .outsrc-card, .testi-card
+):hover {
+  border-color: rgba(23,63,120,.28) !important;
+  box-shadow: var(--shadow-lg);
+}
+
+.marketing-site :is(.chip-white, .pill, .growth-model-label) {
+  color: var(--navy-soft) !important;
+  background: var(--mode-accent-soft) !important;
+  border-color: var(--mode-accent-line) !important;
+}
+
+/* CTA becomes a premium white conversion panel. */
+.marketing-site .cta-banner {
+  --gold: #173f78;
+  --gold-light: #245a9b;
+  --accent-contrast: #fff;
+  color: var(--text-1);
+  background: #fff;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.marketing-site .cta-banner-grid { background-image: linear-gradient(rgba(23,63,120,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23,63,120,.035) 1px, transparent 1px); }
+.marketing-site .cta-banner-orb { background: radial-gradient(circle, rgba(217,154,0,.09), transparent 65%); }
+.marketing-site .cta-banner-heading { color: var(--navy); }
+.marketing-site .cta-banner-sub { color: var(--text-2); }
+.marketing-site .cta-banner-assurance { color: var(--text-3); }
+.marketing-site .cta-banner-pill { color: var(--navy-soft); background: var(--mode-accent-soft); border-color: var(--mode-accent-line); }
+
+/* Footer and top strip are part of the same white system. */
+.marketing-site .topbar { background: #0b1f42; border-bottom: 1px solid rgba(255,255,255,.1); }
+.marketing-site .topbar-left a,
+.marketing-site .topbar-socials a { color: #fff; }
+.marketing-site .topbar-left a { color: #fff !important; }
+.marketing-site .topbar-socials a { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); }
+.marketing-site .footer-main { background: #fff; }
+.marketing-site .footer-bottom { background: var(--surface); }
+.marketing-site .footer-logo { filter: none; }
+
+/* Dark-mode preference does not override the requested white marketing theme. */
+html.dark .marketing-site,
+html.dark .marketing-site main { color: var(--text-1); background: #fff; }
+html.dark .marketing-site .navbar,
+html.dark .marketing-site .navbar.scrolled,
+html.dark .marketing-site .navbar.mobile-open { color: var(--text-1); background: rgba(255,255,255,.97); border-color: var(--border); }
+html.dark .marketing-site .nav-link { color: var(--text-2); }
+html.dark .marketing-site .nav-link:hover,
+html.dark .marketing-site .nav-link.active { color: var(--navy); background: var(--surface); }
+html.dark .marketing-site .footer-main { background: #fff; border-color: var(--border); }
+html.dark .marketing-site .footer-bottom { background: var(--surface); border-color: var(--border); }
+html.dark .marketing-site .footer-logo { filter: none; }
+html.dark .marketing-site :is(.footer-brand p, .footer-links a, .footer-newsletter-desc, .trust-item, .footer-bottom p, .footer-legal a, .office-card p, .office-card a) { color: var(--text-2); }
+html.dark .marketing-site .office-card strong { color: var(--navy); }
+html.dark .marketing-site .newsletter-form { color: var(--text-1); background: #fff; border-color: var(--border); }
+html.dark .marketing-site .newsletter-form input { color: var(--text-1); }
+
+/* Final light-theme contrast normalization for updated and legacy page CSS. */
+.marketing-site main section:not(.hero):not(.worklife-hero) :is(h1, h2, h3, h4, h5) {
+  color: var(--navy);
+}
+
+.marketing-site main section:not(.hero):not(.worklife-hero) :is(p, li) {
+  color: var(--text-2);
+}
+
+.marketing-site :is(
+  .section-head, .growth-head, .blog-section-heading, .worklife-section-head,
+  .post-related-heading, .blog-topic-heading, .blog-faq-intro
+) p { color: var(--text-2) !important; }
+
+.marketing-site :is(
+  .section-head, .growth-head, .blog-section-heading, .worklife-section-head,
+  .post-related-heading, .blog-topic-heading, .blog-faq-intro
+) :is(h1, h2, h3) { color: var(--navy) !important; }
+
+.marketing-site .home :is(.stats-bar, .services-section, .process-section, .why-section, .why-feat-section, .outsrc-section, .security-section, .testi-section) {
+  --mode-accent: #173f78;
+  --mode-accent-soft: rgba(23,63,120,.08);
+  --mode-accent-line: rgba(23,63,120,.2);
+  --grad-gold: linear-gradient(135deg, #173f78, #245a9b);
+}
+
+.marketing-site .home .stats-bar {
+  background: var(--surface) !important;
+  border-block: 1px solid var(--border) !important;
+}
+.marketing-site .home .stat-card { border-color: var(--border) !important; }
+.marketing-site .home .stat-card:hover { background: #fff; }
+.marketing-site .home .stat-label { color: var(--text-2); }
+.marketing-site .home :is(.stat-icon, .stat-value) { color: var(--navy-soft); }
+
+.marketing-site .home .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.marketing-site .home .svc-card { padding: clamp(26px, 3vw, 36px); }
+.marketing-site .home .svc-title { color: var(--navy); }
+.marketing-site .home .svc-desc { color: var(--text-2); }
+.marketing-site .home .svc-bullets li { color: var(--text-2); }
+.marketing-site .home .svc-top-bar { opacity: .85; }
+
+.marketing-site .home :is(.why-feat-title, .outsrc-title, .process-title, .why-card-title, .testi-name) { color: var(--navy); }
+.marketing-site .home :is(.why-feat-desc, .outsrc-desc, .process-desc, .why-body, .why-card-desc, .testi-text, .testi-role) { color: var(--text-2); }
+.marketing-site .home :is(.why-feat-card, .outsrc-card, .why-card, .testi-card) { border-color: var(--border) !important; }
+.marketing-site .home .testi-text { border-top-color: var(--border); }
+.marketing-site .home .testi-stars { color: var(--gold); }
+.marketing-site .home .testi-marquee {
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.marketing-site .home .process-track::before,
+.marketing-site .home .process-line,
+.marketing-site .home :is(.workflow-line, .why-divider) { background: var(--border) !important; }
+.marketing-site .home .process-node { color: var(--navy-soft); }
+.marketing-site .home .process-node:hover { color: #fff; background: var(--navy-soft) !important; }
+
+.marketing-site .home .security-section :is(.section-title, .security-title, h2, h3) { color: var(--navy) !important; }
+.marketing-site .home .security-section :is(p, li, .security-sub) { color: var(--text-2) !important; }
+.marketing-site .home :is(.security-pillar, .security-card) {
+  color: var(--text-1);
+  background: #fff !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.marketing-site :is(input, textarea, select) {
+  color: var(--text-1);
+  background: #fff;
+  border-color: var(--border);
+}
+.marketing-site :is(input, textarea)::placeholder { color: var(--text-3); }
+
+.marketing-site :is(hr, .divider, [class*="-divider"], [class*="-line"]):not(.phone-home-bar) {
+  border-color: var(--border);
+}
+
+@media (max-width: 768px) {
+  .marketing-site .home .hero-slide-overlay { background: linear-gradient(90deg, rgba(255,255,255,.98), rgba(255,255,255,.86)); }
+  .marketing-site :is(.page-hero, .growth-hero, .post-hero) { min-height: auto; padding-block: 68px; }
+  .marketing-site .home .services-grid { grid-template-columns: 1fr; }
+}
+
+/* 2026 readability and layout refinement. Kept last to override legacy page CSS. */
+.marketing-site {
+  --page-bg: #f5f7fb;
+  --page-bg-soft: #fafbfd;
+  --section-gradient: linear-gradient(145deg, #fbfcfe 0%, #f4f7fb 55%, #edf2f8 100%);
+  --section-gradient-alt: linear-gradient(145deg, #f1f5fa 0%, #f8fafc 52%, #eef3f8 100%);
+  --card-border: rgba(11,31,66,.14);
+  --heading-color: #071a38;
+  --copy-color: #354968;
+  --muted-color: #61728d;
+  background: var(--page-bg);
+}
+
+.marketing-site main {
+  background: var(--section-gradient);
+}
+
+.marketing-site main > section,
+.marketing-site main > div[class*="section"] {
+  position: relative;
+  border-bottom: 1px solid rgba(11,31,66,.07);
+}
+
+.marketing-site main > section:not(.hero):not(.page-hero):not(.growth-hero):not(.post-hero):not(.worklife-hero):nth-of-type(odd) {
+  background: var(--section-gradient) !important;
+}
+
+.marketing-site main > section:not(.hero):not(.page-hero):not(.growth-hero):not(.post-hero):not(.worklife-hero):nth-of-type(even) {
+  background: var(--section-gradient-alt) !important;
+}
+
+.marketing-site :is(.page-hero, .growth-hero, .post-hero) {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(217,154,0,.09), transparent 25rem),
+    linear-gradient(135deg, #f8fafc 0%, #eef3f9 58%, #e8eef7 100%) !important;
+}
+
+.marketing-site .home .hero {
+  background: linear-gradient(135deg, #f8fafc, #eef3f8) !important;
+}
+
+/* Our Team intentionally retains its dashboard-managed culture photography. */
+.marketing-site .team-page-hero {
+  background-image:
+    linear-gradient(180deg, rgba(6, 19, 40, .28) 0%, rgba(6, 19, 40, .46) 52%, rgba(6, 19, 40, .82) 100%),
+    var(--hero-bg) !important;
+  background-position: center 38% !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.marketing-site .team-page-hero::before {
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+}
+
+@media (max-width: 640px) {
+  .marketing-site .team-page-hero { background-position: 52% 38% !important; }
+}
+
+.marketing-site :is(h1, h2, h3, h4, h5, .section-title, .section-title--white) {
+  color: var(--heading-color);
+  font-weight: 750;
+  text-shadow: none;
+}
+
+.marketing-site :is(.section-title, .growth-head h2, .blog-section-heading h2, .worklife-section-head h2) {
+  letter-spacing: -.035em;
+}
+
+.marketing-site :is(
+  .section-body, .section-body--white, .section-sub, .growth-head p,
+  .svc-desc, .why-body, .why-card-desc, .why-feat-desc, .outsrc-desc,
+  .process-desc, .testi-text, .blog-card-summary, .post-related-card p
+) {
+  color: var(--copy-color) !important;
+  font-weight: 450;
+  line-height: 1.72;
+}
+
+.marketing-site :is(
+  .section-eyebrow, .pill, .chip, .chip-white, .growth-eyebrow,
+  .svc-tag, .growth-model-label
+) {
+  color: #173f78 !important;
+  background: rgba(23,63,120,.085) !important;
+  border-color: rgba(23,63,120,.22) !important;
+  font-weight: 800;
+}
+
+/* Restore icon visibility on all light cards and informational blocks. */
+.marketing-site :is(
+  .svc-icon-wrap, .value-icon, .quality-icon, .why-card-icon,
+  .why-feat-icon, .outsrc-icon, .process-node, .growth-card-icon,
+  .acc-svc-icon, .team-value-icon, .career-perk-icon, .va-task-icon,
+  .ppa-why-icon, .contact-icon, .security-icon, .resource-icon
+) {
+  color: #173f78 !important;
+  background: rgba(23,63,120,.09) !important;
+  border-color: rgba(23,63,120,.18) !important;
+}
+
+.marketing-site :is(
+  .svc-icon-wrap, .value-icon, .quality-icon, .why-card-icon,
+  .why-feat-icon, .outsrc-icon, .growth-card-icon, .acc-svc-icon,
+  .team-value-icon, .career-perk-icon, .va-task-icon, .ppa-why-icon
+) svg {
+  color: currentColor !important;
+  stroke: currentColor !important;
+  opacity: 1 !important;
+}
+
+.marketing-site :is(.svc-check, .check-icon, .growth-list svg, .cta-banner-assurance svg) {
+  color: #b67d00 !important;
+  stroke: currentColor;
+}
+
+.marketing-site :is(
+  .value-card, .quality-tile, .svc-card, .svc-process-card, .model-card,
+  .acc-svc-card, .acc-process-step, .team-value-card, .career-perk,
+  .career-role-card, .va-task-card, .va-plan-card, .ppa-why-card,
+  .ppa-package, .resource-card, .growth-card, .growth-metric,
+  .blog-card, .blog-most-read-card, .blog-topic-grid article,
+  .blog-faq-list details, .post-related-card, .post-sidebar-card,
+  .why-card, .why-feat-card, .outsrc-card, .testi-card
+) {
+  background: rgba(255,255,255,.94) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 8px 28px rgba(11,31,66,.07);
+}
+
+.marketing-site :is(
+  .value-card, .quality-tile, .svc-card, .model-card, .growth-card,
+  .career-perk, .resource-card, .blog-card, .post-related-card,
+  .why-card, .why-feat-card, .outsrc-card, .testi-card
+):hover {
+  border-color: rgba(23,63,120,.32) !important;
+  box-shadow: 0 18px 45px rgba(11,31,66,.12);
+}
+
+/* Buttons remain dominant and readable against every light surface. */
+.marketing-site :is(.btn-gold, .btn-primary, .nav-cta, .cta-banner-buttons .btn:first-child) {
+  color: #fff !important;
+  background: linear-gradient(135deg, #123665, #245a9b) !important;
+  border-color: transparent !important;
+  box-shadow: 0 10px 26px rgba(23,63,120,.22);
+}
+
+.marketing-site :is(.btn-ghost, .btn-outline-gold) {
+  color: #173f78 !important;
+  background: rgba(255,255,255,.72) !important;
+  border-color: rgba(23,63,120,.3) !important;
+}
+
+.marketing-site :is(.btn-ghost, .btn-outline-gold):hover {
+  color: #fff !important;
+  background: #173f78 !important;
+}
+
+/* Layout rhythm and readable line lengths across the whole site. */
+.marketing-site .container {
+  width: min(100%, 1240px);
+}
+
+.marketing-site :is(.section-head, .growth-head, .blog-section-heading, .worklife-section-head) {
+  width: min(100%, 760px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.marketing-site :is(.section, .growth-section, .blog-featured-section, .blog-library-section, .blog-most-read-section, .blog-faq-section) {
+  padding-block: clamp(52px, 6vw, 78px) !important;
+}
+
+.marketing-site :is(.services-grid, .growth-grid, .why-feat-grid, .outsrc-grid) {
+  align-items: stretch;
+}
+
+.marketing-site :is(.svc-card, .growth-card, .why-feat-card, .outsrc-card) {
+  height: 100%;
+}
+
+/* Image/media overlays must retain white text for contrast. */
+.marketing-site :is(
+  .team-member-card, .worklife-gallery-item, .worklife-video-card,
+  .blog-featured-media, .story-video, .phone-frame
+) :is(h2, h3, h4, p, span) {
+  color: inherit;
+}
+
+.marketing-site :is(.team-member-overlay, .worklife-gallery-overlay, .worklife-video-overlay) :is(h2, h3, h4, p, span) {
+  color: #fff !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,.45);
+}
+
+.marketing-site .worklife-hero :is(h1, h2, h3, p, span) {
+  color: #fff !important;
+  text-shadow: 0 2px 18px rgba(0,0,0,.45);
+}
+
+.marketing-site :is(.worklife-gallery-copy, .worklife-video-copy) :is(strong, small, span) {
+  color: #fff !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,.55);
+}
+
+/* The new homepage phone preview intentionally remains dark. */
+.marketing-site .phone-frame,
+.marketing-site .phone-frame :is(h2, h3, h4, p, span, div) {
+  color: inherit;
+}
+
+.marketing-site .phone-frame { background: #081426 !important; }
+.marketing-site .phone-slide-title { color: #fff !important; }
+.marketing-site .phone-slide-desc,
+.marketing-site .phone-stat-lab { color: rgba(255,255,255,.68) !important; }
+
+html.dark .marketing-site :is(.theme-toggle, .nav-theme-toggle) {
+  color: #173f78;
+  background: #fff;
+  border-color: var(--border);
+}
+
+@media (max-width: 900px) {
+  .marketing-site :is(.section, .growth-section, .blog-featured-section, .blog-library-section, .blog-most-read-section, .blog-faq-section) {
+    padding-block: 48px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .marketing-site .container { padding-inline: 18px; }
+  .marketing-site :is(.section, .growth-section, .blog-featured-section, .blog-library-section, .blog-most-read-section, .blog-faq-section) {
+    padding-block: 40px !important;
+  }
+  .marketing-site :is(.svc-card, .growth-card, .why-feat-card, .outsrc-card) { padding: 24px 20px; }
+}
+
+/* Visibility fixes verified against the rendered light homepage. */
+.marketing-site .home .hero {
+  min-height: clamp(620px, 72dvh, 760px) !important;
+  padding-block: clamp(36px, 5vh, 64px) !important;
+}
+
+.marketing-site .home .hero-inner {
+  min-height: 0;
+  align-items: center;
+}
+
+.marketing-site .home .hero-trust {
+  margin-top: 28px;
+  gap: 12px 22px;
+}
+
+.marketing-site .home .trust-tag {
+  color: #405475 !important;
+  font-weight: 700;
+}
+
+.marketing-site .home .trust-icon {
+  color: #d99a00 !important;
+  stroke-width: 2.5;
+}
+
+.marketing-site .home .hero-scroll-hint {
+  color: #61728d !important;
+}
+
+.marketing-site .home .hero-scroll-hint span { color: #61728d !important; }
+.marketing-site .home .hero-scroll-line { background: #d99a00 !important; }
+
+.marketing-site .home .security-grid {
+  max-width: 960px;
+  gap: 16px;
+}
+
+.marketing-site .home .sec-pill {
+  color: #173f78 !important;
+  background: rgba(255,255,255,.9) !important;
+  border: 1px solid rgba(23,63,120,.2) !important;
+  box-shadow: 0 7px 22px rgba(11,31,66,.06);
+}
+
+.marketing-site .home .sec-pill:hover {
+  color: #0b1f42 !important;
+  background: #fff !important;
+  border-color: rgba(23,63,120,.4) !important;
+  box-shadow: 0 12px 28px rgba(11,31,66,.1);
+}
+
+.marketing-site .home .sec-pill-icon,
+.marketing-site .home .sec-pill-label {
+  color: #173f78 !important;
+  opacity: 1 !important;
+}
+
+.marketing-site .home .sec-pill-icon svg {
+  color: #173f78 !important;
+  stroke: #173f78 !important;
+  opacity: 1 !important;
+}
+
+/* Legacy components that previously relied on dark section backgrounds. */
+.marketing-site :is(
+  .acc-why-card, .why-tile, .partner-strip-item, .ds-feature-card,
+  .ds-layer-step, .career-culture-card, .career-no-match-inner,
+  .team-value-card, .team-member-body, .blog-newsletter
+) :is(h3, h4, strong) {
+  color: var(--heading-color) !important;
+}
+
+.marketing-site :is(
+  .acc-why-card, .why-tile, .partner-strip-item, .ds-feature-card,
+  .ds-layer-step, .career-culture-card, .career-no-match-inner,
+  .team-value-card, .team-member-body
+) :is(p, span, li) {
+  color: var(--copy-color) !important;
+}
+
+.marketing-site :is(
+  .acc-why-card, .why-tile, .partner-strip-item, .ds-feature-card,
+  .career-culture-card, .career-no-match, .team-value-card
+) {
+  background: rgba(255,255,255,.92) !important;
+  border-color: var(--card-border) !important;
+}
+
+.marketing-site :is(.acc-software-chip, .career-skill-tag, .team-member-tag) {
+  color: #173f78 !important;
+  background: rgba(23,63,120,.075) !important;
+  border-color: rgba(23,63,120,.2) !important;
+}
+
+.marketing-site .blog-newsletter :is(h2, h3, p, span, label) {
+  color: var(--heading-color) !important;
+}
+
+.marketing-site .blog-newsletter :is(input, input::placeholder) {
+  color: var(--copy-color) !important;
+}
+
+/* Keep genuinely dark cards readable instead of converting their foreground. */
+.marketing-site :is(.pkg-dark, .story-video, .phone-frame, .worklife-video-card) :is(h2, h3, h4, strong, p, span, li) {
+  color: #fff !important;
+}
+
+@media (max-width: 768px) {
+  .marketing-site .home .hero {
+    min-height: auto !important;
+    padding-block: 56px 70px !important;
+  }
+  .marketing-site .home .security-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+@media (max-width: 480px) {
+  .marketing-site .home .security-grid { grid-template-columns: 1fr; }
+  .marketing-site .home .sec-pill { min-height: 58px; }
+}
+
+/* Explicit light-card contracts prevent page CSS from hiding content. */
+.marketing-site :is(
+  .value-card, .diff-card, .quality-tile, .svc-process-card, .model-card,
+  .acc-svc-card, .acc-process-step, .team-value-card, .career-perk,
+  .career-role-card, .refer-benefit, .refer-form-card, .office-info-card,
+  .contact-form-card, .ds-pillar, .resource-card
+) :is(h2, h3, h4, h5, strong, .card-title) {
+  color: var(--heading-color) !important;
+  opacity: 1 !important;
+}
+
+.marketing-site :is(
+  .value-card, .diff-card, .quality-tile, .svc-process-card, .model-card,
+  .acc-svc-card, .acc-process-step, .team-value-card, .career-perk,
+  .career-role-card, .refer-benefit, .refer-form-card, .office-info-card,
+  .contact-form-card, .ds-pillar, .resource-card
+) :is(p, li, small, .card-copy) {
+  color: var(--copy-color) !important;
+  opacity: 1 !important;
+}
+
+.marketing-site .value-card h3,
+.marketing-site .value-card p {
+  visibility: visible !important;
+}
+
+/* Full-fold heroes: fill the device viewport beneath the visible site header. */
+.marketing-site :is(.home .hero, .page-hero, .growth-hero, .post-hero) {
+  min-height: calc(100vh - 102px) !important;
+  min-height: calc(100svh - 102px) !important;
+}
+
+@media (max-width: 960px) {
+  .marketing-site :is(.home .hero, .page-hero, .growth-hero, .post-hero) {
+    min-height: calc(100vh - 68px) !important;
+    min-height: calc(100svh - 68px) !important;
+  }
+}
+
+@media (max-height: 620px) and (orientation: landscape) {
+  .marketing-site :is(.home .hero, .page-hero, .growth-hero, .post-hero) {
+    min-height: calc(100svh - 68px) !important;
+    padding-block: 48px !important;
+  }
+}
+
+/* Cross-device layout safety contracts. */
+.marketing-site {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.marketing-site :is(main, section, article, aside, header, footer, nav, form, fieldset, .container) {
+  min-width: 0;
+}
+
+.marketing-site :is(img, video, iframe, canvas) {
+  max-width: 100%;
+}
+
+.marketing-site :is(input, select, textarea, button) {
+  max-width: 100%;
+}
+
+.marketing-site :is(h1, h2, h3, h4, h5, h6, p, a, span, strong, li, label) {
+  overflow-wrap: anywhere;
+}
+
+.marketing-site :is(.btn, .btn-primary, .btn-gold, .btn-ghost, .nav-cta) {
+  min-width: 0;
+  text-align: center;
+}
+
+.marketing-site :is(table) {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .marketing-site :is(.section-head, .growth-head) {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .marketing-site :is(.section-head, .growth-head) :is(h1, h2, h3, p) {
+    max-width: 100%;
+  }
+
+  .marketing-site :is(.page-hero-actions, .growth-actions, .hero-actions, .cta-banner-buttons) {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .marketing-site :is(.post-html-content, .info-content, .legal-content) table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .marketing-site :is(.post-html-content, .info-content, .legal-content) :is(img, video, iframe) {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .marketing-site :is(.btn, .btn-primary, .btn-gold, .btn-ghost) {
+    white-space: normal;
+  }
+
+  .marketing-site :is(input, select, textarea) {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .marketing-site :is(article, .card, [class*='-card']):hover {
+    transform: none;
+  }
+}

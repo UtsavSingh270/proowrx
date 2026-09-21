@@ -1,9 +1,14 @@
 import BlogClient from './BlogClient';
-import { serverPosts } from '../../../lib/serverApi';
+import { serverPosts } from '@/lib/serverApi';
 
 export const metadata = {
   title: 'Blog',
   description: 'Industry insights, outsourcing guides, and practical tips for Australian mortgage brokers and accountants — from the Proowrx team.',
+  keywords: [
+    'mortgage outsourcing Australia', 'mortgage broker support', 'loan processing outsourcing',
+    'accounting outsourcing Australia', 'bookkeeping outsourcing', 'virtual assistant for mortgage brokers',
+    'KPO services Australia', 'back office support', 'data security outsourcing', 'Proowrx insights',
+  ],
   alternates: { canonical: '/blog' },
   openGraph: {
     title: 'Proowrx Blog | Insights & Resources',
@@ -12,9 +17,38 @@ export const metadata = {
   },
 };
 
-export const revalidate = 3600;
+export const revalidate = 1800;
 
 export default async function Page() {
   const allPosts = await serverPosts.getAll().catch(() => []);
-  return <BlogClient allPosts={allPosts || []} />;
+  const posts = allPosts || [];
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://proowrx.com';
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Proowrx Blog',
+    description: metadata.description,
+    url: `${siteUrl}/blog`,
+    isPartOf: { '@type': 'WebSite', name: 'Proowrx', url: siteUrl },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: posts.length,
+      itemListElement: posts.slice(0, 20).map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${siteUrl}/blog/${post.slug || post.id}`,
+        name: post.title,
+      })),
+    },
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+    ],
+  };
+
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} /><BlogClient allPosts={posts} generatedAt={Date.now()} /></>;
 }

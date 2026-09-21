@@ -1,0 +1,110 @@
+.cta-banner { position: relative; overflow: hidden; padding: clamp(44px, 5vw, 64px) 0; background: linear-gradient(135deg, #f8fbff 0%, #fff 54%, #f2f6fc 100%); }
+.cta-banner-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(420px, .9fr); gap: clamp(42px, 6vw, 86px); align-items: center; }
+.cta-banner-copy { min-width: 0; }
+.cta-banner-pill { display: inline-flex; padding: 6px 14px; margin-bottom: 18px; border: 1px solid rgba(23,63,120,.16); border-radius: 999px; background: #edf3fb; color: #173f78; font-size: .69rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.cta-banner-heading { max-width: 680px; margin: 0 0 18px; color: #0c2247; font-family: 'Noto Sans', sans-serif; font-size: clamp(2.15rem, 4vw, 3.6rem); font-weight: 800; letter-spacing: -.055em; line-height: 1.02; }
+.cta-banner-heading::after { content: ''; display: block; width: 120px; height: 4px; margin-top: 22px; border-radius: 99px; background: linear-gradient(90deg, #173f78, #f0a500); }
+.cta-banner-sub { max-width: 620px; margin: 0 0 22px; color: #42577c; font-size: 1rem; line-height: 1.75; }
+.cta-banner-assurances { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-bottom: 26px; }
+.cta-banner-assurance { display: inline-flex; align-items: center; gap: 6px; color: #536787; font-size: .76rem; font-weight: 650; white-space: nowrap; }
+.cta-banner-assurance svg { color: #d99a00; }
+.cta-banner-buttons { display: flex; align-items: center; gap: 12px; flex-wrap: nowrap; }
+.cta-banner-buttons .btn { min-height: 48px; justify-content: center; white-space: nowrap; }
+.cta-banner-buttons .btn-ghost { border-color: rgba(23,63,120,.25); color: #173f78; background: #fff; }
+.cta-banner-visual { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, 190px); gap: 14px; min-height: 394px; }
+.cta-banner-image {
+  --r: 20px;
+  --s: 24px;
+  --x: 25px;
+  --y: 5px;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: #e8eef7;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 14px 34px rgba(15,34,70,.11);
+}
+
+/* Top-left tile: carve its bottom-right inner edge. */
+.cta-banner-image-one {
+  --_m: / calc(2 * var(--r)) calc(2 * var(--r)) radial-gradient(#000 70%, #0000 72%);
+  --_g: conic-gradient(from 90deg at calc(100% - var(--r)) calc(100% - var(--r)), #0000 25%, #000 0);
+  --_d: calc(var(--s) + var(--r));
+  -webkit-mask: calc(100% - var(--_d) - var(--x)) 100% var(--_m), 100% calc(100% - var(--_d) - var(--y)) var(--_m), radial-gradient(var(--s) at 100% 100%, #0000 99%, #000 calc(100% + 1px)) calc(-1 * var(--r) - var(--x)) calc(-1 * var(--r) - var(--y)), var(--_g) calc(-1 * var(--_d) - var(--x)) 0, var(--_g) 0 calc(-1 * var(--_d) - var(--y));
+  mask: calc(100% - var(--_d) - var(--x)) 100% var(--_m), 100% calc(100% - var(--_d) - var(--y)) var(--_m), radial-gradient(var(--s) at 100% 100%, #0000 99%, #000 calc(100% + 1px)) calc(-1 * var(--r) - var(--x)) calc(-1 * var(--r) - var(--y)), var(--_g) calc(-1 * var(--_d) - var(--x)) 0, var(--_g) 0 calc(-1 * var(--_d) - var(--y));
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Top-right tile: carve its bottom-left inner edge. */
+.cta-banner-image-two {
+  --_m: / calc(2 * var(--r)) calc(2 * var(--r)) radial-gradient(#000 70%, #0000 72%);
+  --_g: conic-gradient(from 180deg at var(--r) calc(100% - var(--r)), #0000 25%, #000 0);
+  --_d: calc(var(--s) + var(--r));
+  -webkit-mask: calc(var(--_d) + var(--x)) 100% var(--_m), 0 calc(100% - var(--_d) - var(--y)) var(--_m), radial-gradient(var(--s) at 0 100%, #0000 99%, #000 calc(100% + 1px)) calc(var(--r) + var(--x)) calc(-1 * var(--r) - var(--y)), var(--_g) calc(var(--_d) + var(--x)) 0, var(--_g) 0 calc(-1 * var(--_d) - var(--y));
+  mask: calc(var(--_d) + var(--x)) 100% var(--_m), 0 calc(100% - var(--_d) - var(--y)) var(--_m), radial-gradient(var(--s) at 0 100%, #0000 99%, #000 calc(100% + 1px)) calc(var(--r) + var(--x)) calc(-1 * var(--r) - var(--y)), var(--_g) calc(var(--_d) + var(--x)) 0, var(--_g) 0 calc(-1 * var(--_d) - var(--y));
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Bottom-left tile: carve its top-right inner edge. */
+.cta-banner-image-three {
+  --_m: / calc(2 * var(--r)) calc(2 * var(--r)) radial-gradient(#000 70%, #0000 72%);
+  --_g: conic-gradient(at calc(100% - var(--r)) var(--r), #0000 25%, #000 0);
+  --_d: calc(var(--s) + var(--r));
+  -webkit-mask: calc(100% - var(--_d) - var(--x)) 0 var(--_m), 100% calc(var(--_d) + var(--y)) var(--_m), radial-gradient(var(--s) at 100% 0, #0000 99%, #000 calc(100% + 1px)) calc(-1 * var(--r) - var(--x)) calc(var(--r) + var(--y)), var(--_g) calc(-1 * var(--_d) - var(--x)) 0, var(--_g) 0 calc(var(--_d) + var(--y));
+  mask: calc(100% - var(--_d) - var(--x)) 0 var(--_m), 100% calc(var(--_d) + var(--y)) var(--_m), radial-gradient(var(--s) at 100% 0, #0000 99%, #000 calc(100% + 1px)) calc(-1 * var(--r) - var(--x)) calc(var(--r) + var(--y)), var(--_g) calc(-1 * var(--_d) - var(--x)) 0, var(--_g) 0 calc(var(--_d) + var(--y));
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Bottom-right tile: carve its top-left inner edge. */
+.cta-banner-image-four {
+  --_m: / calc(2 * var(--r)) calc(2 * var(--r)) radial-gradient(#000 70%, #0000 72%);
+  --_g: conic-gradient(at var(--r) var(--r), #000 75%, #0000 0);
+  --_d: calc(var(--s) + var(--r));
+  -webkit-mask: calc(var(--_d) + var(--x)) 0 var(--_m), 0 calc(var(--_d) + var(--y)) var(--_m), radial-gradient(var(--s) at 0 0, #0000 99%, #000 calc(100% + 1px)) calc(var(--r) + var(--x)) calc(var(--r) + var(--y)), var(--_g) calc(var(--_d) + var(--x)) 0, var(--_g) 0 calc(var(--_d) + var(--y));
+  mask: calc(var(--_d) + var(--x)) 0 var(--_m), 0 calc(var(--_d) + var(--y)) var(--_m), radial-gradient(var(--s) at 0 0, #0000 99%, #000 calc(100% + 1px)) calc(var(--r) + var(--x)) calc(var(--r) + var(--y)), var(--_g) calc(var(--_d) + var(--x)) 0, var(--_g) 0 calc(var(--_d) + var(--y));
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.cta-banner-image-one { background-image: linear-gradient(135deg, rgba(23,63,120,.12), rgba(240,165,0,.08)), url('/cta/cta-1.webp'); }
+.cta-banner-image-two { background-image: linear-gradient(135deg, rgba(23,63,120,.12), rgba(240,165,0,.08)), url('/cta/cta-2.webp'); }
+.cta-banner-image-three { background-image: linear-gradient(135deg, rgba(23,63,120,.12), rgba(240,165,0,.08)), url('/cta/cta-3.webp'); }
+.cta-banner-image-four { background-image: linear-gradient(135deg, rgba(23,63,120,.12), rgba(240,165,0,.08)), url('/cta/cta-4.webp'); }
+.cta-banner-logo { position: absolute; top: 50%; left: 50%; z-index: 2; width: clamp(94px, 9vw, 132px); pointer-events: none; transform: translate(-50%, -50%); }
+.cta-banner-logo img { display: block; width: 100%; height: auto; object-fit: contain; }
+html.dark .cta-banner { background: linear-gradient(135deg, #071225 0%, #0b1930 58%, #081326 100%); }
+html.dark .cta-banner-heading { color: #fff; }
+html.dark .cta-banner-sub, html.dark .cta-banner-assurance { color: rgba(255,255,255,.66); }
+html.dark .cta-banner-pill { border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.06); color: #f0b52d; }
+html.dark .cta-banner-buttons .btn-ghost { border-color: rgba(255,255,255,.25); background: transparent; color: #fff; }
+@media (max-width: 1050px) {
+  .cta-banner-inner { grid-template-columns: 1fr; gap: 44px; }
+  .cta-banner-copy { text-align: center; }
+  .cta-banner-heading, .cta-banner-sub { margin-right: auto; margin-left: auto; }
+  .cta-banner-heading::after { margin-right: auto; margin-left: auto; }
+  .cta-banner-assurances, .cta-banner-buttons { justify-content: center; }
+  .cta-banner-visual { grid-template-rows: repeat(2, 175px); min-height: 364px; }
+}
+@media (max-width: 640px) {
+  .cta-banner { padding: 48px 0; }
+  .cta-banner-inner { gap: 34px; }
+  .cta-banner-heading { font-size: clamp(2rem, 11vw, 3.2rem); }
+  .cta-banner-buttons { width: 100%; gap: 8px; }
+  .cta-banner-buttons .btn { flex: 1 1 0; min-width: 0; padding-right: 12px; padding-left: 12px; font-size: .72rem; }
+  .cta-banner-assurances { display: grid; grid-template-columns: repeat(2, max-content); align-items: center; justify-content: center; gap: 10px 14px; }
+  .cta-banner-assurance:nth-child(3) { grid-column: 1 / -1; justify-self: center; }
+  .cta-banner-visual { grid-template-rows: repeat(2, 125px); gap: 8px; min-height: 258px; }
+  .cta-banner-image { border-radius: 18px; }
+  .cta-banner-image { --r: 12px; --s: 20px; --x: 12px; --y: 2px; }
+  .cta-banner-logo { width: 76px; }
+}
+@media (max-width: 380px) {
+  .cta-banner-assurances { gap: 9px 8px; }
+  .cta-banner-assurance { gap: 4px; font-size: .66rem; }
+  .cta-banner-buttons .btn { font-size: .65rem; }
+  .cta-banner-buttons svg { display: none; }
+}

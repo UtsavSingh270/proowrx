@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import { Download, FileText, ShieldCheck, X } from 'lucide-react';
-import { resources as resourcesApi } from '../../../services/api';
-import CtaBanner from '../../../components/CtaBanner';
+import { resources as resourcesApi } from '@/services/api';
+import CtaBanner from '@/components/shared/CtaBanner';
 import './InfoPages.css';
 
 export default function ResourcesClient({ initialResources }) {

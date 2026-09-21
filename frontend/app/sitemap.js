@@ -1,4 +1,4 @@
-import { serverPosts } from '../lib/serverApi';
+import { serverPosts } from '@/lib/serverApi';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://proowrx.com';
 
@@ -8,14 +8,15 @@ const STATIC_ROUTES = [
   { path: '/services', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/mortgage', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/accounting', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/asset-finance', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/digital-marketing', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/case-study', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/data-security', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/virtual-assistant', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/pay-per-application', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/our-team', priority: 0.6, changeFrequency: 'monthly' },
-  { path: '/worklife', priority: 0.5, changeFrequency: 'monthly' },
   { path: '/career', priority: 0.7, changeFrequency: 'weekly' },
   { path: '/blog', priority: 0.8, changeFrequency: 'daily' },
-  { path: '/faq', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/resources', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/contact', priority: 0.7, changeFrequency: 'yearly' },
   { path: '/privacy-policy', priority: 0.3, changeFrequency: 'yearly' },

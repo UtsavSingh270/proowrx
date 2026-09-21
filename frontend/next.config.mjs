@@ -41,6 +41,27 @@ const nextConfig = {
         protocol: "https",
         hostname: "commondatastorage.googleapis.com",
       },
+
+      // Google-hosted images used by existing blog posts
+      {
+        protocol: "https",
+        hostname: "encrypted-tbn0.gstatic.com",
+        pathname: "/**",
+      },
+
+      // LinkedIn profile images used by team members
+      {
+        protocol: "https",
+        hostname: "media.licdn.com",
+        pathname: "/**",
+      },
+
+      // Country flags displayed in the footer
+      {
+        protocol: "https",
+        hostname: "flagcdn.com",
+        pathname: "/**",
+      },
     ],
   },
 };

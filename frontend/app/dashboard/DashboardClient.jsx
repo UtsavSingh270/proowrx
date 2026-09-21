@@ -1,17 +1,27 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import {
   FileText, Briefcase, LogOut, Plus, Edit2, Trash2, Eye,
-  EyeOff, Save, Image as ImageIcon,
-  Users, Shield, Activity, Inbox, CalendarDays, Maximize2, Minimize2,
+  EyeOff, Save, Image as ImageIcon, Star, Ban,
+  Users, Shield, Activity, Inbox, Mail, CalendarDays, Maximize2, Minimize2, BarChart3, Clock3, Moon, Sun, PanelLeftOpen, PanelLeftClose,
+  Table2,
 } from 'lucide-react';
-import { auth, adminPosts, adminJobs, teamMembers, contact, meetings } from '../../services/api';
-import AdminUsersPanel from '../../components/AdminUsersPanel';
-import AuditLogsPanel from '../../components/AuditLogsPanel';
-import ResourcePanel from '../../components/ResourcePanel';
-import WorkLifePanel from '../../components/WorkLifePanel';
+import { auth, adminPosts, adminJobs, teamMembers, contact, newsletter, meetings } from '@/services/api';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import './Dashboard.css';
+
+const AdminUsersPanel = dynamic(() => import('@/features/dashboard/components/AdminUsersPanel'));
+const AuditLogsPanel = dynamic(() => import('@/features/dashboard/components/AuditLogsPanel'));
+const ResourcePanel = dynamic(() => import('@/features/dashboard/components/ResourcePanel'));
+const WorkLifePanel = dynamic(() => import('@/features/dashboard/components/WorkLifePanel'));
+const AnalyticsPanel = dynamic(() => import('@/features/dashboard/components/AnalyticsPanel'), {
+  loading: () => <div className="dash-empty">Loading analytics…</div>,
+});
+const IpExclusionsPanel = dynamic(() => import('@/features/dashboard/components/IpExclusionsPanel'), {
+  loading: () => <div className="dash-empty">Loading excluded IP addresses…</div>,
+});
 
 /* ─────────────────────── helpers ───────────────────────── */
 const CATEGORY_OPTIONS = [
@@ -23,6 +33,38 @@ const CATEGORY_OPTIONS = [
 
 function catMeta(label) {
   return CATEGORY_OPTIONS.find(c => c.label === label) || CATEGORY_OPTIONS[3];
+}
+
+function toLocalDateTimeInput(value) {
+  if (!value) return '';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  const local = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+  return local.toISOString().slice(0, 16);
+}
+
+function formatTimestamp(value, options = {}) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '—';
+  return new Intl.DateTimeFormat('en-AU', {
+    day: '2-digit', month: 'short', year: 'numeric',
+    hour: '2-digit', minute: '2-digit',
+    ...options,
+  }).format(date);
+}
+
+function DashboardClock() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 30000);
+    return () => window.clearInterval(timer);
+  }, []);
+  return (
+    <div className="dash-clock" title="Australia/Sydney time">
+      <Clock3 size={15} />
+      <span>{formatTimestamp(now, { timeZone: 'Australia/Sydney', timeZoneName: 'short' })}</span>
+    </div>
+  );
 }
 
 function StatusBadge({ status }) {
@@ -84,6 +126,10 @@ function RichEditor({ value, onChange }) {
   const savedRange  = useRef(null);
   const [showImgPanel, setShowImgPanel] = useState(false);
   const [imgUrl, setImgUrl]             = useState('');
+  const [showTablePanel, setShowTablePanel] = useState(false);
+  const [tableRows, setTableRows] = useState(3);
+  const [tableColumns, setTableColumns] = useState(3);
+  const [tableHeader, setTableHeader] = useState(true);
   const [fullView, setFullView]         = useState(false);
 
   // initialise editor content once on mount only
@@ -92,6 +138,20 @@ function RichEditor({ value, onChange }) {
       editorRef.current.innerHTML = value || '';
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!fullView) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const closeOnEscape = event => {
+      if (event.key === 'Escape') setFullView(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [fullView]);
 
   /* save cursor every time user moves it inside the editor */
   function saveSelection() {
@@ -123,6 +183,7 @@ function RichEditor({ value, onChange }) {
   /* open the image URL panel — save cursor first */
   function openImgPanel() {
     saveSelection();
+    setShowTablePanel(false);
     setShowImgPanel(true);
     setImgUrl('');
     setTimeout(() => imgInputRef.current?.focus(), 40);
@@ -145,6 +206,30 @@ function RichEditor({ value, onChange }) {
   function cancelImg() {
     setShowImgPanel(false);
     setImgUrl('');
+    restoreSelection();
+  }
+
+  function openTablePanel() {
+    saveSelection();
+    setShowImgPanel(false);
+    setShowTablePanel(true);
+  }
+
+  function insertTable() {
+    const rows = Math.min(10, Math.max(1, Number(tableRows) || 1));
+    const columns = Math.min(8, Math.max(1, Number(tableColumns) || 1));
+    const header = tableHeader
+      ? `<thead><tr>${Array.from({ length: columns }, (_, index) => `<th>Heading ${index + 1}</th>`).join('')}</tr></thead>`
+      : '';
+    const body = `<tbody>${Array.from({ length: rows }, () => `<tr>${Array.from({ length: columns }, () => '<td>Enter content</td>').join('')}</tr>`).join('')}</tbody>`;
+    restoreSelection();
+    document.execCommand('insertHTML', false, `<div class="editor-table-wrap"><table>${header}${body}</table></div><p><br></p>`);
+    setShowTablePanel(false);
+    sync();
+  }
+
+  function cancelTable() {
+    setShowTablePanel(false);
     restoreSelection();
   }
 
@@ -174,6 +259,15 @@ function RichEditor({ value, onChange }) {
         >
           <ImageIcon size={14} />
           <span style={{ fontSize: '0.76rem', marginLeft: 4 }}>Image</span>
+        </button>
+        <button
+          type="button"
+          className={`dash-tool-btn dash-tool-img-btn${showTablePanel ? ' active' : ''}`}
+          title="Insert table"
+          onClick={openTablePanel}
+        >
+          <Table2 size={14} />
+          <span style={{ fontSize: '0.76rem', marginLeft: 4 }}>Table</span>
         </button>
         <button
           type="button"
@@ -219,6 +313,28 @@ function RichEditor({ value, onChange }) {
         </div>
       )}
 
+      {showTablePanel && (
+        <div className="dash-table-panel">
+          <div className="dash-img-panel-hint">Choose the table size. You can edit every heading and cell after inserting it.</div>
+          <div className="dash-table-panel-controls">
+            <label>
+              Rows
+              <input type="number" min="1" max="10" value={tableRows} onChange={event => setTableRows(event.target.value)} />
+            </label>
+            <label>
+              Columns
+              <input type="number" min="1" max="8" value={tableColumns} onChange={event => setTableColumns(event.target.value)} />
+            </label>
+            <label className="dash-table-checkbox">
+              <input type="checkbox" checked={tableHeader} onChange={event => setTableHeader(event.target.checked)} />
+              Header row
+            </label>
+            <button type="button" className="dash-btn dash-btn-primary dash-btn-sm" onClick={insertTable}>Insert Table</button>
+            <button type="button" className="dash-btn dash-btn-ghost dash-btn-sm" onClick={cancelTable}>Cancel</button>
+          </div>
+        </div>
+      )}
+
       <div
         ref={editorRef}
         className="dash-editor-area"
@@ -229,14 +345,14 @@ function RichEditor({ value, onChange }) {
         onMouseUp={saveSelection}
       />
       <p className="dash-editor-hint">
-        Click inside the content area, place your cursor where you want an image, then click the Image button in the toolbar.
+        Place your cursor where you want content, then use the toolbar to insert an image or editable table.
       </p>
     </div>
   );
 }
 
 /* ─────────────────────── Post modal ─────────────────────── */
-function PostModal({ post, authors, onAuthorCreated, onClose, onSave }) {
+function PostModal({ post, members, onClose, onSave }) {
   const isNew = !post;
   const [form, setForm] = useState({
     title:       post?.title    || '',
@@ -244,18 +360,17 @@ function PostModal({ post, authors, onAuthorCreated, onClose, onSave }) {
     image:       post?.image    || '',
     category:    post?.category || 'Mortgage',
     author:      post?.author   || '',
-    authorId:    post?.authorId || '',
+    authorId:    post?.authorId ? String(post.authorId) : '',
+    authorSource: post?.authorSource || '',
     authorProfile: post?.authorProfile || null,
     date:        post?.date     || new Date().toLocaleDateString('en-AU', { day:'numeric', month:'long', year:'numeric' }),
-    scheduledAt: post?.scheduledAt ? new Date(post.scheduledAt).toISOString().slice(0, 16) : '',
+    scheduledAt: toLocalDateTimeInput(post?.scheduledAt),
     tags:        post?.tags     || [],
     faqs:        post?.faqs     || [],
     featured:    post?.featured || false,
     status:      post?.status   || 'draft',
     htmlContent: post?.htmlContent || '',
   });
-  const [authorForm, setAuthorForm] = useState({ name: '', email: '', title: '', image: '', bio: '' });
-  const [showAuthorForm, setShowAuthorForm] = useState(false);
   const [saving, setSaving] = useState(false);
 
   const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
@@ -276,43 +391,20 @@ function PostModal({ post, authors, onAuthorCreated, onClose, onSave }) {
   }
 
   function selectAuthor(id) {
-    const author = authors.find(a => a._id === id);
+    const author = members.find(member => member._id === id);
     setForm(p => ({
       ...p,
       authorId: id,
+      authorSource: id ? 'team' : '',
       author: author?.name || '',
       authorProfile: author ? {
         name: author.name,
         email: author.email || '',
-        title: author.title || '',
+        title: author.position || '',
         image: author.image || '',
-        bio: author.bio || '',
+        bio: author.summary || author.description || '',
       } : null,
     }));
-  }
-
-  async function createAuthor() {
-    if (!authorForm.name.trim()) return alert('Author name is required.');
-    try {
-      const author = await adminPosts.createAuthor(authorForm);
-      await onAuthorCreated();
-      setAuthorForm({ name: '', email: '', title: '', image: '', bio: '' });
-      setShowAuthorForm(false);
-      setForm(p => ({
-        ...p,
-        authorId: author._id,
-        author: author.name,
-        authorProfile: {
-          name: author.name,
-          email: author.email || '',
-          title: author.title || '',
-          image: author.image || '',
-          bio: author.bio || '',
-        },
-      }));
-    } catch (err) {
-      alert(err.message || 'Failed to create author.');
-    }
   }
 
   async function handleSave(status) {
@@ -365,46 +457,22 @@ function PostModal({ post, authors, onAuthorCreated, onClose, onSave }) {
               </select>
             </div>
             <div className="dash-form-group">
-              <label className="dash-form-label">Author</label>
-              <div className="dash-author-picker">
-                <select className="dash-form-select" value={form.authorId || ''} onChange={e => selectAuthor(e.target.value)}>
-                  <option value="">Select author</option>
-                  {authors.map(a => <option key={a._id} value={a._id}>{a.name}</option>)}
-                </select>
-                <button type="button" className="dash-btn dash-btn-ghost dash-btn-sm" onClick={() => setShowAuthorForm(v => !v)}>
-                  <Plus size={13} /> Author
-                </button>
-              </div>
+              <label className="dash-form-label">Author — Team Member</label>
+              <select className="dash-form-select" value={form.authorSource === 'team' ? form.authorId || '' : ''} onChange={e => selectAuthor(e.target.value)}>
+                <option value="">Select a team member</option>
+                {members.map(member => <option key={member._id} value={member._id}>{member.name} — {member.position}</option>)}
+              </select>
             </div>
           </div>
 
-          {showAuthorForm && (
-            <div className="dash-inline-panel">
-              <div className="dash-form-row">
-                <div className="dash-form-group">
-                  <label className="dash-form-label">Author Name *</label>
-                  <input className="dash-form-input" value={authorForm.name} onChange={e => setAuthorForm(p => ({ ...p, name: e.target.value }))} />
-                </div>
-                <div className="dash-form-group">
-                  <label className="dash-form-label">Author Email</label>
-                  <input className="dash-form-input" type="email" value={authorForm.email} onChange={e => setAuthorForm(p => ({ ...p, email: e.target.value }))} />
-                </div>
+          {form.authorSource === 'team' && form.authorProfile && (
+            <div className="dash-team-author-preview">
+              {form.authorProfile.image ? <img src={form.authorProfile.image} alt="" /> : <span>{form.authorProfile.name?.charAt(0)}</span>}
+              <div>
+                <strong>{form.authorProfile.name}</strong>
+                <small>{form.authorProfile.title || 'Team Member'}</small>
+                {form.authorProfile.bio && <p>{form.authorProfile.bio}</p>}
               </div>
-              <div className="dash-form-row">
-                <div className="dash-form-group">
-                  <label className="dash-form-label">Title / Role</label>
-                  <input className="dash-form-input" value={authorForm.title} onChange={e => setAuthorForm(p => ({ ...p, title: e.target.value }))} />
-                </div>
-                <div className="dash-form-group">
-                  <label className="dash-form-label">Profile Image URL</label>
-                  <input className="dash-form-input" type="url" value={authorForm.image} onChange={e => setAuthorForm(p => ({ ...p, image: e.target.value }))} />
-                </div>
-              </div>
-              <div className="dash-form-group">
-                <label className="dash-form-label">Bio</label>
-                <textarea className="dash-form-textarea" rows={2} value={authorForm.bio} onChange={e => setAuthorForm(p => ({ ...p, bio: e.target.value }))} />
-              </div>
-              <button type="button" className="dash-btn dash-btn-primary dash-btn-sm" onClick={createAuthor}>Save Author</button>
             </div>
           )}
 
@@ -639,26 +707,21 @@ function JobModal({ job, onClose, onSave }) {
 /* ─────────────────────── Blog panel ─────────────────────── */
 function BlogPanel() {
   const [posts, setPosts] = useState([]);
-  const [authors, setAuthors] = useState([]);
+  const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(null); // null | 'new' | post-object
-
-  const reloadAuthors = useCallback(async () => {
-    try { setAuthors(await adminPosts.getAuthors()); }
-    catch { setAuthors([]); }
-  }, []);
 
   const reload = useCallback(async () => {
     setLoading(true);
     try {
-      const [nextPosts, nextAuthors] = await Promise.all([
+      const [nextPosts, nextMembers] = await Promise.all([
         adminPosts.getAll(),
-        adminPosts.getAuthors(),
+        teamMembers.getAdminAll(),
       ]);
       setPosts(nextPosts);
-      setAuthors(nextAuthors);
+      setMembers(nextMembers);
     }
-    catch { setPosts([]); }
+    catch { setPosts([]); setMembers([]); }
     finally { setLoading(false); }
   }, []);
   // Intentional: fetch data on mount (client-only admin panel, no SSR data).
@@ -670,16 +733,15 @@ function BlogPanel() {
     reload();
   }
 
+  async function toggleFeatured(post) {
+    await adminPosts.setFeatured(post._id, !post.featured);
+    reload();
+  }
+
   async function remove(id) {
     if (!window.confirm('Delete this post permanently?')) return;
     await adminPosts.remove(id);
     reload();
-  }
-
-  async function removeAuthor(id) {
-    if (!window.confirm('Delete this author profile? Existing posts will keep the saved author name.')) return;
-    await adminPosts.removeAuthor(id);
-    reloadAuthors();
   }
 
   async function openEdit(p) {
@@ -696,26 +758,12 @@ function BlogPanel() {
         </button>
       </div>
 
-      <div className="dash-subsection">
-        <div className="dash-subsection-title">Author Profiles</div>
-        {authors.length === 0 ? (
-          <div className="dash-muted">No authors yet. Create one inside the New Post editor.</div>
-        ) : (
-          <div className="dash-author-list">
-            {authors.map(author => (
-              <div key={author._id} className="dash-author-card">
-                {author.image && <img src={author.image} alt={author.name} />}
-                <div>
-                  <strong>{author.name}</strong>
-                  <span>{author.title || author.email || 'Author'}</span>
-                </div>
-                <button className="dash-btn dash-btn-danger dash-btn-sm" onClick={() => removeAuthor(author._id)} title="Delete author">
-                  <Trash2 size={13} />
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="dash-subsection dash-author-source-note">
+        <div>
+          <div className="dash-subsection-title">Blog Authors</div>
+          <div className="dash-muted">Authors are selected from Team Members. Update names, roles, photos and bios in the Team Members section.</div>
+        </div>
+        <span>{members.length} team member{members.length === 1 ? '' : 's'} available</span>
       </div>
 
       <div className="dash-table-wrap">
@@ -730,7 +778,7 @@ function BlogPanel() {
                 <th>Title</th>
                 <th>Category</th>
                 <th>Author</th>
-                <th>Date</th>
+                <th>Published / Scheduled</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
@@ -741,12 +789,18 @@ function BlogPanel() {
                   <td className="dash-table-title" title={p.title}>{p.title}</td>
                   <td>{p.category}</td>
                   <td>{p.author || '—'}</td>
-                  <td style={{ whiteSpace: 'nowrap' }}>{p.date}</td>
+                  <td style={{ whiteSpace: 'nowrap' }}>
+                    {p.status === 'scheduled' && p.scheduledAt ? formatTimestamp(p.scheduledAt) : p.date}
+                    {p.status === 'scheduled' && <small className="dash-table-time-note">Local time</small>}
+                  </td>
                   <td><StatusBadge status={p.status} /></td>
                   <td>
                     <div className="dash-table-actions">
                       <button className="dash-btn dash-btn-ghost dash-btn-sm" onClick={() => openEdit(p)} title="Edit">
                         <Edit2 size={13} />
+                      </button>
+                      <button className={`dash-btn dash-btn-ghost dash-btn-sm${p.featured ? ' dash-btn-featured' : ''}`} onClick={() => toggleFeatured(p)} title={p.featured ? 'Remove from featured posts' : 'Mark as featured'} aria-label={p.featured ? 'Remove from featured posts' : 'Mark as featured'}>
+                        <Star size={13} fill={p.featured ? 'currentColor' : 'none'} />
                       </button>
                       {p.status === 'published' ? (
                         <button className="dash-btn dash-btn-ghost dash-btn-sm" onClick={() => changeStatus(p, 'paused')} title="Pause">
@@ -777,8 +831,7 @@ function BlogPanel() {
       {modal && (
         <PostModal
           post={modal === 'new' ? null : modal}
-          authors={authors}
-          onAuthorCreated={reloadAuthors}
+          members={members}
           onClose={() => setModal(null)}
           onSave={reload}
         />
@@ -824,11 +877,11 @@ function JobsPanel() {
       </div>
 
       {loading ? (
-        <div className="dash-empty" style={{ background: '#fff', borderRadius: 16, border: '1px solid #e5e9f0' }}>
+        <div className="dash-empty dash-empty-card">
           Loading…
         </div>
       ) : jobs.length === 0 ? (
-        <div className="dash-empty" style={{ background: '#fff', borderRadius: 16, border: '1px solid #e5e9f0' }}>
+        <div className="dash-empty dash-empty-card">
           No job postings yet.
         </div>
       ) : (
@@ -1157,6 +1210,57 @@ function EnquiriesPanel() {
   );
 }
 
+function NewsletterPanel() {
+  const [subscribers, setSubscribers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const reload = useCallback(async () => {
+    setLoading(true);
+    try { setSubscribers(await newsletter.getAll()); }
+    catch { setSubscribers([]); }
+    finally { setLoading(false); }
+  }, []);
+
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { reload(); }, [reload]);
+
+  async function remove(id) {
+    if (!window.confirm('Delete this newsletter subscriber permanently?')) return;
+    await newsletter.remove(id);
+    reload();
+  }
+
+  return (
+    <div>
+      <div className="dash-section-header">
+        <span className="dash-section-title">Newsletter Subscribers</span>
+        <span className="dash-table-time-note">{subscribers.length} subscriber{subscribers.length === 1 ? '' : 's'}</span>
+      </div>
+      <div className="dash-table-wrap">
+        {loading ? <div className="dash-empty">Loading...</div> : subscribers.length === 0 ? (
+          <div className="dash-empty">No newsletter subscribers yet.</div>
+        ) : (
+          <table className="dash-table dash-data-table">
+            <thead><tr><th>Email Address</th><th>Source</th><th>Subscribed</th><th>Actions</th></tr></thead>
+            <tbody>{subscribers.map(subscriber => (
+              <tr key={subscriber._id}>
+                <td><a href={`mailto:${subscriber.email}`}><strong>{subscriber.email}</strong></a></td>
+                <td>{String(subscriber.source || 'website_footer').replaceAll('_', ' ')}</td>
+                <td>{formatTimestamp(subscriber.createdAt)}</td>
+                <td>
+                  <button className="dash-btn dash-btn-danger dash-btn-sm" onClick={() => remove(subscriber._id)} title="Delete subscriber">
+                    <Trash2 size={13} />
+                  </button>
+                </td>
+              </tr>
+            ))}</tbody>
+          </table>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function MeetingsPanel() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -1279,6 +1383,8 @@ export default function Dashboard() {
   const [authed, setAuthed] = useState(false);
   const [tab, setTab]       = useState('blog');
   const [user, setUser]     = useState(null);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
 
   // Intentional: resolves the real (client-only) auth state after mount —
   // see the hydration-mismatch note above.
@@ -1296,10 +1402,20 @@ export default function Dashboard() {
     });
   }, []);
 
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (window.matchMedia('(max-width: 900px)').matches) setSidebarCollapsed(true);
+  }, []);
+
   function logout() {
     auth.logout();
     setAuthed(false);
     setUser(null);
+  }
+
+  function selectTab(nextTab) {
+    setTab(nextTab);
+    if (window.matchMedia('(max-width: 640px)').matches) setSidebarCollapsed(true);
   }
 
   if (!authed) {
@@ -1309,60 +1425,84 @@ export default function Dashboard() {
   return (
     <div className="dash-shell">
       {/* Sidebar */}
-      <nav className="dash-sidebar">
+      <nav className={`dash-sidebar${sidebarCollapsed ? ' collapsed' : ''}`}>
         <div className="dash-sidebar-logo">
-          Proowrx <span>Admin Dashboard</span>
+          <div className="dash-sidebar-brand">
+            <img
+              src="/Proowrx_Logo.png"
+              alt="Proowrx"
+            />
+            <span>Admin Dashboard</span>
+          </div>
+          <button
+            type="button"
+            className="dash-sidebar-toggle"
+            onClick={() => setSidebarCollapsed(collapsed => !collapsed)}
+            aria-label={sidebarCollapsed ? 'Expand dashboard menu' : 'Collapse dashboard menu'}
+            title={sidebarCollapsed ? 'Expand menu' : 'Collapse menu'}
+          >
+            {sidebarCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+          </button>
         </div>
         <div className="dash-nav">
           <button
             className={`dash-nav-btn${tab === 'blog' ? ' active' : ''}`}
-            onClick={() => setTab('blog')}
+            onClick={() => selectTab('blog')}
           >
             <FileText size={18} /> <span>Blog Posts</span>
           </button>
           <button
             className={`dash-nav-btn${tab === 'jobs' ? ' active' : ''}`}
-            onClick={() => setTab('jobs')}
+            onClick={() => selectTab('jobs')}
           >
             <Briefcase size={18} /> <span>Job Postings</span>
           </button>
           <button
             className={`dash-nav-btn${tab === 'team' ? ' active' : ''}`}
-            onClick={() => setTab('team')}
+            onClick={() => selectTab('team')}
           >
             <Users size={18} /> <span>Team Members</span>
           </button>
           <button
             className={`dash-nav-btn${tab === 'resources' ? ' active' : ''}`}
-            onClick={() => setTab('resources')}
+            onClick={() => selectTab('resources')}
           >
             <FileText size={18} /> <span>Resources</span>
           </button>
           <button
             className={`dash-nav-btn${tab === 'worklife' ? ' active' : ''}`}
-            onClick={() => setTab('worklife')}
+            onClick={() => selectTab('worklife')}
           >
-            <ImageIcon size={18} /> <span>WorkLife Media</span>
+            <ImageIcon size={18} /> <span>Team Culture Media</span>
           </button>
-          <button className={`dash-nav-btn${tab === 'enquiries' ? ' active' : ''}`} onClick={() => setTab('enquiries')}>
+          <button className={`dash-nav-btn${tab === 'enquiries' ? ' active' : ''}`} onClick={() => selectTab('enquiries')}>
             <Inbox size={18} /> <span>Form Enquiries</span>
           </button>
-          <button className={`dash-nav-btn${tab === 'meetings' ? ' active' : ''}`} onClick={() => setTab('meetings')}>
+          <button className={`dash-nav-btn${tab === 'newsletter' ? ' active' : ''}`} onClick={() => selectTab('newsletter')}>
+            <Mail size={18} /> <span>Newsletter</span>
+          </button>
+          <button className={`dash-nav-btn${tab === 'meetings' ? ' active' : ''}`} onClick={() => selectTab('meetings')}>
             <CalendarDays size={18} /> <span>Meetings</span>
+          </button>
+          <button className={`dash-nav-btn${tab === 'analytics' ? ' active' : ''}`} onClick={() => selectTab('analytics')}>
+            <BarChart3 size={18} /> <span>Analytics</span>
+          </button>
+          <button className={`dash-nav-btn${tab === 'ip-exclusions' ? ' active' : ''}`} onClick={() => selectTab('ip-exclusions')}>
+            <Ban size={18} /> <span>Excluded IPs</span>
           </button>
           
           {user?.isSuperAdmin && (
             <>
-              <div style={{ borderTop: '1px solid #e5e9f0', margin: '16px 0' }} />
+              <div className="dash-nav-divider" />
               <button
                 className={`dash-nav-btn${tab === 'admins' ? ' active' : ''}`}
-                onClick={() => setTab('admins')}
+                onClick={() => selectTab('admins')}
               >
                 <Shield size={18} /> <span>Admin Users</span>
               </button>
               <button
                 className={`dash-nav-btn${tab === 'audit' ? ' active' : ''}`}
-                onClick={() => setTab('audit')}
+                onClick={() => selectTab('audit')}
               >
                 <Activity size={18} /> <span>Audit Logs</span>
               </button>
@@ -1376,13 +1516,42 @@ export default function Dashboard() {
         </div>
       </nav>
 
+      {!sidebarCollapsed && (
+        <button
+          type="button"
+          className="dash-mobile-backdrop"
+          onClick={() => setSidebarCollapsed(true)}
+          aria-label="Close dashboard menu"
+        />
+      )}
+
       {/* Main */}
       <div className="dash-main">
         <div className="dash-topbar">
-          <span className="dash-topbar-title">
-            {tab === 'blog' ? 'Blog Management' : tab === 'jobs' ? 'Job Postings' : tab === 'team' ? 'Team Members' : tab === 'resources' ? 'Resources' : tab === 'worklife' ? 'WorkLife Media' : tab === 'enquiries' ? 'Form Enquiries' : tab === 'meetings' ? 'Scheduled Meetings' : tab === 'admins' ? 'Admin Users' : 'Audit Logs'}
-          </span>
+          <div className="dash-topbar-heading">
+            <button
+              type="button"
+              className="dash-mobile-menu-toggle"
+              onClick={() => setSidebarCollapsed(false)}
+              aria-label="Open dashboard menu"
+            >
+              <PanelLeftOpen size={19} />
+            </button>
+            <span className="dash-topbar-title">
+              {tab === 'blog' ? 'Blog Management' : tab === 'jobs' ? 'Job Postings' : tab === 'team' ? 'Team Members' : tab === 'resources' ? 'Resources' : tab === 'worklife' ? 'Team Culture Media' : tab === 'enquiries' ? 'Form Enquiries' : tab === 'newsletter' ? 'Newsletter Subscribers' : tab === 'meetings' ? 'Scheduled Meetings' : tab === 'analytics' ? 'Website Analytics' : tab === 'ip-exclusions' ? 'Excluded IP Addresses' : tab === 'admins' ? 'Admin Users' : 'Audit Logs'}
+            </span>
+          </div>
           <div className="dash-topbar-user">
+            <DashboardClock />
+            <button
+              type="button"
+              className="dash-theme-toggle"
+              onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+              aria-label={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} theme`}
+              title={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} theme`}
+            >
+              {resolvedTheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
             <span>Admin{user?.isSuperAdmin ? ' (Super)' : ''}</span>
             <button
               onClick={logout}
@@ -1400,7 +1569,10 @@ export default function Dashboard() {
           {tab === 'resources' && <ResourcePanel />}
           {tab === 'worklife' && <WorkLifePanel />}
           {tab === 'enquiries' && <EnquiriesPanel />}
+          {tab === 'newsletter' && <NewsletterPanel />}
           {tab === 'meetings' && <MeetingsPanel />}
+          {tab === 'analytics' && <AnalyticsPanel />}
+          {tab === 'ip-exclusions' && <IpExclusionsPanel />}
           {tab === 'admins' && (
             user?.isSuperAdmin ? <AdminUsersPanel /> : <div className="dash-empty">Super Admin access only</div>
           )}

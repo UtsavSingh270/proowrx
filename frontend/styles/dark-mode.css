@@ -4,6 +4,12 @@
 
 /* ── Variable overrides ──────────────── */
 html.dark {
+  --gold:       #f0a500;
+  --gold-light: #fbbf24;
+  --gold-pale:  rgba(240,165,0,0.12);
+  --grad-gold:  linear-gradient(135deg,#f0a500,#fbbf24);
+  --shadow-gold: 0 8px 32px rgba(240,165,0,0.35);
+  --accent-contrast: #1a0a00;
   --surface:   #0F1628;
   --surface-2: #0a1020;
   --border:    rgba(255,255,255,0.085);
@@ -14,6 +20,9 @@ html.dark {
   --shadow-md: 0 8px 28px rgba(0,0,0,0.40);
   --shadow-lg: 0 20px 60px rgba(0,0,0,0.50);
   --shadow-xl: 0 40px 100px rgba(0,0,0,0.60);
+  --mode-accent:      #f0a500;
+  --mode-accent-soft: rgba(240,165,0,0.12);
+  --mode-accent-line: rgba(240,165,0,0.30);
   color-scheme: dark;
 }
 
@@ -479,9 +488,9 @@ html:not(.dark) .home .why-section      .pill,
 html:not(.dark) .home .why-feat-section .pill,
 html:not(.dark) .home .outsrc-section   .pill,
 html:not(.dark) .home .testi-section    .pill {
-  background: rgba(0,168,150,0.09);
-  border-color: rgba(0,168,150,0.25);
-  color: #007a6b;
+  background: var(--mode-accent-soft);
+  border-color: var(--mode-accent-line);
+  color: var(--mode-accent);
 }
 
 /* ── Services section ────────────────── */
@@ -501,9 +510,9 @@ html:not(.dark) .home .svc-bullets li { color: rgba(8,15,32,0.80); }
 /* ── Process (How It Works) section ─── */
 html:not(.dark) .home .process-section { background: #eef2ff; }
 html:not(.dark) .home .process-node { background: #ffffff; }
-html:not(.dark) .home .process-node:hover { background: #00D4B8; }
-html:not(.dark) .home .process-node:hover .process-node-icon { color: #fff; }
-html:not(.dark) .home .process-num   { color: #00a896; }
+html:not(.dark) .home .process-node:hover { background: var(--mode-accent); }
+html:not(.dark) .home .process-node:hover .process-node-icon { color: var(--accent-contrast); }
+html:not(.dark) .home .process-num   { color: var(--mode-accent); }
 html:not(.dark) .home .process-title { color: #080f20; }
 html:not(.dark) .home .process-desc  { color: rgba(8,15,32,0.55); }
 /* Mobile step divider line */

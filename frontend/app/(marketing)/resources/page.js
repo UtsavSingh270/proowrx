@@ -1,5 +1,5 @@
 import ResourcesClient from "./ResourcesClient";
-import { serverResources } from '../../../lib/serverApi';
+import { serverResources } from '@/lib/serverApi';
 
 export const metadata = {
   title: "Resources | Proowrx",

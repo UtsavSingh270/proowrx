@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Calendar, Clock, Tag, User, Eye, Heart, Timer, ChevronDown } from 'lucide-react';
-import CtaBanner from '../../../../components/CtaBanner';
-import AuthorProfilePopup from '../../../../components/AuthorProfilePopup';
-import { posts as postsApi } from '../../../../services/api';
-import { viewsOf, likesOf, postSlug } from '../../../../data/seedStats';
+import { ArrowLeft, Calendar, Clock, Tag, User, Eye, Heart, ChevronDown } from 'lucide-react';
+import CtaBanner from '@/components/shared/CtaBanner';
+import { posts as postsApi } from '@/services/api';
+import { viewsOf, likesOf, postSlug } from '@/data/seedStats';
 import '../Blog.css';
 import './BlogPost.css';
 import './InfoPages.css';
@@ -16,11 +15,12 @@ function fmtNum(n) {
   return String(n);
 }
 
-function fmtReadSecs(s) {
-  if (s < 60) return `${s}s`;
-  const m = Math.floor(s / 60);
-  const sec = s % 60;
-  return `${m}:${String(sec).padStart(2, '0')}`;
+function formatReadTime(value) {
+  return String(value || '').replace(/\s*read\s*$/i, '').trim() || '1 min';
+}
+
+function formatCommentDate(value) {
+  return new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(value));
 }
 
 export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
@@ -28,10 +28,11 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
   const [viewCount, setViewCount] = useState(() => viewsOf(initialPost));
   const [likeCount, setLikeCount] = useState(() => likesOf(initialPost));
   const [liked, setLiked]         = useState(false);
-  const [readSecs, setReadSecs]   = useState(0);
   const [openFaq, setOpenFaq]     = useState(0);
-  const [showAuthor, setShowAuthor] = useState(false);
-  const timerRef = useRef(null);
+  const [comments, setComments]   = useState([]);
+  const [commentForm, setCommentForm] = useState({ name: '', email: '', comment: '' });
+  const [commentStatus, setCommentStatus] = useState('');
+  const [submittingComment, setSubmittingComment] = useState(false);
 
   // Client-side view tracking + like-state hydration (device-specific, so
   // it can't be resolved during server rendering).
@@ -41,7 +42,7 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
     (alreadyViewed ? postsApi.getOne(routeSlug) : postsApi.getOneFull(routeSlug))
       .then(data => {
         if (!alreadyViewed) sessionStorage.setItem(sessKey, '1');
-        setPost(data);
+        setPost(current => ({ ...current, ...data }));
         setViewCount(data.views);
         setLikeCount(data.likes);
         setLiked(!!data.userLiked);
@@ -50,16 +51,44 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
   }, [routeSlug]);
 
   useEffect(() => {
-    timerRef.current = setInterval(() => setReadSecs(s => s + 1), 1000);
-    return () => clearInterval(timerRef.current);
-  }, []);
+    postsApi.getComments(routeSlug).then(setComments).catch(() => {});
+  }, [routeSlug]);
 
-  const related = allPosts.filter(p => postSlug(p) !== routeSlug).slice(0, 3);
+  const relatedCandidates = allPosts.filter(candidate => postSlug(candidate) !== routeSlug);
+  const relatedByCategory = relatedCandidates.filter(candidate => candidate.category === post.category);
+  const featuredByAuthor = relatedCandidates.filter(candidate => candidate.author === post.author && candidate.featured && candidate.category !== post.category);
+  const otherFeatured = relatedCandidates.filter(candidate => candidate.featured && candidate.category !== post.category && candidate.author !== post.author);
+  const related = [
+    ...relatedByCategory,
+    ...featuredByAuthor,
+    ...otherFeatured,
+    ...relatedCandidates.filter(candidate => candidate.category !== post.category && !candidate.featured),
+  ].slice(0, 3);
 
   async function handleLike() {
     const { liked: nowLiked, likes } = await postsApi.toggleLike(routeSlug);
     setLiked(nowLiked);
     setLikeCount(likes);
+  }
+
+  async function handleCommentSubmit(event) {
+    event.preventDefault();
+    setSubmittingComment(true);
+    setCommentStatus('');
+    try {
+      const comment = await postsApi.addComment(routeSlug, commentForm);
+      if (comment.ignored) {
+        setCommentStatus(comment.message);
+        return;
+      }
+      setComments(current => [comment, ...current]);
+      setCommentForm({ name: '', email: '', comment: '' });
+      setCommentStatus('Your comment has been published.');
+    } catch (error) {
+      setCommentStatus(error.message || 'Unable to publish your comment.');
+    } finally {
+      setSubmittingComment(false);
+    }
   }
 
   return (
@@ -68,51 +97,29 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
       {/* ── Hero ── */}
       <section className="post-hero">
         <div className="post-hero-img-wrap">
-          {post.image && <img src={post.image} alt={post.title} loading="eager" decoding="async" />}
+          {post.image && <img src={post.image} alt="" loading="eager" decoding="async" />}
           <div className="post-hero-overlay" />
         </div>
         <div className="container post-hero-content">
-          <Link href="/blog" className="post-back-link">
-            <ArrowLeft size={15} /> Back to Blog
-          </Link>
-          <div className="blog-meta post-hero-meta">
-            <span className="blog-cat" style={{ background: post.categoryGlow, color: post.categoryColor }}>
-              <Tag size={11} /> {post.category}
-            </span>
-            <span className="blog-date"><Calendar size={12} /> {post.date}</span>
-            <span className="blog-time"><Clock size={12} /> {post.readTime}</span>
-          </div>
-          <h1 className="post-hero-title">{post.title}</h1>
-          <div className="post-hero-author-row">
-            {post.author && post.authorProfile ? (
-              <button
-                type="button"
-                className="post-hero-author"
-                onClick={() => setShowAuthor(true)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: 0,
-                  fontSize: 'inherit',
-                  fontFamily: 'inherit',
-                  color: 'inherit',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                }}
-              >
-                <User size={13} /> {post.author}
-              </button>
-            ) : (
-              post.author && <span className="post-hero-author"><User size={13} /> {post.author}</span>
-            )}
-            <span className="post-hero-stat"><Eye size={13} /> {fmtNum(viewCount)} views</span>
-            <span className="post-hero-stat"><Heart size={13} /> {fmtNum(likeCount)} likes</span>
-            <span className="post-hero-stat post-reading-timer">
-              <Timer size={13} />
-              Reading for {fmtReadSecs(readSecs)}
-            </span>
+          <div className="post-hero-bottom">
+            <div className="post-hero-author-row">
+              {post.author && post.authorProfile && post.authorId && post.authorSource === 'team' ? (
+                <Link href={`/blog/author/${post.authorId}`} className="post-hero-author">
+                  <User size={13} /> {post.author}
+                </Link>
+              ) : (
+                post.author && <span className="post-hero-author"><User size={13} /> {post.author}</span>
+              )}
+              <span className="post-hero-stat"><Eye size={13} /> {fmtNum(viewCount)} views</span>
+              <span className="post-hero-stat"><Heart size={13} /> {fmtNum(likeCount)} likes</span>
+              <span className="post-hero-stat"><Clock size={13} /> {formatReadTime(post.readTime)}</span>
+            </div>
+            <div className="blog-meta post-hero-meta">
+              <span className="blog-cat" style={{ background: post.categoryGlow, color: post.categoryColor }}>
+                <Tag size={11} /> {post.category}
+              </span>
+              <span className="blog-date"><Calendar size={12} /> {post.date}</span>
+            </div>
           </div>
         </div>
       </section>
@@ -122,102 +129,104 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
         <div className="container post-layout">
 
           {/* Article */}
-          <article className="post-body">
-            <p className="post-excerpt">{post.excerpt}</p>
+          <div className="post-main-column">
+            <article className="post-body">
+              <p className="post-excerpt">{post.excerpt}</p>
 
-            {/* Rich HTML content from the dashboard editor */}
-            {post.htmlContent && (
-              <div
-                className="post-html-content"
-                dangerouslySetInnerHTML={{ __html: post.htmlContent }}
-              />
-            )}
+              {post.htmlContent && (
+                <div
+                  className="post-html-content"
+                  dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+                />
+              )}
 
-            {/* FAQs */}
-            {post.faqs?.length > 0 && (
-              <div className="post-faqs">
-                <h2 className="post-heading">Frequently Asked Questions</h2>
-                <div className="faq-list">
-                  {post.faqs.map((faq, i) => (
-                    <div key={i} className={`faq-item${openFaq === i ? ' open' : ''}`}>
-                      <button type="button" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                        <span>{faq.question}</span>
-                        <ChevronDown size={18} />
-                      </button>
-                      {openFaq === i && <p>{faq.answer}</p>}
-                    </div>
-                  ))}
+              <div className="post-footer">
+                <div className="blog-tags">
+                  {(post.tags || []).map(t => <span key={t} className="blog-tag">{t}</span>)}
                 </div>
+                <Link href="/blog" className="post-back-link post-back-link--bottom">
+                  <ArrowLeft size={15} /> Back to Blog
+                </Link>
               </div>
-            )}
+            </article>
 
-            {/* Like button */}
-            <div className="post-like-row">
-              <button
-                className={`post-like-btn${liked ? ' post-like-btn--active' : ''}`}
-                onClick={handleLike}
-              >
-                <Heart size={16} fill={liked ? 'currentColor' : 'none'} />
-                {liked ? 'Liked' : 'Like this post'}
-                <span className="post-like-count">{fmtNum(likeCount)}</span>
-              </button>
-            </div>
+            {post.faqs?.length > 0 && <section className="post-inline-faq">
+              <div className="post-faq-section-heading"><span className="chip chip-gold">Helpful answers</span><h2>Frequently Asked Questions</h2><p>Clear answers to common questions related to this article.</p></div>
+              <div className="post-faq-accordion">{post.faqs.slice(0, 5).map((faq, i) => (
+                <div key={faq.question} className={`faq-item${openFaq === i ? ' open' : ''}`}>
+                  <button type="button" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i}>
+                    <span><small>{String(i + 1).padStart(2, '0')}</small>{faq.question}</span>
+                    <ChevronDown size={19} />
+                  </button>
+                  {openFaq === i && <p>{faq.answer}</p>}
+                </div>
+              ))}</div>
+            </section>}
 
-            <div className="post-footer">
-              <div className="blog-tags">
-                {(post.tags || []).map(t => <span key={t} className="blog-tag">{t}</span>)}
-              </div>
-              <Link href="/blog" className="post-back-link post-back-link--bottom">
-                <ArrowLeft size={15} /> Back to Blog
-              </Link>
-            </div>
-          </article>
+          </div>
 
           {/* Sidebar */}
           <aside className="post-sidebar">
-            <div className="post-sidebar-card post-sidebar-cta">
-              <span className="chip chip-gold" style={{ marginBottom: 14, fontSize: '0.65rem' }}>Free Consultation</span>
-              <h4>Ready to get started?</h4>
-              <p>Book a free 30-minute discovery call with our team and learn what&apos;s possible for your practice.</p>
-              <a
-                href="https://calendly.com/proowrx/30min"
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-gold"
-                style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}
-              >
-                Book a Call <ArrowRight size={14} />
-              </a>
+            {related.length > 0 && <div className="post-sidebar-card post-sidebar-related">
+              <div className="post-sidebar-related-heading"><span>Related insights</span><h4>You may also like</h4></div>
+              <div className="post-related-list">{related.map(relatedPost => (
+                <Link href={`/blog/${postSlug(relatedPost)}`} className="post-related-item" key={postSlug(relatedPost)}>
+                  <span className="post-related-img">{relatedPost.image ? <img src={relatedPost.image} alt="" loading="lazy" decoding="async" /> : <span className="blog-image-placeholder" />}</span>
+                  <span className="post-related-body">
+                    <span className="blog-cat" style={{ background: relatedPost.categoryGlow, color: relatedPost.categoryColor }}>{relatedPost.category}</span>
+                    <span className="post-related-title">{relatedPost.title}</span>
+                    <span className="post-related-date"><Calendar size={11} /> {relatedPost.date}</span>
+                  </span>
+                </Link>
+              ))}</div>
+            </div>}
+          </aside>
+
+        </div>
+
+        <div className="post-engagement-wrap">
+
+          <section className="post-engagement" aria-labelledby="post-discussion-title">
+            <div className="post-engagement-summary">
+              <div><span>Article engagement</span><h2 id="post-discussion-title">Comments &amp; Discussion</h2><p>Share your perspective and continue the conversation with other readers.</p></div>
+              <div className="post-engagement-actions">
+                <span className="post-view-count"><Eye size={17} /> <strong>{fmtNum(viewCount)}</strong> views</span>
+                <button type="button" className={`post-like-btn${liked ? ' post-like-btn--active' : ''}`} onClick={handleLike}>
+                  <Heart size={17} fill={liked ? 'currentColor' : 'none'} />
+                  <span>{liked ? 'Liked' : 'Like article'}</span>
+                  <strong className="post-like-count">{fmtNum(likeCount)}</strong>
+                </button>
+              </div>
             </div>
 
-            {related.length > 0 && (
-              <div className="post-sidebar-card post-sidebar-related">
-                <h4>More Articles</h4>
-                <div className="post-related-list">
-                  {related.map(p => (
-                    <Link key={postSlug(p)} href={`/blog/${postSlug(p)}`} className="post-related-item">
-                      <div className="post-related-img">
-                        {p.image && <img src={p.image} alt={p.title} loading="lazy" decoding="async" />}
-                      </div>
-                      <div className="post-related-body">
-                        <span className="blog-cat" style={{ background: p.categoryGlow, color: p.categoryColor, fontSize: '0.64rem', padding: '2px 8px', marginBottom: 6, display: 'inline-flex' }}>
-                          <Tag size={9} /> {p.category}
-                        </span>
-                        <span className="post-related-title">{p.title}</span>
-                      </div>
-                    </Link>
-                  ))}
+            <div className="post-engagement-content">
+              <form className="post-comment-form" onSubmit={handleCommentSubmit}>
+                <div className="post-comment-fields">
+                  <label>Name<input required maxLength={80} value={commentForm.name} onChange={event => setCommentForm(current => ({ ...current, name: event.target.value }))} placeholder="Your name" /></label>
+                  <label>Email<input required type="email" maxLength={160} value={commentForm.email} onChange={event => setCommentForm(current => ({ ...current, email: event.target.value }))} placeholder="you@example.com" /></label>
                 </div>
+                <label>Comment<textarea required maxLength={1500} rows={4} value={commentForm.comment} onChange={event => setCommentForm(current => ({ ...current, comment: event.target.value }))} placeholder="Share your thoughts about this article" /></label>
+                <div className="post-comment-submit"><small>Your email will never be displayed publicly.</small><button type="submit" className="post-comment-button" disabled={submittingComment}>{submittingComment ? 'Publishing…' : 'Publish Comment'}</button></div>
+                {commentStatus && <p className="post-comment-status" role="status">{commentStatus}</p>}
+              </form>
+
+              <div className="post-comments">
+                <h3>{comments.length} {comments.length === 1 ? 'Comment' : 'Comments'}</h3>
+                {comments.length === 0 ? <p className="post-comments-empty">Be the first to share your thoughts.</p> : comments.map(comment => (
+                  <article className="post-comment" key={comment._id}>
+                    <span className="post-comment-avatar">{comment.name.charAt(0).toUpperCase()}</span>
+                    <div><header><strong>{comment.name}</strong><time>{formatCommentDate(comment.createdAt)}</time></header><p>{comment.comment}</p></div>
+                  </article>
+                ))}
               </div>
-            )}
-          </aside>
+            </div>
+          </section>
 
         </div>
       </section>
 
       <CtaBanner />
 
-      {showAuthor && <AuthorProfilePopup author={post.authorProfile} onClose={() => setShowAuthor(false)} />}
     </div>
   );
 }

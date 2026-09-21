@@ -4,7 +4,8 @@ import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Target, Rocket, Users, TrendingUp } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
+import CtaBanner from '@/components/shared/CtaBanner';
+import ServiceFaq from '@/components/shared/ServiceFaq';
 import './About.css';
 
 function useReveal() {
@@ -29,7 +30,7 @@ export default function About({ initialMembers = [] }) {
   const team = initialMembers.filter(member => member.category === 'featured').map(member => ({
     name: member.name,
     role: member.position,
-    img: member.image,
+    img: typeof member.image === 'string' && member.image.trim() ? member.image.trim() : null,
     bio: member.description || member.summary || '',
     summary: member.summary || '',
   }));
@@ -192,13 +193,19 @@ export default function About({ initialMembers = [] }) {
                 {team.map((m, i) => (
   <div key={i} className={`team-card reveal reveal-delay-${i + 1}`}>
     <div className="team-img-wrap">
-      <Image
-        src={m.img}
-        alt={`${m.name} - ${m.role}`}
-        fill
-        sizes="(max-width:768px) 100vw, 33vw"
-        style={{ objectFit: "cover" }}
-      />
+      {m.img ? (
+        <Image
+          src={m.img}
+          alt={`${m.name} - ${m.role}`}
+          fill
+          sizes="(max-width:768px) 100vw, 33vw"
+          style={{ objectFit: "cover" }}
+        />
+      ) : (
+        <div className="team-img-placeholder" aria-hidden="true">
+          <Users size={46} />
+        </div>
+      )}
       <div className="team-img-overlay" />
     </div>
 
@@ -230,6 +237,11 @@ export default function About({ initialMembers = [] }) {
         </div>
       </section>
 
+      <ServiceFaq
+        variant="about"
+        title="Questions about Proowrx"
+        intro="Learn more about our team, operating model and approach to long-term client partnerships."
+      />
       <CtaBanner />
     </div>
   );

@@ -140,12 +140,10 @@
 }
 
 .pkg-dark {
-  background: var(--navy-mid);
-  border-color: transparent;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
-
-.pkg-dark strong { color: var(--gold); }
-.pkg-dark p { color: rgba(255,255,255,0.60); }
 
 /* ── Activities ─────────────────────────── */
 .activities-grid {

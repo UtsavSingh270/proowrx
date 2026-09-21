@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, MapPin, Phone, Mail, Clock, CheckCircle, Send, Calendar } from 'lucide-react';
-import BookMeetingModal from '../../../components/BookMeetingModal';
-import { contact } from '../../../services/api';
+import { ArrowRight, MapPin, Phone, Mail, Clock, CheckCircle, Send } from 'lucide-react';
+import { contact } from '@/services/api';
 import './Contact.css';
 
 function useReveal() {
@@ -24,7 +23,7 @@ const offices = [
   {
     flag: '🇮🇳',
     city: 'Jaipur, India',
-    address: '1st Floor, Patrika Building, 5 E, Jhalana Institutional Area, JLN Marg, Jaipur – 302004',
+    address: '2nd Floor, PTI Building, Jhalana Institutional Area, Jaipur – 302004',
     phones: ['+91 96104 11400', '+91-141-2952294'],
     emails: ['support@proowrx.com', 'naveenjain@proowrx.com'],
     color: '#1f9e8e',
@@ -39,28 +38,10 @@ const offices = [
   },
 ];
 
-const bookPeople = [
-  {
-    name: 'Deepika Dixit',
-    role: 'Director',
-    img: 'https://proowrx.com/wp-content/uploads/2023/12/deepika-dixit.jpg',
-    email: 'deepika@proowrx.com',
-    color: '#c9a227',
-  },
-  {
-    name: 'Kshitij Verma',
-    role: 'Head – Business & Operations',
-    img: 'https://proowrx.com/wp-content/uploads/2023/12/Image20231222010513.png',
-    email: 'kshitij@proowrx.com',
-    color: '#c9a227',
-  },
-];
-
 export default function Contact() {
-  const r1 = useReveal(), r2 = useReveal(), r3 = useReveal();
+  const r1 = useReveal(), r2 = useReveal();
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
-  const [booking, setBooking] = useState(null);
 
   const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
@@ -304,40 +285,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Book a Meeting — fixed section */}
-      <section className="section contact-book-section" style={{ background: 'var(--surface)' }}>
-        <div className="container">
-          <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span className="chip chip-gold section-eyebrow">Meet the Leadership</span>
-            <h2 className="section-title">Book a Meeting Directly</h2>
-            <p className="section-body" style={{ margin: '0 auto' }}>
-              Prefer to speak with someone directly? Pick a time that works for you — all times shown in Australian Eastern Time.
-            </p>
-          </div>
-          <div className="grid-2 contact-book-grid">
-            {bookPeople.map((p, i) => (
-              <div key={p.name} className={`book-meeting-card reveal reveal-delay-${i + 1}`} style={{ '--member-color': p.color }}>
-                <img src={p.img} alt={p.name} className="book-meeting-card-img" />
-                <div className="book-meeting-card-body">
-                  <h3>{p.name}</h3>
-                  <span className="book-meeting-card-role">{p.role}</span>
-                  <button
-                    type="button"
-                    className="btn btn-gold"
-                    style={{ marginTop: 18, width: '100%', justifyContent: 'center' }}
-                    onClick={() => setBooking(p)}
-                  >
-                    <Calendar size={14} /> Book a Meeting
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {booking && <BookMeetingModal person={booking} onClose={() => setBooking(null)} />}
-
       {/* Map-like strip */}
       <section className="contact-strip">
         <div className="container contact-strip-inner">
@@ -365,13 +312,13 @@ export default function Contact() {
             </div>
           </div>
           <div className="contact-strip-divider" />
-          <div className="contact-strip-item">
+          {/* <div className="contact-strip-item">
             <Clock size={22} color="var(--gold)" />
             <div>
               <strong>Response Time</strong>
               <span>Within 24 hours</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>

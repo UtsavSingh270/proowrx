@@ -6,7 +6,7 @@ import {
   ArrowRight, CheckCircle, X as XIcon, Zap, Shield,
   FileCheck, TrendingUp, Clock, BarChart3,
 } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
+import ServiceFaq from '@/components/shared/ServiceFaq';
 import './PayPerApplication.css';
 
 function useReveal() {
@@ -97,8 +97,9 @@ export default function PayPerApplication() {
               </div>
             </div>
             <div className="page-hero-actions">
-              <Link href="/contact" className="btn btn-gold">Submit a File <ArrowRight size={15} /></Link>
-              <a href="#packages" className="btn btn-ghost">View Packages</a>
+              <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
+                Book a Meeting <ArrowRight size={15} />
+              </a>
             </div>
           </div>
           <div className="page-hero-visual">
@@ -248,7 +249,11 @@ export default function PayPerApplication() {
         </div>
       </section>
 
-      <CtaBanner />
+      <ServiceFaq
+        variant="payPerApplication"
+        title="Pay-per-application questions"
+        intro="Helpful details about flexible file processing without a monthly resource commitment."
+      />
     </div>
   );
 }

@@ -4,10 +4,9 @@
 
 /* ── Hero ─────────────────────────────────── */
 .career-hero {
-  padding: 50px 0 50px;
-  text-align: left;
-  min-height: 80vh;
-  min-height: 80dvh;
+  padding: clamp(64px, 9vh, 92px) 0;
+  text-align: center;
+  min-height: clamp(460px, 58dvh, 620px);
   align-items: center;
 }
 
@@ -42,9 +41,9 @@
 }
 
 .career-hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -53,6 +52,10 @@
 
 .career-hero-content {
   animation: fadeUp 0.8s var(--ease-out) both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .career-hero-content h1 {
@@ -67,12 +70,13 @@
   font-size: 1.1rem;
   color: rgba(255,255,255,0.68);
   line-height: 1.75;
-  margin-bottom: 36px;
-  max-width: 480px;
+  margin: 0 auto 36px;
+  max-width: 640px;
 }
 
 .career-hero-btns {
   display: flex;
+  justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
 }
@@ -81,6 +85,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+  width: min(100%, 720px);
   animation: fadeIn 1s var(--ease-out) 0.3s both;
 }
 

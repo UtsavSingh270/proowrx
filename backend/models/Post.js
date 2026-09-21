@@ -11,6 +11,7 @@ const PostSchema = new mongoose.Schema({
   categoryGlow:  { type: String, default: 'var(--gold-pale)' },
   author:        { type: String, default: '' },
   authorId:      { type: mongoose.Schema.Types.ObjectId, default: null },
+  authorSource:  { type: String, enum: ['', 'legacy', 'team'], default: '' },
   authorProfile: {
     name:     { type: String, default: '' },
     email:    { type: String, default: '' },
@@ -33,5 +34,7 @@ const PostSchema = new mongoose.Schema({
 }, { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } });
 
 PostSchema.index({ status: 1, createdAt: -1 });
+
+PostSchema.path('faqs').validate(value => value.length <= 5, 'A blog post can contain a maximum of 5 FAQs.');
 
 module.exports = mongoose.model('Post', PostSchema);

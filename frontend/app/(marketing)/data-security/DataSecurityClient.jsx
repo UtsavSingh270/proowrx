@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Shield, Lock, Eye, Server, Users, FileCheck, Wifi, CheckCircle } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
+import CtaBanner from '@/components/shared/CtaBanner';
 import './DataSecurity.css';
 
 function useReveal() {

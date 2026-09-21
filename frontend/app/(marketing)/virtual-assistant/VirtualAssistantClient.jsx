@@ -6,7 +6,7 @@ import {
   ArrowRight, CheckCircle, Clock, Calendar, Users, Mail,
   FileText, Phone, Database, Star, Headphones,
 } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
+import ServiceFaq from '@/components/shared/ServiceFaq';
 import './VirtualAssistant.css';
 
 function useReveal(cls = 'reveal') {
@@ -111,8 +111,9 @@ export default function VirtualAssistant() {
               </div>
             </div>
             <div className="page-hero-actions">
-              <Link href="/contact" className="btn btn-gold">Get Your VA <ArrowRight size={15} /></Link>
-              <a href="#how-it-works" className="btn btn-ghost">How It Works</a>
+              <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
+                Book a Meeting <ArrowRight size={15} />
+              </a>
             </div>
           </div>
           <div className="page-hero-visual">
@@ -218,7 +219,11 @@ export default function VirtualAssistant() {
         </div>
       </section>
 
-      <CtaBanner />
+      <ServiceFaq
+        variant="virtualAssistant"
+        title="Virtual assistant questions"
+        intro="What to know about dedicated support, onboarding and working hours."
+      />
     </div>
   );
 }

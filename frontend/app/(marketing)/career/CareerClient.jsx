@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { ArrowRight, ExternalLink, CheckCircle, Users, TrendingUp, Heart, Zap, Globe, Star } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
+import CtaBanner from '@/components/shared/CtaBanner';
 import './Career.css';
 
 function useReveal() {

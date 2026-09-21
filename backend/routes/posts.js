@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const slugify  = require('slugify');
 const Post     = require('../models/Post');
 const Like     = require('../models/Like');
+const BlogComment = require('../models/BlogComment');
 const Author   = require('../models/Author');
+const TeamMember = require('../models/TeamMember');
 const { requireAdmin } = require('../middleware/auth');
 const { logAudit } = require('../utils/auditLog');
+const { isExcludedRequest } = require('../utils/excludedIps');
 
 const router = express.Router();
 
@@ -18,13 +21,28 @@ function publicPostFilter() {
   };
 }
 
-function normalizePostInput(body) {
+async function normalizePostInput(body) {
   const data = { ...body };
+  if (Array.isArray(data.faqs) && data.faqs.length > 5) {
+    throw new Error('A blog post can contain a maximum of 5 FAQs.');
+  }
   if (!data.scheduledAt) data.scheduledAt = null;
   if (data.status === 'scheduled' && !data.scheduledAt) {
     throw new Error('Scheduled posts require a publish date and time.');
   }
   if (!data.authorId) data.authorId = null;
+  if (data.authorSource === 'team' && data.authorId) {
+    const member = await TeamMember.findById(data.authorId);
+    if (!member) throw new Error('Selected team member no longer exists.');
+    data.author = member.name;
+    data.authorProfile = {
+      name: member.name,
+      email: member.email || '',
+      title: member.position || '',
+      image: member.image || '',
+      bio: member.summary || member.description || '',
+    };
+  }
   return data;
 }
 
@@ -61,6 +79,46 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/posts/author/:authorId — public author profile with paginated posts
+router.get('/author/:authorId', async (req, res) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.authorId)) {
+      return res.status(404).json({ error: 'Author not found' });
+    }
+
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const limit = Math.min(12, Math.max(1, Number.parseInt(req.query.limit, 10) || 6));
+    const skip = (page - 1) * limit;
+    const authorId = new mongoose.Types.ObjectId(req.params.authorId);
+    const filter = { ...publicPostFilter(), authorId };
+
+    const [author, posts, total] = await Promise.all([
+      TeamMember.findById(authorId),
+      Post.find(filter)
+        .sort({ scheduledAt: -1, createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .select('-htmlContent'),
+      Post.countDocuments(filter),
+    ]);
+
+    if (!author) return res.status(404).json({ error: 'Author not found' });
+
+    res.json({
+      author,
+      posts,
+      pagination: {
+        page,
+        limit,
+        total,
+        hasMore: skip + posts.length < total,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // GET /api/posts/:id  — single post by slug or Mongo id (any status OK for preview, views++, likes count)
 router.get('/:id', async (req, res) => {
   try {
@@ -71,7 +129,8 @@ router.get('/:id', async (req, res) => {
     }
 
     // Increment view count (one per session tracked by client — server just counts)
-    const trackView = req.query.view === '1';
+    const excluded = await isExcludedRequest(req);
+    const trackView = req.query.view === '1' && !excluded;
     if (trackView) {
       await Post.findByIdAndUpdate(post._id, { $inc: { views: 1 } });
       post.views += 1;
@@ -85,7 +144,7 @@ router.get('/:id', async (req, res) => {
       userLiked = !!rec;
     }
 
-    res.json({ ...post.toObject(), userLiked });
+    res.json({ ...post.toObject(), userLiked, analyticsExcluded: excluded });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -99,6 +158,11 @@ router.post('/:id/like', async (req, res) => {
 
     const post = await findPostByIdOrSlug(req.params.id);
     if (!post) return res.status(404).json({ error: 'Post not found' });
+
+    if (await isExcludedRequest(req)) {
+      const existing = await Like.findOne({ postId: post._id, deviceId });
+      return res.json({ ignored: true, liked: !!existing, likes: post.likes });
+    }
 
     const existing = await Like.findOne({ postId: post._id, deviceId });
     let liked;
@@ -116,6 +180,39 @@ router.post('/:id/like', async (req, res) => {
     res.json({ liked, likes: updated.likes });
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+router.get('/:id/comments', async (req, res) => {
+  try {
+    const post = await findPostByIdOrSlug(req.params.id);
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    const comments = await BlogComment.find({ postId: post._id })
+      .sort({ createdAt: -1 })
+      .limit(100)
+      .select('name comment createdAt');
+    res.json(comments);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.post('/:id/comments', async (req, res) => {
+  try {
+    const post = await findPostByIdOrSlug(req.params.id);
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    if (await isExcludedRequest(req)) {
+      return res.status(202).json({ ignored: true, message: 'Engagement from this IP address is excluded.' });
+    }
+    const name = String(req.body.name || '').trim();
+    const email = String(req.body.email || '').trim().toLowerCase();
+    const comment = String(req.body.comment || '').trim();
+    if (!name || !email || !comment) return res.status(400).json({ error: 'Name, email and comment are required.' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Enter a valid email address.' });
+    const created = await BlogComment.create({ postId: post._id, name, email, comment });
+    res.status(201).json({ _id: created._id, name: created.name, comment: created.comment, createdAt: created.createdAt });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
 });
 
@@ -226,7 +323,7 @@ router.get('/admin/:id', requireAdmin, async (req, res) => {
 // POST /api/posts  — create new post
 router.post('/', requireAdmin, async (req, res) => {
   try {
-    const data = normalizePostInput(req.body);
+    const data = await normalizePostInput(req.body);
     data.slug = await generateUniqueSlug(data.title);
     const post = new Post(data);
     await post.save();
@@ -251,7 +348,7 @@ router.post('/', requireAdmin, async (req, res) => {
 // PUT /api/posts/:id  — update post (slug is immutable once set, so shared links keep working)
 router.put('/:id', requireAdmin, async (req, res) => {
   try {
-    const data = normalizePostInput(req.body);
+    const data = await normalizePostInput(req.body);
     const existing = await Post.findById(req.params.id).select('slug');
     if (!existing) return res.status(404).json({ error: 'Post not found' });
     if (!existing.slug) data.slug = await generateUniqueSlug(data.title, existing._id);
@@ -309,12 +406,27 @@ router.patch('/:id/status', requireAdmin, async (req, res) => {
   }
 });
 
+// PATCH /api/posts/:id/featured — toggle homepage/blog hero eligibility
+router.patch('/:id/featured', requireAdmin, async (req, res) => {
+  try {
+    const featured = req.body.featured === true;
+    const post = await Post.findByIdAndUpdate(req.params.id, { featured, updatedAt: new Date() }, { new: true });
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+
+    await logAudit(req.adminUsername, req.adminId, 'blogs', 'update', post._id, post.title, { featured });
+    return res.json(post);
+  } catch (err) {
+    return res.status(400).json({ error: err.message });
+  }
+});
+
 // DELETE /api/posts/:id
 router.delete('/:id', requireAdmin, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     await Post.findByIdAndDelete(req.params.id);
     await Like.deleteMany({ postId: req.params.id });
+    await BlogComment.deleteMany({ postId: req.params.id });
     
     // Log the audit event
     if (post) {

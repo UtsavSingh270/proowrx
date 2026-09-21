@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import BlogPostClient from './BlogPostClient';
-import { resolvePost } from '../../../../lib/resolvePost';
-import { serverPosts } from '../../../../lib/serverApi';
+import { resolvePost } from '@/lib/resolvePost';
+import { serverPosts } from '@/lib/serverApi';
 
 export async function generateStaticParams() {
   const dynamic = await serverPosts.getAll().catch(() => []);
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export const revalidate = 3600;
+export const revalidate = 1800;
 
 export default async function Page({ params }) {
   const { slug } = await params;

@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
 import { ArrowRight, CheckCircle, BookOpen, Users, FileText, PieChart, Shield, BarChart2, Calculator, TrendingUp } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
+import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Accounting.css';
 
 function useReveal() {
@@ -98,9 +97,8 @@ export default function Accounting() {
             <p>Let your team focus on advisory work while we handle compliance, bookkeeping, tax, SMSF, and reporting — all behind the scenes.</p>
             <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
-                Book a Discovery Call <ArrowRight size={15} />
+                Book a Meeting <ArrowRight size={15} />
               </a>
-              <Link href="/contact" className="btn btn-ghost">Send a Message</Link>
             </div>
             <div className="page-hero-stats">
               <div className="page-hero-stat">
@@ -144,12 +142,6 @@ export default function Accounting() {
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
               Proowrx provides a trained, dedicated accounting support team operating from India with expertise in Australian accounting standards and software. We integrate directly into your workflow, giving you the bandwidth to deliver more strategic value to your clients.
             </p>
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 32 }}>
-              <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
-                Book a Discovery Call <ArrowRight size={15} />
-              </a>
-              <Link href="/contact" className="btn btn-outline-gold">Send a Message</Link>
-            </div>
           </div>
           <div ref={r2} className="reveal-right acc-intro-image">
             <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=85" alt="Accounting team" loading="lazy" decoding="async" />
@@ -253,7 +245,11 @@ export default function Accounting() {
         </div>
       </section>
 
-      <CtaBanner />
+      <ServiceFaq
+        variant="accounting"
+        title="Accounting outsourcing questions"
+        intro="What accounting firms commonly ask before adding a Proowrx resource to their workflow."
+      />
     </div>
   );
 }

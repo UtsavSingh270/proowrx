@@ -1,0 +1,39 @@
+.ip-exclusions-panel { display: grid; gap: 24px; }
+.ip-exclusions-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.ip-exclusions-header span { color: #b77900; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.ip-exclusions-header h1 { margin: 5px 0 7px; color: #102342; font-size: clamp(1.65rem,3vw,2.35rem); }
+.ip-exclusions-header p { max-width: 720px; margin: 0; color: #6b7a99; line-height: 1.65; }
+.ip-exclusions-header > button { display: grid; place-items: center; width: 42px; height: 42px; color: #244d82; background: #fff; border: 1px solid #dce3ed; border-radius: 12px; cursor: pointer; }
+.ip-exclusions-grid { display: grid; grid-template-columns: minmax(280px,.75fr) minmax(0,1.25fr); gap: 22px; align-items: start; }
+.ip-exclusions-form,.ip-exclusions-list-card { padding: clamp(22px,3vw,32px); background: #fff; border: 1px solid #dce3ed; border-radius: 20px; box-shadow: 0 12px 35px rgba(15,35,66,.06); }
+.ip-exclusions-icon { display: grid; place-items: center; width: 48px; height: 48px; color: #b77900; background: #fff5d6; border-radius: 14px; }
+.ip-exclusions-form h2,.ip-exclusions-list-card h2 { margin: 14px 0 6px; color: #102342; font-size: 1.12rem; }
+.ip-exclusions-form > p { margin: 0 0 22px; color: #71809a; font-size: .78rem; line-height: 1.6; }
+.ip-exclusions-form label { display: grid; gap: 7px; margin-top: 15px; color: #374a6e; font-size: .76rem; font-weight: 750; }
+.ip-exclusions-form label span { color: #8996aa; font-size: .66rem; font-weight: 600; }
+.ip-exclusions-form input { width: 100%; min-height: 46px; padding: 10px 13px; color: #102342; background: #f8fafc; border: 1px solid #dce3ed; border-radius: 11px; font: inherit; font-size: 16px; outline: none; }
+.ip-exclusions-form input:focus { border-color: #e4a20c; box-shadow: 0 0 0 4px rgba(240,165,0,.1); }
+.ip-current-button { margin-top: 12px; padding: 0; color: #557092; background: none; border: 0; font-size: .69rem; text-align: left; cursor: pointer; }
+.ip-current-button strong { color: #173f78; }
+.ip-add-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 46px; margin-top: 20px; color: #fff; background: #173f78; border: 0; border-radius: 12px; font-weight: 800; cursor: pointer; }
+.ip-add-button:disabled { opacity: .6; cursor: wait; }
+.ip-exclusions-error { margin: 12px 0 0 !important; color: #b42318 !important; }
+.ip-exclusions-list-heading { display: flex; align-items: center; justify-content: space-between; color: #b77900; }
+.ip-exclusions-list-heading span { color: #71809a; font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.ip-exclusions-list-heading h2 { margin-top: 5px; }
+.ip-exclusions-list { display: grid; gap: 10px; margin-top: 20px; }
+.ip-exclusions-list article { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 15px; background: #f8fafc; border: 1px solid #e4e9f1; border-radius: 13px; }
+.ip-exclusions-list article > div { display: grid; gap: 3px; min-width: 0; }
+.ip-exclusions-list article strong { overflow-wrap: anywhere; color: #173f78; font-size: .82rem; }
+.ip-exclusions-list article span { color: #536785; font-size: .73rem; }
+.ip-exclusions-list article small { color: #8996aa; font-size: .64rem; }
+.ip-exclusions-list article button { display: grid; place-items: center; width: 36px; height: 36px; flex: none; color: #c43d4b; background: #fff; border: 1px solid #f0d2d6; border-radius: 10px; cursor: pointer; }
+.ip-exclusions-empty { display: grid; place-items: center; gap: 6px; min-height: 220px; color: #71809a; text-align: center; }
+.ip-exclusions-empty strong { color: #374a6e; }
+.ip-exclusions-empty span { font-size: .74rem; }
+html.dark .ip-exclusions-header h1,html.dark .ip-exclusions-form h2,html.dark .ip-exclusions-list-card h2 { color: #f4f7fb; }
+html.dark .ip-exclusions-form,html.dark .ip-exclusions-list-card { background: #111a2c; border-color: #2c3950; box-shadow: none; }
+html.dark .ip-exclusions-form input,html.dark .ip-exclusions-list article { color: #e9eef7; background: #0c1423; border-color: #2c3950; }
+html.dark .ip-exclusions-list article strong { color: #dce8fa; }
+@media (max-width: 850px) { .ip-exclusions-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .ip-exclusions-header { align-items: center; }.ip-exclusions-form,.ip-exclusions-list-card { padding: 18px; border-radius: 16px; } }

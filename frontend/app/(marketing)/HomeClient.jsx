@@ -2,13 +2,75 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { Lottie } from 'lottie-react';
 import {
-  ArrowRight, Shield, TrendingUp, Users, Clock, CheckCircle,
+  ArrowRight, ChevronLeft, ChevronRight, Shield, TrendingUp, Users, Clock, CheckCircle,
   Star, Lock, Zap, Globe, FileText, Search, Settings2, Send,
-  Award, BarChart3, MessageSquare, Wrench, Building2,
+  Award, BarChart3, Wrench, Building2,
 } from 'lucide-react';
-import CtaBanner from '../../components/CtaBanner';
+import CtaBanner from '../../components/shared/CtaBanner';
 import './Home.css';
+
+const CLIENT_STORIES = [
+  { text: 'Proowrx cut our average loan processing time from 4 days to overnight. My brokers now focus entirely on client relationships. Genuinely game-changing.', name: 'Sarah M.', role: 'Principal Broker, NSW' },
+  { text: 'The accounting team handles everything from BAS to year-end — all compliant, all on time. It\'s like having an in-house team at a fraction of the cost.', name: 'James T.', role: 'Accounting Practice Owner, VIC' },
+  { text: 'What surprised me most was the security. Australia-hosted, 2FA on every access point, audit logs. They take our data more seriously than most local firms.', name: 'Priya K.', role: 'Finance Broker, QLD' },
+  { text: 'Our turnaround times are faster, our client communication is clearer, and the whole operation finally feels ready to scale.', name: 'Daniel R.', role: 'Mortgage Director, WA' },
+];
+
+const HERO_SLIDES = [
+  {
+    eyebrow: 'Australian-Owned · Operating Since 2021',
+    title: 'Back-office excellence built for Australian finance professionals',
+    description: 'Proowrx brings experienced people, secure systems and dependable processes together so your team can focus on clients, advice and sustainable growth.',
+    image: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=2000&q=88',
+    primaryLabel: 'Book a Discovery Call',
+    primaryHref: '/contact',
+    secondaryLabel: 'Explore Proowrx',
+    secondaryHref: '/about',
+  },
+  {
+    eyebrow: 'Mortgage Processing',
+    title: 'Move every mortgage application forward with confidence',
+    description: 'From document collection and compliance checks to lodgement and lender follow-ups, our mortgage specialists support the complete application journey.',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=88',
+    primaryLabel: 'Explore Mortgage',
+    primaryHref: '/mortgage',
+    secondaryLabel: 'View All Services',
+    secondaryHref: '/services',
+  },
+  {
+    eyebrow: 'Accounting Support',
+    title: 'Reliable accounting capacity without increasing local overheads',
+    description: 'Scale bookkeeping, payroll, BAS, tax and SMSF support with a trained team that works within your systems and established review processes.',
+    image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=2000&q=88',
+    primaryLabel: 'Explore Accounting',
+    primaryHref: '/accounting',
+    secondaryLabel: 'Book a Call',
+    secondaryHref: '/contact',
+  },
+  {
+    eyebrow: 'Asset Finance Support',
+    title: 'Keep asset finance applications organised and moving',
+    description: 'Get dependable support for document validation, lender portals, CRM updates, application packaging, settlement and exception follow-ups.',
+    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=88',
+    primaryLabel: 'Explore Asset Finance',
+    primaryHref: '/asset-finance',
+    secondaryLabel: 'How We Work',
+    secondaryHref: '/services',
+  },
+  {
+    eyebrow: 'Digital Marketing',
+    title: 'Build consistent visibility for your finance business',
+    description: 'Extend your team with practical support for content, SEO, social media, email campaigns and performance reporting tailored to financial services.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=88',
+    primaryLabel: 'Explore Marketing',
+    primaryHref: '/digital-marketing',
+    secondaryLabel: 'Talk to Our Team',
+    secondaryHref: '/contact',
+  },
+];
 
 /* ─────────────────────────────────────────────
    HOOKS
@@ -231,10 +293,30 @@ function StatCard({ icon, value, suffix, label, delay, active }) {
    DATA
 ───────────────────────────────────────────── */
 const STATS = [
-  { icon: <Award size={22} />,       value: 20,  suffix: '+',  label: 'Years Combined Experience' },
-  { icon: <Zap size={22} />,         value: 24,  suffix: 'hr', label: 'Average Turnaround Time'   },
-  { icon: <Globe size={22} />,       value: 500, suffix: '+',  label: 'Brokers & Accountants'     },
-  { icon: <CheckCircle size={22} />, value: 100, suffix: '%',  label: 'Compliance Focused'        },
+  {
+  icon: <Image src="/icons/experience.svg" width={40} height={40} alt="Years Experience" />,
+  value: 20,
+  suffix: '+',
+  label: 'Years Experience'
+},
+{
+  icon: <Image src="/icons/time.svg" width={40} height={40} alt="Average Turnaround Time" />,
+  value: 24,
+  suffix: 'hr',
+  label: 'Average Turnaround Time'
+},
+{
+  icon: <Image src="/icons/brokers.svg" width={40} height={40} alt="Brokers & Accountants" />,
+  value: 500,
+  suffix: '+',
+  label: 'Brokers & Accountants'
+},
+{
+  icon: <Image src="/icons/compliant.svg" width={40} height={40} alt="Compliance Focused" />,
+  value: 100,
+  suffix: '%',
+  label: 'Compliance Focused'
+}
 ];
 
 const SERVICES = [
@@ -244,8 +326,8 @@ const SERVICES = [
     title: 'Mortgage Processing',
     desc: 'Expert mortgage file processing to streamline your workflow. Our trained team handles all the paperwork, ensuring accuracy and efficiency — freeing you to close more deals faster.',
     bullets: ['Pay-Per-Application model', 'Dedicated Resource (Full/Part-time)', 'Pre & Post-submission support', 'Compliance & CRM management'],
-    accent: '#00D4B8',
-    glow: 'rgba(0,212,184,0.14)',
+    accent: '#173F78',
+    glow: 'rgba(23,63,120,0.10)',
     to: '/mortgage',
   },
   {
@@ -254,9 +336,29 @@ const SERVICES = [
     title: 'Accounting & Bookkeeping',
     desc: 'Accounting services tailored to Australian professionals. We provide the resources you need to operate efficiently so you can focus on business development and client relationships.',
     bullets: ['Bookkeeping & Reconciliation', 'Payroll & Tax Returns', 'SMSF Management', 'BAS / IAS / STP Lodgements'],
-    accent: '#F5A623',
-    glow: 'rgba(245,166,35,0.14)',
+    accent: '#D99A00',
+    glow: 'rgba(217,154,0,0.11)',
     to: '/accounting',
+  },
+  {
+    icon: <Wrench size={28} />,
+    tag: 'For Asset Finance Brokers',
+    title: 'Asset Finance Support',
+    desc: 'Reliable processing support for vehicle, equipment and commercial asset finance applications, from document collection through lender follow-up and settlement.',
+    bullets: ['Document collection and validation', 'CRM and lender portal updates', 'Application packaging support', 'Settlement and exception follow-up'],
+    accent: '#173F78',
+    glow: 'rgba(23,63,120,0.10)',
+    to: '/asset-finance',
+  },
+  {
+    icon: <Search size={28} />,
+    tag: 'For Finance Businesses',
+    title: 'Digital Marketing',
+    desc: 'A trained remote marketing extension that helps finance businesses maintain consistent content, search visibility, social activity, email campaigns and reporting.',
+    bullets: ['SEO and content support', 'Social media coordination', 'Email campaign assistance', 'Performance reporting'],
+    accent: '#D99A00',
+    glow: 'rgba(217,154,0,0.11)',
+    to: '/digital-marketing',
   },
 ];
 
@@ -269,7 +371,7 @@ const WHY_FEATURES = [
   },
   {
     icon: <Settings2 size={22} />,
-    title: 'Optimized Operations For Australian Consultants',
+    title: 'Operational Excellence for Australian Advisors',
     desc: 'We go beyond basic loan processing. Proowrx offers a comprehensive solution handling loan processing, bidding, compliance, and accounting tasks for a truly streamlined back-office.',
     color: '#F5A623',
   },
@@ -294,10 +396,10 @@ const WHY_FEATURES = [
 ];
 
 const PROCESS = [
-  { num: '01', icon: <MessageSquare size={22} />, title: 'Free Discovery Call',    desc: 'A 30-minute call to understand your workflow, volume, and tools. No sales pitch — just a real conversation about how we can help.' },
-  { num: '02', icon: <Settings2 size={22} />,     title: 'Seamless Onboarding',    desc: 'We configure CRM access, assign your dedicated named team, and fully integrate into your workflow within 5 business days.' },
-  { num: '03', icon: <Zap size={22} />,           title: 'Live File Processing',    desc: 'Your files are handled end-to-end — data entry, compliance checks, lodgement, and lender follow-ups — with daily status updates.' },
-  { num: '04', icon: <TrendingUp size={22} />,    title: 'Scale As You Grow',       desc: 'Flex capacity up or down without lock-in contracts. We grow alongside your book at no additional setup cost — ever.' },
+  { num: '01', animation: '/Free Discovery Call.json', title: 'Free Discovery Call', desc: 'A 30-minute call to understand your workflow, volume, and tools. No sales pitch — just a real conversation about how we can help.' },
+  { num: '02', animation: '/Seamless Onboarding.json', title: 'Seamless Onboarding', desc: 'We configure CRM access, assign your dedicated named team, and fully integrate into your workflow within 5 business days.' },
+  { num: '03', animation: '/Live File Processing.json', title: 'Live File Processing', desc: 'Your files are handled end-to-end — data entry, compliance checks, lodgement, and lender follow-ups — with daily status updates.' },
+  { num: '04', animation: '/Scale As You Grow.json', title: 'Scale As You Grow', desc: 'Flex capacity up or down without lock-in contracts. We grow alongside your book at no additional setup cost — ever.' },
 ];
 
 const OUTSOURCING_CARDS = [
@@ -352,7 +454,7 @@ const SECURITY_PILLARS = [
    HOME
 ───────────────────────────────────────────── */
 export default function HomeClient() {
-  const typed = useTypewriter(['Mortgage Brokers', 'Accountants', 'Financial Advisors', 'Lending Businesses']);
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
   const [statsRef,    statsVisible]    = useInView(0.3);
   const [svcRef,      svcVisible]      = useInView(0.1);
@@ -361,6 +463,45 @@ export default function HomeClient() {
   const [outsrcRef,   outsrcVisible]   = useInView(0.08);
   const [secRef,      secVisible]      = useInView(0.1);
   const [testiRef,    testiVisible]    = useInView(0.1);
+  const [processStage, setProcessStage] = useState(0);
+  const processLoopTimerRef = useRef(null);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveHeroSlide(current => (current + 1) % HERO_SLIDES.length);
+    }, 6500);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const nextSlide = HERO_SLIDES[(activeHeroSlide + 1) % HERO_SLIDES.length];
+    const preload = new window.Image();
+    preload.src = nextSlide.image;
+  }, [activeHeroSlide]);
+
+  useEffect(() => {
+    if (!procVisible) return undefined;
+    const startTimer = window.setTimeout(() => setProcessStage(1), 120);
+    return () => {
+      window.clearTimeout(startTimer);
+      window.clearTimeout(processLoopTimerRef.current);
+    };
+  }, [procVisible]);
+
+  const advanceProcessTimeline = () => {
+    setProcessStage(currentStage => {
+      if (currentStage < PROCESS.length) return currentStage + 1;
+
+      window.clearTimeout(processLoopTimerRef.current);
+      processLoopTimerRef.current = window.setTimeout(() => setProcessStage(1), 1400);
+      return PROCESS.length + 1;
+    });
+  };
+
+  const heroSlide = HERO_SLIDES[activeHeroSlide];
+  const moveHeroSlide = direction => {
+    setActiveHeroSlide(current => (current + direction + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
 
   return (
     <main className="home">
@@ -368,60 +509,39 @@ export default function HomeClient() {
       {/* ══════════════════════════════════════
           HERO
       ══════════════════════════════════════ */}
-      <section className="hero">
-        <div className="hero-grid-bg" />
-        <div className="hero-orb hero-orb-1" />
-        <div className="hero-orb hero-orb-2" />
+      <section className="hero hero-slider" aria-roledescription="carousel" aria-label="Proowrx services">
+        <div
+          key={heroSlide.image}
+          className="hero-slide-bg"
+          style={{ backgroundImage: `url("${heroSlide.image}")` }}
+          aria-hidden="true"
+        />
+        <div className="hero-slide-overlay" aria-hidden="true" />
 
-        <div className="container hero-inner">
-          <div className="hero-content">
+        <div className="container hero-slider-inner">
+          <div className="hero-slide-content" key={`${activeHeroSlide}-${heroSlide.title}`}>
+            {/* <span className="hero-slide-count">{String(activeHeroSlide + 1).padStart(2, '0')} / {String(HERO_SLIDES.length).padStart(2, '0')}</span> */}
             <div className="hero-pill">
               <span className="hero-pill-dot" />
-              Australian-Owned · Operating Since 2021
+              {heroSlide.eyebrow}
             </div>
-
-            <h1 className="hero-heading">
-              <span className="hero-heading-line1">Back-office excellence</span>
-              <span className="hero-heading-line2">
-                <span className="hero-heading-accent">built for&nbsp;</span>
-                <span className="hero-typewriter">
-                  {typed}
-                  <span className="hero-cursor">|</span>
-                </span>
-              </span>
-            </h1>
-
-            <p className="hero-sub">
-              Proowrx is a one-stop shop for streamlining your financial operations in Australia — expert loan processing, back-office support, and accounting services so you can focus on growing your business.
-            </p>
-
+            <h1 className="hero-heading">{heroSlide.title}</h1>
+            <p className="hero-sub">{heroSlide.description}</p>
             <div className="hero-actions">
-              <Link href="/contact" className="btn-primary">
-                Book a Discovery Call <ArrowRight size={16} />
-              </Link>
-              <Link href="/services" className="btn-ghost">
-                See Our Services
-              </Link>
+              <Link href={heroSlide.primaryHref} className="btn-primary">{heroSlide.primaryLabel} <ArrowRight size={16} /></Link>
+              <Link href={heroSlide.secondaryHref} className="btn-ghost">{heroSlide.secondaryLabel}</Link>
             </div>
-
-            <div className="hero-trust">
-              {['Trusted by top brokers', 'Australia-based servers', '24hr turnaround'].map((t) => (
-                <span key={t} className="trust-tag">
-                  <CheckCircle size={13} className="trust-icon" /> {t}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Right — Phone Slider */}
-          <div className="hero-visual">
-            <PhoneSlider />
           </div>
         </div>
 
-        <div className="hero-scroll-hint">
-          <span>Scroll</span>
-          <div className="hero-scroll-line" />
+        <div className="hero-slider-nav" aria-label="Hero slide controls">
+          <button type="button" className="hero-slider-arrow" onClick={() => moveHeroSlide(-1)} aria-label="Previous slide"><ChevronLeft size={20} /></button>
+          <div className="hero-slider-status">
+            {/* <div className="hero-slider-dots">
+              {HERO_SLIDES.map((slide, index) => <button key={slide.title} type="button" className={index === activeHeroSlide ? 'active' : ''} onClick={() => setActiveHeroSlide(index)} aria-label={`Show slide ${index + 1}`} aria-current={index === activeHeroSlide ? 'true' : undefined}><span /></button>)}
+            </div> */}
+          </div>
+          <button type="button" className="hero-slider-arrow" onClick={() => moveHeroSlide(1)} aria-label="Next slide"><ChevronRight size={20} /></button>
         </div>
       </section>
 
@@ -443,9 +563,9 @@ export default function HomeClient() {
         <div className="container">
           <div className={`section-head fade-up${svcVisible ? ' in' : ''}`}>
             <span className="pill">Our Services</span>
-            <h2 className="section-title">Two disciplines, one reliable team</h2>
+            <h2 className="section-title">Four specialist services, one reliable team</h2>
             <p className="section-sub">
-              Whether you&apos;re a mortgage broker or an accountant, we slot in as your offshore back-office and deliver at full speed — no ramp-up headaches.
+              From mortgage and accounting operations to asset finance and digital marketing, our trained remote specialists integrate with your workflow and help your business move faster.
             </p>
           </div>
 
@@ -491,7 +611,7 @@ export default function HomeClient() {
         <div className="container">
           <div className={`section-head fade-up${whyFeatVisible ? ' in' : ''}`}>
             <span className="pill">Why Proowrx</span>
-            <h2 className="section-title">A one-stop shop for Australian financial professionals</h2>
+            <h2 className="section-title">A one-stop solution for Australian financial professionals</h2>
             <p className="section-sub">
               We offer top-notch back-office support services to mortgage brokers and comprehensive accounting services to accountants — so you can focus on what matters most.
             </p>
@@ -528,15 +648,22 @@ export default function HomeClient() {
           </div>
 
           <div className={`process-track${procVisible ? ' process-track--visible' : ''}`}>
-            <div className={`process-line${procVisible ? ' process-line--visible' : ''}`} />
+            <div className="process-line" style={{ '--process-progress': `${Math.min(3, Math.max(0, processStage - 1)) * 33.333}%` }} />
             {PROCESS.map((step, i) => (
               <div
                 key={i}
-                className={`process-step fade-up${procVisible ? ' in' : ''}`}
+                className={`process-step fade-up${procVisible ? ' in' : ''}${processStage === i + 1 ? ' process-step--active' : ''}${processStage > i + 1 ? ' process-step--complete' : ''}`}
                 style={{ transitionDelay: `${i * 110 + 150}ms` }}
               >
                 <div className="process-node" aria-hidden="true">
-                  <span className="process-node-icon">{step.icon}</span>
+                  <Lottie
+                    key={`${step.animation}-${processStage === i + 1 ? 'active' : 'idle'}`}
+                    src={step.animation}
+                    className="process-node-animation"
+                    autoplay={processStage === i + 1}
+                    loop={false}
+                    subscriptions={processStage === i + 1 ? { complete: advanceProcessTimeline } : undefined}
+                  />
                 </div>
                 <div className="process-num">{step.num}</div>
                 <h4 className="process-title">{step.title}</h4>
@@ -582,7 +709,7 @@ export default function HomeClient() {
       {/* ══════════════════════════════════════
           SECURITY STRIP
       ══════════════════════════════════════ */}
-      <section className="security-section" ref={secRef}>
+      {/* <section className="security-section" ref={secRef}>
         <div className="sec-orb" />
         <div className="container">
           <div className={`section-head fade-up${secVisible ? ' in' : ''}`}>
@@ -610,7 +737,7 @@ export default function HomeClient() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ══════════════════════════════════════
           TESTIMONIALS
@@ -619,30 +746,28 @@ export default function HomeClient() {
         <div className="container">
           <div className={`section-head fade-up${testiVisible ? ' in' : ''}`}>
             <span className="pill">Client Stories</span>
-            <h2 className="section-title">What Australian professionals say</h2>
+            <h2 className="section-title">What Australian Professionals Say</h2>
           </div>
-          <div className="testi-grid">
-            {[
-              { text: 'Proowrx cut our average loan processing time from 4 days to overnight. My brokers now focus entirely on client relationships. Genuinely game-changing.', name: 'Sarah M.', role: 'Principal Broker, NSW', stars: 5 },
-              { text: 'The accounting team handles everything from BAS to year-end — all compliant, all on time. It\'s like having an in-house team at a fraction of the cost.', name: 'James T.', role: 'Accounting Practice Owner, VIC', stars: 5 },
-              { text: 'What surprised me most was the security. Australia-hosted, 2FA on every access point, audit logs. They take our data more seriously than most local firms.', name: 'Priya K.', role: 'Finance Broker, QLD', stars: 5 },
-            ].map((r, i) => (
-              <div
-                key={i}
-                className={`testi-card fade-up${testiVisible ? ' in' : ''}`}
-                style={{ transitionDelay: `${i * 120 + 80}ms` }}
-              >
-                <div className="testi-stars">{'★'.repeat(r.stars)}</div>
-                <p className="testi-text">&quot;{r.text}&quot;</p>
-                <div className="testi-author">
-                  <div className="testi-avatar">{r.name[0]}</div>
-                  <div>
-                    <div className="testi-name">{r.name}</div>
-                    <div className="testi-role">{r.role}</div>
-                  </div>
+          <div className={`testi-marquee fade-up${testiVisible ? ' in' : ''}`}>
+            <div className="testi-track">
+              {[0, 1].map((groupIndex) => (
+                <div key={groupIndex} className="testi-group" aria-hidden={groupIndex === 1 ? 'true' : undefined}>
+                  {CLIENT_STORIES.map((story) => (
+                    <article key={`${groupIndex}-${story.name}`} className="testi-card">
+                      <span className="testi-quote-mark" aria-hidden="true">“</span>
+                      <p className="testi-text">{story.text}</p>
+                      <div className="testi-meta">
+                        <div className="testi-author">
+                          <span className="testi-initials" aria-hidden="true">{story.name.charAt(0)}</span>
+                          <div><div className="testi-name">{story.name}</div><div className="testi-role">{story.role}</div></div>
+                        </div>
+                        <div className="testi-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                      </div>
+                    </article>
+                  ))}
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

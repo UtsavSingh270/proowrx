@@ -6,7 +6,7 @@
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 64px;
+  gap: 50px;
   align-items: stretch;
 }
 
@@ -311,7 +311,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 32px 40px;
+  padding: 16px 40px;
 }
 
 .contact-strip-item div {
@@ -325,14 +325,14 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: #000000;
 }
 
 .contact-strip-item a,
 .contact-strip-item span {
   font-size: 0.92rem;
   font-weight: 600;
-  color: var(--white);
+  color: var(--text-2);
   transition: color 0.2s;
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import { ArrowRight, CheckCircle } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
+import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Services.css';
 
 const qualities = [
@@ -30,6 +30,11 @@ export default function Services() {
           <span className="chip chip-gold" style={{ marginBottom: 16 }}>What We Offer</span>
           <h1>Outsourcing, Anytime of the Day</h1>
           <p>Expert back-office services built specifically for Australian mortgage brokers and accounting professionals.</p>
+          <div className="page-hero-actions">
+            <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
+              Book a Meeting <ArrowRight size={15} />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -78,6 +83,34 @@ export default function Services() {
                 <span className="svc-big-cta">Explore Accounting <ArrowRight size={15} /></span>
               </div>
             </Link>
+
+            <Link href="/asset-finance" className="svc-big-card svc-mortgage">
+              <div className="svc-big-img">
+                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=85" alt="Asset finance processing" loading="lazy" decoding="async" />
+                <div className="svc-big-overlay" />
+              </div>
+              <div className="svc-big-content">
+                <div className="svc-big-icon">🚗</div>
+                <h2>Asset Finance</h2>
+                <p>Application preparation, document checks, lender coordination and settlement follow-up for asset finance brokers.</p>
+                <ul>{['Application packaging','CRM and data entry','Lender follow-ups','Settlement support'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
+                <span className="svc-big-cta">Explore Asset Finance <ArrowRight size={15}/></span>
+              </div>
+            </Link>
+
+            <Link href="/digital-marketing" className="svc-big-card svc-accounting">
+              <div className="svc-big-img">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85" alt="Digital marketing analytics" loading="lazy" decoding="async" />
+                <div className="svc-big-overlay" />
+              </div>
+              <div className="svc-big-content">
+                <div className="svc-big-icon">📣</div>
+                <h2>Digital Marketing</h2>
+                <p>Consistent content, SEO, social media, email campaigns and reporting for finance-sector businesses.</p>
+                <ul>{['Content production','SEO assistance','Social media support','Campaign reporting'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
+                <span className="svc-big-cta">Explore Digital Marketing <ArrowRight size={15}/></span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -123,7 +156,11 @@ export default function Services() {
         </div>
       </section>
 
-      <CtaBanner />
+      <ServiceFaq
+        variant="services"
+        title="Questions about our outsourcing services"
+        intro="Understand how Proowrx fits into your team, systems and day-to-day operations."
+      />
     </div>
   );
 }

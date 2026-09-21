@@ -87,7 +87,7 @@
   left: 50%;
   transform: translateX(-50%);
   background: var(--gold);
-  color: var(--navy);
+  color: var(--accent-contrast);
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -295,7 +295,7 @@
   height: 56px;
   border-radius: 50%;
   background: var(--grad-hero);
-  color: var(--gold);
+  color: var(--white);
   font-size: 1rem;
   font-weight: 800;
   display: flex;

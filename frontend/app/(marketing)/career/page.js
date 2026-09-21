@@ -1,5 +1,5 @@
 import CareerClient from './CareerClient';
-import { serverJobs } from '../../../lib/serverApi';
+import { serverJobs } from '@/lib/serverApi';
 
 export const metadata = {
   title: 'Careers',

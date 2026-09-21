@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
 
 import { ArrowRight, CheckCircle } from 'lucide-react';
-import CtaBanner from '../../../components/CtaBanner';
+import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Mortgage.css';
 
 function useReveal() {
@@ -83,14 +82,13 @@ export default function Mortgage() {
         <div className="page-hero-orb-2" />
         <div className="container">
           <div className="page-hero-content">
-            <span className="chip chip-gold" style={{ marginBottom: 20 }}>Mortgage Services</span>
+            <span className="chip chip-gold" style={{ marginBottom: 10 }}>Mortgage Services</span>
             <h1>Mortgage Outsourcing<br />Services</h1>
             <p>We handle everything behind the scenes — loan processing, compliance, data entry, and post-submission follow-ups — so you can focus on closing more deals.</p>
             <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
-                Book a Free Call <ArrowRight size={15} />
+                Book a Meeting <ArrowRight size={15} />
               </a>
-              <Link href="/contact" className="btn btn-ghost">Get in Touch</Link>
             </div>
             <div className="page-hero-stats">
               <div className="page-hero-stat">
@@ -134,9 +132,6 @@ export default function Mortgage() {
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
               Proowrx takes the entire back-end processing load off your plate — loan processing, data entry, document handling, and more — so you can focus on growing your book, acquiring new clients, and increasing loan volume without hiring in-house.
             </p>
-            <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold" style={{ marginTop: 28 }}>
-              Book a Free Call <ArrowRight size={15} />
-            </a>
           </div>
           <div ref={r2} className="reveal-right ma-intro-image">
             <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85" alt="Mortgage processing" loading="lazy" decoding="async" />
@@ -254,7 +249,11 @@ export default function Mortgage() {
           </div> */}
         </div>
       </section>
-      <CtaBanner />
+      <ServiceFaq
+        variant="mortgage"
+        title="Mortgage outsourcing questions"
+        intro="Quick answers for brokers considering processing or dedicated back-office support."
+      />
     </div>
   );
 }

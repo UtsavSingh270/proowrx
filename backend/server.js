@@ -10,12 +10,14 @@ const authRoutes    = require('./routes/auth');
 const postRoutes    = require('./routes/posts');
 const jobRoutes     = require('./routes/jobs');
 const contactRoutes = require('./routes/contact');
+const newsletterRoutes = require('./routes/newsletter');
 const meetingRoutes = require('./routes/meetings');
 const teamMemberRoutes = require('./routes/teamMembers');
 const resourceRoutes = require('./routes/resources');
 const worklifeRoutes = require('./routes/worklife');
 const auditLogRoutes = require('./routes/auditLogs');
 const uploadRoutes  = require('./routes/uploads');
+const analyticsRoutes = require('./routes/analytics');
 
 /* ── DB ─────────────────────────────────────── */
 connectDB();
@@ -64,12 +66,14 @@ app.use('/api/auth',     authRoutes);
 app.use('/api/posts',    postRoutes);
 app.use('/api/jobs',     jobRoutes);
 app.use('/api/contact',  contactRoutes);
+app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/meetings', meetingRoutes);
 app.use('/api/team-members', teamMemberRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/worklife', worklifeRoutes);
 app.use('/api/audit-logs', auditLogRoutes);
 app.use('/api/upload',   uploadRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 /* ── Health check ────────────────────────────── */
 app.get('/api/health', (req, res) => {

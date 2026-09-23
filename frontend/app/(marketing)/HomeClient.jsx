@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Lottie } from 'lottie-react';
 import {
   ArrowRight, ChevronLeft, ChevronRight, Shield, Users, Lock, Settings2,
-  BarChart3, Wrench, Building2, Search,
+  BarChart3, Wrench, Building2, Search, Rocket
 } from 'lucide-react';
 import CtaBanner from '../../components/shared/CtaBanner';
 import './Home.css';
@@ -179,13 +179,13 @@ const WHY_FEATURES = [
     color: '#F5A623',
   },
   {
-    icon: <Lock size={22} />,
+    icon: <Rocket size={22} />,
     title: 'REGULAR TRAINING & DEVELOPMENT',
     desc: 'At Proowrx, our team undergoes continuous, structured training to stay aligned with industry best practices across skills, workflows, compliance, and policy updates.',
     color: '#00D4B8',
   },
   {
-    icon: <Lock size={22} />,
+    icon: <Shield size={22} />,
     title: 'DATA SECURITY ASSURANCE',
     desc: 'Being ISO 27001:2022 certified, we ensure data security through industry-leading protocols, including 24/7 CCTV, secure access controls, data encryption, and a robust incident response plan.',
     color: '#F5A623',
@@ -200,13 +200,46 @@ const PROCESS = [
 ];
 
 const FAQS = [
-  { q: 'What outsourcing and business support service does Proowrx provide in Australia?', a: 'Proowrx provides four core back-office outsourcing services for Australian businesses: mortgage processing, accounting and bookkeeping, asset finance support, and digital marketing management.' },
-  { q: 'Which Australian industries does Proowrx support?', a: 'We support Australian mortgage brokerages, accounting businesses, asset finance brokers, buyer agents, and real estate agents looking to reduce administrative workloads and increase internal operational capacity.' },
-  { q: 'How does Proowrx work with my existing team, systems and business processes?', a: 'Our professionals integrate as an extension of your team, working directly within your existing software such as Xero, MYOB, and ApplyOnline while following your established workflows.' },
-  { q: 'Can I start with one Proowrx service and add more support as my business grows?', a: 'Yes, our flexible support models let you start with a single service and easily scale up to multi-service support or dedicated resources as your business grows.' },
-  { q: 'How does Proowrx protect client data and confidential business information?', a: 'Proowrx protects confidential data through strict staff confidentiality agreements, biometric access controls, 24/7 CCTV monitoring, secure technologies such as encryption and firewalls, and clean desk policies.' },
-  { q: 'What makes Proowrx different from other outsourcing providers in Australia?', a: 'As an Australian-owned partner, we provide dedicated, industry-trained professionals, flexible support models, transparent communication, and reliable turnaround times, all without lock-in contracts.' },
-  { q: 'How quickly can Proowrx begin supporting my business?', a: 'Once we review your specific workload and system requirements, our trained professionals deploy and begin managing your back-office operations within a few days.' },
+  {
+    q: 'What is Proowrx, and what services do you provide?',
+    a: 'Proowrx is an Australian-owned outsourcing organisation providing skill-based services to Australian businesses. We provide support across Mortgage Process Outsourcing, Accounting & Bookkeeping, Asset Finance and Digital Marketing. Businesses use our services to handle routine work, keep things moving, and free up in-house staff to focus on their core responsibilities.',
+  },
+  {
+    q: 'How can Proowrx support Australian finance businesses?',
+    a: 'Proowrx helps with routine work finance businesses handle, including credit analysis, loan processing, administration, and client communication. Your staff can then spend less time on paperwork and more time dealing with clients and business development.',
+  },
+  {
+    q: 'What mortgage broker outsourcing services does Proowrx offer?',
+    a: 'Proowrx supports mortgage brokers with the processing and administration work that sits behind a loan application, including credit analysis and assessment, loan processing and application management, document collection and verification, loan lodgement and settlement coordination, and general administration and back-office work. You can outsource the work that takes up the most time in your brokerage.',
+  },
+  {
+    q: 'Can Proowrx support asset finance brokers?',
+    a: 'Yes. Proowrx provides outsourcing support for asset finance brokers. Our staff can support with application processing, document coordination, administration and other back-office work. This gives brokers more time to deal with clients and manage their pipeline.',
+  },
+  {
+    q: 'Why should an Australian finance business consider outsourcing?',
+    a: 'Outsourcing can help finance businesses manage operational work more efficiently, improve turnaround times, and access specialised skills without adding pressure to internal teams. With Proowrx as your outsourcing partner, you can delegate time-consuming operational tasks to a reliable team while your staff focus on building strong client relationships, bringing in new business, and growing your brokerage.',
+  },
+  {
+    q: 'How does Proowrx ensure its teams understand Australian finance processes?',
+    a: 'Proowrx works with Australian businesses, and our teams receive regular training and guidance around industry requirements and operational workflows from experienced Australia-based professionals. We also take the time to learn how each client works, helping ensure that support is aligned with the expectations of Australian businesses.',
+  },
+  {
+    q: 'Can Proowrx customise its outsourcing services to suit my business?',
+    a: 'Yes. Every business has its own processes, priorities and operational requirements. Our outsourcing solutions can be tailored to your business size, workload and service requirements. Whether you need support with specific tasks or broader operational functions, we can provide a working model that fits your business.',
+  },
+  {
+    q: 'Can Proowrx help my business with digital marketing?',
+    a: 'Yes. Proowrx provides digital marketing services for Australian businesses. Our services cover SEO, Paid Advertising, Social Media Marketing, Content Marketing, Email Marketing, Website Development & Maintenance, Graphic Design, and Video Production & Editing. We support mortgage brokers, accounting firms, asset finance businesses, real estate firms and buyer agencies.',
+  },
+  {
+    q: 'How does Proowrx maintain quality and consistency in outsourced work?',
+    a: 'We focus on clear processes, defined responsibilities, ongoing training and regular communication to keep the work consistent. We first understand your expectations and the way you want the work handled. Our team then follows the agreed workflows and stays in regular contact with you throughout the work.',
+  },
+  {
+    q: 'How do I get started with Proowrx?',
+    a: 'Getting started is simple: tell us about your business, your current workload and the areas where you need support; our team will understand your challenges and identify areas where outsourcing can help; then we recommend a tailored support solution aligned with your business goals. If you\u2019d like to discuss your requirements, get in touch with the Proowrx team.',
+  },
 ];
 
 function FaqItem({ item, isOpen, onToggle, index }) {

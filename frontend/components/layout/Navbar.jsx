@@ -6,11 +6,12 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   ArrowRight, BarChart3, BriefcaseBusiness, Building2, Calculator,
-  CarFront, ChevronDown, FileCheck2, FileStack, Megaphone, Menu,
-  UserRound, X,
+  CarFront, ChevronDown, Download, FileCheck2, FileStack, Globe,
+  Landmark, Megaphone, Menu, Mic, Newspaper, Palette, PenTool,
+  PiggyBank, Receipt, Shield, ShieldCheck, Target, UserRound, Users,
+  Wallet, X
 } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
 import './Navbar.css';
 
 const LOGO = '/Proowrx_Logo.png';
@@ -23,8 +24,8 @@ const SERVICE_GROUPS = [
     to: '/mortgage',
     icon: Building2,
     children: [
-      { label: 'Mortgage Processing', to: '/mortgage', desc: 'Full-cycle loan processing and lodgement', icon: FileCheck2 },
-      { label: 'Virtual Assistant', to: '/virtual-assistant', desc: 'Dedicated remote support for your brokerage', icon: UserRound },
+      { label: 'Mortgage Process', to: '/mortgage', desc: 'Full-cycle loan processing and lodgement', icon: FileCheck2 },
+      { label: 'Dedicated Resource', to: '/virtual-assistant', desc: 'Dedicated remote support for your brokerage', icon: UserRound },
       { label: 'Pay Per Application', to: '/pay-per-application', desc: 'Flexible file processing without lock-in contracts', icon: FileStack },
     ],
   },
@@ -36,8 +37,12 @@ const SERVICE_GROUPS = [
     icon: Calculator,
     children: [
       { label: 'Accounting Services', to: '/accounting', desc: 'Complete accounting back-office support', icon: BarChart3 },
-      { label: 'Bookkeeping', to: '/bookkeeping', desc: 'Reconciliation, payroll and bookkeeping support', icon: BriefcaseBusiness },
-      { label: 'Tax, BAS & SMSF', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: FileCheck2 },
+      { label: 'Bookkeeping Services', to: '/bookkeeping', desc: 'Reconciliation, payroll and bookkeeping support', icon: BriefcaseBusiness },
+      { label: 'Tax, BAS & SMSF', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: Receipt },
+      { label: 'Payroll Processing', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: Wallet },
+      { label: 'Cash Forecast Statement', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: BarChart3 },
+      { label: 'Audit Support', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: ShieldCheck },
+      // { label: 'SMSF', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: PiggyBank },
     ],
   },
   {
@@ -49,7 +54,7 @@ const SERVICE_GROUPS = [
     children: [
       { label: 'Asset Finance Processing', to: '/asset-finance', desc: 'Vehicle, equipment and commercial finance support', icon: CarFront },
       { label: 'Application Packaging', to: '/asset-finance', desc: 'Document validation and lender-ready packaging', icon: FileStack },
-      { label: 'Settlement Support', to: '/asset-finance', desc: 'Lender follow-up and settlement coordination', icon: FileCheck2 },
+      { label: 'Settlement Support', to: '/asset-finance', desc: 'Lender follow-up and settlement coordination', icon: Landmark },
     ],
   },
   {
@@ -59,9 +64,12 @@ const SERVICE_GROUPS = [
     to: '/digital-marketing',
     icon: Megaphone,
     children: [
-      { label: 'Digital Marketing Support', to: '/digital-marketing', desc: 'A remote marketing extension for finance teams', icon: Megaphone },
-      // { label: 'SEO & Content', to: '/digital-marketing', desc: 'Search-led content planning and execution', icon: Megaphne },
-      // { label: 'Social & Campaigns', to: '/digital-marketing', desc: 'Social media, email and campaign assistance', icon: Share2 },
+      { label: 'Demand/Lead Generation', to: '/digital-marketing', desc: 'Paid Advertising, SEO, Email Marketing and CRO Assistance', icon: Target },
+      { label: 'Social & Reputation', to: '/digital-marketing', desc: 'Social Media Marketing and Online Reputation Management', icon: Users },
+      { label: 'Content Services', to: '/digital-marketing', desc: 'Content Writing and Content Marketing Assistance', icon: PenTool },
+      { label: 'Web Support', to: '/digital-marketing', desc: 'Website Designing and Website Maintenance Assistance', icon: Globe },
+      { label: 'Digital Events', to: '/digital-marketing', desc: 'Podcasts and Webinars Assistance', icon: Mic },
+      { label: 'Graphic Events', to: '/digital-marketing', desc: 'Graphics Designing and Video Creation & Editing', icon: Palette },
     ],
   },
 ];
@@ -69,39 +77,34 @@ const SERVICE_GROUPS = [
 const nav = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  {
-    label: 'Our Services', to: '/services', serviceMenu: true,
-    mega: [
-      { type: 'heading', label: 'Mortgage' },
-      { label: 'Mortgage Overview', to: '/mortgage', desc: 'Full-cycle loan processing & lodgement', icon: '🏠' },
-      { label: 'Virtual Assistant', to: '/virtual-assistant', desc: 'Dedicated remote VA for your brokerage', icon: '👤' },
-      { label: 'Pay Per Application', to: '/pay-per-application', desc: 'Flexible, no-contract file processing', icon: '💼' },
-      { type: 'heading', label: 'Accounting' },
-      { label: 'Account Services', to: '/accounting', desc: 'Bookkeeping, tax, SMSF & BAS', icon: '📊' },
-      { label: 'BookKeeping Service', to: '/bookkeeping', desc: 'Bookkeeping', icon: '📊' },
-      { type: 'heading', label: 'Asset Finance' },
-      { label: 'Asset Finance', to: '/asset-finance', desc: 'Application processing and lender support', icon: '🚗' },
-      { type: 'heading', label: 'Digital Marketing' },
-      { label: 'Digital Marketing', to: '/digital-marketing', desc: 'Content, SEO, social and campaign support', icon: '📣' },
-    ],
-  },
+  { label: 'Our Services', to: '/services', serviceMenu: true },
   { label: 'Our Team', to: '/our-team' },
-  // { label: 'Blog', to: '/blog' },
   {
     label: 'Resources', to: '/resources',
     mega: [
-      { label: 'Data Security', to: '/data-security', icon: '💼' },
-      { label: 'Case Study', to: '/case-study', icon: '📸' },
-      { label: 'Blog', to: '/blog', icon: '📝' },
-      { label: 'Downloadable Resources', to: '/downloadable-resources', icon: '💾' },
+      { label: 'Data Security', to: '/data-security', desc: 'Graphics Designing and Video Creation & Editing', icon: Shield },
+      { label: 'Case Studies', to: '/case-study', desc: 'Case studies and success stories', icon: BarChart3 },
+      { label: 'Blogs', to: '/blog', desc: 'Latest news and insights', icon: Newspaper },
+      { label: 'Downloadables', to: '/downloadable-resources', desc: 'Downloadable resources and templates', icon: Download },
     ],
   },
   { label: 'Career', to: '/career' },
 ];
 
+const ALL_SERVICE_LINKS = SERVICE_GROUPS.flatMap(s => [
+  { to: s.to },
+  ...s.children.map(c => ({ to: c.to })),
+]);
+
 function groupMegaColumns(items) {
   const columns = [];
   let current = null;
+
+  function getSubcategoryColumns(count) {
+  if (count > 6) return 3;
+  if (count > 3) return 2;
+  return 1;
+}
 
   items.forEach(item => {
     if (item.type === 'heading') {
@@ -109,7 +112,6 @@ function groupMegaColumns(items) {
       columns.push(current);
       return;
     }
-
     if (!current) {
       current = { heading: null, links: [] };
       columns.push(current);
@@ -120,12 +122,15 @@ function groupMegaColumns(items) {
   return columns;
 }
 
+const hasDropdown = item => Boolean(item.mega || item.serviceMenu);
+
 export default function Navbar() {
   const [scrolled, setScrolled]             = useState(false);
   const [mobileOpen, setMobileOpen]         = useState(false);
   const [openMega, setOpenMega]             = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
-  const [activeService, setActiveService] = useState(SERVICE_GROUPS[0].id);
+  const [mobileServiceCat, setMobileServiceCat] = useState(null);
+  const [activeService, setActiveService]   = useState(SERVICE_GROUPS[0].id);
   const pathname   = usePathname();
   const closeTimer = useRef(null);
 
@@ -135,12 +140,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Intentional: close the mobile menu/mega-menu whenever the route changes.
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileOpen(false);
     setOpenMega(null);
     setMobileExpanded(null);
+    setMobileServiceCat(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -155,18 +160,26 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   const openMenu  = label => { clearTimeout(closeTimer.current); setOpenMega(label); };
-  const closeMenu = ()    => { closeTimer.current = setTimeout(() => setOpenMega(null), 140); };
-  const toggleMobileExpanded = label => setMobileExpanded(prev => (prev === label ? null : label));
-  const megaLinks     = mega => mega.filter(m => m.type !== 'heading');
-  const isServiceActive = item => item.mega && megaLinks(item.mega).some(m => m.to === pathname);
-  const selectedService = SERVICE_GROUPS.find(service => service.id === activeService) || SERVICE_GROUPS[0];
+  const closeMenu = ()    => { closeTimer.current = setTimeout(() => setOpenMega(null), 180); };
+
+  const toggleMobileExpanded = label => {
+    setMobileExpanded(prev => (prev === label ? null : label));
+    setMobileServiceCat(null);
+  };
+  const toggleMobileServiceCat = id => setMobileServiceCat(prev => (prev === id ? null : id));
+
+  const isActiveLink = item => {
+    if (item.serviceMenu) return pathname === item.to || ALL_SERVICE_LINKS.some(l => l.to === pathname);
+    if (item.mega) return item.mega.filter(m => m.type !== 'heading').some(m => m.to === pathname);
+    return pathname === item.to;
+  };
+
+  const selectedService = SERVICE_GROUPS.find(s => s.id === activeService) || SERVICE_GROUPS[0];
   const SelectedServiceIcon = selectedService.icon;
 
   return (
     <>
-      {/* ─────────────────────────────────────────
-          CONTACT STRIP — scrolls away with page
-      ───────────────────────────────────────── */}
+      {/* CONTACT STRIP */}
       <div className="topbar">
         <div className="container topbar-inner">
           <div className="topbar-left">
@@ -177,7 +190,6 @@ export default function Navbar() {
             {[
               { href: 'https://www.facebook.com/proowrx/',               icon: <FaFacebook size={13} />,   label: 'Facebook'  },
               { href: 'https://www.instagram.com/proowrx/',              icon: <FaInstagram size={13} />,  label: 'Instagram' },
-              // { href: 'https://twitter.com/proowrx/',                    icon: <FaXTwitter size={13} />,   label: 'X/Twitter' },
               { href: 'https://www.linkedin.com/company/proowrx/about/', icon: <FaLinkedinIn size={13} />, label: 'LinkedIn'  },
             ].map(s => (
               <a key={s.href} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}>
@@ -188,9 +200,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ─────────────────────────────────────────
-          NAV WRAPPER — sticky at top after topbar scrolls
-      ───────────────────────────────────────── */}
+      {/* NAV WRAPPER */}
       <div className="nav-wrapper">
         <nav
           className={`navbar${scrolled && !mobileOpen ? ' scrolled' : ''}${mobileOpen ? ' mobile-open' : ''}`}
@@ -206,20 +216,20 @@ export default function Navbar() {
               {nav.map(item => (
                 <li
                   key={item.to}
-                  className={`nav-item${item.mega ? ' has-mega' : ''}`}
+                  className={`nav-item${hasDropdown(item) ? ' has-mega' : ''}`}
                   role="none"
-                  onMouseEnter={() => item.mega && openMenu(item.label)}
-                  onMouseLeave={() => item.mega && closeMenu()}
+                  onMouseEnter={() => hasDropdown(item) && openMenu(item.label)}
+                  onMouseLeave={() => hasDropdown(item) && closeMenu()}
                 >
                   <Link
                     href={item.to}
                     role="menuitem"
-                    aria-haspopup={item.mega ? 'true' : undefined}
-                    aria-expanded={item.mega ? openMega === item.label : undefined}
-                    className={`nav-link${pathname === item.to || isServiceActive(item) ? ' active' : ''}`}
+                    aria-haspopup={hasDropdown(item) ? 'true' : undefined}
+                    aria-expanded={hasDropdown(item) ? openMega === item.label : undefined}
+                    className={`nav-link${isActiveLink(item) ? ' active' : ''}`}
                   >
                     {item.label}
-                    {item.mega && (
+                    {hasDropdown(item) && (
                       <ChevronDown
                         size={13}
                         className={`nav-chevron${openMega === item.label ? ' open' : ''}`}
@@ -227,92 +237,106 @@ export default function Navbar() {
                       />
                     )}
                   </Link>
+                </li>
+              ))}
+            </ul>
 
-                  {item.mega && openMega === item.label && item.serviceMenu && (
-                    <div
-                      className="mega-menu services-mega"
-                      role="menu"
-                      onMouseEnter={() => openMenu(item.label)}
-                      onMouseLeave={closeMenu}
-                    >
-                      <div className="services-mega-header">
-                        <div>
-                          <span>Our expertise</span>
-                          <strong>Services built for finance professionals</strong>
-                        </div>
-                        <Link href="/services">View all services <ArrowRight size={14} /></Link>
+            {/* CENTERED DROPDOWNS — rendered once, positioned relative to the full-width navbar */}
+            {nav.filter(hasDropdown).map(item => (
+              <div
+                key={`mega-${item.label}`}
+                className={
+                  item.serviceMenu
+                    ? `services-mega mega-dropdown${openMega === item.label ? ' open' : ''}`
+                    : `mega-menu mega-dropdown${groupMegaColumns(item.mega).length > 1 ? ' mega-menu--wide' : ''}${openMega === item.label ? ' open' : ''}`
+                }
+                role="menu"
+                aria-hidden={openMega !== item.label}
+                onMouseEnter={() => openMenu(item.label)}
+                onMouseLeave={closeMenu}
+              >
+                {item.serviceMenu ? (
+                  <>
+                    <div className="services-mega-header">
+                      <div>
+                        <span>Our expertise</span>
+                        <strong>Services built for finance professionals</strong>
                       </div>
-                      <div className="services-mega-grid">
-                        <div className="services-mega-list" aria-label="Service categories">
-                          {SERVICE_GROUPS.map(service => {
-                            const ServiceIcon = service.icon;
-                            const active = selectedService.id === service.id;
+                      <Link href="/services">View all services <ArrowRight size={14} /></Link>
+                    </div>
+                    <div className="services-mega-grid">
+                      <div className="services-mega-list" aria-label="Service categories">
+                        {SERVICE_GROUPS.map(service => {
+                          const ServiceIcon = service.icon;
+                          const active = selectedService.id === service.id;
+                          return (
+                            <Link
+                              key={service.id}
+                              href={service.to}
+                              className={`services-mega-category${active ? ' active' : ''}`}
+                              onMouseEnter={() => setActiveService(service.id)}
+                              onFocus={() => setActiveService(service.id)}
+                            >
+                              <span className="services-mega-category-icon"><ServiceIcon size={19} /></span>
+                              <span><strong>{service.label}</strong><small>{service.description}</small></span>
+                              <ArrowRight size={14} />
+                            </Link>
+                          );
+                        })}
+                      </div>
+                      <div className="services-mega-detail" aria-live="polite">
+                        <div className="services-mega-detail-heading">
+                          <span className="services-mega-detail-icon"><SelectedServiceIcon size={20} /></span>
+                          <div><small>Explore</small><strong>{selectedService.label}</strong></div>
+                        </div>
+                        <div
+                          className={`services-mega-subcategories${
+                            selectedService.children.length > 4 ? ' services-mega-subcategories--two-col' : ''
+                          }`}
+                        >
+                          {selectedService.children.map(child => {
+                            const ChildIcon = child.icon;
                             return (
                               <Link
-                                key={service.id}
-                                href={service.to}
-                                className={`services-mega-category${active ? ' active' : ''}`}
-                                onMouseEnter={() => setActiveService(service.id)}
-                                onFocus={() => setActiveService(service.id)}
+                                key={`${selectedService.id}-${child.label}`}
+                                href={child.to}
+                                className="services-mega-subcategory"
+                                role="menuitem"
                               >
-                                <span className="services-mega-category-icon"><ServiceIcon size={19} /></span>
-                                <span><strong>{service.label}</strong><small>{service.description}</small></span>
+                                <span><ChildIcon size={18} /></span>
+                                <div><strong>{child.label}</strong><small>{child.desc}</small></div>
                                 <ArrowRight size={14} />
                               </Link>
                             );
                           })}
                         </div>
-                        <div className="services-mega-detail" aria-live="polite">
-                          <div className="services-mega-detail-heading">
-                            <span className="services-mega-detail-icon"><SelectedServiceIcon size={20} /></span>
-                            <div><small>Explore</small><strong>{selectedService.label}</strong></div>
-                          </div>
-                          <div className="services-mega-subcategories">
-                            {selectedService.children.map(child => {
-                              const ChildIcon = child.icon;
-                              return (
-                                <Link key={`${selectedService.id}-${child.label}`} href={child.to} className="services-mega-subcategory" role="menuitem">
-                                  <span><ChildIcon size={18} /></span>
-                                  <div><strong>{child.label}</strong><small>{child.desc}</small></div>
-                                  <ArrowRight size={14} />
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
                       </div>
                     </div>
-                  )}
-
-                  {item.mega && openMega === item.label && !item.serviceMenu && (
-                    <div
-                      className={`mega-menu${groupMegaColumns(item.mega).length > 1 ? ' mega-menu--wide' : ''}`}
-                      role="menu"
-                      onMouseEnter={() => openMenu(item.label)}
-                      onMouseLeave={closeMenu}
-                    >
-                      <div className={`mega-inner${groupMegaColumns(item.mega).length > 1 ? ' mega-inner--columns' : ''}`}>
-                        {groupMegaColumns(item.mega).map((column, columnIndex) => (
-                          <div className="mega-column" key={column.heading || columnIndex}>
-                            {column.heading && <div className="mega-section-heading" role="separator">{column.heading}</div>}
-                            {column.links.map(link => (
-                              <Link key={link.to} href={link.to} className="mega-item" role="menuitem">
-                                <span className="mega-icon" aria-hidden="true">{link.icon}</span>
-                                <div>
-                                  <span className="mega-label">{link.label}</span>
-                                  {link.desc && <span className="mega-desc">{link.desc}</span>}
-                                </div>
-                                <ArrowRight size={14} className="mega-arrow" aria-hidden="true" />
-                              </Link>
-                            ))}
-                          </div>
-                        ))}
+                  </>
+                ) : (
+                  <div className={groupMegaColumns(item.mega).length > 1 ? 'mega-inner mega-inner--columns' : 'mega-inner'}>
+                    {groupMegaColumns(item.mega).map((column, columnIndex) => (
+                      <div className="mega-column" key={column.heading || columnIndex}>
+                        {column.heading && <div className="mega-section-heading" role="separator">{column.heading}</div>}
+                        {column.links.map(link => {
+                          const LinkIcon = link.icon;
+                          return (
+                            <Link key={link.to} href={link.to} className="mega-item" role="menuitem">
+                              <span className="mega-icon" aria-hidden="true"><LinkIcon size={18} /></span>
+                              <div>
+                                <span className="mega-label">{link.label}</span>
+                                {link.desc && <span className="mega-desc">{link.desc}</span>}
+                              </div>
+                              <ArrowRight size={14} className="mega-arrow" aria-hidden="true" />
+                            </Link>
+                          );
+                        })}
                       </div>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
 
             <div className="nav-actions">
               <Link href="/contact" className="btn btn-gold nav-cta">
@@ -327,31 +351,17 @@ export default function Navbar() {
               aria-expanded={mobileOpen}
               aria-controls="mobile-drawer"
             >
-              {mobileOpen
-                ? <X size={22} aria-hidden="true" />
-                : <Menu size={22} aria-hidden="true" />
-              }
+              {mobileOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
             </button>
           </div>
         </nav>
       </div>
 
-      {/* ─────────────────────────────────────────
-          BACKDROP — z-index 998, below drawer
-      ───────────────────────────────────────── */}
       {mobileOpen && (
-        <div
-          className="mobile-backdrop"
-          onClick={() => setMobileOpen(false)}
-          aria-hidden="true"
-        />
+        <div className="mobile-backdrop" onClick={() => setMobileOpen(false)} aria-hidden="true" />
       )}
 
-      {/* ─────────────────────────────────────────
-          MOBILE DRAWER — z-index 999
-          OUTSIDE nav-wrapper so navbar (1001) is
-          always rendered above the drawer.
-      ───────────────────────────────────────── */}
+      {/* MOBILE DRAWER */}
       <div
         id="mobile-drawer"
         className={`mobile-drawer${mobileOpen ? ' open' : ''}`}
@@ -363,7 +373,67 @@ export default function Navbar() {
         <div className="mobile-drawer-inner">
           {nav.map(item => (
             <div key={item.to} className="mobile-nav-group">
-              {item.mega ? (
+              {item.serviceMenu ? (
+                <>
+                  <button
+                    className="mobile-nav-link mobile-nav-toggle"
+                    onClick={() => toggleMobileExpanded(item.label)}
+                    aria-expanded={mobileExpanded === item.label}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={16}
+                      className={`mobile-chevron${mobileExpanded === item.label ? ' open' : ''}`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                  <div
+                    className={`mobile-sub-list mobile-service-list${mobileExpanded === item.label ? ' open' : ''}`}
+                    role="menu"
+                  >
+                    {SERVICE_GROUPS.map(group => {
+                      const GroupIcon = group.icon;
+                      const catOpen = mobileServiceCat === group.id;
+                      return (
+                        <div key={group.id} className="mobile-service-group">
+                          <button
+                            className="mobile-service-cat"
+                            onClick={() => toggleMobileServiceCat(group.id)}
+                            aria-expanded={catOpen}
+                          >
+                            <span className="mobile-service-cat-icon"><GroupIcon size={17} /></span>
+                            <span className="mobile-service-cat-text">
+                              <strong>{group.label}</strong>
+                              <small>{group.description}</small>
+                            </span>
+                            <ChevronDown
+                              size={15}
+                              className={`mobile-chevron${catOpen ? ' open' : ''}`}
+                              aria-hidden="true"
+                            />
+                          </button>
+                          <div className={`mobile-service-children${catOpen ? ' open' : ''}`}>
+                            {group.children.map(child => {
+                              const ChildIcon = child.icon;
+                              return (
+                                <Link
+                                  key={`${group.id}-${child.label}`}
+                                  href={child.to}
+                                  className="mobile-nav-sub"
+                                  role="menuitem"
+                                >
+                                  <span className="mobile-sub-icon" aria-hidden="true"><ChildIcon size={15} /></span>
+                                  <span>{child.label}</span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : item.mega ? (
                 <>
                   <button
                     className="mobile-nav-link mobile-nav-toggle"
@@ -386,7 +456,7 @@ export default function Navbar() {
                         <div key={j} className="mobile-sub-heading" role="separator">{m.label}</div>
                       ) : (
                         <Link key={j} href={m.to} className="mobile-nav-sub" role="menuitem">
-                          <span className="mobile-sub-icon" aria-hidden="true">{m.icon}</span>
+                          <span className="mobile-sub-icon" aria-hidden="true"><m.icon size={15} /></span>
                           <span>{m.label}</span>
                         </Link>
                       )

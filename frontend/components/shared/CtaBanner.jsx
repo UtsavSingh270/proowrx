@@ -10,10 +10,10 @@ export default function CtaBanner() {
         <div className="cta-banner-copy">
           <span className="cta-banner-pill">Get Started Today</span>
           <h2 className="cta-banner-heading">
-            Ready to hand off the<br />back-office work?
+            Clear Your Operational Bottlenecks Today
           </h2>
           <p className="cta-banner-sub">
-            Book a 30-minute discovery call. No commitment, no sales deck — just a real conversation about how we can free up your team.
+            Whether you need support for seasonal peaks or one dedicated resource doing all your back-office tasks, Proowrx provides flexible business outsourcing support designed around your business.
           </p>
           <div className="cta-banner-assurances">
             {['No lock-in contracts', 'Onboard in 48 hours', 'Australian compliance guaranteed'].map((t) => (

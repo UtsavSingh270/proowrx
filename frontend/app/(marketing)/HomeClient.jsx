@@ -5,9 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Lottie } from 'lottie-react';
 import {
-  ArrowRight, ChevronLeft, ChevronRight, Shield, TrendingUp, Users, Clock, CheckCircle,
-  Star, Lock, Zap, Globe, FileText, Search, Settings2, Send,
-  Award, BarChart3, Wrench, Building2,
+  ArrowRight, ChevronLeft, ChevronRight, Shield, Users, Lock, Settings2,
+  BarChart3, Wrench, Building2, Search,
 } from 'lucide-react';
 import CtaBanner from '../../components/shared/CtaBanner';
 import './Home.css';
@@ -21,19 +20,9 @@ const CLIENT_STORIES = [
 
 const HERO_SLIDES = [
   {
-    eyebrow: 'Australian-Owned · Operating Since 2021',
-    title: 'Back-office excellence built for Australian finance professionals',
-    description: 'Proowrx brings experienced people, secure systems and dependable processes together so your team can focus on clients, advice and sustainable growth.',
-    image: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=2000&q=88',
-    primaryLabel: 'Book a Discovery Call',
-    primaryHref: '/contact',
-    secondaryLabel: 'Explore Proowrx',
-    secondaryHref: '/about',
-  },
-  {
-    eyebrow: 'Mortgage Processing',
-    title: 'Move every mortgage application forward with confidence',
-    description: 'From document collection and compliance checks to lodgement and lender follow-ups, our mortgage specialists support the complete application journey.',
+    eyebrow: 'Mortgage Process Outsourcing',
+    title: 'Settle More Loans. Spend Less Time on Admin',
+    description: 'Dedicated mortgage processing support handles submissions, lender follow-ups, document checks, and compliance admin, allowing you to spend more time with clients and less time chasing files.',
     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=88',
     primaryLabel: 'Explore Mortgage',
     primaryHref: '/mortgage',
@@ -41,9 +30,9 @@ const HERO_SLIDES = [
     secondaryHref: '/services',
   },
   {
-    eyebrow: 'Accounting Support',
-    title: 'Reliable accounting capacity without increasing local overheads',
-    description: 'Scale bookkeeping, payroll, BAS, tax and SMSF support with a trained team that works within your systems and established review processes.',
+    eyebrow: 'Accounting & Bookkeeping Support',
+    title: 'Less Time on Bookkeeping. More Time for Your Clients',
+    description: 'Australian-compliant bookkeeping, tax, and lodgement support that fits into your practice so you can take on more clients without hiring more staff.',
     image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=2000&q=88',
     primaryLabel: 'Explore Accounting',
     primaryHref: '/accounting',
@@ -52,8 +41,8 @@ const HERO_SLIDES = [
   },
   {
     eyebrow: 'Asset Finance Support',
-    title: 'Keep asset finance applications organised and moving',
-    description: 'Get dependable support for document validation, lender portals, CRM updates, application packaging, settlement and exception follow-ups.',
+    title: 'Keep Deals Moving From Application to Settlement.',
+    description: 'We help with application packaging, document collection, lender coordination, matrix checks and settlement tasks, so your asset finance deals keep moving forward.',
     image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=88',
     primaryLabel: 'Explore Asset Finance',
     primaryHref: '/asset-finance',
@@ -61,9 +50,9 @@ const HERO_SLIDES = [
     secondaryHref: '/services',
   },
   {
-    eyebrow: 'Digital Marketing',
-    title: 'Build consistent visibility for your finance business',
-    description: 'Extend your team with practical support for content, SEO, social media, email campaigns and performance reporting tailored to financial services.',
+    eyebrow: 'Digital Marketing Support',
+    title: 'Build Your Online Presence. With Dedicated Marketing Support.',
+    description: 'From SEO and social media to paid ads and content. We help financial services businesses build visibility, attract the right audience, and turn digital activity into real opportunities.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=88',
     primaryLabel: 'Explore Marketing',
     primaryHref: '/digital-marketing',
@@ -109,172 +98,6 @@ function useCountUp(target, duration = 1800, active = false) {
   return count;
 }
 
-function useTypewriter(words, typingSpeed = 80, deleteSpeed = 45, pause = 2000) {
-  const [display, setDisplay] = useState('');
-  const [wordIdx, setWordIdx] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-  useEffect(() => {
-    const word = words[wordIdx];
-    let delay = deleting ? deleteSpeed : typingSpeed;
-    if (!deleting && display === word) delay = pause;
-    if (deleting && display === '') delay = 350;
-    const t = setTimeout(() => {
-      if (!deleting && display !== word) setDisplay(word.slice(0, display.length + 1));
-      else if (!deleting && display === word) setDeleting(true);
-      else if (deleting && display !== '') setDisplay(word.slice(0, display.length - 1));
-      else { setDeleting(false); setWordIdx((i) => (i + 1) % words.length); }
-    }, delay);
-    return () => clearTimeout(t);
-  }, [display, deleting, wordIdx, words, typingSpeed, deleteSpeed, pause]);
-  return display;
-}
-
-/* ─────────────────────────────────────────────
-   PHONE SLIDER (hero right panel)
-───────────────────────────────────────────── */
-const PHONE_SLIDES = [
-  {
-    tag: 'Mortgage Processing',
-    title: 'Your files, handled end-to-end',
-    color: '#00D4B8',
-    icon: <FileText size={14} />,
-    desc: 'We manage every loan file from receipt to settlement — data entry, compliance checks, lender submission, and follow-ups included.',
-    stats: [{ val: '24hr', lab: 'Turnaround' }, { val: '100%', lab: 'Compliant' }],
-    highlight: { icon: <CheckCircle size={12} />, text: 'Pre & post-submission handled' },
-  },
-  {
-    tag: 'Accounting Support',
-    title: 'Full-cycle back-office for accountants',
-    color: '#F5A623',
-    icon: <BarChart3 size={14} />,
-    desc: 'Bookkeeping, payroll, BAS, SMSF, and audit support — our trained team integrates with Xero, MYOB & QuickBooks seamlessly.',
-    stats: [{ val: '8+', lab: 'Platforms' }, { val: '8', lab: 'Core Services' }],
-    highlight: { icon: <CheckCircle size={12} />, text: 'ATO compliant, Australian standards' },
-  },
-  {
-    tag: 'Data Security',
-    title: 'Your clients\' data, fully protected',
-    color: '#00D4B8',
-    icon: <Lock size={14} />,
-    desc: 'AU-hosted servers, AES-256 encryption, 2FA logins, NDA-signed staff, and biometric premises access — 4 layers of protection.',
-    stats: [{ val: 'AU', lab: 'Hosted Servers' }, { val: '4', lab: 'Security Layers' }],
-    highlight: { icon: <Shield size={12} />, text: 'ISO-aligned data policies' },
-  },
-  {
-    tag: 'Why Proowrx',
-    title: 'Built for Australian professionals',
-    color: '#F5A623',
-    icon: <Award size={14} />,
-    desc: 'Australian-owned, India-operated. Our team is trained by AU brokers and accountants — we know your market, compliance, and workflow.',
-    stats: [{ val: '2021', lab: 'Established' }, { val: '500+', lab: 'AU Clients' }],
-    highlight: { icon: <Users size={12} />, text: 'No lock-in contracts, scale freely' },
-  },
-];
-
-function getTime() {
-  const now = new Date();
-  const h = now.getHours();
-  const m = now.getMinutes().toString().padStart(2, '0');
-  return `${h}:${m}`;
-}
-
-function PhoneSlider() {
-  const [current, setCurrent] = useState(0);
-  const [animKey, setAnimKey] = useState(0);
-  const [time, setTime] = useState(getTime);
-  const [ref, visible] = useInView(0.2);
-
-  const goTo = (i) => { if (i === current) return; setCurrent(i); setAnimKey(k => k + 1); };
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCurrent(c => (c + 1) % PHONE_SLIDES.length);
-      setAnimKey(k => k + 1);
-    }, 4200);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    const tick = () => setTime(getTime());
-    const now = new Date();
-    const msUntilNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
-    const timeout = setTimeout(() => {
-      tick();
-      const id = setInterval(tick, 60000);
-      return () => clearInterval(id);
-    }, msUntilNextMinute);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const slide = PHONE_SLIDES[current];
-
-  return (
-    <div className={`phone-wrap${visible ? ' phone-wrap--visible' : ''}`} ref={ref}>
-      <div className="phone-glow" style={{ background: `radial-gradient(ellipse at 50% 60%, ${slide.color}22 0%, transparent 68%)` }} />
-
-      <div className="phone-frame">
-        <div className="phone-island" />
-
-        <div className="phone-statusbar">
-          <span className="phone-time">{time}</span>
-          <div className="phone-signals"><span>▌▌▌</span><Zap size={9} /></div>
-        </div>
-
-        <div className="phone-appbar">
-          <div className="phone-appbar-dot" style={{ background: slide.color }} />
-          <span className="phone-appbar-name">Proowrx</span>
-          <span className="phone-live-badge" style={{ color: slide.color, borderColor: `${slide.color}44` }}>● LIVE</span>
-        </div>
-
-        <div className="phone-scan" aria-hidden="true" />
-
-        {/* Slide content — animates in on each slide change */}
-        <div className="phone-content" key={animKey}>
-          <div className="phone-badge" style={{ background: `${slide.color}18`, color: slide.color, borderColor: `${slide.color}30` }}>
-            {slide.icon}&nbsp;{slide.tag}
-          </div>
-
-          <div className="phone-slide-title">{slide.title}</div>
-
-          <p className="phone-slide-desc">{slide.desc}</p>
-
-          {/* Stat boxes */}
-          <div className="phone-stats-row">
-            {slide.stats.map((s, i) => (
-              <div key={i} className="phone-stat-box" style={{ borderColor: `${slide.color}28`, background: `${slide.color}0a` }}>
-                <span className="phone-stat-val" style={{ color: slide.color }}>{s.val}</span>
-                <span className="phone-stat-lab">{s.lab}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Feature highlight */}
-          <div className="phone-highlight" style={{ background: `${slide.color}0d`, borderColor: `${slide.color}22`, color: slide.color }}>
-            {slide.highlight.icon}
-            <span>{slide.highlight.text}</span>
-          </div>
-        </div>
-
-        {/* Slide indicator dots */}
-        <div className="phone-dots">
-          {PHONE_SLIDES.map((_, i) => (
-            <button
-              key={i}
-              className={`phone-dot${i === current ? ' phone-dot--active' : ''}`}
-              style={i === current ? { background: slide.color, width: 18 } : {}}
-              onClick={() => goTo(i)}
-              aria-label={`Slide ${i + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Home indicator */}
-        <div className="phone-home-bar" />
-      </div>
-    </div>
-  );
-}
-
 /* ─────────────────────────────────────────────
    STAT COUNTER CARD
 ───────────────────────────────────────────── */
@@ -293,39 +116,19 @@ function StatCard({ icon, value, suffix, label, delay, active }) {
    DATA
 ───────────────────────────────────────────── */
 const STATS = [
-  {
-  icon: <Image src="/icons/experience.svg" width={40} height={40} alt="Years Experience" />,
-  value: 20,
-  suffix: '+',
-  label: 'Years Experience'
-},
-{
-  icon: <Image src="/icons/time.svg" width={40} height={40} alt="Average Turnaround Time" />,
-  value: 24,
-  suffix: 'hr',
-  label: 'Average Turnaround Time'
-},
-{
-  icon: <Image src="/icons/brokers.svg" width={40} height={40} alt="Brokers & Accountants" />,
-  value: 500,
-  suffix: '+',
-  label: 'Brokers & Accountants'
-},
-{
-  icon: <Image src="/icons/compliant.svg" width={40} height={40} alt="Compliance Focused" />,
-  value: 100,
-  suffix: '%',
-  label: 'Compliance Focused'
-}
+  { icon: <Image src="/icons/experience.svg" width={40} height={40} alt="Years Experience" />, value: 25, suffix: '+', label: 'Years of Leadership Experience' },
+  { icon: <Image src="/icons/compliant.svg" width={40} height={40} alt="Average Turnaround Time" />, value: 100, suffix: '%', label: 'Australian Business Compliant ' },
+  { icon: <Image src="/icons/brokers.svg" width={40} height={40} alt="Brokers & Accountants" />, value: 150, suffix: '+', label: 'Dedicated Professionals' },
+  { icon: <Image src="/icons/reduction.svg" width={40} height={40} alt="Compliance Focused" />, value: 50, suffix: '%', label: 'Cost Reduction' },
 ];
 
 const SERVICES = [
   {
     icon: <Building2 size={28} />,
     tag: 'For Australian Brokers',
-    title: 'Mortgage Processing',
-    desc: 'Expert mortgage file processing to streamline your workflow. Our trained team handles all the paperwork, ensuring accuracy and efficiency — freeing you to close more deals faster.',
-    bullets: ['Pay-Per-Application model', 'Dedicated Resource (Full/Part-time)', 'Pre & Post-submission support', 'Compliance & CRM management'],
+    title: 'Mortgage Outsourcing Service',
+    desc: 'Scale your brokerage efficiently with our specialised mortgage outsourcing service. By outsourcing mortgage loan processing to our dedicated team, you can reduce administrative overhead while ensuring faster file progression.',
+    bullets: ['CRM & ApplyOnline/LoanApp Updates', 'Compliance Support & Serviceability Checks', 'Active Lender Follow-ups & Pipeline Tracking', 'Document Verification & Packaging', 'Pricing Requests & Valuations Coordination', 'Settlement Administration & Post-Settlement Care'],
     accent: '#173F78',
     glow: 'rgba(23,63,120,0.10)',
     to: '/mortgage',
@@ -333,9 +136,9 @@ const SERVICES = [
   {
     icon: <BarChart3 size={28} />,
     tag: 'For Australian Accountants',
-    title: 'Accounting & Bookkeeping',
-    desc: 'Accounting services tailored to Australian professionals. We provide the resources you need to operate efficiently so you can focus on business development and client relationships.',
-    bullets: ['Bookkeeping & Reconciliation', 'Payroll & Tax Returns', 'SMSF Management', 'BAS / IAS / STP Lodgements'],
+    title: 'Accounting Outsourcing Service',
+    desc: 'Safeguard your business profit margins and eliminate seasonal bottlenecks with an expert accounting outsourcing service. Our tailored outsourced accounting service provides reliable support for daily bookkeeping, bank reconciliations, payroll, and BAS draft preparation. ',
+    bullets: ['Reconciliations & Bookkeeping Support', 'Payroll Processing & Superannuation', 'Accounts Payable & Receivable Management', 'BAS & IAS Draft Preparation', 'Bank Reconciliations & Ledger Maintenance', 'Financial Reporting & Data Entry'],
     accent: '#D99A00',
     glow: 'rgba(217,154,0,0.11)',
     to: '/accounting',
@@ -343,9 +146,9 @@ const SERVICES = [
   {
     icon: <Wrench size={28} />,
     tag: 'For Asset Finance Brokers',
-    title: 'Asset Finance Support',
-    desc: 'Reliable processing support for vehicle, equipment and commercial asset finance applications, from document collection through lender follow-up and settlement.',
-    bullets: ['Document collection and validation', 'CRM and lender portal updates', 'Application packaging support', 'Settlement and exception follow-up'],
+    title: 'Asset Finance Outsourcing Service',
+    desc: 'Elevate deal turnaround times and boost client satisfaction with streamlined asset finance outsourcing service. Designed specifically for commercial, vehicle and equipment finance providers. Our comprehensive asset finance service covers application packaging, lender matrix compliance, quotation checks, and settlement coordination.',
+    bullets: ['Application Packaging & Processing', 'Customer Documentation & Verification', 'CRM Data Updates & Tracking', 'Lender Communications & Matrix Checks', 'Invoice & Quotation Verification', 'Settlement Coordination with Lenders & Dealers'],
     accent: '#173F78',
     glow: 'rgba(23,63,120,0.10)',
     to: '/asset-finance',
@@ -353,9 +156,9 @@ const SERVICES = [
   {
     icon: <Search size={28} />,
     tag: 'For Finance Businesses',
-    title: 'Digital Marketing',
-    desc: 'A trained remote marketing extension that helps finance businesses maintain consistent content, search visibility, social activity, email campaigns and reporting.',
-    bullets: ['SEO and content support', 'Social media coordination', 'Email campaign assistance', 'Performance reporting'],
+    title: 'Digital Marketing Outsourcing Service',
+    desc: 'Grow your business with digital marketing designed for financial services. Our team handles your local search, paid ads, website content, and social media from start to finish.',
+    bullets: ['Search Engine Optimisation (SEO)', 'Social Media Marketing', 'Paid Advertising', 'Email Marketing', 'Website Designing', 'Podcast & Webinars'],
     accent: '#D99A00',
     glow: 'rgba(217,154,0,0.11)',
     to: '/digital-marketing',
@@ -365,90 +168,74 @@ const SERVICES = [
 const WHY_FEATURES = [
   {
     icon: <Users size={22} />,
-    title: 'Trusted Partner For Financial Professionals',
-    desc: 'Our team undergoes ongoing training by Australian experts on best practices and compliance — ensuring we truly understand the unique challenges faced by mortgage brokers and accountants.',
+    title: 'COMPLIANCE MANAGEMENT',
+    desc: 'We handle all compliance and regulatory requirements as per industry standards, governing bodies, and platform frameworks, relieving your operational burden.',
     color: '#00D4B8',
   },
   {
     icon: <Settings2 size={22} />,
-    title: 'Operational Excellence for Australian Advisors',
-    desc: 'We go beyond basic loan processing. Proowrx offers a comprehensive solution handling loan processing, bidding, compliance, and accounting tasks for a truly streamlined back-office.',
+    title: 'ENSURING BUSINESS CONTINUITY',
+    desc: 'We ensure uninterrupted operations with trained backup staff in place, so your work continues smoothly even when your dedicated team members are unavailable.',
     color: '#F5A623',
   },
   {
     icon: <Lock size={22} />,
-    title: 'Data Security & Policy',
-    desc: 'Best-in-industry data security practices. All client data stored on Australian servers, accessible only via 2-factor authentication. Bank-grade protection at every layer.',
+    title: 'REGULAR TRAINING & DEVELOPMENT',
+    desc: 'At Proowrx, our team undergoes continuous, structured training to stay aligned with industry best practices across skills, workflows, compliance, and policy updates.',
     color: '#00D4B8',
   },
   {
-    icon: <Award size={22} />,
-    title: 'Expert Back-Office Support',
-    desc: 'Our India-based team is highly trained in handling a wide range of tasks for mortgage brokers and accountants at competitive rates, with an unwavering commitment to accuracy.',
+    icon: <Lock size={22} />,
+    title: 'DATA SECURITY ASSURANCE',
+    desc: 'Being ISO 27001:2022 certified, we ensure data security through industry-leading protocols, including 24/7 CCTV, secure access controls, data encryption, and a robust incident response plan.',
     color: '#F5A623',
-  },
-  {
-    icon: <Star size={22} />,
-    title: 'Working Beyond Expectations',
-    desc: 'We prioritize accuracy, efficiency, and compliance. Our highly trained team delivers exceptional service, meeting all legal requirements for completely worry-free processing.',
-    color: '#00D4B8',
   },
 ];
 
 const PROCESS = [
-  { num: '01', animation: '/Free Discovery Call.json', title: 'Free Discovery Call', desc: 'A 30-minute call to understand your workflow, volume, and tools. No sales pitch — just a real conversation about how we can help.' },
-  { num: '02', animation: '/Seamless Onboarding.json', title: 'Seamless Onboarding', desc: 'We configure CRM access, assign your dedicated named team, and fully integrate into your workflow within 5 business days.' },
-  { num: '03', animation: '/Live File Processing.json', title: 'Live File Processing', desc: 'Your files are handled end-to-end — data entry, compliance checks, lodgement, and lender follow-ups — with daily status updates.' },
-  { num: '04', animation: '/Scale As You Grow.json', title: 'Scale As You Grow', desc: 'Flex capacity up or down without lock-in contracts. We grow alongside your book at no additional setup cost — ever.' },
+  { num: '01', animation: '/Free Discovery Call.json', title: 'Tell Us Your Specific Requirements', desc: 'We start by understanding your tasks, workload, systems, and support needs. This helps us identify the most suitable service model for your operations.' },
+  { num: '02', animation: '/Live File Processing.json', title: 'Choose the Right Service Model', desc: 'Based on your requirements, you can choose a flexible service model. We then set up the workflow around your existing processes, platforms, and communication channels, defining roles, responsibilities, turnaround expectations, and reporting.' },
+  { num: '03', animation: '/Seamless Onboarding.json', title: 'Start Working With Your Proowrx Team', desc: 'Once the workflow is set up, our trained professionals begin supporting your day-to-day operations across the agreed-upon tasks. Communication stays clear, work is tracked, and your team remains informed throughout.' },
+  { num: '04', animation: '/Scale As You Grow.json', title: 'Adjust Support as Your Business Changes', desc: 'As your workload fluctuates and business priorities shift, Proowrx provides the flexibility to scale your support, helping you stay efficient without committing to fixed costs.' },
 ];
 
-const OUTSOURCING_CARDS = [
-  {
-    icon: <TrendingUp size={20} />,
-    title: 'Grow Your Business',
-    desc: 'Giving time back to the broker allows for more crucial business decisions, generating leads and allowing portfolio growth. Focus on what you love doing.',
-    color: '#00D4B8',
-  },
-  {
-    icon: <BarChart3 size={20} />,
-    title: 'Optimize Manpower Cost',
-    desc: 'Training staff for short projects is expensive and quality suffers. Outsourcing converts fixed costs to variable costs — pay only for services you actually consume.',
-    color: '#F5A623',
-  },
-  {
-    icon: <Award size={20} />,
-    title: 'Affordability with Flexibility',
-    desc: 'Outsourcing should help your business grow without adding cost pressure. Get skilled support at a reasonable price with the freedom to choose your service model.',
-    color: '#00D4B8',
-  },
-  {
-    icon: <Shield size={20} />,
-    title: 'Stop Worrying About Data',
-    desc: 'Our team follows clear processes and secure systems so mortgage brokers and accountants can focus on their work with complete peace of mind about client data.',
-    color: '#F5A623',
-  },
-  {
-    icon: <Lock size={20} />,
-    title: 'Privacy First',
-    desc: 'Access is controlled, systems are secure, and every team member follows strict privacy practices to ensure your client information remains protected at all times.',
-    color: '#00D4B8',
-  },
-  {
-    icon: <Globe size={20} />,
-    title: 'Experience The Best Outsourcing',
-    desc: 'Proowrx works alongside mortgage brokers and accountants as a reliable extension of your team — reducing your workload so you can focus on clients and growth.',
-    color: '#F5A623',
-  },
+const FAQS = [
+  { q: 'What outsourcing and business support service does Proowrx provide in Australia?', a: 'Proowrx provides four core back-office outsourcing services for Australian businesses: mortgage processing, accounting and bookkeeping, asset finance support, and digital marketing management.' },
+  { q: 'Which Australian industries does Proowrx support?', a: 'We support Australian mortgage brokerages, accounting businesses, asset finance brokers, buyer agents, and real estate agents looking to reduce administrative workloads and increase internal operational capacity.' },
+  { q: 'How does Proowrx work with my existing team, systems and business processes?', a: 'Our professionals integrate as an extension of your team, working directly within your existing software such as Xero, MYOB, and ApplyOnline while following your established workflows.' },
+  { q: 'Can I start with one Proowrx service and add more support as my business grows?', a: 'Yes, our flexible support models let you start with a single service and easily scale up to multi-service support or dedicated resources as your business grows.' },
+  { q: 'How does Proowrx protect client data and confidential business information?', a: 'Proowrx protects confidential data through strict staff confidentiality agreements, biometric access controls, 24/7 CCTV monitoring, secure technologies such as encryption and firewalls, and clean desk policies.' },
+  { q: 'What makes Proowrx different from other outsourcing providers in Australia?', a: 'As an Australian-owned partner, we provide dedicated, industry-trained professionals, flexible support models, transparent communication, and reliable turnaround times, all without lock-in contracts.' },
+  { q: 'How quickly can Proowrx begin supporting my business?', a: 'Once we review your specific workload and system requirements, our trained professionals deploy and begin managing your back-office operations within a few days.' },
 ];
 
-const SECURITY_PILLARS = [
-  { icon: <Lock size={18} />,        label: 'AES-256 Encryption'      },
-  { icon: <Globe size={18} />,       label: 'Australia-hosted servers' },
-  { icon: <Shield size={18} />,      label: '2-Factor Authentication' },
-  { icon: <Users size={18} />,       label: 'NDA-signed staff'         },
-  { icon: <Zap size={18} />,         label: 'Biometric & CCTV access' },
-  { icon: <CheckCircle size={18} />, label: 'ISO-aligned policies'    },
-];
+function FaqItem({ item, isOpen, onToggle, index }) {
+  return (
+    <div className={`faq-item${isOpen ? ' faq-item--open' : ''}`}>
+      <button
+        className="faq-question"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`faq-panel-${index}`}
+      >
+        <span>{item.q}</span>
+        <span className="faq-icon" aria-hidden="true">
+          <span className="faq-icon-h" />
+          <span className="faq-icon-v" />
+        </span>
+      </button>
+      <div
+        className="faq-answer-wrap"
+        id={`faq-panel-${index}`}
+        style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
+      >
+        <div className="faq-answer-inner">
+          <p className="faq-answer">{item.a}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* ─────────────────────────────────────────────
    HOME
@@ -456,13 +243,13 @@ const SECURITY_PILLARS = [
 export default function HomeClient() {
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
-  const [statsRef,    statsVisible]    = useInView(0.3);
-  const [svcRef,      svcVisible]      = useInView(0.1);
-  const [whyFeatRef,  whyFeatVisible]  = useInView(0.08);
-  const [procRef,     procVisible]     = useInView(0.1);
-  const [outsrcRef,   outsrcVisible]   = useInView(0.08);
-  const [secRef,      secVisible]      = useInView(0.1);
-  const [testiRef,    testiVisible]    = useInView(0.1);
+  const [statsRef, statsVisible]     = useInView(0.3);
+  const [svcRef, svcVisible]         = useInView(0.1);
+  const [whyFeatRef, whyFeatVisible] = useInView(0.08);
+  const [procRef, procVisible]       = useInView(0.1);
+  const [testiRef, testiVisible]     = useInView(0.1);
+  const [faqRef, faqVisible]         = useInView(0.1);
+  const [openFaq, setOpenFaq]        = useState(0);
   const [processStage, setProcessStage] = useState(0);
   const processLoopTimerRef = useRef(null);
 
@@ -491,7 +278,6 @@ export default function HomeClient() {
   const advanceProcessTimeline = () => {
     setProcessStage(currentStage => {
       if (currentStage < PROCESS.length) return currentStage + 1;
-
       window.clearTimeout(processLoopTimerRef.current);
       processLoopTimerRef.current = window.setTimeout(() => setProcessStage(1), 1400);
       return PROCESS.length + 1;
@@ -507,43 +293,38 @@ export default function HomeClient() {
     <main className="home">
 
       {/* ══════════════════════════════════════
-          HERO
-      ══════════════════════════════════════ */}
-      <section className="hero hero-slider" aria-roledescription="carousel" aria-label="Proowrx services">
-        <div
-          key={heroSlide.image}
-          className="hero-slide-bg"
-          style={{ backgroundImage: `url("${heroSlide.image}")` }}
-          aria-hidden="true"
-        />
-        <div className="hero-slide-overlay" aria-hidden="true" />
+    HERO — full-bleed image, white overlay
+    fading left→right (text zone left,
+    image fully visible on the right)
+══════════════════════════════════════ */}
+<section className="hero hero-slider" aria-roledescription="carousel" aria-label="Proowrx services">
+  <div
+    key={heroSlide.image}
+    className="hero-slide-bg"
+    style={{ backgroundImage: `url("${heroSlide.image}")` }}
+    aria-hidden="true"
+  />
+  <div className="hero-slide-overlay" aria-hidden="true" />
 
-        <div className="container hero-slider-inner">
-          <div className="hero-slide-content" key={`${activeHeroSlide}-${heroSlide.title}`}>
-            {/* <span className="hero-slide-count">{String(activeHeroSlide + 1).padStart(2, '0')} / {String(HERO_SLIDES.length).padStart(2, '0')}</span> */}
-            <div className="hero-pill">
-              <span className="hero-pill-dot" />
-              {heroSlide.eyebrow}
-            </div>
-            <h1 className="hero-heading">{heroSlide.title}</h1>
-            <p className="hero-sub">{heroSlide.description}</p>
-            <div className="hero-actions">
-              <Link href={heroSlide.primaryHref} className="btn-primary">{heroSlide.primaryLabel} <ArrowRight size={16} /></Link>
-              <Link href={heroSlide.secondaryHref} className="btn-ghost">{heroSlide.secondaryLabel}</Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="hero-slider-nav" aria-label="Hero slide controls">
-          <button type="button" className="hero-slider-arrow" onClick={() => moveHeroSlide(-1)} aria-label="Previous slide"><ChevronLeft size={20} /></button>
-          <div className="hero-slider-status">
-            {/* <div className="hero-slider-dots">
-              {HERO_SLIDES.map((slide, index) => <button key={slide.title} type="button" className={index === activeHeroSlide ? 'active' : ''} onClick={() => setActiveHeroSlide(index)} aria-label={`Show slide ${index + 1}`} aria-current={index === activeHeroSlide ? 'true' : undefined}><span /></button>)}
-            </div> */}
-          </div>
-          <button type="button" className="hero-slider-arrow" onClick={() => moveHeroSlide(1)} aria-label="Next slide"><ChevronRight size={20} /></button>
-        </div>
-      </section>
+  <div className="container hero-slider-inner">
+    <div className="hero-slide-content" key={`${activeHeroSlide}-${heroSlide.title}`}>
+      <div className="hero-pill">
+        <span className="hero-pill-dot" />
+        {heroSlide.eyebrow}
+      </div>
+      <h1 className="hero-heading">{heroSlide.title}</h1>
+      <p className="hero-sub">{heroSlide.description}</p>
+      <div className="hero-actions">
+        <Link href={heroSlide.primaryHref} className="btn-primary">{heroSlide.primaryLabel} <ArrowRight size={16} /></Link>
+        <Link href={heroSlide.secondaryHref} className="btn-ghost">{heroSlide.secondaryLabel}</Link>
+      </div>
+      <div className="hero-slider-nav" aria-label="Hero slide controls">
+        <button type="button" className="hero-slider-arrow" onClick={() => moveHeroSlide(-1)} aria-label="Previous slide"><ChevronLeft size={20} /></button>
+        <button type="button" className="hero-slider-arrow" onClick={() => moveHeroSlide(1)} aria-label="Next slide"><ChevronRight size={20} /></button>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ══════════════════════════════════════
           STATS BAR
@@ -605,36 +386,39 @@ export default function HomeClient() {
       </section>
 
       {/* ══════════════════════════════════════
-          WHY PROOWRX (5 features from website)
-      ══════════════════════════════════════ */}
-      <section className="section why-feat-section" ref={whyFeatRef}>
-        <div className="container">
-          <div className={`section-head fade-up${whyFeatVisible ? ' in' : ''}`}>
-            <span className="pill">Why Proowrx</span>
-            <h2 className="section-title">A one-stop solution for Australian financial professionals</h2>
-            <p className="section-sub">
-              We offer top-notch back-office support services to mortgage brokers and comprehensive accounting services to accountants — so you can focus on what matters most.
-            </p>
-          </div>
+    WHY PROOWRX — bento grid: one large
+    featured card, two side cards, one
+    full-width banner card
+══════════════════════════════════════ */}
+<section className="section why-feat-section" ref={whyFeatRef}>
+  <div className="container">
+    <div className={`section-head fade-up${whyFeatVisible ? ' in' : ''}`}>
+      <span className="pill">Why Proowrx</span>
+      <h2 className="section-title">A one-stop solution for Australian financial professionals</h2>
+      <p className="section-sub">
+        We offer top-notch back-office support services to mortgage brokers and comprehensive accounting services to accountants — so you can focus on what matters most.
+      </p>
+    </div>
 
-          <div className="why-feat-grid">
-            {WHY_FEATURES.map((f, i) => (
-              <div
-                key={i}
-                className={`why-feat-card fade-up${whyFeatVisible ? ' in' : ''}`}
-                style={{ transitionDelay: `${i * 90 + 80}ms` }}
-              >
-                <div className="why-feat-icon" style={{ background: `${f.color}14`, color: f.color, borderColor: `${f.color}25` }}>
-                  {f.icon}
-                </div>
-                <div className="why-feat-bar" style={{ background: f.color }} />
-                <h4 className="why-feat-title">{f.title}</h4>
-                <p className="why-feat-desc">{f.desc}</p>
-              </div>
-            ))}
+    <div className="why-bento">
+      {WHY_FEATURES.map((f, i) => (
+        <div
+          key={i}
+          className={`why-bento-card why-bento-${['a', 'b', 'c', 'd'][i]} fade-up${whyFeatVisible ? ' in' : ''}`}
+          style={{ transitionDelay: `${i * 100 + 80}ms`, '--card-color': f.color }}
+        >
+          <div className="why-bento-icon" style={{ background: `${f.color}18`, color: f.color, borderColor: `${f.color}35` }}>
+            {f.icon}
           </div>
+          <span className="why-bento-num">{String(i + 1).padStart(2, '0')}</span>
+          <h4 className="why-bento-title">{f.title}</h4>
+          <p className="why-bento-desc">{f.desc}</p>
+          <div className="why-bento-glow" style={{ background: f.color }} />
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* ══════════════════════════════════════
           HOW IT WORKS
@@ -675,78 +459,14 @@ export default function HomeClient() {
       </section>
 
       {/* ══════════════════════════════════════
-          PRACTICAL OUTSOURCING
-      ══════════════════════════════════════ */}
-      <section className="section outsrc-section" ref={outsrcRef}>
-        <div className="container">
-          <div className={`section-head fade-up${outsrcVisible ? ' in' : ''}`}>
-            <span className="pill">Practical Outsourcing</span>
-            <h2 className="section-title">Why outsourcing with Proowrx makes sense</h2>
-            <p className="section-sub">
-              Proowrx works alongside mortgage brokers and accounting professionals as a reliable support team — helping reduce your workload so you can focus on clients and growth.
-            </p>
-          </div>
-
-          <div className="outsrc-grid">
-            {OUTSOURCING_CARDS.map((c, i) => (
-              <div
-                key={i}
-                className={`outsrc-card fade-up${outsrcVisible ? ' in' : ''}`}
-                style={{ transitionDelay: `${i * 80 + 80}ms` }}
-              >
-                <div className="outsrc-icon" style={{ background: `${c.color}14`, color: c.color, borderColor: `${c.color}25` }}>
-                  {c.icon}
-                </div>
-                <h4 className="outsrc-title">{c.title}</h4>
-                <p className="outsrc-desc">{c.desc}</p>
-                <div className="outsrc-accent-line" style={{ background: `linear-gradient(90deg, ${c.color}, transparent)` }} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════
-          SECURITY STRIP
-      ══════════════════════════════════════ */}
-      {/* <section className="security-section" ref={secRef}>
-        <div className="sec-orb" />
-        <div className="container">
-          <div className={`section-head fade-up${secVisible ? ' in' : ''}`}>
-            <span className="pill pill--teal"><Lock size={12} /> Data Security</span>
-            <h2 className="section-title">Your clients&apos; data is our highest priority</h2>
-            <p className="section-sub">
-              All data is stored in Australia-based servers accessible via 2-factor authentication only. We follow best-in-industry practices across 4 security layers: Administrative, Physical, Technological, and Operational.
-            </p>
-          </div>
-          <div className="security-grid">
-            {SECURITY_PILLARS.map((p, i) => (
-              <div
-                key={i}
-                className={`sec-pill fade-up${secVisible ? ' in' : ''}`}
-                style={{ transitionDelay: `${i * 70 + 100}ms` }}
-              >
-                <span className="sec-pill-icon">{p.icon}</span>
-                <span className="sec-pill-label">{p.label}</span>
-              </div>
-            ))}
-          </div>
-          <div className={`security-cta fade-up${secVisible ? ' in' : ''}`} style={{ transitionDelay: '550ms' }}>
-            <Link href="/data-security" className="btn-ghost">
-              Read Our Security Policy →
-            </Link>
-          </div>
-        </div>
-      </section> */}
-
-      {/* ══════════════════════════════════════
           TESTIMONIALS
       ══════════════════════════════════════ */}
       <section className="section testi-section" ref={testiRef}>
         <div className="container">
           <div className={`section-head fade-up${testiVisible ? ' in' : ''}`}>
             <span className="pill">Client Stories</span>
-            <h2 className="section-title">What Australian Professionals Say</h2>
+            <h2 className="section-title">Trusted by Businesses Across Australia</h2>
+            <p>Long-term relationships are built on reliability, communication, and consistent support. That&apos;s why businesses keep choosing Proowrx as their operational support partner.</p>
           </div>
           <div className={`testi-marquee fade-up${testiVisible ? ' in' : ''}`}>
             <div className="testi-track">
@@ -773,6 +493,38 @@ export default function HomeClient() {
       </section>
 
       <CtaBanner />
+
+      {/* ══════════════════════════════════════
+          FAQ
+      ══════════════════════════════════════ */}
+      <section className="section faq-section" ref={faqRef}>
+        <div className="container">
+          <div className={`section-head fade-up${faqVisible ? ' in' : ''}`}>
+            <span className="pill">FAQs</span>
+            <h2 className="section-title">Frequently Asked Questions</h2>
+            <p className="section-sub">
+              Answers to the questions we hear most from Australian brokers, accountants and finance businesses.
+            </p>
+          </div>
+
+          <div className="faq-list">
+            {FAQS.map((item, i) => (
+              <div
+                key={i}
+                className={`fade-up${faqVisible ? ' in' : ''}`}
+                style={{ transitionDelay: `${i * 70 + 80}ms` }}
+              >
+                <FaqItem
+                  item={item}
+                  index={i}
+                  isOpen={openFaq === i}
+                  onToggle={() => setOpenFaq(openFaq === i ? -1 : i)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
     </main>
   );

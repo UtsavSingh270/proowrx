@@ -67,9 +67,9 @@ const SERVICE_GROUPS = [
       { label: 'Demand/Lead Generation', to: '/digital-marketing', desc: 'Paid Advertising, SEO, Email Marketing and CRO Assistance', icon: Target },
       { label: 'Social & Reputation', to: '/digital-marketing', desc: 'Social Media Marketing and Online Reputation Management', icon: Users },
       { label: 'Content Services', to: '/digital-marketing', desc: 'Content Writing and Content Marketing Assistance', icon: PenTool },
-      { label: 'Web Support', to: '/digital-marketing', desc: 'Website Designing and Website Maintenance Assistance', icon: Globe },
+      { label: 'Web Support', to: '/digital-marketing', desc: 'Website Development & Maintenance Assistance', icon: Globe },
       { label: 'Digital Events', to: '/digital-marketing', desc: 'Podcasts and Webinars Assistance', icon: Mic },
-      { label: 'Graphic Events', to: '/digital-marketing', desc: 'Graphics Designing and Video Creation & Editing', icon: Palette },
+      { label: 'Graphic Events', to: '/digital-marketing', desc: 'Graphics Designing and Video Creation & Editing Assistance', icon: Palette },
     ],
   },
 ];

@@ -158,7 +158,7 @@ const SERVICES = [
     tag: 'For Finance Businesses',
     title: 'Digital Marketing Outsourcing Service',
     desc: 'Grow your business with digital marketing designed for financial services. Our team handles your local search, paid ads, website content, and social media from start to finish.',
-    bullets: ['Search Engine Optimisation (SEO)', 'Social Media Marketing', 'Paid Advertising', 'Email Marketing', 'Website Designing', 'Podcast & Webinars'],
+    bullets: ['Search Engine Optimisation (SEO)', 'Social Media Marketing', 'Paid Advertising', 'Email Marketing', 'Website Development', 'Podcast & Webinars'],
     accent: '#D99A00',
     glow: 'rgba(217,154,0,0.11)',
     to: '/digital-marketing',
@@ -285,6 +285,7 @@ export default function HomeClient() {
   const [openFaq, setOpenFaq]        = useState(0);
   const [processStage, setProcessStage] = useState(0);
   const processLoopTimerRef = useRef(null);
+  const [activeWhy, setActiveWhy] = useState(0);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -418,41 +419,69 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-    WHY PROOWRX — bento grid: one large
-    featured card, two side cards, one
-    full-width banner card
-══════════════════════════════════════ */}
-<section className="section why-feat-section" ref={whyFeatRef}>
-  <div className="container">
-    <div className={`section-head fade-up${whyFeatVisible ? ' in' : ''}`}>
-      <span className="pill">Why Proowrx</span>
-      <h2 className="section-title">A one-stop solution for Australian financial professionals</h2>
-      <p className="section-sub">
-        We offer top-notch back-office support services to mortgage brokers and comprehensive accounting services to accountants — so you can focus on what matters most.
-      </p>
-    </div>
-
-    <div className="why-bento">
-      {WHY_FEATURES.map((f, i) => (
-        <div
-          key={i}
-          className={`why-bento-card why-bento-${['a', 'b', 'c', 'd'][i]} fade-up${whyFeatVisible ? ' in' : ''}`}
-          style={{ transitionDelay: `${i * 100 + 80}ms`, '--card-color': f.color }}
-        >
-          <div className="why-bento-icon" style={{ background: `${f.color}18`, color: f.color, borderColor: `${f.color}35` }}>
-            {f.icon}
+             {/* ══════════════════════════════════════
+          WHY PROOWRX — Dynamic Interactive Panel
+      ══════════════════════════════════════ */}
+      <section className="section why-dynamic-section" ref={whyFeatRef}>
+        <div className="container">
+          <div className={`section-head fade-up${whyFeatVisible ? ' in' : ''}`}>
+            <span className="pill">Why Proowrx</span>
+            <h2 className="section-title">A one-stop solution for Australian financial professionals</h2>
+            <p className="section-sub">
+              We offer top-notch back-office support services to mortgage brokers and comprehensive accounting services to accountants — so you can focus on what matters most.
+            </p>
           </div>
-          <span className="why-bento-num">{String(i + 1).padStart(2, '0')}</span>
-          <h4 className="why-bento-title">{f.title}</h4>
-          <p className="why-bento-desc">{f.desc}</p>
-          <div className="why-bento-glow" style={{ background: f.color }} />
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
 
+          <div className={`why-dynamic-wrap fade-up${whyFeatVisible ? ' in' : ''}`}>
+            {/* Left Navigation */}
+            <div className="why-nav">
+              {WHY_FEATURES.map((f, i) => (
+                <button
+                  key={i}
+                  className={`why-nav-item${activeWhy === i ? ' active' : ''}`}
+                  onMouseEnter={() => setActiveWhy(i)}
+                  onClick={() => setActiveWhy(i)}
+                  style={{ '--card-color': f.color }}
+                >
+                  <span className="why-nav-icon">{f.icon}</span>
+                  <span className="why-nav-title">{f.title}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Right Canvas */}
+            <div className="why-canvas" style={{ '--card-color': WHY_FEATURES[activeWhy].color }}>
+              <div 
+                className="why-canvas-glow" 
+                style={{ background: `radial-gradient(circle at 85% 15%, ${WHY_FEATURES[activeWhy].color}22, transparent 60%)` }} 
+              />
+              
+              {/* Massive Watermark Icon */}
+              <div className="why-canvas-watermark" aria-hidden="true">
+                {WHY_FEATURES[activeWhy].icon}
+              </div>
+
+              <div key={activeWhy} className="why-canvas-content">
+                <div className="why-canvas-head">
+                  <div 
+                    className="why-canvas-icon" 
+                    style={{ background: `${WHY_FEATURES[activeWhy].color}18`, color: WHY_FEATURES[activeWhy].color, borderColor: `${WHY_FEATURES[activeWhy].color}35` }}
+                  >
+                    {WHY_FEATURES[activeWhy].icon}
+                  </div>
+                  <h4 className="why-canvas-title">{WHY_FEATURES[activeWhy].title}</h4>
+                </div>
+                <p className="why-canvas-desc">{WHY_FEATURES[activeWhy].desc}</p>
+                
+                <div className="why-canvas-footer">
+                  <span className="why-canvas-line"></span>
+                  <span className="why-canvas-tag">Proowrx Advantage</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* ══════════════════════════════════════
           HOW IT WORKS
       ══════════════════════════════════════ */}

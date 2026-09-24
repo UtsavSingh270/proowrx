@@ -178,68 +178,6 @@ export default function About({ initialMembers = [] }) {
         </div>
       </section>
 
-      {/* Team */}
-      {/* <section className="section" style={{ background: 'var(--navy)' }}>
-        <div className="container">
-          <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="chip chip-white section-eyebrow">The People Behind Proowrx</span>
-            <h2 className="section-title section-title--white">Meet Our Core Team</h2>
-            <p className="section-body section-body--white" style={{ margin: '0 auto' }}>
-              A powerhouse team striving to make Proowrx the first-choice outsourcing company for Australian financial professionals.
-            </p>
-          </div>
-          {team.length === 0 ? (
-            <div style={{ textAlign: 'center', color: 'white' }}>Featured team members coming soon.</div>
-          ) : (
-            <>
-              <div className="team-grid">
-                {team.map((m, i) => (
-  <div key={i} className={`team-card reveal reveal-delay-${i + 1}`}>
-    <div className="team-img-wrap">
-      {m.img ? (
-        <Image
-          src={m.img}
-          alt={`${m.name} - ${m.role}`}
-          fill
-          sizes="(max-width:768px) 100vw, 33vw"
-          style={{ objectFit: "cover" }}
-        />
-      ) : (
-        <div className="team-img-placeholder" aria-hidden="true">
-          <Users size={46} />
-        </div>
-      )}
-      <div className="team-img-overlay" />
-    </div>
-
-    <div className="team-body">
-      <div className="team-role">{m.role}</div>
-      <h3 className="team-name">{m.name}</h3>
-
-      {m.summary && (
-        <p
-          className="team-bio"
-          style={{ fontStyle: "italic", marginBottom: 8 }}
-        >
-          {m.summary}
-        </p>
-      )}
-
-      {/* <p className="team-bio">{m.bio}</p> */}
-    </div>
-  </div>
-))}
-              </div>
-              {/* <div style={{ textAlign: 'center', marginTop: 48 }}>
-                <Link href="/our-team" className="btn btn-ghost">
-                  Full Team Page <ArrowRight size={15} />
-                </Link>
-              </div> */}
-            </>
-          )}
-        </div>
-      </section> */}
-
       <ServiceFaq
         variant="about"
         title="Questions about Proowrx"

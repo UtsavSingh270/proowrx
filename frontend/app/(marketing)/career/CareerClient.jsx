@@ -50,8 +50,8 @@ export default function CareerClient({ initialJobs }) {
           </div>
           <div className="career-hero-stats">
             {[
-              { num: '2021', label: 'Year Founded' },
-              { num: '2', label: 'Global Offices' },
+              // { num: '2021', label: 'Year Founded' },
+              // { num: '2', label: 'Global Offices' },
               { num: '24hr', label: 'Turnaround SLA' },
               { num: '100%', label: 'Compliance Focus' },
             ].map((s, i) => (

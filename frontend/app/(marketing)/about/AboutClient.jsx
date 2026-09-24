@@ -64,7 +64,7 @@ export default function About({ initialMembers = [] }) {
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">20+</span>
+                <span className="page-hero-stat-num">25+</span>
                 <span className="page-hero-stat-label">Years Expertise</span>
               </div>
             </div>

@@ -106,9 +106,9 @@ export default function About({ initialMembers = [] }) {
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
               Our approach remains simple: Do the work right, communicate clearly and make things easier for our clients, so they can focus on growing their business while we handle what keeps it running.
             </p>
-            <Link href="/contact" className="btn btn-gold" style={{ marginTop: 32 }}>
+            {/* <Link href="/contact" className="btn btn-gold" style={{ marginTop: 32 }}>
               Let&apos;s Talk <ArrowRight size={15} />
-            </Link>
+            </Link> */}
           </div>
           <div ref={r2} className="reveal-right about-image-stack">
            <Image

@@ -88,6 +88,7 @@ const features = [
   { icon: <FileCheck size={22} />, title: 'Tiered Data Access', desc: 'Access to client information is based on staff roles and responsibilities. Staff can access only the information they need for their assigned work.'},
   { icon: <FileCheck size={22} />, title: 'Restricted Internet Access', desc: 'Internet access on office devices is limited to approved websites, and VPN connections are strictly restricted. This keeps internet use focused on work-related activities and reduces exposure to unwanted websites and online threats.' },
   { icon: <FileCheck size={22} />, title: 'Cyber Security Software', desc: 'Our systems use firewalls, antivirus and anti-malware software, and intrusion detection and prevention systems. These tools help protect electronic data from external threats and cyber attacks.' },
+  { icon: <FileCheck size={22} />, title: 'Security Awareness Training', desc: 'We conduct regular training programs for our teams to ensure they understand security protocols, recognise potential risks, and protect client data.' },
 ];
 
 export default function DataSecurity() {

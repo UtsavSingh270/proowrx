@@ -179,7 +179,7 @@ export default function About({ initialMembers = [] }) {
       </section>
 
       {/* Team */}
-      <section className="section" style={{ background: 'var(--navy)' }}>
+      {/* <section className="section" style={{ background: 'var(--navy)' }}>
         <div className="container">
           <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="chip chip-white section-eyebrow">The People Behind Proowrx</span>
@@ -238,7 +238,7 @@ export default function About({ initialMembers = [] }) {
             </>
           )}
         </div>
-      </section>
+      </section> */}
 
       <ServiceFaq
         variant="about"

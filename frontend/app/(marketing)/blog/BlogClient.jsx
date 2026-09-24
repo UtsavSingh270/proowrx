@@ -196,7 +196,7 @@ export default function BlogClient({ allPosts: initialPosts, generatedAt }) {
         </div>
       </section>}
 
-      <section className="blog-topic-hubs">
+      {/* <section className="blog-topic-hubs">
         <div className="container">
           <div className="blog-topic-heading"><span className="blog-kicker">Explore our expertise</span><h2>Guidance for every stage of operational growth</h2><p>Go beyond individual articles with practical resources connected to the services and challenges Australian financial professionals manage every day.</p></div>
           <div className="blog-topic-grid">
@@ -206,14 +206,14 @@ export default function BlogClient({ allPosts: initialPosts, generatedAt }) {
             <article><span>Secure Outsourcing</span><h3>Data security and operational confidence</h3><p>Understand the controls, access practices and secure working habits that support responsible outsourced operations.</p><Link href="/data-security">Explore data security <ArrowRight size={14} /></Link></article>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="blog-faq-section">
+      {/* <section className="blog-faq-section">
         <div className="container blog-faq-layout">
           <div className="blog-faq-intro"><span className="blog-kicker">Common questions</span><h2>About Proowrx insights</h2><p>Quick answers about our articles, expertise and the businesses these resources are designed to support.</p><Link href="/contact" className="btn btn-outline">Ask our team <ArrowRight size={14} /></Link></div>
           <div className="blog-faq-list">{BLOG_FAQS.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div>
         </div>
-      </section>
+      </section> */}
       <CtaBanner />
     </div>
   );

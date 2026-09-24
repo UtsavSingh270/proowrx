@@ -27,12 +27,12 @@ const pillars = [
     glow: 'rgba(201,162,39,0.18)',
     num: '01',
     title: 'Administrative Security',
-    desc: 'Robust administrative controls ensure only authorised personnel can access sensitive data and systems.',
+    desc: 'We have clear rules about who can access information and how to handle confidential data. Our staff follow these rules as part of their work at Proowrx.',
     points: [
-      'Signed Non-Disclosure Agreements (NDA) for all staff',
-      'Strict need-to-know access controls',
-      'Clean desk policy enforced at all times',
-      'Mandatory security awareness training',
+      'Staff must sign a non-disclosure agreement.',
+'Internet usage is monitored.',
+'Staff must adhere to our code of ethics.',
+'Our team adheres to anti-bribery requirements.'
     ],
   },
   {
@@ -41,12 +41,12 @@ const pillars = [
     glow: 'rgba(31,158,142,0.18)',
     num: '02',
     title: 'Physical Security',
-    desc: 'Multi-layer physical access controls protect our operations centre 24/7 against unauthorised entry.',
+    desc: 'Our office has physical security measures to control access to the building and secure the operational areas. These measures also cover what happens in the event of an unexpected incident.',
     points: [
-      'Biometric access control at all entry points',
-      '24/7 CCTV surveillance coverage',
-      'Secure, restricted-access server room',
-      'No personal devices permitted in work area',
+      'Fingerprint access for secure areas.',
+'24/7 CCTV monitoring across the building.',
+'Controlled access to the office and operations areas.',
+'Disaster response plan for unexpected events.'
     ],
   },
   {
@@ -55,12 +55,12 @@ const pillars = [
     glow: 'rgba(201,162,39,0.18)',
     num: '03',
     title: 'Technological Security',
-    desc: 'Advanced technology safeguards protect data at rest and in transit across all our systems and tools.',
+    desc: 'The technology we use to handle client information includes security measures to protect electronic data and reduce the risk of cyberattacks. This includes the tools we use to protect and exchange information.',
     points: [
-      'Australia-based data servers only',
-      'Two-factor authentication (2FA) on all logins',
-      'End-to-end encrypted data transfers',
-      'Regular vulnerability assessments & patching',
+      'Firewalls to help block external threats.',
+'Data encryption for sensitive information.',
+'Secure file exchange tools for sending and receiving data.',
+'Security measures to help prevent cyberattacks.'
     ],
   },
   {
@@ -69,23 +69,26 @@ const pillars = [
     glow: 'rgba(31,158,142,0.18)',
     num: '04',
     title: 'Operational Security',
-    desc: 'Rigorous operational procedures and protocols ensure consistent data handling practices across all workflows.',
+    desc: 'Our day-to-day processes also include security checks to protect client information and keep work moving if something goes wrong. Our teams work together to manage access, respond to incidents and deal with unexpected disruptions.',
     points: [
-      'Secure file sharing and document portals only',
-      'No data stored on personal or local devices',
-      'Audit trails for all data access events',
-      'Incident response plan in place',
+      'Access controls for systems and information.',
+'Incident response plans for security issues.',
+'Business continuity plans for unexpected disruptions.',
+'IT, security, and business teams work together to address security risks.'
+
     ],
   },
 ];
 
 const features = [
-  { icon: <Server size={22} />, title: 'Australia-Based Servers', desc: 'All client data is stored exclusively on Australia-based servers, keeping it within Australian jurisdiction at all times.' },
-  { icon: <Lock size={22} />, title: 'Two-Factor Authentication', desc: 'Every login to our systems requires two-factor authentication — no exceptions, even for senior staff.' },
-  { icon: <Shield size={22} />, title: 'Biometric Access', desc: 'Physical entry to our operations centre requires biometric verification, preventing any unauthorised access.' },
-  { icon: <Eye size={22} />, title: 'CCTV Monitoring', desc: '24/7 CCTV coverage of all work areas ensures complete visibility of who accesses data at all times.' },
-  { icon: <Users size={22} />, title: 'NDA-Signed Staff', desc: 'Every team member signs a comprehensive NDA before handling any client data or files.' },
-  { icon: <FileCheck size={22} />, title: 'Clean Desk Policy', desc: 'No papers, notes, or sensitive materials left unattended — our clean desk policy is strictly enforced.' },
+  { icon: <Server size={22} />, title: 'Restricted On-Site Device Usage', desc: 'Office-issued laptops are used only in the working area and are not permitted to leave the office building. This keeps sensitive client information within a controlled work environment.' },
+  { icon: <Lock size={22} />, title: 'Disabled Ports & Wireless Access', desc: 'We disable physical device ports and Bluetooth on our systems. This helps prevent unauthorised data transfers through external devices or wireless connections.' },
+  { icon: <Shield size={22} />, title: 'Secured Devices', desc: 'Our systems have controlled access settings in place to prevent unauthorised use and changes to device configurations.' },
+  { icon: <Eye size={22} />, title: 'No Local Data Storage', desc: 'We do not store client and business information locally on user devices. Instead, our teams access information through approved cloud-based systems.' },
+  { icon: <Users size={22} />, title: 'Multi-Factor Authentication', desc: 'We use multi-factor authentication across our systems and applications. Staff need an additional verification step beyond their password to access the system.' },
+  { icon: <FileCheck size={22} />, title: 'Tiered Data Access', desc: 'Access to client information is based on staff roles and responsibilities. Staff can access only the information they need for their assigned work.'},
+  { icon: <FileCheck size={22} />, title: 'Restricted Internet Access', desc: 'Internet access on office devices is limited to approved websites. This keeps internet use focused on work-related activities and reduces exposure to unwanted websites and online threats.' },
+  { icon: <FileCheck size={22} />, title: 'Cyber Security Software', desc: 'Our systems use firewalls, antivirus and anti-malware software, and intrusion detection and prevention systems. These tools help protect electronic data from external threats and cyber attacks.' },
 ];
 
 export default function DataSecurity() {
@@ -101,9 +104,9 @@ export default function DataSecurity() {
         <div className="page-hero-orb-2" />
         <div className="container">
           <div className="page-hero-content">
-            <span className="chip chip-teal" style={{ marginBottom: 20 }}>Data Security</span>
-            <h1>Security at<br />Every Level</h1>
-            <p>Your clients trust you with their most sensitive financial data. We make sure that trust is never broken — through 4 layers of ironclad security.</p>
+            {/* <span className="chip chip-teal" style={{ marginBottom: 20 }}>Data Security</span> */}
+            <h1>Data Security & Privacy @ Proowrx</h1>
+            <p>We understand the responsibility that comes with handling our clients’ confidential information. Proowrx takes strict security measures to protect client data and prevent unauthorised access, data breaches and other security risks.</p>
             <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Discovery Call <ArrowRight size={15} />
@@ -112,18 +115,18 @@ export default function DataSecurity() {
             </div>
             <div className="page-hero-stats">
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">4</span>
-                <span className="page-hero-stat-label">Security Layers</span>
-              </div>
-              <div className="page-hero-stat-divider" />
-              <div className="page-hero-stat">
-                <span className="page-hero-stat-num">2FA</span>
-                <span className="page-hero-stat-label">All Logins</span>
+                <span className="page-hero-stat-num">ISO 27001:2022</span>
+                <span className="page-hero-stat-label">Certified</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">24/7</span>
                 <span className="page-hero-stat-label">CCTV Monitoring</span>
+              </div>
+              <div className="page-hero-stat-divider" />
+              <div className="page-hero-stat">
+                <span className="page-hero-stat-num">100%</span>
+                <span className="page-hero-stat-label">Client Data Protection</span>
               </div>
             </div>
           </div>
@@ -149,15 +152,15 @@ export default function DataSecurity() {
         <div className="container ds-promise">
           <div ref={r1} className="reveal-left ds-promise-text">
             <span className="chip chip-gold section-eyebrow">Our Commitment</span>
-            <h2 className="section-title">Data Security Is Our Foundation, Not an Afterthought</h2>
+            <h2 className="section-title">Our Approach to Data Security and Privacy</h2>
             <p className="section-body" style={{ maxWidth: '100%' }}>
-              When you outsource to Proowrx, you&apos;re sharing highly sensitive client data — mortgage files, financial records, personal details. We designed our entire infrastructure around protecting that data before writing a single line of process.
+              When you work with Proowrx, our staff handles financial records, customer information, and other business documents that should not be shared outside the scope of their assigned work. That is why access to client information is restricted. Our staff sign non-disclosure agreements, and we use measures such as firewalls, encryption and restricted system access to protect client information.
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
-              The entire data is stored on an Australia-based server that can be accessed via two-factor authentication only. Our physical premises employ biometric access and 24/7 CCTV monitoring. Every team member signs an NDA and undergoes regular security training.
+              The working area is restricted and monitored by 24/7 CCTV. Staff follow procedures to ensure client information is not copied, removed, or accessed without authorisation. We review security policies regularly to prevent data breaches and other security threats.
             </p>
             <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {['100% Australia-based data storage', 'Zero tolerance for data breaches', 'Full audit trail for all data access'].map(t => (
+              {['Every team member signs a non-disclosure agreement before handling client data.', 'Our operations area is secured with biometric access and 24/7 CCTV. ', 'Only staff who need it for their assigned work can access client information.'].map(t => (
                 <div key={t} className="ds-promise-point">
                   <CheckCircle size={18} color="var(--teal)" />
                   <span>{t}</span>
@@ -179,9 +182,9 @@ export default function DataSecurity() {
         <div className="container">
           <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="chip chip-teal section-eyebrow">The 4 Pillars</span>
-            <h2 className="section-title">A Complete Security Framework</h2>
+            <h2 className="section-title">Four Pillars of Data Security at Proowrx</h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              We&apos;ve built a four-layer security model that covers every angle — from the people who work for us to the servers that store your data.
+              We don&apos;t rely on only one security measure to protect client information. Proowrx takes security measures across our people, workplace, technology and everyday business operations.
             </p>
           </div>
           <div className="ds-pillars-grid">
@@ -218,7 +221,10 @@ export default function DataSecurity() {
         <div className="container">
           <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="chip chip-white section-eyebrow">In Detail</span>
-            <h2 className="section-title section-title--white">Security Measures at a Glance</h2>
+            <h2 className="section-title section-title--white">Security Measures We Use to Protect Client Data</h2>
+            <p className="section-body" style={{ maxWidth: '100%' }}>
+              We have several practical measures in place across our workplace, devices, and systems to protect client information as our team works with it.
+            </p>
           </div>
           <div className="ds-features-grid">
             {features.map((f, i) => (

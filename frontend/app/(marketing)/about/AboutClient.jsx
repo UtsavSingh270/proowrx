@@ -19,10 +19,10 @@ function useReveal() {
 }
 
 const values = [
-  { icon: <Target size={24} />, title: 'Our Vision', desc: 'To become the first and best choice for a knowledge process outsourcing company, globally.' },
-  { icon: <Rocket size={24} />, title: 'Our Mission', desc: 'To provide exceptional, dynamic, and proactive KPO services to niche segments globally in the long run.' },
-  { icon: <Users size={24} />, title: 'Our Approach', desc: 'Responsiveness, flexibility, and detailed understanding of the Australian mortgage and accounting landscape.' },
-  { icon: <TrendingUp size={24} />, title: 'Our Focus', desc: 'Reducing operation cost and time-to-market for brokers and accountants while ensuring quality and compliance.' },
+  { icon: <Target size={24} />, title: 'Our Vision', desc: 'To be the first choice for businesses looking for a trusted outsourcing partner.' },
+  { icon: <Rocket size={24} />, title: 'Our Mission', desc: 'To deliver exceptional and proactive outsourcing services that help our clients work better and grow over the long term.' },
+  { icon: <Users size={24} />, title: 'Our Approach', desc: 'We are easy to work with. We listen, communicate clearly, adapt when things change and take responsibility for getting the work done right. ' },
+  { icon: <TrendingUp size={24} />, title: 'Our Focus', desc: 'Our focus is simple: take care of the work that takes up valuable time, so businesses can run more efficiently and their teams can focus on clients, growth and bigger priorities.' },
 ];
 
 export default function About({ initialMembers = [] }) {
@@ -45,9 +45,9 @@ export default function About({ initialMembers = [] }) {
         <div className="page-hero-orb-2" />
         <div className="container">
           <div className="page-hero-content">
-            <span className="chip chip-gold" style={{ marginBottom: 20 }}>Our Story</span>
-            <h1>Don&apos;t Be Same,<br />Be Better</h1>
-            <p>An Australian-owned KPO operating from India — built specifically for mortgage brokers and accountants who want to grow faster without hiring more staff.</p>
+            {/* <span className="chip chip-gold" style={{ marginBottom: 20 }}>Our Story</span> */}
+            <h1>Better Support. Better Way of Working.</h1>
+            <p>Proowrx is an Australian-owned outsourcing organisation, delivering knowledge and skill-based services and empowering Australian businesses through smarter outsourcing</p>
             <div className="page-hero-actions">
               <Link href="/contact" className="btn btn-gold">Let&apos;s Talk <ArrowRight size={15} /></Link>
               <Link href="/services" className="btn btn-ghost">Explore Services</Link>
@@ -93,15 +93,18 @@ export default function About({ initialMembers = [] }) {
         <div className="container about-intro-grid">
           <div ref={r1} className="reveal-left">
             <span className="chip chip-gold section-eyebrow">Who We Are</span>
-            <h2 className="section-title">Australian-Owned. Expert-Operated.</h2>
+            <h2 className="section-title">Your Trusted Partner for Smarter Outsourcing</h2>
             <p className="section-body" style={{ maxWidth: '100%' }}>
-              Proowrx is an Australian-owned KPO operating in India. We specialise in handling loan processing and back-office activities for mortgage brokers based in Australia. We understand the Australian mortgage industry well.
+              Proowrx is an Australian-owned outsourcing company helping Australian businesses work more efficiently through skilled and reliable support. We support Australian mortgage brokerage businesses, accounting firms, asset finance brokers, real estate firms and buyer agencies. We help Australian businesses reduce turnaround times and be more profitable. Our focus is simple: help businesses do more with less.
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
-              Our team is consistently trained and updated under the guidance of a highly successful Australia-based mortgage broker. We provide phenomenal support and keep you and your customers updated all the way till settlement. Our solutions are flexible for our broker partners as per their unique requirements.
+              We offer credit analysis and end-to-end loan processing services to mortgage and asset finance brokers, supporting routine accounting and back-office work for accountants, basic admin, sales calling and data management services to real estate agents and buyer agents. We have also developed a strong in-house digital marketing engine and provide social media & digital marketing support to Australian businesses.
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
-              We now also provide comprehensive accounting services to Australian accountants, allowing them to outsource tasks and free up valuable time to focus on core business strategies.
+              Our strong understanding of the Australian market helps our teams work confidently within Australian processes, industry requirements and compliance. Our teams receive ongoing training in Australian industry practices and market requirements under the guidance of experienced Australia-based professionals.
+            </p>
+            <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
+              Our approach remains simple: Do the work right, communicate clearly and make things easier for our clients, so they can focus on growing their business while we handle what keeps it running.
             </p>
             <Link href="/contact" className="btn btn-gold" style={{ marginTop: 32 }}>
               Let&apos;s Talk <ArrowRight size={15} />
@@ -147,13 +150,13 @@ export default function About({ initialMembers = [] }) {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="chip chip-gold section-eyebrow">The Proowrx Difference</span>
-            <h2 className="section-title">What Sets Us Apart</h2>
+            <h2 className="section-title">Deep Local Knowledge. Scalable Offshore Support.</h2>
           </div>
           <div className="diff-grid">
             {[
-              { img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=85', title: 'Deep Industry Knowledge', desc: 'We don\'t just do admin — we understand the Australian mortgage brokering world from pre-submission to settlement.' },
-              { img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=85', title: 'High-Calibre Team', desc: 'Every team member has requisite experience and undergoes ongoing training by Australian experts on best practices and compliance.' },
-              { img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85', title: 'Flexible Partnership', desc: 'No cookie-cutter approach. We adapt our service models — Pay-Per-Application or Dedicated Resource — to your exact workflow.' },
+              { img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=85', title: 'Australian Market Understanding', desc: 'Our teams are trained around Australian processes and industry requirements, with guidance from Australia-based professionals. That means we approach the work with a clear understanding of how Australian businesses operate.' },
+              { img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=85', title: 'Industry-Trained Teams', desc: 'From loan processing and credit analysis to accounting, property support and digital marketing, our people are trained for the work they handle. They understand the tasks, the processes behind them and what your team needs from them.' },
+              { img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85', title: 'Flexible Business Support', desc: 'Your workload can change from month to month. We can take on specific tasks, provide ongoing support or add capacity when things get busy, all while working with the systems and processes you already use.' },
             ].map((d, i) => (
               <div key={i} className={`diff-card reveal reveal-delay-${i + 1}`}>
                 <div className="diff-img">
@@ -222,7 +225,7 @@ export default function About({ initialMembers = [] }) {
         </p>
       )}
 
-      <p className="team-bio">{m.bio}</p>
+      {/* <p className="team-bio">{m.bio}</p> */}
     </div>
   </div>
 ))}

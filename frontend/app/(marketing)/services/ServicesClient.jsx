@@ -6,18 +6,18 @@ import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Services.css';
 
 const qualities = [
-  { icon: '🎯', title: 'Accuracy', desc: 'Accurate processing within 24 hours of receiving all required documents.' },
-  { icon: '⚡', title: 'Efficiency', desc: 'Error-free processing of cases within the stipulated time, every time.' },
-  { icon: '🔄', title: 'Consistency', desc: 'Quality services consistently matching the client\'s expectations.' },
-  { icon: '🔧', title: 'Flexibility', desc: 'Service offerings modified to suit your unique requirements.' },
+  { icon: '🎯', title: 'ISO Certified Security', desc: 'ISO 27001:2022 certified protocols and secure infrastructure protecting your sensitive information 24/7.' },
+  { icon: '⚡', title: 'Regulatory Compliance', desc: 'Comprehensive compliance management covering all industry standards, governing bodies, and frameworks.' },
+  { icon: '🔄', title: 'Expert Training', desc: 'Ongoing, structured training and development programmes keep our 150+ professionals at the top of their game.' },
+  { icon: '🔧', title: 'Seamless Adaptability', desc: 'Flexible service models built on 25+ years of leadership experience to fit your shifting business needs.' },
 ];
 
-const steps = [
-  { num: '01', title: 'Receiving Application', desc: 'Brief overview of the case received from the broker along with a folder of required documents.' },
-  { num: '02', title: 'Processing Application', desc: 'Data entry in CRM, preparing missing-info lists, sending compliance documents for signing.' },
-  { num: '03', title: 'Lodgement', desc: 'Supporting documents attached, compliance check completed, broker notified when ready to lodge.' },
-  { num: '04', title: 'Post Lodgement', desc: 'Follow up with banks, coordinate document delivery as per broker instructions until settlement.' },
-];
+// const steps = [
+//   { num: '01', title: 'Receiving Application', desc: 'Brief overview of the case received from the broker along with a folder of required documents.' },
+//   { num: '02', title: 'Processing Application', desc: 'Data entry in CRM, preparing missing-info lists, sending compliance documents for signing.' },
+//   { num: '03', title: 'Lodgement', desc: 'Supporting documents attached, compliance check completed, broker notified when ready to lodge.' },
+//   { num: '04', title: 'Post Lodgement', desc: 'Follow up with banks, coordinate document delivery as per broker instructions until settlement.' },
+// ];
 
 export default function Services() {
   return (
@@ -28,12 +28,13 @@ export default function Services() {
       >
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <span className="chip chip-gold" style={{ marginBottom: 16 }}>What We Offer</span>
-          <h1>Outsourcing, Anytime of the Day</h1>
-          <p>Expert back-office services built specifically for Australian mortgage brokers and accounting professionals.</p>
+          <h1>Scalable Back-Office Support Built for Australian Business</h1>
+          <p>Grow your business operations, eliminate administrative bottlenecks, and cut processing delays. Proowrx provides dedicated, skilled back-office teams for Australian mortgage brokers, accountants, asset finance brokers, and property professionals.</p>
           <div className="page-hero-actions">
             <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
               Book a Meeting <ArrowRight size={15} />
             </a>
+            <Link href="/contact" className="btn btn-ghost">Contact Us</Link>
           </div>
         </div>
       </section>
@@ -54,13 +55,14 @@ export default function Services() {
               </div>
               <div className="svc-big-content">
                 <div className="svc-big-icon">🏠</div>
-                <h2>Mortgage Services</h2>
-                <p>Pay-Per-Application or Dedicated Resource models for loan processing, compliance, and settlement support.</p>
+                <h2>Mortgage Outsourcing Service</h2>
+                <p>Optimise your brokerage efficiently without increasing back-office admin tasks. By outsourcing mortgage loan processing to our dedicated team, you keep files moving faster.</p>
                 <ul>
-                  {['Pre & Post-submission', 'CRM & ApplyOnline', 'Compliance management', 'Lender follow-ups'].map(b => (
+                  {['End-to-End Loan Processing', 'Pipeline Management', 'Broker & Client Support'].map(b => (
                     <li key={b}><CheckCircle size={14} />{b}</li>
                   ))}
                 </ul>
+                <p className="font-medium">Optimised for mortgage brokers working with any mortgage broker aggregator or CRM platform.</p>
                 <span className="svc-big-cta">Explore Mortgage <ArrowRight size={15} /></span>
               </div>
             </Link>
@@ -73,13 +75,14 @@ export default function Services() {
               </div>
               <div className="svc-big-content">
                 <div className="svc-big-icon">📊</div>
-                <h2>Accounting Services</h2>
-                <p>Full-cycle accounting outsourcing for Australian accounting firms — bookkeeping to SMSF to tax lodgements.</p>
+                <h2>Accounting Outsourcing Services</h2>
+                <p>Secure your business’s profit margins and eliminate the tax season bottlenecks with a high-precision outsourced accounting service. Our team handles routine compliance and ledger maintenance so you can focus on building client relationships.</p>
                 <ul>
-                  {['Bookkeeping & Payroll', 'Tax Returns & Planning', 'SMSF Management', 'BAS / IAS / STP'].map(b => (
+                  {['Bookkeeping & Reconciliation', 'Compliance Preparation', 'SMSF outsourcing service'].map(b => (
                     <li key={b}><CheckCircle size={14} />{b}</li>
                   ))}
                 </ul>
+                <p className="font-medium">Flexible outsourced accounting and bookkeeping service designed for modern Businesses. </p>
                 <span className="svc-big-cta">Explore Accounting <ArrowRight size={15} /></span>
               </div>
             </Link>
@@ -91,9 +94,10 @@ export default function Services() {
               </div>
               <div className="svc-big-content">
                 <div className="svc-big-icon">🚗</div>
-                <h2>Asset Finance</h2>
-                <p>Application preparation, document checks, lender coordination and settlement follow-up for asset finance brokers.</p>
-                <ul>{['Application packaging','CRM and data entry','Lender follow-ups','Settlement support'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
+                <h2>Asset Finance Outsourcing Service</h2>
+                <p>Proowrx provides dedicated asset finance support for brokers across commercial loans, equipment finance, vehicle finance, personal loans, chattel mortgages, and other lending scenarios.</p>
+                <ul>{['Credit & Deal Structuring Support','Lender Submissions & Follow-Up','CRM & Pipeline Management'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
+                <p className="font-medium">Fast-track approvals with specialist asset finance back-office support.</p>
                 <span className="svc-big-cta">Explore Asset Finance <ArrowRight size={15}/></span>
               </div>
             </Link>
@@ -105,9 +109,10 @@ export default function Services() {
               </div>
               <div className="svc-big-content">
                 <div className="svc-big-icon">📣</div>
-                <h2>Digital Marketing</h2>
-                <p>Consistent content, SEO, social media, email campaigns and reporting for finance-sector businesses.</p>
-                <ul>{['Content production','SEO assistance','Social media support','Campaign reporting'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
+                <h2>Digital Marketing Support</h2>
+                <p>Build a stronger online presence with all-in-one digital marketing packages designed for mortgage brokers, accountants, asset finance brokers, real estate agents, and buyer’s agents.</p>
+                <ul>{['SEO & Website Optimisation','Email Marketing','Paid Advertising & Lead Generation'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
+                <p className="font-medium">Full-service digital marketing packages for Australian Businesses. </p>
                 <span className="svc-big-cta">Explore Digital Marketing <ArrowRight size={15}/></span>
               </div>
             </Link>
@@ -120,7 +125,7 @@ export default function Services() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="chip chip-gold section-eyebrow">Our Standards</span>
-            <h2 className="section-title">What Every Service Includes</h2>
+            <h2 className="section-title">The Proowrx Difference</h2>
           </div>
           <div className="quality-grid">
             {qualities.map((q, i) => (
@@ -138,7 +143,7 @@ export default function Services() {
       </section>
 
       {/* Process */}
-      <section className="section">
+      {/* <section className="section">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 60 }}>
             <span className="chip chip-teal section-eyebrow">How It Works</span>
@@ -154,7 +159,7 @@ export default function Services() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <ServiceFaq
         variant="services"

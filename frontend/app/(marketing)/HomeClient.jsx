@@ -194,9 +194,9 @@ const WHY_FEATURES = [
 
 const PROCESS = [
   { num: '01', animation: '/Free Discovery Call.json', title: 'Tell Us Your Specific Requirements', desc: 'We start by understanding your tasks, workload, systems, and support needs. This helps us identify the most suitable service model for your operations.' },
-  { num: '02', animation: '/Live File Processing.json', title: 'Choose the Right Service Model', desc: 'Based on your requirements, you can choose a flexible service model. We then set up the workflow around your existing processes, platforms, and communication channels, defining roles, responsibilities, turnaround expectations, and reporting.' },
-  { num: '03', animation: '/Seamless Onboarding.json', title: 'Start Working With Your Proowrx Team', desc: 'Once the workflow is set up, our trained professionals begin supporting your day-to-day operations across the agreed-upon tasks. Communication stays clear, work is tracked, and your team remains informed throughout.' },
-  { num: '04', animation: '/Scale As You Grow.json', title: 'Adjust Support as Your Business Changes', desc: 'As your workload fluctuates and business priorities shift, Proowrx provides the flexibility to scale your support, helping you stay efficient without committing to fixed costs.' },
+  { num: '02', animation: '/Live File Processing.json', title: 'Choose the Right Service Model', desc: 'Based on your needs, you select a flexible service model. We integrate workflows with your working standards, defining roles, expectations, and reporting.' },
+  { num: '03', animation: '/Seamless Onboarding.json', title: 'Start Working With Your Team', desc: 'Once configured, our trained professionals immediately support your daily tasks. Communication stays clear, we track progress, and you stay fully informed.' },
+  { num: '04', animation: '/Scale As You Grow.json', title: 'Adjust Support as per Your Business', desc: 'As your workload and priorities shift, we provide the flexibility to scale support. This helps you stay efficient without committing to fixed costs.' },
 ];
 
 const FAQS = [
@@ -426,9 +426,9 @@ export default function HomeClient() {
         <div className="container">
           <div className={`section-head fade-up${whyFeatVisible ? ' in' : ''}`}>
             <span className="pill">Why Proowrx</span>
-            <h2 className="section-title">A one-stop solution for Australian financial professionals</h2>
+            <h2 className="section-title">WHY YOU SHOULD PARTNER WITH PROOWRX</h2>
             <p className="section-sub">
-              We offer top-notch back-office support services to mortgage brokers and comprehensive accounting services to accountants — so you can focus on what matters most.
+              Built to support your business beyond the daily back-office work. We help you stay secure, compliant, prepared, and ready for what’s next.
             </p>
           </div>
 

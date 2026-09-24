@@ -350,7 +350,7 @@ export default function HomeClient() {
       <p className="hero-sub">{heroSlide.description}</p>
       <div className="hero-actions">
         <Link href={heroSlide.primaryHref} className="btn-primary">{heroSlide.primaryLabel} <ArrowRight size={16} /></Link>
-        <Link href={heroSlide.secondaryHref} className="btn-ghost">{heroSlide.secondaryLabel}</Link>
+        {/* <Link href={heroSlide.secondaryHref} className="btn-ghost">{heroSlide.secondaryLabel}</Link> */}
       </div>
       <div className="hero-slider-nav" aria-label="Hero slide controls">
         <button type="button" className="hero-slider-arrow" onClick={() => moveHeroSlide(-1)} aria-label="Previous slide"><ChevronLeft size={20} /></button>

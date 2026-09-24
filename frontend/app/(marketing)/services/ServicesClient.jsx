@@ -30,12 +30,12 @@ export default function Services() {
           <span className="chip chip-gold" style={{ marginBottom: 16 }}>What We Offer</span>
           <h1>Scalable Back-Office Support Built for Australian Business</h1>
           <p>Grow your business operations, eliminate administrative bottlenecks, and cut processing delays. Proowrx provides dedicated, skilled back-office teams for Australian mortgage brokers, accountants, asset finance brokers, and property professionals.</p>
-          <div className="page-hero-actions">
+          {/* <div className="page-hero-actions">
             <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
               Book a Meeting <ArrowRight size={15} />
             </a>
             <Link href="/contact" className="btn btn-ghost">Contact Us</Link>
-          </div>
+          </div> */}
         </div>
       </section>
 

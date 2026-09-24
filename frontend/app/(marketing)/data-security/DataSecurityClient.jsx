@@ -106,12 +106,12 @@ export default function DataSecurity() {
             {/* <span className="chip chip-teal" style={{ marginBottom: 20 }}>Data Security</span> */}
             <h1>Data Security & Privacy at Proowrx</h1>
             <p>We understand the responsibility that comes with handling our clients’ confidential information. Proowrx takes strict security measures to protect client data and prevent unauthorised access, data breaches and other security risks.</p>
-            <div className="page-hero-actions">
+            {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Discovery Call <ArrowRight size={15} />
               </a>
               <Link href="/contact" className="btn btn-ghost">Get in Touch</Link>
-            </div>
+            </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">ISO 27001:2022</span>
@@ -151,8 +151,8 @@ export default function DataSecurity() {
         <div className="container ds-promise">
           <div ref={r1} className="reveal-left ds-promise-text">
             <span className="chip chip-gold section-eyebrow">Our Commitment</span>
-            <h2 className="section-title">Our Approach to Data Security and Privacy</h2>
-            <p className="section-body" style={{ maxWidth: '100%' }}>
+            <h2 className="section-title">Secure Workspaces. Protected Client Information.</h2>
+            <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
               When you work with Proowrx, our staff handles financial records, customer information, and other business documents that should not be shared outside the scope of their assigned work. That is why access to client information is restricted. Our staff sign non-disclosure agreements, and we use measures such as firewalls, encryption and restricted system access to protect client information.
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
@@ -219,7 +219,7 @@ export default function DataSecurity() {
       <section className="section" style={{ background: 'var(--navy)' }}>
         <div className="container">
           <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="chip chip-white section-eyebrow">In Detail</span>
+            {/* <span className="chip chip-white section-eyebrow">In Detail</span> */}
             <h2 className="section-title section-title--white">Security Measures We Use to Protect Client Data</h2>
             <p className="section-body" style={{ maxWidth: '100%' }}>
               We have several practical measures in place across our workplace, devices, and systems to protect client information as our team works with it.
@@ -238,7 +238,7 @@ export default function DataSecurity() {
       </section>
 
       {/* Trust Band */}
-      <section className="ds-trust-band">
+      {/* <section className="ds-trust-band">
         <div className="container ds-trust-inner">
           <div className="ds-trust-stat">
             <span className="ds-trust-num">2FA</span>
@@ -260,7 +260,7 @@ export default function DataSecurity() {
             <span className="ds-trust-label">Security layers</span>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <CtaBanner />
     </div>

@@ -110,11 +110,11 @@ export default function VirtualAssistant() {
                 <span className="page-hero-stat-label">Industry<br/>Trained</span>
               </div>
             </div>
-            <div className="page-hero-actions">
+            {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Meeting <ArrowRight size={15} />
               </a>
-            </div>
+            </div> */}
           </div>
           <div className="page-hero-visual">
             <img

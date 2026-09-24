@@ -47,16 +47,6 @@ export default function CareerClient({ initialJobs }) {
             <span className="chip chip-gold" style={{ marginBottom: 16 }}>Careers at Proowrx</span>
             <h1>Build Your Career<br />with Purpose</h1>
             <p>Join a growing team redefining KPO for Australian financial professionals. We hire for attitude and train for skill.</p>
-            <div className="career-hero-btns">
-              <a
-                href="https://recruitcareers.zappyhire.com/en/proowrx"
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-gold"
-              >
-                View Open Positions <ExternalLink size={15} />
-              </a>
-            </div>
           </div>
           <div className="career-hero-stats">
             {[

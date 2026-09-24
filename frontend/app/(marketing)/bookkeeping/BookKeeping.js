@@ -88,11 +88,12 @@ export default function Bookkeeping() {
                 <span className="page-hero-stat-label">BAS<br/>Compliant</span>
               </div>
             </div>
-            <div className="page-hero-actions">
+            {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Meeting <ArrowRight size={15} />
               </a>
-            </div>
+              <Link href="/contact" className="btn btn-gold">Send a Message<ArrowRight size={15} /></Link>
+            </div> */}
           </div>
           <div className="page-hero-visual">
             <img

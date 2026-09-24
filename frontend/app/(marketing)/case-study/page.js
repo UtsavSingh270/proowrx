@@ -70,12 +70,12 @@ export default function CaseStudyPage() {
             Explore practical examples of how finance businesses use Proowrx to add capacity,
             strengthen workflows and keep local teams focused on clients.
           </p>
-          <div className="growth-actions">
+          {/* <div className="growth-actions">
             <a className="btn btn-gold" href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer">
               Discuss Your Workflow <ArrowRight size={15} />
             </a>
             <Link className="btn btn-ghost" href="/services">Explore Services</Link>
-          </div>
+          </div> */}
         </div>
       </section>
 

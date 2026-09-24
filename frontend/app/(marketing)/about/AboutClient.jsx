@@ -48,10 +48,10 @@ export default function About({ initialMembers = [] }) {
             {/* <span className="chip chip-gold" style={{ marginBottom: 20 }}>Our Story</span> */}
             <h1>Better Support. Better Way of Working.</h1>
             <p>Proowrx is an Australian-owned outsourcing organisation, delivering knowledge and skill-based services and empowering Australian businesses through smarter outsourcing</p>
-            <div className="page-hero-actions">
-              <Link href="/contact" className="btn btn-gold">Let&apos;s Talk <ArrowRight size={15} /></Link>
+            {/* <div className="page-hero-actions">
               <Link href="/services" className="btn btn-ghost">Explore Services</Link>
-            </div>
+              <Link href="/contact" className="btn btn-gold">Send a Message<ArrowRight size={15} /></Link>
+            </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">2021</span>
@@ -93,8 +93,8 @@ export default function About({ initialMembers = [] }) {
         <div className="container about-intro-grid">
           <div ref={r1} className="reveal-left">
             <span className="chip chip-gold section-eyebrow">Who We Are</span>
-            <h2 className="section-title">Your Trusted Partner for Smarter Outsourcing</h2>
-            <p className="section-body" style={{ maxWidth: '100%' }}>
+            <h2 className="section-title">Australian Expertise. Scalable Outsourcing Support</h2>
+            <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
               Proowrx is an Australian-owned outsourcing company helping Australian businesses work more efficiently through skilled and reliable support. We support Australian mortgage brokerage businesses, accounting firms, asset finance brokers, real estate firms and buyer agencies. We help Australian businesses reduce turnaround times and be more profitable. Our focus is simple: help businesses do more with less.
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
@@ -131,7 +131,7 @@ export default function About({ initialMembers = [] }) {
         <div className="container">
           <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="chip chip-teal section-eyebrow">What Drives Us</span>
-            <h2 className="section-title">Vision, Mission & Values</h2>
+            <h2 className="section-title">Built on Trust. Driven by Efficiency</h2>
           </div>
           <div className="values-grid">
             {values.map((v, i) => (

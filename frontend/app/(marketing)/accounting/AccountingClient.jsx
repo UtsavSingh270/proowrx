@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, CheckCircle, BookOpen, Users, FileText, PieChart, Shield, BarChart2, Calculator, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Accounting.css';
 
@@ -95,11 +96,12 @@ export default function Accounting() {
             <span className="chip chip-gold" style={{ marginBottom: 20 }}>Accounting Services</span>
             <h1>Accounting Outsourcing<br />for Australian Firms</h1>
             <p>Let your team focus on advisory work while we handle compliance, bookkeeping, tax, SMSF, and reporting — all behind the scenes.</p>
-            <div className="page-hero-actions">
+            {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Meeting <ArrowRight size={15} />
               </a>
-            </div>
+              <Link href="/contact" className="btn btn-gold">Send a Message<ArrowRight size={15} /></Link>
+            </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">8</span>

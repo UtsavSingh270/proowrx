@@ -300,3 +300,87 @@
 @media (max-width: 640px) {
   .why-grid { grid-template-columns: 1fr; }
 }
+
+
+/* ── Comparison Table ────────────────────── */
+.ppa-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.ppa-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+  background: var(--white);
+}
+
+.ppa-table thead th {
+  padding: 18px 20px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-align: center;
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+}
+
+.ppa-table thead th:first-child { text-align: left; }
+
+.ppa-th-label {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--gold-pale);
+  color: var(--navy);
+  border-radius: var(--r-full);
+  font-size: 0.72rem;
+}
+
+.ppa-th-label--dim {
+  background: var(--surface);
+  color: var(--text-3);
+}
+
+.ppa-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.ppa-table tbody tr:last-child { border-bottom: none; }
+.ppa-table tbody tr:hover { background: var(--surface); }
+
+.ppa-table td {
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.ppa-row-label {
+  text-align: left !important;
+  font-size: 0.85rem;
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+.ppa-cell-yes {
+  display: flex;
+  justify-content: center;
+  color: var(--emerald);
+}
+
+.ppa-cell-no {
+  display: flex;
+  justify-content: center;
+  color: var(--gold);
+}
+
+.ppa-cell-no--dim {
+  color: var(--text-3);
+}
+
+.ppa-cell-maybe {
+  color: var(--text-3);
+  font-weight: 700;
+  font-size: 1rem;
+}

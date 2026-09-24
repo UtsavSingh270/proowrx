@@ -19,10 +19,10 @@ function useReveal() {
 }
 
 const values = [
-  { icon: <Target size={24} />, title: 'Our Vision', desc: 'To be the first choice for businesses looking for a trusted outsourcing partner.' },
-  { icon: <Rocket size={24} />, title: 'Our Mission', desc: 'To deliver exceptional and proactive outsourcing services that help our clients work better and grow over the long term.' },
-  { icon: <Users size={24} />, title: 'Our Approach', desc: 'We are easy to work with. We listen, communicate clearly, adapt when things change and take responsibility for getting the work done right. ' },
-  { icon: <TrendingUp size={24} />, title: 'Our Focus', desc: 'Our focus is simple: take care of the work that takes up valuable time, so businesses can run more efficiently and their teams can focus on clients, growth and bigger priorities.' },
+  { icon: <Target size={24} />, title: 'Our Vision', desc: 'To be the first choice for businesses seeking a trusted outsourcing partner to accelerate performance, stability, and sustainable long-term market expansion.'},
+  { icon: <Rocket size={24} />, title: 'Our Mission', desc: 'To deliver exceptional outsourcing services that enable clients to optimise operational performance, improve daily productivity, and achieve continuous growth over the long term.'},
+  { icon: <Users size={24} />, title: 'Our Approach', desc: 'To listen carefully, communicate transparently, adapt to changing requirements, and accept complete accountability for executing every assigned project accurately and on schedule.'},
+  { icon: <TrendingUp size={24} />, title: 'Our Focus', desc: 'To manage administrative tasks that consume operational time, enabling businesses to improve efficiency and direct internal resources toward core objectives and expansion strategies.'},
 ];
 
 export default function About({ initialMembers = [] }) {
@@ -230,11 +230,11 @@ export default function About({ initialMembers = [] }) {
   </div>
 ))}
               </div>
-              <div style={{ textAlign: 'center', marginTop: 48 }}>
+              {/* <div style={{ textAlign: 'center', marginTop: 48 }}>
                 <Link href="/our-team" className="btn btn-ghost">
                   Full Team Page <ArrowRight size={15} />
                 </Link>
-              </div>
+              </div> */}
             </>
           )}
         </div>

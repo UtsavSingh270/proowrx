@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, X as XIcon } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Mortgage.css';
 
@@ -19,6 +19,16 @@ function useReveal() {
   }, []);
   return ref;
 }
+
+const comparisons = [
+  { label: 'Pay monthly retainer', standard: false, comprehensive: false, hiring: true },
+  { label: 'Pay only per file', standard: true, comprehensive: true, hiring: false },
+  { label: 'Lock-in contract', standard: false, comprehensive: false, hiring: true },
+  { label: 'Trained in AOL & aggregator CRMs', standard: true, comprehensive: true, hiring: '?' },
+  { label: '24-hr turnaround SLA', standard: true, comprehensive: true, hiring: false },
+  { label: 'Post-lodgement follow-up', standard: false, comprehensive: true, hiring: true },
+  { label: 'Scales with your volume', standard: true, comprehensive: true, hiring: false },
+];
 
 const models = [
   {
@@ -225,6 +235,37 @@ export default function Mortgage() {
             ))}
           </div>
 
+          <section className="section" ref={r4}>
+        <div className="container">
+          <div className="reveal" style={{ textAlign: 'center', marginBottom: 48 }}>
+            <span className="chip chip-violet section-eyebrow">Comparison</span>
+            <h2 className="section-title">PPA vs Hiring In-House</h2>
+          </div>
+          <div className="ppa-table-wrap">
+            <table className="ppa-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><span className="ppa-th-label">Standard</span></th>
+                  <th><span className="ppa-th-label">Comprehensive</span></th>
+                  <th><span className="ppa-th-label ppa-th-label--dim">Hiring</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisons.map((row, i) => (
+                  <tr key={i}>
+                    <td className="ppa-row-label">{row.label}</td>
+                    <td><CmpCell val={row.standard} /></td>
+                    <td><CmpCell val={row.comprehensive} /></td>
+                    <td><CmpCell val={row.hiring} dim /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
           <div className="partner-strip">
             <div className="partner-strip-item">
               <h4>Focus on Your Clients</h4>
@@ -256,4 +297,14 @@ export default function Mortgage() {
       />
     </div>
   );
+}
+
+function CmpCell({ val, dim }) {
+  if (val === true) return (
+    <div className="ppa-cell-yes"><CheckCircle size={16} /></div>
+  );
+  if (val === false) return (
+    <div className={`ppa-cell-no ${dim ? 'ppa-cell-no--dim' : ''}`}><XIcon size={14} /></div>
+  );
+  return <div className="ppa-cell-maybe">?</div>;
 }

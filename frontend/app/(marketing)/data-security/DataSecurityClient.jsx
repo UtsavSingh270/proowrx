@@ -75,7 +75,6 @@ const pillars = [
 'Incident response plans for security issues.',
 'Business continuity plans for unexpected disruptions.',
 'IT, security, and business teams work together to address security risks.'
-
     ],
   },
 ];
@@ -87,7 +86,7 @@ const features = [
   { icon: <Eye size={22} />, title: 'No Local Data Storage', desc: 'We do not store client and business information locally on user devices. Instead, our teams access information through approved cloud-based systems.' },
   { icon: <Users size={22} />, title: 'Multi-Factor Authentication', desc: 'We use multi-factor authentication across our systems and applications. Staff need an additional verification step beyond their password to access the system.' },
   { icon: <FileCheck size={22} />, title: 'Tiered Data Access', desc: 'Access to client information is based on staff roles and responsibilities. Staff can access only the information they need for their assigned work.'},
-  { icon: <FileCheck size={22} />, title: 'Restricted Internet Access', desc: 'Internet access on office devices is limited to approved websites. This keeps internet use focused on work-related activities and reduces exposure to unwanted websites and online threats.' },
+  { icon: <FileCheck size={22} />, title: 'Restricted Internet Access', desc: 'Internet access on office devices is limited to approved websites, and VPN connections are strictly restricted. This keeps internet use focused on work-related activities and reduces exposure to unwanted websites and online threats.' },
   { icon: <FileCheck size={22} />, title: 'Cyber Security Software', desc: 'Our systems use firewalls, antivirus and anti-malware software, and intrusion detection and prevention systems. These tools help protect electronic data from external threats and cyber attacks.' },
 ];
 
@@ -105,7 +104,7 @@ export default function DataSecurity() {
         <div className="container">
           <div className="page-hero-content">
             {/* <span className="chip chip-teal" style={{ marginBottom: 20 }}>Data Security</span> */}
-            <h1>Data Security & Privacy @ Proowrx</h1>
+            <h1>Data Security & Privacy at Proowrx</h1>
             <p>We understand the responsibility that comes with handling our clients’ confidential information. Proowrx takes strict security measures to protect client data and prevent unauthorised access, data breaches and other security risks.</p>
             <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">

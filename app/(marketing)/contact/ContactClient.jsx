@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { ArrowRight, MapPin, Phone, Mail, Clock, CheckCircle, Send } from 'lucide-react';
 import { contact } from '@/services/api';
 import './Contact.css';
@@ -100,7 +101,7 @@ export default function Contact() {
             </div>
           </div>
           <div className="page-hero-visual">
-            <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=900&q=85" alt="Contact Proowrx" loading="lazy" decoding="async" />
+            <Image src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=900&q=85" alt="Contact Proowrx" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
             <div className="page-hero-badge-float">
               <span style={{ fontSize: '1.6rem' }}>📞</span>
               <div>

@@ -68,7 +68,10 @@ router.delete('/:publicId', requireAdmin, async (req, res) => {
       return res.status(400).json({ error: 'Invalid public ID' });
     }
 
-    await deleteCloudinaryAsset(publicId);
+    const resourceType = ['image', 'video', 'raw'].includes(req.query.resourceType)
+      ? req.query.resourceType
+      : 'image';
+    await deleteCloudinaryAsset(publicId, resourceType);
     res.json({ success: true, message: 'Asset deleted' });
   } catch (err) {
     if (err.http_code === 404) {

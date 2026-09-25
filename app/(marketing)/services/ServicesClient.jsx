@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
@@ -50,7 +51,7 @@ export default function Services() {
             {/* Mortgage */}
             <Link href="/mortgage" className="svc-big-card svc-mortgage">
               <div className="svc-big-img">
-                <img src="https://proowrx.com/wp-content/uploads/2022/05/ded-new.jpg" alt="Mortgage" loading="lazy" decoding="async" />
+                <Image src="https://proowrx.com/wp-content/uploads/2022/05/ded-new.jpg" alt="Mortgage" fill sizes="(max-width: 960px) 100vw, 50vw" />
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
@@ -70,7 +71,7 @@ export default function Services() {
             {/* Accounting */}
             <Link href="/accounting" className="svc-big-card svc-accounting">
               <div className="svc-big-img">
-                <img src="https://proowrx.com/wp-content/uploads/2022/05/pay-new.jpg" alt="Accounting" loading="lazy" decoding="async" />
+                <Image src="https://proowrx.com/wp-content/uploads/2022/05/pay-new.jpg" alt="Accounting" fill sizes="(max-width: 960px) 100vw, 50vw" />
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
@@ -89,7 +90,7 @@ export default function Services() {
 
             <Link href="/asset-finance" className="svc-big-card svc-mortgage">
               <div className="svc-big-img">
-                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=85" alt="Asset finance processing" loading="lazy" decoding="async" />
+                <Image src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=85" alt="Asset finance processing" fill sizes="(max-width: 960px) 100vw, 50vw" />
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
@@ -104,7 +105,7 @@ export default function Services() {
 
             <Link href="/digital-marketing" className="svc-big-card svc-accounting">
               <div className="svc-big-img">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85" alt="Digital marketing analytics" loading="lazy" decoding="async" />
+                <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85" alt="Digital marketing analytics" fill sizes="(max-width: 960px) 100vw, 50vw" />
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">

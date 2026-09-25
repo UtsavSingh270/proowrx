@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Shield, Lock, Eye, Server, Users, FileCheck, Wifi, CheckCircle } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import './DataSecurity.css';
@@ -169,9 +170,12 @@ export default function DataSecurity() {
             </div>
           </div>
           <div ref={r2} className="reveal-right ds-promise-image">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=900&q=85"
               alt="Data Security at Proowrx"
+              width={900}
+              height={600}
+              sizes="(max-width: 960px) 100vw, 45vw"
             />
           </div>
         </div>

@@ -273,7 +273,7 @@ function FaqItem({ item, isOpen, onToggle, index }) {
 /* ─────────────────────────────────────────────
    HOME
 ───────────────────────────────────────────── */
-export default function HomeClient() {
+export default function HomeClient({ insights }) {
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
   const [statsRef, statsVisible]     = useInView(0.3);
@@ -391,7 +391,7 @@ export default function HomeClient() {
                 className={`svc-card fade-up${svcVisible ? ' in' : ''}`}
                 style={{ transitionDelay: `${i * 140 + 100}ms` }}
               >
-                <div className="svc-top-bar" style={{ background: `linear-gradient(90deg, ${svc.accent}, transparent)` }} />
+                {/* <div className="svc-top-bar" style={{ background: `linear-gradient(90deg, ${svc.accent}, transparent)` }} /> */}
                 <div className="svc-header">
                   <div className="svc-icon-wrap" style={{ background: svc.glow, borderColor: `${svc.accent}33`, color: svc.accent }}>
                     {svc.icon}
@@ -553,6 +553,8 @@ export default function HomeClient() {
           </div>
         </div>
       </section>
+
+      {insights}
 
       <CtaBanner />
 

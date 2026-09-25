@@ -2,6 +2,8 @@ const express = require('express');
 const TeamMember = require('../models/TeamMember');
 const { requireAdmin } = require('../middleware/auth');
 const { logAudit } = require('../utils/auditLog');
+const Post = require('../models/Post');
+const { deleteCloudinaryValue, deleteReplacedCloudinaryValue } = require('../utils/cloudinary');
 
 const router = express.Router();
 
@@ -52,6 +54,18 @@ router.put('/:id', requireAdmin, async (req, res) => {
     const member = await TeamMember.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
     
     if (!member) return res.status(404).json({ error: 'Team member not found' });
+    await Post.updateMany(
+      { authorSource: 'team', authorId: member._id },
+      { $set: {
+        author: member.name,
+        'authorProfile.name': member.name,
+        'authorProfile.email': member.email || '',
+        'authorProfile.title': member.position || '',
+        'authorProfile.image': member.image || '',
+        'authorProfile.bio': member.summary || member.description || '',
+      } }
+    );
+    await deleteReplacedCloudinaryValue(oldMember?.image, member.image, 'team member image');
     
     // Log the audit event
     await logAudit(
@@ -74,6 +88,9 @@ router.delete('/:id', requireAdmin, async (req, res) => {
   try {
     const member = await TeamMember.findById(req.params.id);
     await TeamMember.findByIdAndDelete(req.params.id);
+    if (member && !await Post.exists({ 'authorProfile.image': member.image })) {
+      await deleteCloudinaryValue(member.image).catch(err => console.warn('Failed to delete team member image', err.message));
+    }
     
     // Log the audit event
     if (member) {

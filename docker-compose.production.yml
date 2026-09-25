@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://proowrx.com}
+    env_file:
+      - .env.production
+    expose:
+      - "3000"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    volumes:
+      - next-cache:/app/.next/cache
+    security_opt:
+      - no-new-privileges:true
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on:
+      app:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${NGINX_CONFIG:-./deploy/nginx.conf}:/etc/nginx/nginx.conf:ro
+      - certbot-web:/var/www/certbot:ro
+      - letsencrypt:/etc/letsencrypt:ro
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+
+  certbot:
+    image: certbot/certbot:v3.2.0
+    profiles:
+      - maintenance
+    volumes:
+      - certbot-web:/var/www/certbot
+      - letsencrypt:/etc/letsencrypt
+
+volumes:
+  next-cache:
+  certbot-web:
+  letsencrypt:

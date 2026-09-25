@@ -9,6 +9,11 @@ import { contact } from '@/services/api';
 import './ContactPopup.css';
 
 const LOGO = '/Proowrx_Logo.png';
+const CONSENT_COOKIE = 'proowrx_cookie_consent';
+
+function hasConsentChoice() {
+  return document.cookie.split('; ').some(row => row.startsWith(`${CONSENT_COOKIE}=`));
+}
 
 export default function ContactPopup() {
   const [open, setOpen] = useState(false);
@@ -18,13 +23,20 @@ export default function ContactPopup() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const shown = sessionStorage.getItem('cpopup_shown');
-    if (shown) return;
-    const timer = setTimeout(() => {
-      setOpen(true);
-      sessionStorage.setItem('cpopup_shown', '1');
-    }, 6000);
-    return () => clearTimeout(timer);
+    let timer;
+    const schedule = () => {
+      if (timer || sessionStorage.getItem('cpopup_shown') || !hasConsentChoice()) return;
+      timer = setTimeout(() => {
+        setOpen(true);
+        sessionStorage.setItem('cpopup_shown', '1');
+      }, 6000);
+    };
+    schedule();
+    window.addEventListener('proowrx:consent-choice', schedule);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('proowrx:consent-choice', schedule);
+    };
   }, []);
 
   const close = () => setOpen(false);
@@ -59,7 +71,7 @@ export default function ContactPopup() {
 
   return (
     <div className="cpopup-overlay" onClick={close}>
-      <div className="cpopup-card" onClick={e => e.stopPropagation()}>
+      <div className="cpopup-card" role="dialog" aria-modal="true" aria-label="Contact Proowrx" onClick={e => e.stopPropagation()}>
         {/* Close */}
         <button className="cpopup-close" onClick={close} aria-label="Close">
           <X size={18} />
@@ -68,7 +80,7 @@ export default function ContactPopup() {
         {/* Left panel */}
         <div className="cpopup-left">
           <div className="cpopup-left-bg" />
-          <Image src={LOGO} alt="Proowrx" className="cpopup-logo" />
+          <Image src={LOGO} alt="Proowrx" className="cpopup-logo" width={164} height={48} />
           <h3>Let&apos;s connect</h3>
           <p>We&apos;d love to learn about your business and show you how Proowrx can help you scale.</p>
 

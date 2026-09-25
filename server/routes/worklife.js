@@ -2,7 +2,7 @@ const express = require('express');
 const WorkLifeItem = require('../models/WorkLifeItem');
 const { requireAdmin } = require('../middleware/auth');
 const { logAudit } = require('../utils/auditLog');
-const { isCloudinaryAsset, deleteCloudinaryAsset } = require('../utils/cloudinary');
+const { deleteCloudinaryValue, deleteReplacedCloudinaryValue } = require('../utils/cloudinary');
 
 const router = express.Router();
 
@@ -73,12 +73,8 @@ router.put('/:id', requireAdmin, async (req, res) => {
     const data = normalizeWorkLifeInput(req.body);
     const item = await WorkLifeItem.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true });
 
-    if (isCloudinaryAsset(oldItem.url) && (!isCloudinaryAsset(data.url) || data.url.public_id !== oldItem.url.public_id)) {
-      try { await deleteCloudinaryAsset(oldItem.url.public_id); } catch (err) { console.warn('Failed to delete old worklife url asset', err.message); }
-    }
-    if (isCloudinaryAsset(oldItem.posterUrl) && (!isCloudinaryAsset(data.posterUrl) || data.posterUrl.public_id !== oldItem.posterUrl.public_id)) {
-      try { await deleteCloudinaryAsset(oldItem.posterUrl.public_id); } catch (err) { console.warn('Failed to delete old worklife poster asset', err.message); }
-    }
+    await deleteReplacedCloudinaryValue(oldItem.url, item.url, 'worklife media');
+    await deleteReplacedCloudinaryValue(oldItem.posterUrl, item.posterUrl, 'worklife poster');
 
     await logAudit(req.adminUsername, req.adminId, 'worklife', 'update', item._id, item.title, { old: oldItem.toObject(), new: data });
     res.json(item);
@@ -92,14 +88,9 @@ router.delete('/:id', requireAdmin, async (req, res) => {
     const item = await WorkLifeItem.findById(req.params.id);
     if (!item) return res.status(404).json({ error: 'Item not found' });
 
-    if (isCloudinaryAsset(item.url)) {
-      try { await deleteCloudinaryAsset(item.url.public_id); } catch (err) { console.warn('Failed to delete worklife url asset', err.message); }
-    }
-    if (isCloudinaryAsset(item.posterUrl)) {
-      try { await deleteCloudinaryAsset(item.posterUrl.public_id); } catch (err) { console.warn('Failed to delete worklife poster asset', err.message); }
-    }
-
     await WorkLifeItem.findByIdAndDelete(req.params.id);
+    await deleteCloudinaryValue(item.url).catch(err => console.warn('Failed to delete worklife media', err.message));
+    await deleteCloudinaryValue(item.posterUrl).catch(err => console.warn('Failed to delete worklife poster', err.message));
     await logAudit(req.adminUsername, req.adminId, 'worklife', 'delete', item._id, item.title, item.toObject());
     res.json({ message: 'Deleted' });
   } catch (err) {

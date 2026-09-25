@@ -62,8 +62,8 @@ function ScrollGallery({ images, onSelect, reduceMotion }) {
       <div className="worklife-gallery-sticky">
         <motion.div className="worklife-section-head worklife-gallery-heading" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={sectionMotion}>
           <span className="chip chip-sky section-eyebrow">Photo Gallery</span>
-          <h2 className="section-title">Moments We Cherish</h2>
-          <p className="section-body">Keep scrolling to journey through our people, celebrations and everyday office moments.</p>
+          <h2 className="section-title">Workplace & Team Gallery </h2>
+          <p className="section-body">A look inside our workspaces, team collaborations, and daily office culture.</p>
         </motion.div>
         <div ref={viewportRef} className="worklife-gallery-viewport">
           <motion.div ref={trackRef} className="worklife-gallery-track" style={{ x }}>
@@ -129,8 +129,8 @@ export default function TeamCultureMedia({ initialItems = [] }) {
         <div className="container">
           <motion.div className="worklife-section-head" initial={initial} whileInView="visible" viewport={viewport} variants={sectionMotion}>
             <span className="chip chip-violet section-eyebrow">Culture in Motion</span>
-            <h2 className="section-title">Stories That Move</h2>
-            <p className="section-body">Watch our people collaborate, celebrate and grow together.</p>
+            <h2 className="section-title">The Team Experience</h2>
+            <p className="section-body">Watch how our teams collaborate, solve operational challenges, and deliver for clients. </p>
           </motion.div>
 
           {videos.length === 0 ? <div className="worklife-empty">No videos are currently available.</div> : (

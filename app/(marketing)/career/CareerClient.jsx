@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { ArrowRight, ExternalLink, CheckCircle, Users, TrendingUp, Heart, Zap, Globe, Star } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import './Career.css';
@@ -111,9 +112,12 @@ export default function CareerClient({ initialJobs }) {
             </ul>
           </div>
           <div className="reveal-right career-culture-image">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=85"
               alt="Proowrx team culture"
+              width={900}
+              height={600}
+              sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="career-img-badge">
               <Star size={14} color="var(--gold)" />

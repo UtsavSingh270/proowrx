@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight, CheckCircle, X as XIcon, Zap, Shield,
   FileCheck, TrendingUp, Clock, BarChart3,
@@ -103,9 +104,12 @@ export default function PayPerApplication() {
             </div> */}
           </div>
           <div className="page-hero-visual">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=85"
               alt="Mortgage application processing"
+              width={800}
+              height={533}
+              sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="page-hero-badge-float">
               <strong>💼 No Lock-in Contract</strong>

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, ArrowRight, Clock, LoaderCircle, Tag, User } from 'lucide-react';
 import { FaLinkedinIn } from 'react-icons/fa';
 import CtaBanner from '@/components/shared/CtaBanner';
@@ -26,7 +27,7 @@ function AuthorPostCard({ post }) {
   return (
     <article className="blog-card author-blog-card">
       <Link href={`/blog/${postSlug(post)}`} className="blog-card-img" aria-label={`Read ${post.title}`}>
-        {post.image ? <img src={post.image} alt={post.title} loading="lazy" decoding="async" /> : <div className="blog-image-placeholder" />}
+        {post.image ? <Image src={post.image} alt={post.title} fill sizes="(max-width: 760px) 100vw, 33vw" /> : <div className="blog-image-placeholder" />}
         <span className="blog-cat blog-cat--overlay" style={{ background: post.categoryGlow, color: post.categoryColor }}><Tag size={11} /> {post.category}</span>
       </Link>
       <div className="blog-card-body">
@@ -78,7 +79,7 @@ export default function AuthorBlogClient({ authorId, initialData }) {
           <Link href="/blog" className="author-back-link"><ArrowLeft size={15} /> Back to Blog</Link>
           <div className="author-profile-layout">
             <div className="author-profile-image">
-              {author.image ? <img src={author.image} alt={author.name} /> : <span>{author.name?.charAt(0)}</span>}
+              {author.image ? <Image src={author.image} alt={author.name} fill sizes="210px" priority /> : <span>{author.name?.charAt(0)}</span>}
             </div>
             <div className="author-profile-copy">
               <span className="blog-kicker">Proowrx Author</span>

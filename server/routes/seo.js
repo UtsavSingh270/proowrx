@@ -4,6 +4,7 @@ const pages = require('../../data/pages.json');
 const { requireAdmin } = require('../middleware/auth');
 const { normalizeSeo } = require('../utils/seo');
 const { logAudit } = require('../utils/auditLog');
+const { deleteReplacedCloudinaryValue } = require('../utils/cloudinary');
 
 router.use(requireAdmin);
 router.get('/', async (req, res) => {
@@ -15,7 +16,10 @@ router.put('/', async (req, res) => {
   try {
     const { path, seo } = req.body;
     if (!pages.some(page => page.path === path)) return res.status(400).json({ error: 'Unknown static page' });
-    const entry = await PageSeo.findOneAndUpdate({ path }, { seo: normalizeSeo(seo) }, { new: true, upsert: true, runValidators: true });
+    const normalizedSeo = normalizeSeo(seo);
+    const previous = await PageSeo.findOne({ path }).select('seo');
+    const entry = await PageSeo.findOneAndUpdate({ path }, { seo: normalizedSeo }, { new: true, upsert: true, runValidators: true });
+    await deleteReplacedCloudinaryValue(previous?.seo?.ogImage, entry.seo?.ogImage, 'page social image');
     await logAudit(req.adminUsername, req.adminId, 'seo', 'update', entry._id, path, entry.seo);
     res.json(entry);
   } catch (error) { res.status(400).json({ error: error.message }); }

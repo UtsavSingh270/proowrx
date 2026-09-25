@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight, CheckCircle2, Shield, FileCheck,
   TrendingUp, Clock, Landmark, Receipt, Users,
@@ -96,9 +97,12 @@ export default function Bookkeeping() {
             </div> */}
           </div>
           <div className="page-hero-visual">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=85"
               alt="Bookkeeping and reconciliation on a laptop"
+              width={800}
+              height={533}
+              sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="page-hero-badge-float">
               <strong>📊 No Lock-in Contract</strong>
@@ -126,9 +130,12 @@ export default function Bookkeeping() {
             </ul>
           </div>
           <div className="bk-intro-visual reveal reveal-delay-2" ref={r2}>
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=85"
               alt="Reviewing financial reports and reconciliations"
+              width={800}
+              height={533}
+              sizes="(max-width: 960px) 100vw, 45vw"
             />
           </div>
         </div>

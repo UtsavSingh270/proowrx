@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight, CheckCircle, Clock, Calendar, Users, Mail,
   FileText, Phone, Database, Star, Headphones,
@@ -117,9 +118,12 @@ export default function VirtualAssistant() {
             </div> */}
           </div>
           <div className="page-hero-visual">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85"
               alt="Virtual Assistant working"
+              width={800}
+              height={533}
+              sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="page-hero-badge-float">
               <strong>👤 Dedicated Resource</strong>

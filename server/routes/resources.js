@@ -5,7 +5,7 @@ const fs = require('fs');
 const Resource = require('../models/Resource');
 const { requireAdmin } = require('../middleware/auth');
 const { logAudit } = require('../utils/auditLog');
-const { isCloudinaryAsset, deleteCloudinaryAsset } = require('../utils/cloudinary');
+const { deleteCloudinaryValue, deleteReplacedCloudinaryValue } = require('../utils/cloudinary');
 
 const router = express.Router();
 const Contact = require('../models/Contact');
@@ -91,7 +91,7 @@ router.post('/', requireAdmin, async (req, res) => {
 router.put('/:id', requireAdmin, async (req, res) => {
   try {
     const data = normalizeResourceInput(req.body);
-    const existing = await Resource.findById(req.params.id).select('slug title image pdfUrl');
+    const existing = await Resource.findById(req.params.id).select('slug title image pdfUrl seo');
     if (!existing) return res.status(404).json({ error: 'Resource not found' });
     if (!data.title || !data.desc || !data.pdfUrl) return res.status(400).json({ error: 'Title, description and file are required' });
     data.slug = existing.slug || await generateUniqueSlug(data.title, existing._id);
@@ -99,12 +99,9 @@ router.put('/:id', requireAdmin, async (req, res) => {
     const oldResource = existing.toObject();
     const resource = await Resource.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true });
 
-    if (isCloudinaryAsset(oldResource.image) && (!isCloudinaryAsset(data.image) || data.image.public_id !== oldResource.image.public_id)) {
-      try { await deleteCloudinaryAsset(oldResource.image.public_id); } catch (err) { console.warn('Failed to delete old image asset', err.message); }
-    }
-    if (isCloudinaryAsset(oldResource.pdfUrl) && (!isCloudinaryAsset(data.pdfUrl) || data.pdfUrl.public_id !== oldResource.pdfUrl.public_id)) {
-      try { await deleteCloudinaryAsset(oldResource.pdfUrl.public_id); } catch (err) { console.warn('Failed to delete old pdf asset', err.message); }
-    }
+    await deleteReplacedCloudinaryValue(oldResource.image, resource.image, 'resource cover image');
+    await deleteReplacedCloudinaryValue(oldResource.pdfUrl, resource.pdfUrl, 'resource download');
+    await deleteReplacedCloudinaryValue(oldResource.seo?.ogImage, resource.seo?.ogImage, 'resource social image');
 
     await logAudit(req.adminUsername, req.adminId, 'resources', 'update', resource._id, resource.title, { old: oldResource, new: data });
     res.json(resource);
@@ -118,14 +115,10 @@ router.delete('/:id', requireAdmin, async (req, res) => {
     const resource = await Resource.findById(req.params.id);
     if (!resource) return res.status(404).json({ error: 'Resource not found' });
 
-    if (isCloudinaryAsset(resource.image)) {
-      try { await deleteCloudinaryAsset(resource.image.public_id); } catch (err) { console.warn('Failed to delete resource image', err.message); }
-    }
-    if (isCloudinaryAsset(resource.pdfUrl)) {
-      try { await deleteCloudinaryAsset(resource.pdfUrl.public_id); } catch (err) { console.warn('Failed to delete resource pdf', err.message); }
-    }
-
     await Resource.findByIdAndDelete(req.params.id);
+    await deleteCloudinaryValue(resource.image).catch(err => console.warn('Failed to delete resource image', err.message));
+    await deleteCloudinaryValue(resource.pdfUrl).catch(err => console.warn('Failed to delete resource download', err.message));
+    await deleteCloudinaryValue(resource.seo?.ogImage).catch(err => console.warn('Failed to delete resource social image', err.message));
     await logAudit(req.adminUsername, req.adminId, 'resources', 'delete', resource._id, resource.title, resource.toObject());
     res.json({ message: 'Deleted' });
   } catch (err) {

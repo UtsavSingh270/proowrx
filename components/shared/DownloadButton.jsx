@@ -16,9 +16,10 @@ export default function DownloadButton({ resource }) {
   useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
+    const triggerButton = trigger.current;
     document.body.style.overflow = 'hidden';
     dialog.current?.querySelector('input')?.focus();
-    return () => { document.body.style.overflow = previous; trigger.current?.focus(); };
+    return () => { document.body.style.overflow = previous; triggerButton?.focus(); };
   }, [open]);
   function keyDown(event) {
     if (event.key === 'Escape' && !busy) setOpen(false);

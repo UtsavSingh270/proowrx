@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable @next/next/no-img-element -- Admin previews accept blob and data URLs that are intentionally not sent through the image optimizer. */
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import {
@@ -413,6 +415,7 @@ function PostModal({ post, members, onClose, onSave }) {
     const cm = catMeta(form.category);
     const data = {
       ...form,
+      displayPages: form.displayPages.filter(path => path !== '/'),
       readTime: calcReadTime(form.htmlContent),   // auto-calculated
       status,
       scheduledAt: status === 'scheduled' ? new Date(form.scheduledAt).toISOString() : null,
@@ -517,7 +520,7 @@ function PostModal({ post, members, onClose, onSave }) {
             </label>
           </div>
 
-          <PagePicker value={form.displayPages} onChange={value => set('displayPages', value)} />
+          <PagePicker value={form.displayPages} onChange={value => set('displayPages', value)} includeHome={false} />
           <SeoFields onUploadBusyChange={setUploading} value={form.seo} onChange={value => set('seo', value)} fallbackTitle={form.title} fallbackDescription={form.excerpt} path={post?.slug ? `/blog/${post.slug}` : '/blog/your-post'} />
 
           <div className="dash-form-group">

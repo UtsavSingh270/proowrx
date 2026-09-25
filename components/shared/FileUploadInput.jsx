@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable @next/next/no-img-element -- The local upload preview uses an ephemeral blob URL. */
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Upload, Link as LinkIcon, FileText, Video } from 'lucide-react';
 

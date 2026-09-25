@@ -1,0 +1,13 @@
+.git
+.next
+node_modules
+.env
+.env.*
+!.env.example
+server/uploads/*
+!server/uploads/.gitkeep
+coverage
+*.log
+.vscode
+.agents
+.codex

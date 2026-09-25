@@ -5,19 +5,35 @@ const { requireAdmin, requireSuperAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Initialize default super admin on first request if not exists
+function jwtSecret() {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) throw new Error('JWT_SECRET is not configured');
+  if (process.env.NODE_ENV === 'production' && secret.length < 32) {
+    throw new Error('JWT_SECRET must contain at least 32 characters in production');
+  }
+  return secret;
+}
+
+// Bootstrap the first super admin only from deployment secrets.
 async function ensureDefaultSuperAdmin() {
   try {
-    const exists = await AdminUser.findOne({ username: 'admin@proowrx' });
+    const username = process.env.ADMIN_USERNAME?.trim().toLowerCase();
+    const password = process.env.ADMIN_PASSWORD;
+    if (!username || !password) return;
+    if (process.env.NODE_ENV === 'production' && password.length < 14) {
+      throw new Error('ADMIN_PASSWORD must contain at least 14 characters in production');
+    }
+
+    const exists = await AdminUser.findOne({ username });
     if (!exists) {
       const superAdmin = new AdminUser({
-        username: 'admin@proowrx',
-        password: 'proowrx@2025',
+        username,
+        password,
         isSuperAdmin: true,
         permissions: 'view-write',
       });
       await superAdmin.save();
-      console.log('Default super admin created: admin@proowrx');
+      console.log('Initial super admin created from environment configuration');
     }
   } catch (err) {
     console.error('Error ensuring default super admin:', err.message);
@@ -28,14 +44,14 @@ async function ensureDefaultSuperAdmin() {
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    if (!username || !password) {
+    if (typeof username !== 'string' || typeof password !== 'string' || !username.trim() || !password) {
       return res.status(400).json({ error: 'Username and password required' });
     }
 
     // Ensure default super admin exists
     await ensureDefaultSuperAdmin();
 
-    const adminUser = await AdminUser.findOne({ username: username.toLowerCase() });
+    const adminUser = await AdminUser.findOne({ username: username.trim().toLowerCase() });
     if (!adminUser || !adminUser.active) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
@@ -56,7 +72,7 @@ router.post('/login', async (req, res) => {
         isSuperAdmin: adminUser.isSuperAdmin,
         permissions: adminUser.permissions,
       },
-      process.env.JWT_SECRET,
+      jwtSecret(),
       { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
     );
 
@@ -91,8 +107,11 @@ router.post('/admins', requireSuperAdmin, async (req, res) => {
   try {
     const { username, password, permissions, isSuperAdmin } = req.body;
     
-    if (!username || !password) {
+    if (typeof username !== 'string' || typeof password !== 'string' || !username.trim() || !password) {
       return res.status(400).json({ error: 'Username and password required' });
+    }
+    if (password.length < 12) {
+      return res.status(400).json({ error: 'Password must contain at least 12 characters' });
     }
 
     const exists = await AdminUser.findOne({ username: username.toLowerCase() });
@@ -101,7 +120,7 @@ router.post('/admins', requireSuperAdmin, async (req, res) => {
     }
 
     const newAdmin = new AdminUser({
-      username: username.toLowerCase(),
+      username: username.trim().toLowerCase(),
       password,
       permissions: permissions || 'view-write',
       isSuperAdmin: isSuperAdmin || false,

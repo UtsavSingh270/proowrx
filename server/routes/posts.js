@@ -9,6 +9,7 @@ const TeamMember = require('../models/TeamMember');
 const { requireAdmin } = require('../middleware/auth');
 const { logAudit } = require('../utils/auditLog');
 const { isExcludedRequest } = require('../utils/excludedIps');
+const { deleteCloudinaryValue, deleteReplacedCloudinaryValue } = require('../utils/cloudinary');
 
 const router = express.Router();
 const { normalizeSeo, normalizePlacements } = require('../utils/seo');
@@ -252,6 +253,19 @@ router.put('/admin/authors/:id', requireAdmin, async (req, res) => {
     const oldAuthor = await Author.findById(req.params.id);
     const author = await Author.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
     if (!author) return res.status(404).json({ error: 'Author not found' });
+
+    await Post.updateMany(
+      { authorSource: 'legacy', authorId: author._id },
+      { $set: {
+        author: author.name,
+        'authorProfile.name': author.name,
+        'authorProfile.email': author.email || '',
+        'authorProfile.title': author.title || '',
+        'authorProfile.image': author.image || '',
+        'authorProfile.bio': author.bio || '',
+      } }
+    );
+    await deleteReplacedCloudinaryValue(oldAuthor?.image, author.image, 'author image');
     
     // Log the audit event
     await logAudit(
@@ -275,6 +289,9 @@ router.delete('/admin/authors/:id', requireAdmin, async (req, res) => {
   try {
     const author = await Author.findById(req.params.id);
     await Author.findByIdAndDelete(req.params.id);
+    if (author && !await Post.exists({ 'authorProfile.image': author.image })) {
+      await deleteCloudinaryValue(author.image).catch(err => console.warn('Failed to delete author image', err.message));
+    }
     
     // Log the audit event
     if (author) {
@@ -345,7 +362,7 @@ router.post('/', requireAdmin, async (req, res) => {
 router.put('/:id', requireAdmin, async (req, res) => {
   try {
     const data = await normalizePostInput(req.body);
-    const existing = await Post.findById(req.params.id).select('slug');
+    const existing = await Post.findById(req.params.id).select('slug image seo');
     if (!existing) return res.status(404).json({ error: 'Post not found' });
     if (!existing.slug) data.slug = await generateUniqueSlug(data.title, existing._id);
     else delete data.slug;
@@ -355,6 +372,8 @@ router.put('/:id', requireAdmin, async (req, res) => {
       { ...data, updatedAt: new Date() },
       { new: true, runValidators: true }
     );
+    await deleteReplacedCloudinaryValue(existing.image, post.image, 'blog cover image');
+    await deleteReplacedCloudinaryValue(existing.seo?.ogImage, post.seo?.ogImage, 'blog social image');
     
     // Log the audit event
     await logAudit(
@@ -423,6 +442,10 @@ router.delete('/:id', requireAdmin, async (req, res) => {
     await Post.findByIdAndDelete(req.params.id);
     await Like.deleteMany({ postId: req.params.id });
     await BlogComment.deleteMany({ postId: req.params.id });
+    if (post) {
+      await deleteCloudinaryValue(post.image).catch(err => console.warn('Failed to delete blog cover image', err.message));
+      await deleteCloudinaryValue(post.seo?.ogImage).catch(err => console.warn('Failed to delete blog social image', err.message));
+    }
     
     // Log the audit event
     if (post) {

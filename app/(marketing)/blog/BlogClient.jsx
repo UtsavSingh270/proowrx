@@ -3,8 +3,9 @@
 import { useDeferredValue, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Calendar, ChevronLeft, ChevronRight, Clock, Eye, Heart, Lightbulb, Search, ShieldCheck, Tag, TrendingUp, User, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Calendar, ChevronLeft, ChevronRight, Eye, Heart, Lightbulb, Search, ShieldCheck, Tag, TrendingUp, User, X } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
+import BlogPostCard from '@/components/shared/BlogPostCard';
 import { viewsOf, likesOf, postSlug } from '@/data/seedStats';
 import { posts as postsApi } from '@/services/api';
 import './Blog.css';
@@ -22,47 +23,12 @@ function fmtNum(value) {
   return String(value || 0);
 }
 
-function formatPostedTime(value, referenceTime) {
-  const postedAt = new Date(value);
-  if (Number.isNaN(postedAt.getTime())) return '';
-  const elapsed = Math.max(0, referenceTime - postedAt.getTime());
-  const hours = Math.floor(elapsed / 3600000);
-  if (elapsed < 60000) return 'Just now';
-  if (hours < 1) {
-    const minutes = Math.max(1, Math.floor(elapsed / 60000));
-    return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
-  }
-  if (hours < 24) return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
-  return postedAt.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
-}
-
 function searchableText(post) {
   return [
     post.title, post.author, post.excerpt, post.description, post.summary,
     post.category, ...(post.tags || []), post.authorProfile?.name,
     post.authorProfile?.title, post.authorProfile?.bio,
   ].filter(Boolean).join(' ').toLocaleLowerCase();
-}
-
-function PostCard({ post, referenceTime, index }) {
-  return (
-    <article className="blog-card blog-card-enter" style={{ '--blog-card-index': index % PAGE_SIZE }}>
-      <Link href={`/blog/${postSlug(post)}`} className="blog-card-img" aria-label={`Read ${post.title}`}>
-        {post.image ? <Image src={post.image} alt={post.title} fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" /> : <div className="blog-image-placeholder" />}
-        <span className="blog-cat blog-cat--overlay" style={{ background: post.categoryGlow, color: post.categoryColor }}><Tag size={11} /> {post.category}</span>
-      </Link>
-      <div className="blog-card-body">
-        <div className="blog-card-details">
-          <span className="blog-time"><Clock size={12} /> {formatPostedTime(post.createdAt, referenceTime)}</span>
-          {post.author && <span className="blog-author"><User size={12} /> {post.author}</span>}
-        </div>
-        <h3 className="blog-card-title"><Link href={`/blog/${postSlug(post)}`}>{post.title}</Link></h3>
-        <p className="blog-card-excerpt">{post.excerpt}</p>
-        {!!post.tags?.length && <div className="blog-tags">{post.tags.slice(0, 3).map(tag => <span key={tag} className="blog-tag">{tag}</span>)}</div>}
-        <Link href={`/blog/${postSlug(post)}`} className="blog-card-link">Read Article <ArrowRight size={14} /></Link>
-      </div>
-    </article>
-  );
 }
 
 function LatestPostCard({ post, large = false }) {
@@ -174,7 +140,7 @@ export default function BlogClient({ allPosts: initialPosts, generatedAt }) {
         </div>
       </section>}
 
-      {!!allPosts.length && <section className="blog-value-section">
+      {/* {!!allPosts.length && <section className="blog-value-section">
         <div className="container">
           <div className="blog-value-intro"><span className="blog-kicker">Built for practical growth</span><h2>Insights you can apply, not just admire.</h2><p>Each article turns industry experience into clear ideas for stronger operations, safer processes and sustainable business growth.</p></div>
           <div className="blog-value-grid">
@@ -183,7 +149,7 @@ export default function BlogClient({ allPosts: initialPosts, generatedAt }) {
             <article><span><ShieldCheck size={20} /></span><h3>Operate confidently</h3><p>Stay informed about data security, compliance and dependable back-office operations.</p></article>
           </div>
         </div>
-      </section>}
+      </section>} */}
 
       {!!allPosts.length && <section className="blog-library-section" id="blog-library">
         <div className="container">
@@ -191,8 +157,8 @@ export default function BlogClient({ allPosts: initialPosts, generatedAt }) {
           <div className="blog-search-wrap"><Search size={20} /><input value={query} onChange={event => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE); }} placeholder="Search articles, authors, topics or tags..." aria-label="Search blog posts" />{query && <button onClick={() => { setQuery(''); setVisibleCount(PAGE_SIZE); }} aria-label="Clear search"><X size={17} /></button>}</div>
           <div className="blog-category-tabs" role="tablist" aria-label="Blog categories">{categories.map(item => <button key={item} role="tab" aria-selected={category === item} className={category === item ? 'active' : ''} onClick={() => { setCategory(item); setVisibleCount(PAGE_SIZE); }}>{item}<span>{item === 'All' ? allPosts.length : allPosts.filter(post => post.category === item).length}</span></button>)}</div>
           <div className="blog-results-row">{(query || category !== 'All') && <button onClick={() => { setQuery(''); setCategory('All'); }}><ArrowLeft size={13} /> Reset filters</button>}</div>
-          {visiblePosts.length ? <div className="blog-grid">{visiblePosts.map((post, index) => <PostCard key={postSlug(post)} post={post} referenceTime={referenceTime} index={index} />)}</div> : <div className="blog-empty-search"><Search size={28} /><h3>No matching articles</h3><p>Try another keyword or category.</p></div>}
-          {visibleCount < filteredPosts.length && <div className="blog-load-more"><button className="btn btn-outline" onClick={() => setVisibleCount(count => count + PAGE_SIZE)}>Load 6 More Articles <ArrowRight size={15} /></button></div>}
+          {visiblePosts.length ? <div className="blog-grid">{visiblePosts.map((post, index) => <BlogPostCard key={postSlug(post)} post={post} referenceTime={referenceTime} index={index} />)}</div> : <div className="blog-empty-search"><Search size={28} /><h3>No matching articles</h3><p>Try another keyword or category.</p></div>}
+          {visibleCount < filteredPosts.length && <div className="blog-load-more"><button className="btn btn-outline" onClick={() => setVisibleCount(count => count + PAGE_SIZE)}>Load More Articles <ArrowRight size={15} /></button></div>}
         </div>
       </section>}
 

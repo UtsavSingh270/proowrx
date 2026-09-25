@@ -1,4 +1,5 @@
-import PageInsights from '@/components/shared/PageInsights';
+import LatestBlogs from '@/components/shared/LatestBlogs';
+import PageCaseStudies from '@/components/shared/PageCaseStudies';
 import { pageMetadata } from '@/lib/seo';
 import HomeClient from './HomeClient';
 
@@ -13,11 +14,9 @@ const metadata = {
   },
 };
 
-function Page() {
-  return <HomeClient />;
-}
-
 export function generateMetadata() { return pageMetadata('/', metadata); }
 export const dynamic = 'force-dynamic';
 
-export default function PageWithInsights() { return <><Page /><PageInsights path="/" /></>; }
+export default function HomePage() {
+  return <HomeClient insights={<><LatestBlogs /><PageCaseStudies path="/" /></>} />;
+}

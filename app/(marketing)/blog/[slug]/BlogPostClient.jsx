@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Calendar, Clock, Tag, User, Eye, Heart, ChevronDown } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import { posts as postsApi } from '@/services/api';
@@ -97,7 +98,7 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
       {/* ── Hero ── */}
       <section className="post-hero">
         <div className="post-hero-img-wrap">
-          {post.image && <img src={post.image} alt="" loading="eager" decoding="async" />}
+          {post.image && <Image src={post.image} alt="" fill priority sizes="100vw" />}
           <div className="post-hero-overlay" />
         </div>
         <div className="container post-hero-content">
@@ -171,7 +172,7 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
               <div className="post-sidebar-related-heading"><span>Related insights</span><h4>You may also like</h4></div>
               <div className="post-related-list">{related.map(relatedPost => (
                 <Link href={`/blog/${postSlug(relatedPost)}`} className="post-related-item" key={postSlug(relatedPost)}>
-                  <span className="post-related-img">{relatedPost.image ? <img src={relatedPost.image} alt="" loading="lazy" decoding="async" /> : <span className="blog-image-placeholder" />}</span>
+                  <span className="post-related-img">{relatedPost.image ? <Image src={relatedPost.image} alt="" fill sizes="140px" /> : <span className="blog-image-placeholder" />}</span>
                   <span className="post-related-body">
                     <span className="blog-cat" style={{ background: relatedPost.categoryGlow, color: relatedPost.categoryColor }}>{relatedPost.category}</span>
                     <span className="post-related-title">{relatedPost.title}</span>

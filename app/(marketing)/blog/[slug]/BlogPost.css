@@ -343,6 +343,7 @@
 .post-related-item:hover { transform: translateX(3px); }
 
 .post-related-img {
+  position: relative;
   -webkit-box-flex: 0;
       -ms-flex-negative: 0;
           flex-shrink: 0;

@@ -34,6 +34,7 @@ export default function CookieConsent() {
     } else {
       window.dispatchEvent(new Event('proowrx:analytics-consent'));
     }
+    window.dispatchEvent(new Event('proowrx:consent-choice'));
     setDismissed(true);
     setDetails(false);
   }
@@ -41,7 +42,7 @@ export default function CookieConsent() {
   if (!open) return null;
 
   return (
-    <div className="cookie-consent" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
+    <div className="cookie-consent" role="region" aria-labelledby="cookie-title">
       <div className="cookie-consent-copy">
         <span className="cookie-consent-kicker"><ShieldCheck size={14} /> Privacy preferences</span>
         <h2 id="cookie-title">We respect your privacy</h2>

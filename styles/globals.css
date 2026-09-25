@@ -214,6 +214,19 @@ section[class*="-section"]:not([class*="hero"]),
 }
 .btn:hover::before { background: rgba(255,255,255,0.10); }
 
+.system-state {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.system-state > div { width: min(100%, 620px); }
+.system-state h1 { margin: 8px 0 14px; font-size: clamp(2rem, 7vw, 4rem); color: var(--navy); }
+.system-state p:not(.eyebrow) { margin: 0 auto 24px; color: var(--text-2); }
+
 .btn-gold {
   background: var(--grad-gold);
   color: var(--accent-contrast);

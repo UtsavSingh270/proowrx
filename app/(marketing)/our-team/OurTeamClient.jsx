@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import CtaBanner from '@/components/shared/CtaBanner';
@@ -77,12 +78,12 @@ function useReveal() {
 }
 
 const values = [
-  { emoji: '🎯', title: 'Client-First Mindset', desc: 'Every decision starts with what\'s best for our clients and their businesses.' },
-  { emoji: '🔒', title: 'Integrity & Trust', desc: 'We handle sensitive data with the utmost care and transparency at all times.' },
-  { emoji: '🚀', title: 'Continuous Growth', desc: 'We invest heavily in team training and development to stay ahead of industry changes.' },
-  { emoji: '🤝', title: 'Collaborative Spirit', desc: 'We work as a true extension of your team — not just a vendor in the background.' },
-  { emoji: '⚡', title: 'Speed & Accuracy', desc: 'Fast turnarounds without compromising on quality — every single file, every time.' },
-  { emoji: '🌏', title: 'Global Standards', desc: 'Australian-owned, globally-minded, and built to the highest professional standards.' },
+  { emoji: '🎯', title: 'COMMIT TO DELIVERY EXCELLENCE', desc: 'We complete assigned tasks accurately, follow set industry guidelines, and meet daily turnaround times. ' },
+  { emoji: '🔒', title: 'EMBRACE INTEGRITY AND OPENNESS', desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
+  { emoji: '🚀', title: 'PRACTICE RESPONSIBLE STEWARDSHIP', desc: 'We handle client files, financial records, and business systems with strict privacy and security.' },
+  { emoji: '🤝', title: 'IGNITE PASSION FOR THE GREATER GOOD', desc: 'We channel our energy into positive work that benefits our clients, team, and wider community.' },
+  { emoji: '⚡', title: 'INVEST IN AN EXCEPTIONAL CULTURE', desc: 'We build a workplace founded on mutual respect, continuous learning, and strong team collaboration.' },
+  { emoji: '🌏', title: 'LIVE A BALANCED LIFE', desc: 'We support healthy boundaries between work and personal life to maintain well-being and focus.' },
 ];
 
 export default function OurTeamClient({ initialMembers, initialCultureItems }) {
@@ -108,7 +109,7 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
     <div>
       <section
         className="page-hero page-hero--img team-page-hero"
-        style={{ '--hero-bg': 'url("/images/our-team/Proowrx_Logo.jpg")' }}
+        style={{ '--hero-bg': 'url("/images/our-team/Proowrx-team.webp")' }}
       >
         <div className="container team-hero-content">
           <div className="team-hero-heading">
@@ -116,7 +117,7 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
             <h1>The People Behind Proowrx</h1>
           </div>
           <div className="team-hero-people-space" aria-hidden="true" />
-          <p className="team-hero-description">A powerhouse leadership team striving to make Proowrx the first-choice outsourcing partner for Australian financial professionals.</p>
+          <p className="team-hero-description">Dedicated professionals trained in Australian workflows, ready to handle your back-office operations and help your business grow.</p>
         </div>
       </section>
 
@@ -129,7 +130,7 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
             <span className="chip chip-teal section-eyebrow">Leadership</span>
             <h2 className="section-title">Meet Our Core Team</h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              Experienced, passionate professionals who have dedicated their careers to helping mortgage brokers and accountants grow smarter.
+            Experienced leaders dedicated to maintaining high operational standards, client alignment, and team performance.
             </p>
           </div>
 
@@ -147,7 +148,7 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
                 style={{ '--member-color': member.color }}
               >
                 <div className="team-member-img-wrap">
-                  <img src={member.img} alt={member.name} loading="lazy" decoding="async" />
+                  {member.img ? <Image src={member.img} alt={member.name} fill sizes="(max-width: 640px) 100vw, 33vw" /> : <div className="team-image-placeholder" aria-hidden="true" />}
                   <div className="team-member-overlay" style={{ background: `linear-gradient(to top, ${member.color}44 0%, transparent 50%)` }} />
                   <div className="team-member-role-badge">{member.role}</div>
                 </div>
@@ -179,7 +180,7 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
               <div className="team-core-grid">
                 {coreMembers.map((member, i) => (
                   <div key={`${member.name}-${i}`} className="team-core-card">
-                    <img src={member.img} alt={member.name} loading="lazy" decoding="async" />
+                    {member.img ? <Image src={member.img} alt={member.name} width={420} height={280} sizes="(max-width: 640px) 100vw, 33vw" /> : <div className="team-image-placeholder" aria-hidden="true" />}
                     <div>
                       <h4>{member.name}</h4>
                       <p>{member.role}</p>
@@ -199,7 +200,7 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
             <span className="chip chip-gold section-eyebrow">What Drives Us</span>
             <h2 className="section-title">Our Team Values</h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              These principles guide every interaction, every file, and every decision we make on behalf of our clients.
+              The core operating standards our team follows across daily tasks, client communication, and system management.
             </p>
           </div>
           <div className="team-values-grid">
@@ -215,7 +216,7 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
       </section>
 
       {/* Why Join / Culture */}
-      <section className="section team-culture-section">
+      {/* <section className="section team-culture-section">
         <div className="container">
           <div ref={r3} className="reveal team-culture-inner">
             <div className="team-culture-text">
@@ -248,7 +249,7 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <CtaBanner />
     </div>

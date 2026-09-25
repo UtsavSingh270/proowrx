@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 import { ArrowRight, CheckCircle, X as XIcon } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
@@ -118,7 +119,7 @@ export default function Mortgage() {
             </div>
           </div>
           <div className="page-hero-visual">
-            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85" alt="Mortgage processing" />
+            <Image src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85" alt="Mortgage processing" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
             <div className="page-hero-badge-float">
               <span style={{ fontSize: '1.6rem' }}>🏠</span>
               <div>
@@ -144,7 +145,7 @@ export default function Mortgage() {
             </p>
           </div>
           <div ref={r2} className="reveal-right ma-intro-image">
-            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85" alt="Mortgage processing" loading="lazy" decoding="async" />
+            <Image src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85" alt="Mortgage processing" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
           </div>
         </div>
       </section>

@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, CheckCircle, BookOpen, Users, FileText, PieChart, Shield, BarChart2, Calculator, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Accounting.css';
 
@@ -120,7 +121,7 @@ export default function Accounting() {
             </div>
           </div>
           <div className="page-hero-visual">
-            <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=85" alt="Accounting team" />
+            <Image src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=85" alt="Accounting team" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
             <div className="page-hero-badge-float">
               <span style={{ fontSize: '1.6rem' }}>📊</span>
               <div>
@@ -146,7 +147,7 @@ export default function Accounting() {
             </p>
           </div>
           <div ref={r2} className="reveal-right acc-intro-image">
-            <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=85" alt="Accounting team" loading="lazy" decoding="async" />
+            <Image src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=85" alt="Accounting team" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
             <div className="acc-intro-badge">
               <strong>8 Core Services</strong>
               <span>All under one roof</span>

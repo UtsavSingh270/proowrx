@@ -18,8 +18,8 @@ const analyticsRoutes = require('./routes/analytics');
 
 /* ── App ────────────────────────────────────── */
 const app = express();
-const trustProxy = process.env.TRUST_PROXY || 'loopback';
-app.set('trust proxy', trustProxy);
+if (process.env.TRUST_PROXY === '1') app.set('trust proxy', 1);
+else app.set('trust proxy', 'loopback');
 
 /* ── Security / middleware ───────────────────── */
 app.use(helmet({
@@ -29,8 +29,9 @@ app.use(helmet({
 
 
 
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.disable('x-powered-by');
+app.use(express.json({ limit: '2mb' }));
+app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
 /* ── Rate limiting ───────────────────────────── */
 const globalLimiter = rateLimit({
@@ -78,7 +79,11 @@ app.use((req, res) => {
 /* ── Error handler ───────────────────────────── */
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(err.status || 500).json({ error: err.message || 'Internal server error' });
+  const status = err.status || 500;
+  const message = status >= 500 && process.env.NODE_ENV === 'production'
+    ? 'Internal server error'
+    : (err.message || 'Internal server error');
+  res.status(status).json({ error: message });
 });
 
 module.exports = app;

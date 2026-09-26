@@ -5,8 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Lottie } from 'lottie-react';
 import {
-  ArrowRight, ChevronLeft, ChevronRight, Shield, Users, Lock, Settings2,
-  BarChart3, Wrench, Building2, Search, Rocket
+  ArrowRight, ChevronLeft, ChevronRight, House, Calculator, Car, Megaphone,
+  ClipboardCheck, RefreshCw, GraduationCap, ShieldCheck
 } from 'lucide-react';
 import CtaBanner from '../../components/shared/CtaBanner';
 import './Home.css';
@@ -124,7 +124,7 @@ const STATS = [
 
 const SERVICES = [
   {
-    icon: <Building2 size={28} />,
+    icon: <House size={28} />,
     tag: 'For Australian Brokers',
     title: 'Mortgage Outsourcing Service',
     desc: 'Scale your brokerage efficiently with our specialised mortgage outsourcing service. By outsourcing mortgage loan processing to our dedicated team, you can reduce administrative overhead while ensuring faster file progression.',
@@ -134,7 +134,7 @@ const SERVICES = [
     to: '/mortgage',
   },
   {
-    icon: <BarChart3 size={28} />,
+    icon: <Calculator size={28} />,
     tag: 'For Australian Accountants',
     title: 'Accounting Outsourcing Service',
     desc: 'Safeguard your business profit margins and eliminate seasonal bottlenecks with an expert accounting outsourcing service. Our tailored outsourced accounting service provides reliable support for daily bookkeeping, bank reconciliations, payroll, and BAS draft preparation. ',
@@ -144,7 +144,7 @@ const SERVICES = [
     to: '/accounting',
   },
   {
-    icon: <Wrench size={28} />,
+    icon: <Car size={28} />,
     tag: 'For Asset Finance Brokers',
     title: 'Asset Finance Outsourcing Service',
     desc: 'Elevate deal turnaround times and boost client satisfaction with streamlined asset finance outsourcing service. Designed specifically for commercial, vehicle and equipment finance providers. Our comprehensive asset finance service covers application packaging, lender matrix compliance, quotation checks, and settlement coordination.',
@@ -154,7 +154,7 @@ const SERVICES = [
     to: '/asset-finance',
   },
   {
-    icon: <Search size={28} />,
+    icon: <Megaphone size={28} />,
     tag: 'For Finance Businesses',
     title: 'Digital Marketing Outsourcing Service',
     desc: 'Grow your business with digital marketing designed for financial services. Our team handles your local search, paid ads, website content, and social media from start to finish.',
@@ -167,25 +167,25 @@ const SERVICES = [
 
 const WHY_FEATURES = [
   {
-    icon: <Users size={22} />,
+    icon: <ClipboardCheck size={22} />,
     title: 'COMPLIANCE MANAGEMENT',
     desc: 'We handle all compliance and regulatory requirements as per industry standards, governing bodies, and platform frameworks, relieving your operational burden.',
     color: '#00D4B8',
   },
   {
-    icon: <Settings2 size={22} />,
+    icon: <RefreshCw size={22} />,
     title: 'ENSURING BUSINESS CONTINUITY',
     desc: 'We ensure uninterrupted operations with trained backup staff in place, so your work continues smoothly even when your dedicated team members are unavailable.',
     color: '#F5A623',
   },
   {
-    icon: <Rocket size={22} />,
+    icon: <GraduationCap size={22} />,
     title: 'REGULAR TRAINING & DEVELOPMENT',
     desc: 'At Proowrx, our team undergoes continuous, structured training to stay aligned with industry best practices across skills, workflows, compliance, and policy updates.',
     color: '#00D4B8',
   },
   {
-    icon: <Shield size={22} />,
+    icon: <ShieldCheck size={22} />,
     title: 'DATA SECURITY ASSURANCE',
     desc: 'Being ISO 27001:2022 certified, we ensure data security through industry-leading protocols, including 24/7 CCTV, secure access controls, data encryption, and a robust incident response plan.',
     color: '#F5A623',

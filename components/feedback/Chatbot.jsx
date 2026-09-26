@@ -2,9 +2,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  MessageCircle, X, Bot, Users, CalendarDays, Send,
+  MessageCircle, X, Bot, Send,
   Phone, Mail, Clock, ChevronRight, CheckCircle, ExternalLink,
-  Calculator, RefreshCw,
+  RefreshCw,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import './Chatbot.css';

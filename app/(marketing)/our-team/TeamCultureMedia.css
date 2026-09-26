@@ -34,11 +34,11 @@
 .worklife-gallery-scroll--compact { height: auto; min-height: 0; }
 .worklife-gallery-scroll--compact .worklife-gallery-sticky { position: relative; height: auto; min-height: 0; }
 .worklife-gallery-scroll--compact .worklife-gallery-viewport { overflow: visible; }
-.worklife-gallery-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; padding: 50px 0; }
+.worklife-gallery-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; padding: clamp(58px, 7vh, 82px) 0; }
 .worklife-gallery-heading { flex: 0 0 auto; margin-bottom: clamp(28px, 5vh, 52px); padding: 0 20px; }
 .worklife-gallery-viewport { width: 100%; overflow: hidden; }
-.worklife-gallery-track { display: grid; grid-template-rows: repeat(2, clamp(150px, 20vh, 205px)); grid-auto-columns: clamp(230px, 24vw, 340px); grid-auto-flow: column dense; gap: clamp(12px, 1.4vw, 18px); width: max-content; padding: 0 max(24px, calc((100vw - 1180px) / 2)); will-change: transform; }
-.worklife-video-section { position: relative; background: var(--surface); }
+.worklife-gallery-track { display: grid; grid-template-rows: repeat(2, clamp(150px, 20vh, 205px)); grid-auto-columns: clamp(230px, 24vw, 340px); grid-auto-flow: column dense; gap: clamp(12px, 1.4vw, 18px); width: max-content; padding: 14px max(24px, calc((100vw - 1180px) / 2)); will-change: transform; }
+.worklife-video-section { position: relative; overflow: visible; padding-block: clamp(76px, 9vw, 124px); background: var(--surface); }
 .worklife-section-head { max-width: 680px; margin: 0 auto 54px; text-align: center; }
 .worklife-section-head .section-body { margin: 0 auto; }
 .worklife-empty { padding: 48px 20px; border: 1px dashed var(--border); border-radius: 20px; color: var(--text-3); text-align: center; }
@@ -59,10 +59,10 @@
 .worklife-gallery-finish svg { color: var(--gold); }
 .worklife-gallery-finish span { color: var(--text-3); font-size: .8rem; }
 
-.worklife-video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.worklife-video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-block: -12px; padding-block: 12px; }
 .worklife-video-card { position: relative; aspect-ratio: 16/10; overflow: hidden; border-radius: 22px; background: #080f20; box-shadow: var(--shadow-lg); }
-.worklife-video-poster, .worklife-player { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; overflow: hidden; background: #080f20; color: inherit; cursor: pointer; text-align: left; }
-.worklife-video-poster img, .worklife-player video { width: 100%; height: 100%; object-fit: cover; }
+.worklife-video-poster { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; overflow: hidden; background: #080f20; color: inherit; cursor: pointer; text-align: left; }
+.worklife-video-poster img { width: 100%; height: 100%; object-fit: cover; }
 .worklife-video-sweep { position: absolute; z-index: 1; top: -25%; bottom: -25%; left: 0; width: 32%; transform: skewX(-18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent); pointer-events: none; }
 .worklife-video-fallback { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.3); background: linear-gradient(135deg, #172744, #080f20); }
 .worklife-video-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,15,32,.08), rgba(8,15,32,.92)); }
@@ -71,15 +71,60 @@
 .worklife-video-copy small { color: #f0c050; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .worklife-video-copy strong { font-size: 1.12rem; }
 .worklife-video-copy > span { overflow: hidden; color: rgba(255,255,255,.58); font-size: .78rem; text-overflow: ellipsis; white-space: nowrap; }
-.worklife-video-close { position: absolute; top: 13px; right: 13px; z-index: 2; display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; background: rgba(0,0,0,.58); color: #fff; cursor: pointer; }
+.worklife-lightbox,
+.worklife-video-modal { position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; padding: clamp(12px, 2.2vw, 30px); overflow: hidden; background: rgba(2,6,16,.92); backdrop-filter: blur(18px) saturate(1.15); }
+.worklife-lightbox::before,
+.worklife-video-modal::before { content: ''; position: absolute; width: min(64vw, 760px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(240,165,0,.19), rgba(27,103,191,.08) 46%, transparent 70%); filter: blur(18px); pointer-events: none; transform: translate(-42vw, -34vh); }
 
-.worklife-lightbox { position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; padding: 28px; background: rgba(3,8,18,.94); backdrop-filter: blur(14px); }
-.worklife-lightbox figure { position: relative; width: min(1080px, 94vw); margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 22px; background: #080f20; box-shadow: 0 40px 120px rgba(0,0,0,.55); }
-.worklife-lightbox-image { position: relative; width: 100%; height: min(72vh, 760px); }
-.worklife-lightbox-image img { object-fit: contain; }
-.worklife-lightbox figcaption { display: flex; flex-direction: column; gap: 3px; padding: 16px 20px; color: #fff; }
-.worklife-lightbox figcaption span { color: rgba(255,255,255,.58); font-size: .82rem; }
-.worklife-lightbox figure > button { position: absolute; top: 14px; right: 14px; display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: rgba(0,0,0,.62); color: #fff; cursor: pointer; }
+.worklife-lightbox-panel,
+.worklife-video-modal-panel { position: relative; isolation: isolate; width: min(1240px, 96vw); height: min(900px, calc(100dvh - 38px)); overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: 26px; background: linear-gradient(145deg, rgba(18,28,49,.98), rgba(5,10,22,.99)); box-shadow: 0 42px 140px rgba(0,0,0,.68), inset 0 1px rgba(255,255,255,.08); }
+.worklife-lightbox-panel { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+
+.worklife-viewer-bar,
+.worklife-video-modal-bar { position: relative; z-index: 2; display: flex; align-items: center; gap: 18px; min-height: 70px; padding: 12px 16px 12px 22px; border-bottom: 1px solid rgba(255,255,255,.1); background: rgba(7,13,27,.82); color: #fff; backdrop-filter: blur(16px); }
+.worklife-viewer-label,
+.worklife-video-modal-bar > div { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 2px; }
+.worklife-viewer-label span,
+.worklife-video-live { color: #f0b632; font-size: .66rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.worklife-viewer-label strong,
+.worklife-video-modal-bar strong { overflow: hidden; font-size: clamp(.9rem, 1.6vw, 1.08rem); text-overflow: ellipsis; white-space: nowrap; }
+
+.worklife-zoom-controls { display: flex; align-items: center; gap: 5px; padding: 4px; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; background: rgba(255,255,255,.06); }
+.worklife-zoom-controls button,
+.worklife-viewer-close,
+.worklife-video-modal-bar > button { display: grid; width: 38px; height: 38px; flex: 0 0 auto; place-items: center; border: 1px solid transparent; border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
+.worklife-zoom-controls button:hover:not(:disabled),
+.worklife-viewer-close:hover,
+.worklife-video-modal-bar > button:hover { border-color: rgba(240,165,0,.4); background: rgba(240,165,0,.13); color: #ffd36c; }
+.worklife-zoom-controls button:focus-visible,
+.worklife-viewer-close:focus-visible,
+.worklife-video-modal-bar > button:focus-visible { outline: 2px solid #f0a500; outline-offset: 2px; }
+.worklife-zoom-controls button:disabled { opacity: .32; cursor: not-allowed; }
+.worklife-zoom-controls output { min-width: 54px; color: rgba(255,255,255,.76); font-size: .75rem; font-variant-numeric: tabular-nums; font-weight: 800; text-align: center; }
+.worklife-viewer-close,
+.worklife-video-modal-bar > button { border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.06); }
+
+.worklife-lightbox-viewport { position: relative; min-width: 0; min-height: 0; overflow: auto; overscroll-behavior: contain; background-color: #030812; background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px), radial-gradient(circle at 50% 50%, rgba(37,74,122,.2), transparent 62%); background-size: 30px 30px, 30px 30px, 100% 100%; scrollbar-color: rgba(240,165,0,.56) rgba(255,255,255,.05); scrollbar-width: thin; }
+.worklife-lightbox-viewport.is-zoomed { cursor: grab; touch-action: none; }
+.worklife-lightbox-viewport.is-panning { cursor: grabbing; user-select: none; }
+.worklife-lightbox-image { position: relative; min-width: 100%; min-height: 100%; }
+.worklife-lightbox-image img { object-fit: contain; pointer-events: none; user-select: none; }
+
+.worklife-viewer-caption { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 58px; padding: 12px 22px; border-top: 1px solid rgba(255,255,255,.09); background: rgba(7,13,27,.92); color: rgba(255,255,255,.78); }
+.worklife-viewer-caption span { overflow: hidden; font-size: .85rem; text-overflow: ellipsis; white-space: nowrap; }
+.worklife-viewer-caption small { flex: 0 0 auto; color: rgba(255,255,255,.46); font-size: .7rem; }
+
+.worklife-video-modal-panel { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: auto; max-height: calc(100dvh - 38px); }
+.worklife-video-modal-bar { min-height: 76px; }
+.worklife-video-live { display: inline-flex; align-items: center; gap: 7px; }
+.worklife-video-live i { width: 7px; height: 7px; border-radius: 50%; background: #f0a500; box-shadow: 0 0 0 4px rgba(240,165,0,.12); }
+.worklife-video-stage { position: relative; display: grid; min-height: 0; aspect-ratio: 16 / 9; place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 20%, #172743, #02050c 72%); }
+.worklife-video-stage::before,
+.worklife-video-stage::after { content: ''; position: absolute; z-index: 0; width: 220px; height: 220px; border: 1px solid rgba(240,165,0,.13); transform: rotate(45deg); pointer-events: none; }
+.worklife-video-stage::before { top: -170px; left: -90px; }
+.worklife-video-stage::after { right: -90px; bottom: -170px; }
+.worklife-video-stage video { position: relative; z-index: 1; display: block; width: 100%; height: 100%; max-height: calc(100dvh - 190px); object-fit: contain; background: #000; }
+.worklife-video-modal-caption { padding: 15px 22px 17px; border-top: 1px solid rgba(255,255,255,.09); background: rgba(7,13,27,.92); color: rgba(255,255,255,.67); font-size: .84rem; line-height: 1.55; }
 
 html.dark .worklife-gallery-section { background: #080c18; }
 html.dark .worklife-gallery-scroll { background: #080c18; }
@@ -98,23 +143,44 @@ html.dark .worklife-video-section { background: #0f1628; }
   .worklife-hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); }
   .worklife-hero-stats div { min-width: 0; padding: 10px; grid-template-columns: 1fr; justify-items: center; }
   .worklife-hero-stats svg { grid-row: auto; }
-  .worklife-gallery-sticky { padding-top: 50px; padding-bottom: 50px; }
+  .worklife-gallery-sticky { padding-top: 56px; padding-bottom: 56px; }
   .worklife-gallery-heading { margin-bottom: 28px; }
-  .worklife-gallery-track { grid-template-rows: repeat(2, min(18vh, 145px)); grid-auto-columns: 42vw; gap: 10px; padding-inline: 16px; }
+  .worklife-gallery-track { grid-template-rows: repeat(2, min(18vh, 145px)); grid-auto-columns: 42vw; gap: 10px; padding: 12px 16px; }
   .worklife-gallery-item, .worklife-gallery-finish { border-radius: 14px; }
   .worklife-video-grid { grid-template-columns: 1fr; gap: 16px; }
   .worklife-video-card { aspect-ratio: 4/3; border-radius: 16px; }
   .worklife-play { width: 58px; height: 58px; }
   .worklife-video-copy { left: 18px; right: 18px; bottom: 17px; }
   .worklife-section-head { margin-bottom: 36px; }
-  .worklife-lightbox { padding: 12px; }
-  .worklife-lightbox figure { width: 100%; border-radius: 16px; }
-  .worklife-lightbox-image { height: 68vh; }
+  .worklife-lightbox,
+  .worklife-video-modal { padding: 8px; }
+  .worklife-lightbox-panel,
+  .worklife-video-modal-panel { width: 100%; max-height: calc(100dvh - 16px); border-radius: 18px; }
+  .worklife-lightbox-panel { height: calc(100dvh - 16px); }
+  .worklife-viewer-bar,
+  .worklife-video-modal-bar { min-height: 62px; padding: 9px 10px 9px 14px; gap: 8px; }
+  .worklife-viewer-label span { display: none; }
+  .worklife-viewer-label strong,
+  .worklife-video-modal-bar strong { max-width: 38vw; font-size: .84rem; }
+  .worklife-zoom-controls { margin-left: auto; gap: 1px; padding: 2px; }
+  .worklife-zoom-controls button { width: 34px; height: 34px; }
+  .worklife-zoom-controls output { min-width: 42px; font-size: .68rem; }
+  .worklife-zoom-controls button:nth-of-type(3) { display: none; }
+  .worklife-viewer-close,
+  .worklife-video-modal-bar > button { width: 36px; height: 36px; }
+  .worklife-viewer-caption { min-height: 52px; padding: 10px 14px; }
+  .worklife-viewer-caption span { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .worklife-viewer-caption small { display: none; }
+  .worklife-video-stage video { max-height: calc(100dvh - 150px); }
+  .worklife-video-modal-caption { max-height: 88px; overflow-y: auto; padding: 11px 15px 13px; font-size: .76rem; }
 }
 
 @media (max-width: 430px) {
   .worklife-hero-stats span { display: none; }
   .worklife-gallery-copy small, .worklife-video-copy > span { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .worklife-viewer-label { display: none; }
+  .worklife-zoom-controls { margin-left: 0; }
+  .worklife-video-modal-bar strong { max-width: 62vw; }
 }
 
 @media (prefers-reduced-motion: reduce) {

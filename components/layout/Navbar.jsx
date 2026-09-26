@@ -5,11 +5,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
-  ArrowRight, BarChart3, BriefcaseBusiness, Building2, Calculator,
-  CarFront, ChevronDown, Download, FileCheck2, FileStack, Globe,
-  Landmark, Megaphone, Menu, Mic, Newspaper, Palette, PenTool,
-  PiggyBank, Receipt, Shield, ShieldCheck, Target, UserRound, Users,
-  Wallet, X
+  ArrowRight, BarChart3, BookOpenCheck, Calculator, CarFront,
+  ChevronDown, Download, FileChartColumn, FileCheck2, FileStack,
+  Globe, House, Landmark, Megaphone, Menu, Mic, Newspaper, Palette,
+  PenTool, Receipt, Shield, ShieldCheck, Target, UserRound, Users,
+  Wallet, X,
 } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import './Navbar.css';
@@ -22,7 +22,7 @@ const SERVICE_GROUPS = [
     label: 'Mortgage',
     description: 'End-to-end broker support',
     to: '/mortgage',
-    icon: Building2,
+    icon: House,
     children: [
       { label: 'Mortgage Process', to: '/mortgage', desc: 'Full-cycle loan processing and lodgement', icon: FileCheck2 },
       { label: 'Dedicated Resource', to: '/virtual-assistant', desc: 'Dedicated remote support for your brokerage', icon: UserRound },
@@ -37,12 +37,11 @@ const SERVICE_GROUPS = [
     icon: Calculator,
     children: [
       { label: 'Accounting Services', to: '/accounting', desc: 'Complete Accounting Services For Your Business', icon: BarChart3 },
-      { label: 'Bookkeeping Services', to: '/bookkeeping', desc: 'Reconciliation, payroll and bookkeeping support', icon: BriefcaseBusiness },
+      { label: 'Bookkeeping Services', to: '/bookkeeping', desc: 'Reconciliation, payroll and bookkeeping support', icon: BookOpenCheck },
       { label: 'Tax, BAS & SMSF', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: Receipt },
       { label: 'Payroll Processing', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: Wallet },
       { label: 'Cash Forecast Statement', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: BarChart3 },
       { label: 'Audit Support', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: ShieldCheck },
-      // { label: 'SMSF', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: PiggyBank },
     ],
   },
   {
@@ -83,7 +82,7 @@ const nav = [
     label: 'Resources', to: '/resources',
     mega: [
       { label: 'Data Security', to: '/data-security', desc: 'Data Security & Privacy at Proowrx', icon: Shield },
-      { label: 'Case Studies', to: '/case-study', desc: 'Read Case studies and success stories', icon: BarChart3 },
+      { label: 'Case Studies', to: '/case-study', desc: 'Read Case studies and success stories', icon: FileChartColumn },
       { label: 'Blogs', to: '/blog', desc: 'Read Latest news and insights', icon: Newspaper },
       { label: 'Downloadables', to: '/downloadable-resources', desc: 'Download E-Guides and Resources', icon: Download },
     ],

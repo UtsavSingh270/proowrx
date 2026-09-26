@@ -5,10 +5,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import {
-  FileText, Briefcase, LogOut, Plus, Edit2, Trash2, Eye,
+  Briefcase, LogOut, Plus, Edit2, Trash2, Eye,
   EyeOff, Save, Image as ImageIcon, Star, Ban,
-  Users, Shield, Activity, Inbox, Mail, CalendarDays, Maximize2, Minimize2, BarChart3, Clock3, Moon, Sun, PanelLeftOpen, PanelLeftClose,
-  Table2,
+  Users, Inbox, Mail, CalendarDays, Maximize2, Minimize2, BarChart3,
+  Clock3, Download, FileChartColumn, Images, Moon,
+  Newspaper, PanelLeftOpen, PanelLeftClose, ScrollText, SearchCheck,
+  ShieldUser, Sun, Table2,
 } from 'lucide-react';
 import { auth, adminPosts, adminJobs, teamMembers, contact, newsletter, meetings } from '@/services/api';
 import { useTheme } from '@/components/providers/ThemeProvider';
@@ -404,7 +406,7 @@ function PostModal({ post, members, onClose, onSave }) {
         email: author.email || '',
         title: author.position || '',
         image: author.image || '',
-        bio: author.summary || author.description || '',
+        bio: author.summary || author.fullSummary || author.description || '',
       } : null,
     }));
   }
@@ -954,6 +956,7 @@ function TeamMemberModal({ member, onClose, onSave }) {
     image: member?.image || '',
     category: member?.category || 'core',
     summary: member?.summary || '',
+    fullSummary: member?.fullSummary || member?.description || '',
     socialMedia: member?.socialMedia || {
       twitter: '',
       linkedin: '',
@@ -1029,8 +1032,14 @@ function TeamMemberModal({ member, onClose, onSave }) {
           <FileUploadInput label="Member / author photo" value={form.image} onChange={value => set('image', value)} accept="image/jpeg,image/png,image/webp,image/gif" allowUrl={false} />
 
           <div className="dash-form-group">
-            <label className="dash-form-label">Summary / Short Bio</label>
-            <textarea className="dash-form-textarea" rows={2} value={form.summary} onChange={e => set('summary', e.target.value)} placeholder="Brief overview shown on team pages" />
+            <label className="dash-form-label">Short Summary</label>
+            <textarea className="dash-form-textarea" rows={3} value={form.summary} onChange={e => set('summary', e.target.value)} placeholder="Concise introduction shown on the member card" />
+          </div>
+
+          <div className="dash-form-group">
+            <label className="dash-form-label">Full Summary</label>
+            <textarea className="dash-form-textarea" rows={7} value={form.fullSummary} onChange={e => set('fullSummary', e.target.value)} placeholder="Detailed profile shown when visitors open Read More" />
+            <span className="dash-form-hint">Use line breaks to separate paragraphs in the public profile popup.</span>
           </div>
 
           {isFeatured && (
@@ -1458,7 +1467,7 @@ export default function Dashboard() {
             className={`dash-nav-btn${tab === 'blog' ? ' active' : ''}`}
             onClick={() => selectTab('blog')}
           >
-            <FileText size={18} /> <span>Blogs</span>
+            <Newspaper size={18} /> <span>Blogs</span>
           </button>
           <button
             className={`dash-nav-btn${tab === 'jobs' ? ' active' : ''}`}
@@ -1476,16 +1485,16 @@ export default function Dashboard() {
             className={`dash-nav-btn${tab === 'resources' ? ' active' : ''}`}
             onClick={() => selectTab('resources')}
           >
-            <FileText size={18} /> <span>Downloadables</span>
+            <Download size={18} /> <span>Downloadables</span>
           </button>
           <button
             className={`dash-nav-btn${tab === 'worklife' ? ' active' : ''}`}
             onClick={() => selectTab('worklife')}
           >
-            <ImageIcon size={18} /> <span>Team Culture Media</span>
+            <Images size={18} /> <span>Team Culture Media</span>
           </button>
-          <button className={`dash-nav-btn${tab === 'case-studies' ? ' active' : ''}`} onClick={() => selectTab('case-studies')}><Briefcase size={18} /><span>Case Studies</span></button>
-          <button className={`dash-nav-btn${tab === 'seo' ? ' active' : ''}`} onClick={() => selectTab('seo')}><FileText size={18} /><span>Page SEO</span></button>
+          <button className={`dash-nav-btn${tab === 'case-studies' ? ' active' : ''}`} onClick={() => selectTab('case-studies')}><FileChartColumn size={18} /><span>Case Studies</span></button>
+          <button className={`dash-nav-btn${tab === 'seo' ? ' active' : ''}`} onClick={() => selectTab('seo')}><SearchCheck size={18} /><span>Page SEO</span></button>
           <button className={`dash-nav-btn${tab === 'enquiries' ? ' active' : ''}`} onClick={() => selectTab('enquiries')}>
             <Inbox size={18} /> <span>Form Enquiries</span>
           </button>
@@ -1509,13 +1518,13 @@ export default function Dashboard() {
                 className={`dash-nav-btn${tab === 'admins' ? ' active' : ''}`}
                 onClick={() => selectTab('admins')}
               >
-                <Shield size={18} /> <span>Admin Users</span>
+                <ShieldUser size={18} /> <span>Admin Users</span>
               </button>
               <button
                 className={`dash-nav-btn${tab === 'audit' ? ' active' : ''}`}
                 onClick={() => selectTab('audit')}
               >
-                <Activity size={18} /> <span>Audit Logs</span>
+                <ScrollText size={18} /> <span>Audit Logs</span>
               </button>
             </>
           )}

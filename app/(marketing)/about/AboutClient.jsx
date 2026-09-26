@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Target, Rocket, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, Target, Rocket, Handshake, TrendingUp } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './About.css';
@@ -21,7 +21,7 @@ function useReveal() {
 const values = [
   { icon: <Target size={24} />, title: 'Our Vision', desc: 'To be the first choice for businesses seeking a trusted outsourcing partner to accelerate performance, stability, and sustainable long-term market expansion.'},
   { icon: <Rocket size={24} />, title: 'Our Mission', desc: 'To deliver exceptional outsourcing services that enable clients to optimise operational performance, improve daily productivity, and achieve continuous growth over the long term.'},
-  { icon: <Users size={24} />, title: 'Our Approach', desc: 'To listen carefully, communicate transparently, adapt to changing requirements, and accept complete accountability for executing every assigned project accurately and on schedule. '},
+  { icon: <Handshake size={24} />, title: 'Our Approach', desc: 'To understand your processes, systems and business requirements before we get to work. Our teams work as an extension of your business—following your workflows, adapting to your requirements and maintaining clear communication at every stage.'},
   { icon: <TrendingUp size={24} />, title: 'Our Focus', desc: 'To manage administrative tasks that consume operational time, enabling businesses to improve efficiency and direct internal resources toward core objectives and expansion strategies.'},
 ];
 
@@ -155,7 +155,7 @@ export default function About({ initialMembers = [] }) {
           <div className="diff-grid">
             {[
               { img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=85', title: 'We Understand The Australian Market', desc: 'Our teams are trained around Australian processes and industry requirements, with guidance from Australia-based professionals. That means we approach the work with a clear understanding of how Australian businesses operate.' },
-              { img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=85', title: 'Industry-Trained Teams', desc: 'From risk and credit analysis to outbound calling and objection handling, our staff undergo regular training. They understand your processes and seamlessly integrate into your daily operations.' },
+              { img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=85', title: 'BID Trained Teams', desc: 'Our mortgage support teams are trained to understand the processes and documentation requirements that underpin Best Interests Duty (BID).' },
               { img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85', title: 'Flexible Business Support', desc: 'Your workload can change from month to month. We can take on specific tasks, provide ongoing support or add capacity when things get busy, all while working with the systems and processes you already use.' },
             ].map((d, i) => (
               <div key={i} className={`diff-card reveal reveal-delay-${i + 1}`}>

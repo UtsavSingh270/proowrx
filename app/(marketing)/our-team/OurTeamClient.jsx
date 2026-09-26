@@ -1,67 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
-import { FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import { ArrowRight, X } from 'lucide-react';
+import { FaLinkedinIn } from 'react-icons/fa';
 import CtaBanner from '@/components/shared/CtaBanner';
 import TeamCultureMedia from './TeamCultureMedia';
 import './OurTeam.css';
-
-function SocialMediaIcons({ socialMedia }) {
-  if (!socialMedia || Object.keys(socialMedia).length === 0) return null;
-  
-  const icons = {
-    twitter: FaTwitter,
-    linkedin: FaLinkedinIn,
-    facebook: FaFacebookF,
-    instagram: FaInstagram,
-    github: FaGithub,
-  };
-  
-  return (
-    <div style={{ display: 'flex', gap: 12, marginTop: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-      {Object.entries(socialMedia).map(([platform, url]) => {
-        if (!url) return null;
-        const Icon = icons[platform];
-        if (!Icon) return null;
-        
-        return (
-          <a
-            key={platform}
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            title={platform}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 32,
-              height: 32,
-              borderRadius: 6,
-              backgroundColor: 'rgba(201, 162, 39, 0.1)',
-              color: '#c9a227',
-              transition: 'all 0.2s ease',
-              textDecoration: 'none',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = '#c9a227';
-              e.currentTarget.style.color = 'white';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = 'rgba(201, 162, 39, 0.1)';
-              e.currentTarget.style.color = '#c9a227';
-            }}
-          >
-            <Icon size={16} />
-          </a>
-        );
-      })}
-    </div>
-  );
-}
 
 function useReveal() {
   const ref = useRef(null);
@@ -77,6 +22,94 @@ function useReveal() {
   return ref;
 }
 
+function safeExternalUrl(value) {
+  if (!value) return '';
+  try {
+    const url = new URL(value);
+    return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+  } catch {
+    return '';
+  }
+}
+
+function TeamProfileModal({ member, onClose }) {
+  const closeButtonRef = useRef(null);
+  const linkedInUrl = safeExternalUrl(member.socialMedia?.linkedin);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+    const closeOnEscape = event => {
+      if (event.key === 'Escape') onClose();
+      if (event.key !== 'Tab') return;
+      const focusable = event.currentTarget.document.querySelectorAll('.team-profile-modal button:not([disabled]), .team-profile-modal a[href]');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+      previousFocus?.focus?.();
+    };
+  }, [onClose]);
+
+  return (
+    <div className="team-profile-backdrop" onClick={event => event.target === event.currentTarget && onClose()}>
+      <div className="team-profile-modal" role="dialog" aria-modal="true" aria-labelledby="team-profile-name">
+        <button ref={closeButtonRef} type="button" className="team-profile-close" onClick={onClose} aria-label="Close team member profile">
+          <X size={21} />
+        </button>
+
+        <aside className="team-profile-person">
+          <div className="team-profile-visual">
+            <div className="team-profile-image-stage">
+              {member.img ? (
+                <Image src={member.img} alt={member.name} fill sizes="(max-width: 640px) 112px, 360px" />
+              ) : (
+                <div className="team-image-placeholder" aria-hidden="true" />
+              )}
+            </div>
+            <div className="team-profile-shutters" aria-hidden="true">
+              <span /><span /><span /><span />
+            </div>
+            <span className="team-profile-scan" aria-hidden="true" />
+          </div>
+          <div className="team-profile-identity">
+            <span>{member.role}</span>
+            <h2 id="team-profile-name">{member.name}</h2>
+          </div>
+        </aside>
+
+        <div className="team-profile-content">
+          <span className="team-profile-kicker">About <strong>{member.name}</strong></span>
+          {member.shortSummary && <p className="team-profile-intro">{member.shortSummary}</p>}
+          <div className="team-profile-copy">{member.fullSummary}</div>
+          <div className="team-profile-actions">
+            {linkedInUrl ? (
+              <a href={linkedInUrl} target="_blank" rel="noopener noreferrer" className="team-profile-button team-profile-button--primary">
+                <FaLinkedinIn aria-hidden="true" /> LinkedIn
+              </a>
+            ) : (
+              <span className="team-profile-button team-profile-button--disabled" aria-disabled="true"><FaLinkedinIn aria-hidden="true" /> LinkedIn</span>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const values = [
   { emoji: '🎯', title: 'COMMIT TO DELIVERY EXCELLENCE', desc: 'We complete assigned tasks accurately, follow set industry guidelines, and meet daily turnaround times. ' },
   { emoji: '🔒', title: 'EMBRACE INTEGRITY AND OPENNESS', desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
@@ -87,19 +120,18 @@ const values = [
 ];
 
 export default function OurTeamClient({ initialMembers, initialCultureItems }) {
-  const r1 = useReveal(), r2 = useReveal(), r3 = useReveal();
+  const r1 = useReveal(), r2 = useReveal();
+  const [selectedMember, setSelectedMember] = useState(null);
+  const closeProfile = useCallback(() => setSelectedMember(null), []);
 
   const sourceTeam = (initialMembers || []).map(member => ({
     name: member.name,
     role: member.position,
     img: member.image,
-    email: member.email,
-    bio: member.description,
-    summary: member.summary || '',
-    tags: member.tags || [],
+    shortSummary: member.summary || member.description || '',
+    fullSummary: member.fullSummary || member.description || member.summary || '',
     socialMedia: member.socialMedia || {},
     color: member.category === 'featured' ? '#c9a227' : '#1f9e8e',
-    bookable: member.bookable,
     category: member.category,
   }));
   const featuredMembers = sourceTeam.filter(member => member.category === 'featured');
@@ -145,27 +177,19 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
               <div
                 key={i}
                 className={`team-member-card reveal reveal-delay-${i + 1}`}
-                style={{ '--member-color': member.color }}
+                style={{ '--member-color': member.color, '--member-index': i }}
               >
                 <div className="team-member-img-wrap">
-                  {member.img ? <Image src={member.img} alt={member.name} fill sizes="(max-width: 640px) 100vw, 33vw" /> : <div className="team-image-placeholder" aria-hidden="true" />}
+                  {member.img ? <Image src={member.img} alt={member.name} fill sizes="(max-width: 640px) 42vw, (max-width: 1200px) 23vw, 320px" /> : <div className="team-image-placeholder" aria-hidden="true" />}
                   <div className="team-member-overlay" style={{ background: `linear-gradient(to top, ${member.color}44 0%, transparent 50%)` }} />
                   <div className="team-member-role-badge">{member.role}</div>
                 </div>
                 <div className="team-member-body">
                   <h3 className="team-member-name">{member.name}</h3>
-                  {member.summary && <p style={{ fontSize: '0.85rem', fontStyle: 'italic', color: 'var(--text-2)', marginBottom: 8 }}>{member.summary}</p>}
-                  <p className="team-member-bio">{member.bio}</p>
-                  <SocialMediaIcons socialMedia={member.socialMedia} />
-                  {member.tags?.length > 0 && (
-                    <div className="team-member-tags">
-                      {member.tags.map(t => (
-                        <span key={t} className="team-member-tag" style={{ borderColor: member.color + '40', color: member.color }}>
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <p className="team-member-summary">{member.shortSummary || 'Learn more about this member of the Proowrx team.'}</p>
+                  <button type="button" className="team-member-read-more" onClick={() => setSelectedMember(member)} aria-label={`Read more about ${member.name}`}>
+                    Read More <ArrowRight size={16} />
+                  </button>
                 </div>
               </div>
             ))}
@@ -252,6 +276,8 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
       </section> */}
 
       <CtaBanner />
+
+      {selectedMember && <TeamProfileModal member={selectedMember} onClose={closeProfile} />}
     </div>
   );
 }

@@ -7,6 +7,7 @@ const TeamMemberSchema = new mongoose.Schema({
   category:    { type: String, enum: ['featured', 'core'], default: 'core' },
   description: { type: String, default: '' },
   summary:     { type: String, default: '' },
+  fullSummary: { type: String, default: '' },
   socialMedia: {
     twitter:    { type: String, default: '' },
     linkedin:   { type: String, default: '' },

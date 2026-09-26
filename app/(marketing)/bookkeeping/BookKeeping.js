@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   ArrowRight, CheckCircle2, Shield, FileCheck,
-  TrendingUp, Clock, Landmark, Receipt, Users,
+  TrendingUp, Clock, Landmark, Receipt, BadgeDollarSign,
   BarChart3, Settings2, Percent, CalendarCheck,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
@@ -37,7 +37,7 @@ const introPoints = [
 const provideItems = [
   { icon: <Landmark size={20} />, title: 'Bank & Card Reconciliation', body: 'Every transaction matched against your bank feed daily or weekly, so your ledger is accurate, not backdated at month-end.' },
   { icon: <Receipt size={20} />, title: 'Accounts Payable & Receivable', body: 'Bills entered and scheduled, invoices raised and followed up, so cash keeps moving in both directions.' },
-  { icon: <Users size={20} />, title: 'Payroll & STP Lodgement', body: 'Pay runs processed on time, every time, with Single Touch Payroll lodged directly to the ATO.' },
+  { icon: <BadgeDollarSign size={20} />, title: 'Payroll & STP Lodgement', body: 'Pay runs processed on time, every time, with Single Touch Payroll lodged directly to the ATO.' },
   { icon: <FileCheck size={20} />, title: 'BAS & IAS Preparation', body: 'GST-coded transactions and activity statements prepared and ready for your accountant to review and lodge.' },
   { icon: <BarChart3 size={20} />, title: 'Financial & Management Reports', body: 'Profit & loss, balance sheet and cash flow reports delivered monthly, in a format you can actually act on.' },
   { icon: <Settings2 size={20} />, title: 'Software Setup & Clean-up', body: 'Xero, MYOB or QuickBooks configured, migrated or untangled — chart of accounts included.' },

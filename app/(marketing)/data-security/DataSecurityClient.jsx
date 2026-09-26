@@ -3,7 +3,11 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Shield, Lock, Eye, Server, Users, FileCheck, Wifi, CheckCircle } from 'lucide-react';
+import {
+  ArrowRight, Shield, Lock, Eye, Server, CheckCircle, ClipboardCheck,
+  Cctv, ShieldCheck, Workflow, Laptop, Usb, LockKeyhole, Cloud,
+  KeyRound, UserRoundCheck, WifiOff, GraduationCap,
+} from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import './DataSecurity.css';
 
@@ -23,7 +27,7 @@ function useReveal() {
 
 const pillars = [
   {
-    icon: <Users size={32} />,
+    icon: <ClipboardCheck size={32} />,
     color: '#c9a227',
     glow: 'rgba(201,162,39,0.18)',
     num: '01',
@@ -37,7 +41,7 @@ const pillars = [
     ],
   },
   {
-    icon: <Eye size={32} />,
+    icon: <Cctv size={32} />,
     color: '#1f9e8e',
     glow: 'rgba(31,158,142,0.18)',
     num: '02',
@@ -51,7 +55,7 @@ const pillars = [
     ],
   },
   {
-    icon: <Wifi size={32} />,
+    icon: <ShieldCheck size={32} />,
     color: '#c9a227',
     glow: 'rgba(201,162,39,0.18)',
     num: '03',
@@ -65,7 +69,7 @@ const pillars = [
     ],
   },
   {
-    icon: <FileCheck size={32} />,
+    icon: <Workflow size={32} />,
     color: '#1f9e8e',
     glow: 'rgba(31,158,142,0.18)',
     num: '04',
@@ -81,15 +85,15 @@ const pillars = [
 ];
 
 const features = [
-  { icon: <Server size={22} />, title: 'Restricted On-Site Device Usage', desc: 'Office-issued laptops are used only in the working area and are not permitted to leave the office building. This keeps sensitive client information within a controlled work environment.' },
-  { icon: <Lock size={22} />, title: 'Disabled Ports & Wireless Access', desc: 'We disable physical device ports and Bluetooth on our systems. This helps prevent unauthorised data transfers through external devices or wireless connections.' },
-  { icon: <Shield size={22} />, title: 'Secured Devices', desc: 'Our systems have controlled access settings in place to prevent unauthorised use and changes to device configurations.' },
-  { icon: <Eye size={22} />, title: 'No Local Data Storage', desc: 'We do not store client and business information locally on user devices. Instead, our teams access information through approved cloud-based systems.' },
-  { icon: <Users size={22} />, title: 'Multi-Factor Authentication', desc: 'We use multi-factor authentication across our systems and applications. Staff need an additional verification step beyond their password to access the system.' },
-  { icon: <FileCheck size={22} />, title: 'Tiered Data Access', desc: 'Access to client information is based on staff roles and responsibilities. Staff can access only the information they need for their assigned work.'},
-  { icon: <FileCheck size={22} />, title: 'Restricted Internet Access', desc: 'Internet access on office devices is limited to approved websites using a firewall. This keeps internet use focused on work-related activities and reduces exposure to unwanted websites and online threats.' },
-  { icon: <FileCheck size={22} />, title: 'Cyber Security Software', desc: 'Our systems use email security, antivirus and anti-malware software, and intrusion detection and prevention systems. These tools help protect electronic data from external threats and cyber attacks.' },
-  { icon: <FileCheck size={22} />, title: 'Security Awareness Training', desc: 'We conduct regular training programs for our teams to ensure they understand security protocols, recognise potential risks, and protect client data.' },
+  { icon: <Laptop size={22} />, title: 'Restricted On-Site Device Usage', desc: 'Office-issued laptops are used only in the working area and are not permitted to leave the office building. This keeps sensitive client information within a controlled work environment.' },
+  { icon: <Usb size={22} />, title: 'Disabled Ports & Wireless Access', desc: 'We disable physical device ports and Bluetooth on our systems. This helps prevent unauthorised data transfers through external devices or wireless connections.' },
+  { icon: <LockKeyhole size={22} />, title: 'Secured Devices', desc: 'Our systems have controlled access settings in place to prevent unauthorised use and changes to device configurations.' },
+  { icon: <Cloud size={22} />, title: 'No Local Data Storage', desc: 'We do not store client and business information locally on user devices. Instead, our teams access information through approved cloud-based systems.' },
+  { icon: <KeyRound size={22} />, title: 'Multi-Factor Authentication', desc: 'We use multi-factor authentication across our systems and applications. Staff need an additional verification step beyond their password to access the system.' },
+  { icon: <UserRoundCheck size={22} />, title: 'Tiered Data Access', desc: 'Access to client information is based on staff roles and responsibilities. Staff can access only the information they need for their assigned work.'},
+  { icon: <WifiOff size={22} />, title: 'Restricted Internet Access', desc: 'Internet access on office devices is limited to approved websites using a firewall. This keeps internet use focused on work-related activities and reduces exposure to unwanted websites and online threats.' },
+  { icon: <ShieldCheck size={22} />, title: 'Cyber Security Software', desc: 'Our systems use email security, antivirus and anti-malware software, and intrusion detection and prevention systems. These tools help protect electronic data from external threats and cyber attacks.' },
+  { icon: <GraduationCap size={22} />, title: 'Security Awareness Training', desc: 'We conduct regular training programs for our teams to ensure they understand security protocols, recognise potential risks, and protect client data.' },
 ];
 
 export default function DataSecurity() {
@@ -121,13 +125,13 @@ export default function DataSecurity() {
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">24/7</span>
-                <span className="page-hero-stat-label">CCTV Monitoring</span>
+                <span className="page-hero-stat-num">ASIC</span>
+                <span className="page-hero-stat-label">Cyber Resilient </span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">100%</span>
-                <span className="page-hero-stat-label">End to End Data Protection</span>
+                <span className="page-hero-stat-num">MFA-Enforced</span>
+                <span className="page-hero-stat-label">Digital Infrastructure</span>
               </div>
             </div>
           </div>

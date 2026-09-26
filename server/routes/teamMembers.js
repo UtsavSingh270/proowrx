@@ -62,7 +62,7 @@ router.put('/:id', requireAdmin, async (req, res) => {
         'authorProfile.email': member.email || '',
         'authorProfile.title': member.position || '',
         'authorProfile.image': member.image || '',
-        'authorProfile.bio': member.summary || member.description || '',
+        'authorProfile.bio': member.summary || member.fullSummary || member.description || '',
       } }
     );
     await deleteReplacedCloudinaryValue(oldMember?.image, member.image, 'team member image');

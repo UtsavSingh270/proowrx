@@ -1,7 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight, CheckCircle, BookOpen, Users, FileText, PieChart, Shield, BarChart2, Calculator, TrendingUp } from 'lucide-react';
+import {
+  ArrowRight, CheckCircle, BookOpenCheck, BadgeDollarSign, ReceiptText,
+  PieChart, ChartSpline, PiggyBank, ScanSearch, FileCheck2,
+} from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ServiceFaq from '@/components/shared/ServiceFaq';
@@ -23,43 +26,43 @@ function useReveal() {
 
 const services = [
   {
-    icon: <BookOpen size={26} />,
+    icon: <BookOpenCheck size={26} />,
     color: '#c9a227',
     title: 'Bookkeeping',
     desc: 'Comprehensive bookkeeping including bank reconciliation, accounts payable/receivable, mailbox services, month-end finalization, cash forecasts, and annual workbook reconciliation.',
   },
   {
-    icon: <Users size={26} />,
+    icon: <BadgeDollarSign size={26} />,
     color: '#1f9e8e',
     title: 'Payroll Processing',
     desc: 'Complete payroll management — employee payments, tax deductions, admin tasks, and monthly/quarterly/annual tax filings — ensuring accuracy and employee satisfaction.',
   },
   {
-    icon: <FileText size={26} />,
+    icon: <ReceiptText size={26} />,
     color: '#c9a227',
     title: 'Annual Tax Returns',
     desc: 'Expert handling of complex Australian tax compliance, document management, and accurate lodgement, reducing your compliance risk.',
   },
   {
-    icon: <TrendingUp size={26} />,
+    icon: <ChartSpline size={26} />,
     color: '#1f9e8e',
     title: 'Tax Planning',
     desc: 'Customized, proactive tax preparation strategies that optimize your clients\' tax positions throughout the year.',
   },
   {
-    icon: <Shield size={26} />,
+    icon: <PiggyBank size={26} />,
     color: '#c9a227',
     title: 'SMSF Management',
     desc: 'Fund setup, period processing, bank reconciliation, audit support, and customized reporting for Self-Managed Superannuation Funds.',
   },
   {
-    icon: <BarChart2 size={26} />,
+    icon: <ScanSearch size={26} />,
     color: '#1f9e8e',
     title: 'Audit Support',
     desc: 'Comprehensive analysis and thorough working file preparation that makes your audit process smooth and stress-free.',
   },
   {
-    icon: <Calculator size={26} />,
+    icon: <FileCheck2 size={26} />,
     color: '#c9a227',
     title: 'BAS, IAS, Super & STP',
     desc: 'End-to-end compliance management for Business Activity Statements, Instalment Activity Statements, superannuation, and Single Touch Payroll lodgements.',

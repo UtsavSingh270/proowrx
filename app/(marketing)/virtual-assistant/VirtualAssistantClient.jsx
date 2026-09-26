@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   ArrowRight, CheckCircle, Clock, Calendar, Users, Mail,
-  FileText, Phone, Database, Star, Headphones,
+  FileText, Phone, Database, FileChartColumn, Headphones,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './VirtualAssistant.css';
@@ -32,7 +32,7 @@ const tasks = [
   { icon: <Phone size={18} />, label: 'Lender Follow-ups', desc: 'Chase progress with lenders, solicitors and real-estate agents.' },
   { icon: <Users size={18} />, label: 'Client Onboarding', desc: 'Send welcome kits, collect IDs and guide clients through the process.' },
   { icon: <Headphones size={18} />, label: 'Status Update Calls', desc: 'Make routine update calls to keep clients informed at every stage.' },
-  { icon: <Star size={18} />, label: 'Report & Review Prep', desc: 'Compile progress reports and pre-settlement review packs for brokers.' },
+  { icon: <FileChartColumn size={18} />, label: 'Report & Review Prep', desc: 'Compile progress reports and pre-settlement review packs for brokers.' },
 ];
 
 const plans = [

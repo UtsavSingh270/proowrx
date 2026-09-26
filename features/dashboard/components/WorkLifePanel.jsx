@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Plus, Edit2, Trash2, Save, Camera, Video } from 'lucide-react';
+import { Plus, Edit2, Trash2, Save } from 'lucide-react';
 import { worklife as worklifeApi, upload as uploadApi } from '@/services/api';
 import FileUploadInput from '@/components/shared/FileUploadInput';
 

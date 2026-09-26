@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ArrowRight, ExternalLink, CheckCircle, Users, TrendingUp, Heart, Zap, Globe, Star } from 'lucide-react';
+import { ArrowRight, ExternalLink, CheckCircle, GraduationCap, TrendingUp, Heart, HandHeart, Zap, Globe, Star } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import './Career.css';
 
@@ -22,11 +22,11 @@ function useReveal() {
 
 const perks = [
   { icon: <TrendingUp size={24} />, title: 'Career Growth', desc: 'Clear advancement paths and ongoing training to help you develop your skills and grow your career with Proowrx.' },
-  { icon: <Users size={24} />, title: 'Expert Mentorship', desc: 'Work alongside experienced professionals and learn directly from Australian mortgage and accounting industry leaders.' },
+  { icon: <GraduationCap size={24} />, title: 'Expert Mentorship', desc: 'Work alongside experienced professionals and learn directly from Australian mortgage and accounting industry leaders.' },
   { icon: <Globe size={24} />, title: 'Global Exposure', desc: 'Work with top Australian financial professionals and gain international industry knowledge that sets your CV apart.' },
   { icon: <Zap size={24} />, title: 'Dynamic Environment', desc: 'Fast-paced, innovative workplace where your contributions make a real and visible impact from day one.' },
   { icon: <Heart size={24} />, title: 'Work-Life Balance', desc: 'We value your well-being — structured hours, supportive culture, and a management team that genuinely cares.' },
-  { icon: <CheckCircle size={24} />, title: 'Meaningful Work', desc: 'Help Australian businesses thrive. What you do here matters — every file you process is real value for a real client.' },
+  { icon: <HandHeart size={24} />, title: 'Meaningful Work', desc: 'Help Australian businesses thrive. What you do here matters — every file you process is real value for a real client.' },
 ];
 
 export default function CareerClient({ initialJobs }) {

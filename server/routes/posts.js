@@ -37,7 +37,7 @@ async function normalizePostInput(body) {
       email: member.email || '',
       title: member.position || '',
       image: member.image || '',
-      bio: member.summary || member.description || '',
+      bio: member.summary || member.fullSummary || member.description || '',
     };
   }
   return data;

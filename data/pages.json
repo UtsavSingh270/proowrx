@@ -17,6 +17,7 @@
   { "path": "/career", "label": "Careers" },
   { "path": "/blog", "label": "Blog & Insights" },
   { "path": "/resources", "label": "Resources" },
+  { "path": "/downloadable-resources", "label": "Downloadables" },
   { "path": "/contact", "label": "Contact" },
   { "path": "/faq", "label": "Frequently Asked Questions" },
   { "path": "/privacy-policy", "label": "Privacy Policy" },

@@ -120,12 +120,12 @@ function TeamProfileModal({ member, onClose }) {
 }
 
 const values = [
-  { icon: Target, title: 'COMMIT TO DELIVERY EXCELLENCE', desc: 'We complete assigned tasks accurately, follow set industry guidelines, and meet daily turnaround times. ' },
-  { icon: MessagesSquare, title: 'EMBRACE INTEGRITY AND OPENNESS', desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
-  { icon: ShieldCheck, title: 'PRACTICE RESPONSIBLE STEWARDSHIP', desc: 'We handle client files, financial records, and business systems with strict privacy and security.' },
-  { icon: HandHeart, title: 'IGNITE PASSION FOR THE GREATER GOOD', desc: 'We channel our energy into positive work that benefits our clients, team, and wider community.' },
-  { icon: Sparkles, title: 'INVEST IN AN EXCEPTIONAL CULTURE', desc: 'We build a workplace founded on mutual respect, continuous learning, and strong team collaboration.' },
-  { icon: Scale, title: 'LIVE A BALANCED LIFE', desc: 'We support healthy boundaries between work and personal life to maintain well-being and focus.' },
+  { icon: Target, title: 'COMMIT TO DELIVERY EXCELLENCE', titleLines: ['COMMIT TO DELIVERY', 'EXCELLENCE'], desc: 'We complete assigned tasks accurately, follow set industry guidelines, and meet daily turnaround times. ' },
+  { icon: MessagesSquare, title: 'EMBRACE INTEGRITY AND OPENNESS', titleLines: ['EMBRACE INTEGRITY', 'AND OPENNESS'], desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
+  { icon: ShieldCheck, title: 'PRACTICE RESPONSIBLE STEWARDSHIP', titleLines: ['PRACTICE RESPONSIBLE', 'STEWARDSHIP'], desc: 'We handle client files, financial records, and business systems with strict privacy and security.' },
+  { icon: HandHeart, title: 'IGNITE PASSION FOR THE GREATER GOOD', titleLines: ['IGNITE PASSION FOR', 'THE GREATER GOOD'], desc: 'We channel our energy into positive work that benefits our clients, team, and wider community.' },
+  { icon: Sparkles, title: 'INVEST IN AN EXCEPTIONAL CULTURE', titleLines: ['INVEST IN AN', 'EXCEPTIONAL CULTURE'], desc: 'We build a workplace founded on mutual respect, continuous learning, and strong team collaboration.' },
+  { icon: Scale, title: 'LIVE A BALANCED LIFE', titleLines: ['LIVE A BALANCED', 'LIFE'], desc: 'We support healthy boundaries between work and personal life to maintain well-being and focus.' },
 ];
 
 export default function OurTeamClient({ initialMembers, initialCultureItems }) {
@@ -237,12 +237,19 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
             </p>
           </div>
           <div className="team-values-grid">
-            {values.map(({ icon: ValueIcon, title, desc }, i) => (
+            {values.map(({ icon: ValueIcon, title, titleLines, desc }, i) => (
               <div key={title} className={`team-value-card reveal reveal-delay-${(i % 3) + 1}`}>
-                <span className="team-value-icon" aria-hidden="true">
-                  <ValueIcon size={24} strokeWidth={1.9} />
-                </span>
-                <h4>{title}</h4>
+                <div className="team-value-heading">
+                  <span className="team-value-icon" aria-hidden="true">
+                    <ValueIcon size={24} strokeWidth={1.9} />
+                  </span>
+                  <h4 aria-label={title}>
+                    <span aria-hidden="true">
+                      <span className="team-value-title-line">{titleLines[0]}</span>
+                      <span className="team-value-title-line">{titleLines[1]}</span>
+                    </span>
+                  </h4>
+                </div>
                 <p>{desc}</p>
               </div>
             ))}

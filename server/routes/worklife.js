@@ -14,6 +14,16 @@ function normalizeAssetField(value) {
 }
 
 function normalizeWorkLifeInput(body) {
+  const deviceOrders = {};
+  for (const field of ['desktopOrder', 'mobileOrder']) {
+    if (!Object.prototype.hasOwnProperty.call(body, field)) continue;
+    const raw = body[field];
+    const value = raw == null || (typeof raw === 'string' && raw.trim() === '') ? null : Number(raw);
+    if (value !== null && (!['number', 'string'].includes(typeof raw) || !Number.isSafeInteger(value) || value < 0)) {
+      throw new Error('Gallery positions must be non-negative whole numbers.');
+    }
+    deviceOrders[field] = value;
+  }
   return {
     type:    body.type === 'video' ? 'video' : 'image',
     title:   String(body.title || '').trim(),
@@ -22,6 +32,7 @@ function normalizeWorkLifeInput(body) {
     posterUrl: normalizeAssetField(body.posterUrl),
     active:  body.active !== false,
     order:   Number(body.order) || 0,
+    ...deviceOrders,
   };
 }
 

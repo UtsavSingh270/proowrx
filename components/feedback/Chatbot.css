@@ -309,9 +309,18 @@
   flex-direction: column;
   gap: 2px;
   flex: 1;
+  min-width: 0;
+  padding-right: 18px;
 }
 
 .cb-option-title {
+  display: -webkit-box;
+  min-height: 40px;
+  overflow: hidden;
+  line-height: 20px;
+  max-height: 40px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-size: 0.90rem;
   font-weight: 700;
   color: var(--navy, #080f20);
@@ -1294,7 +1303,7 @@ html.dark .cb-tooltip::after { border-top-color: #f0a500; }
 .cb-home-greeting h3 { font-size: 1.35rem; letter-spacing: -.03em; }
 .cb-home-greeting > p:last-child { max-width: 285px; line-height: 1.55; }
 .cb-home-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.cb-option-card { position: relative; min-height: 126px; flex-direction: column; align-items: flex-start; gap: 10px; padding: 15px; overflow: hidden; border: 1px solid rgba(8,15,32,.075); border-radius: 18px; background: rgba(255,255,255,.78); box-shadow: 0 8px 24px rgba(8,15,32,.045); }
+.cb-option-card { position: relative; min-height: 126px; flex-direction: row; align-items: flex-start; gap: 10px; padding: 15px; overflow: hidden; border: 1px solid rgba(8,15,32,.075); border-radius: 18px; background: rgba(255,255,255,.78); box-shadow: 0 8px 24px rgba(8,15,32,.045); }
 .cb-option-card::after { content: ''; position: absolute; width: 70px; height: 70px; right: -30px; bottom: -34px; border-radius: 50%; background: currentColor; opacity: .035; }
 .cb-option-card:hover { transform: translateY(-4px); border-color: rgba(240,165,0,.5); box-shadow: 0 15px 32px rgba(8,15,32,.1); }
 .cb-option-icon { width: 40px; height: 40px; border-radius: 13px; }
@@ -1465,7 +1474,8 @@ html.dark .cb-view-heading { background: rgba(255,255,255,.025); }
   .cb-home-options { gap: 7px; }
   .cb-option-card { min-height: 104px; gap: 7px; padding: 11px; border-radius: 14px; }
   .cb-option-icon { width: 34px; height: 34px; border-radius: 10px; }
-  .cb-option-title { padding-right: 12px; font-size: .79rem; }
+  .cb-option-text { padding-right: 14px; }
+  .cb-option-title { min-height: 34px; padding-right: 0; font-size: .79rem; line-height: 17px; max-height: 34px; }
   .cb-option-desc { font-size: .66rem; }
   .cb-option-arrow { top: 13px; right: 10px; }
 }

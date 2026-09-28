@@ -394,14 +394,36 @@
 }
 .home .svc-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.16); box-shadow: 0 24px 60px rgba(0,0,0,0.40); }
 .home .svc-top-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-.home .svc-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+.home .svc-header {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
 .home .svc-icon-wrap {
-  width: 60px; height: 60px; border-radius: 14px; border: 1px solid transparent;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 52px; height: 52px; border-radius: 14px; border: 1px solid transparent;
+  display: flex; align-items: center; justify-content: center; flex: 0 0 52px;
   transition: background 0.3s, border-color 0.3s;
 }
-.home .svc-tag { display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 5px; }
-.home .svc-title { font-family: 'Noto Sans', sans-serif; font-size: 1.25rem; font-weight: 700; color: #fff; }
+.home .svc-icon-wrap svg { display: block; width: 24px; height: 24px; }
+.home .svc-tag { display: block; width: max-content; max-width: 100%; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.home .svc-title {
+  min-width: 0;
+  min-height: 52px;
+  max-height: 52px;
+  margin: 0;
+  overflow: hidden;
+  color: #fff;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
 .home .svc-desc { font-size: 0.87rem; color: rgba(255,255,255,0.58); line-height: 1.78; margin-bottom: 22px; }
 .home .svc-bullets { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; padding: 0; }
 .home .svc-bullets li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.80rem; font-weight: 600; color: rgba(255,255,255,0.82); line-height: 1.4; }

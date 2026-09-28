@@ -88,15 +88,28 @@
   transform: scaleX(1);
 }
 
+.acc-svc-heading {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
 .acc-svc-icon {
-  width: 56px; height: 56px;
-  flex: 0 0 56px;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
   transition: all 0.3s;
+}
+
+.acc-svc-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .acc-svc-card:hover .acc-svc-icon {
@@ -104,9 +117,22 @@
 }
 
 .acc-svc-card h4 {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 48px;
   font-size: 1rem;
+  line-height: 1.35;
   color: var(--navy);
-  margin-bottom: 10px;
+  margin: 0;
+}
+
+.acc-svc-card h4 span {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .acc-svc-card p {
@@ -168,13 +194,20 @@
   transform: translateY(-4px);
 }
 
+.acc-why-header {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
 .acc-why-icon {
   display: grid;
   width: 46px;
   height: 46px;
   place-items: center;
   flex: 0 0 46px;
-  margin-bottom: 14px;
   border-radius: 13px;
   color: var(--gold);
   background: rgba(240, 165, 0, 0.12);
@@ -192,9 +225,16 @@
 }
 
 .acc-why-card h4 {
+  display: -webkit-box;
+  height: 46px;
+  margin: 0;
+  overflow: hidden;
   font-size: 0.95rem;
+  line-height: 23px;
   color: var(--white);
-  margin-bottom: 8px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .acc-why-card p {

@@ -173,6 +173,14 @@ button {
   padding: 0 28px;
 }
 
+@media (max-width: 768px) {
+  .container { padding-inline: 18px; }
+}
+
+@media (max-width: 420px) {
+  .container { padding-inline: 16px; }
+}
+
 .section    { padding: 40px 0; }
 .section-sm { padding: 40px 0; }
 

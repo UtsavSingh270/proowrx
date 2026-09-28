@@ -16,7 +16,7 @@ export default async function LatestBlogs() {
       <div className="container">
         <div className="page-insights-heading">
           <div>
-            <span className="pill">From our team</span>
+            {/* <span className="pill">From our team</span> */}
             <h2 id="home-insights-title">Insights</h2>
             <p>Our latest practical ideas and guidance for Australian businesses.</p>
           </div>

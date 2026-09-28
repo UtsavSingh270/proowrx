@@ -1,0 +1,24 @@
+.resources-hub { background: #fff; color: var(--text-1); }
+.resources-hub-content { padding-block: clamp(32px, 5vw, 64px); }
+.resources-hub-heading { max-width: 720px; margin: 0 auto 32px; text-align: center; }
+.resources-hub-heading h1 { margin: 16px 0; font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.12; letter-spacing: -.04em; }
+.resources-hub-heading > p { max-width: 600px; margin-inline: auto; color: var(--text-2); font-size: clamp(.93rem, 1.3vw, 1.06rem); line-height: 1.7; }
+.resources-hub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.resources-hub-card { min-width: 0; display: block; padding: clamp(22px, 3vw, 32px); border: 1px solid rgba(23,63,120,.13); border-radius: 22px; background: linear-gradient(140deg, #fff, #f6f8fc); text-decoration: none; box-shadow: 0 5px 20px rgba(11,31,66,.035); transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.resources-hub-card-heading { display: grid; grid-template-columns: 48px minmax(0, 1fr) 21px; gap: 14px; align-items: center; margin-bottom: 20px; }
+.resources-hub-icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid rgba(23,63,120,.13); border-radius: 14px; background: #eaf0f9; color: #173f78; }
+.resources-hub-card-heading h2 { display: flex; align-items: center; min-height: 48px; margin: 0; font-size: clamp(1.1rem, 2vw, 1.45rem); line-height: 24px; }
+.resources-hub-arrow { color: #c28a00; transition: transform .2s ease; }
+.resources-hub-card > h3 { margin: 0 0 8px; font-size: .94rem; line-height: 1.5; letter-spacing: 0; }
+.resources-hub-card > p { margin: 0; font-size: .88rem; line-height: 1.7; color: var(--text-2); }
+.resources-hub-card:focus-visible { outline: 3px solid #d99a00; outline-offset: 4px; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .resources-hub-card:hover { transform: translateY(-4px); border-color: #d99a00; box-shadow: 0 14px 32px rgba(11,31,66,.09); }
+  .resources-hub-card:hover .resources-hub-arrow { transform: translate(2px, -2px); }
+}
+@media (max-width: 600px) {
+  .resources-hub-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .resources-hub-heading { margin-bottom: 24px; }
+  .resources-hub-card { padding: 20px; border-radius: 18px; }
+  .resources-hub-card-heading { gap: 12px; margin-bottom: 14px; }
+}

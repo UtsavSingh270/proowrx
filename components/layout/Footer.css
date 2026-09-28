@@ -36,6 +36,37 @@
   margin-top: 14px;
 }
 
+.footer-iso-slot {
+  width: 100%;
+  min-height: 78px;
+  padding: 9px 10px;
+  border: 1px dashed rgba(8, 15, 32, 0.22);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.54);
+  color: var(--text-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-align: center;
+}
+
+.footer-iso-slot svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  color: var(--gold-dark, var(--gold));
+}
+
+.footer-iso-slot span {
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .social-btn {
   width: 34px;
   height: 34px;
@@ -153,21 +184,16 @@
 .footer-newsletter {
   order: 1;
   display: grid;
-  grid-template-columns: minmax(180px, .8fr) minmax(240px, 1.2fr);
-  align-items: center;
-  gap: 8px 24px;
+  grid-template-columns: minmax(104px, .34fr) minmax(240px, 1.66fr);
+  align-items: end;
+  gap: 18px;
   margin-bottom: 18px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);
 }
-.footer-newsletter .footer-heading { margin-bottom: 4px; }
+.footer-newsletter-content { min-width: 0; }
+.footer-newsletter .footer-heading { margin-bottom: 8px; }
 .footer-newsletter-action { min-width: 0; }
-.footer-newsletter-desc {
-  font-size: 0.875rem;
-  color: var(--text-2);
-  margin-bottom: 0;
-  line-height: 1.45;
-}
 
 .newsletter-form {
   display: flex;
@@ -315,13 +341,17 @@ html.dark .social-btn:hover {
   box-shadow: 0 8px 20px rgba(0,0,0,0.30);
 }
 
+html.dark .footer-iso-slot {
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.48);
+}
+
 html.dark .footer-links a { color: rgba(255,255,255,0.55); }
 
 html.dark .office-card strong { color: rgba(255,255,255,0.85); }
 html.dark .office-card p,
 html.dark .office-card a     { color: rgba(255,255,255,0.50); }
-
-html.dark .footer-newsletter-desc { color: rgba(255,255,255,0.55); }
 
 html.dark .newsletter-form {
   border-color: rgba(255,255,255,0.12);
@@ -380,7 +410,7 @@ html.dark .footer-legal button { color: rgba(255,255,255,0.30); }
 /* ── Small phones ── */
 @media (max-width: 600px) {
   .footer-offices-grid { grid-template-columns: 1fr; gap: 16px; }
-  .footer-newsletter { grid-template-columns: 1fr; }
+  .footer-newsletter { grid-template-columns: minmax(88px, 104px) minmax(0, 1fr); gap: 12px; }
   .footer-trust { grid-column: auto; }
 
   .footer-bottom-inner { flex-direction: column; text-align: center; gap: 10px; }
@@ -396,6 +426,9 @@ html.dark .footer-legal button { color: rgba(255,255,255,0.30); }
   .footer-heading { margin-bottom: 12px; }
   .footer-links { gap: 6px; }
   .footer-links a { font-size: 0.82rem; }
+
+  .footer-iso-slot { min-height: 72px; padding-inline: 7px; }
+  .footer-iso-slot span { font-size: .6rem; }
 
   .newsletter-form {
     flex-direction: column;

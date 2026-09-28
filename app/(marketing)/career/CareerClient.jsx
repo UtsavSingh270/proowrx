@@ -101,8 +101,10 @@ export default function CareerClient({ initialJobs }) {
           <div className="career-perks-grid">
             {perks.map((p, i) => (
               <div key={i} className={`career-perk reveal reveal-delay-${(i % 3) + 1}`}>
-                <div className="career-perk-icon">{p.icon}</div>
-                <h4>{p.title}</h4>
+                <div className="career-perk-heading">
+                  <div className="career-perk-icon">{p.icon}</div>
+                  <h4><span>{p.title}</span></h4>
+                </div>
                 <p>{p.desc}</p>
               </div>
             ))}
@@ -236,10 +238,12 @@ export default function CareerClient({ initialJobs }) {
             {hiringSteps.map(({ num, icon: StepIcon, title, desc }, i) => (
               <div key={title} className={`career-step reveal reveal-delay-${i + 1}`}>
                 <div className="career-step-num">{num}</div>
-                <span className="career-step-icon" aria-hidden="true">
-                  <StepIcon size={23} strokeWidth={1.9} />
-                </span>
-                <h4>{title}</h4>
+                <div className="career-step-heading">
+                  <span className="career-step-icon" aria-hidden="true">
+                    <StepIcon size={23} strokeWidth={1.9} />
+                  </span>
+                  <h4><span>{title}</span></h4>
+                </div>
                 <p>{desc}</p>
               </div>
             ))}

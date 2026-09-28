@@ -235,14 +235,25 @@
   },
   "/resources": {
     "title": "Resources | Proowrx",
-    "description": "Download free mortgage, accounting and outsourcing guides, ebooks, checklists and business resources from Proowrx.",
-    "alternates": {
-      "canonical": "/resources"
-    },
+    "description": "Explore Proowrx data security, client case studies, blogs, and downloadable guides in one place.",
+    "alternates": { "canonical": "/resources" },
     "openGraph": {
       "title": "Resources | Proowrx",
-      "description": "Download free mortgage, accounting and outsourcing guides from Proowrx.",
+      "description": "Explore data security, case studies, blogs, and downloadable resources from Proowrx.",
       "url": "/resources",
+      "type": "website"
+    }
+  },
+  "/downloadable-resources": {
+    "title": "Downloadables | Proowrx",
+    "description": "Download free mortgage, accounting and outsourcing guides, ebooks, checklists and business resources from Proowrx.",
+    "alternates": {
+      "canonical": "/downloadable-resources"
+    },
+    "openGraph": {
+      "title": "Downloadables | Proowrx",
+      "description": "Download free mortgage, accounting and outsourcing guides from Proowrx.",
+      "url": "/downloadable-resources",
       "type": "website"
     }
   },

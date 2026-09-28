@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Plus, Edit2, Trash2, Save, X } from 'lucide-react';
 import { worklife as worklifeApi, upload as uploadApi } from '@/services/api';
 import FileUploadInput from '@/components/shared/FileUploadInput';
+import { getGalleryOrder, sortGalleryImages } from '@/lib/galleryOrder';
 
 const EMPTY_ITEM = {
   type: 'image',
@@ -13,6 +14,8 @@ const EMPTY_ITEM = {
   posterUrl: '',
   active: true,
   order: 0,
+  desktopOrder: '',
+  mobileOrder: '',
 };
 
 export default function WorkLifePanel() {
@@ -23,6 +26,11 @@ export default function WorkLifePanel() {
   const [error, setError] = useState('');
   const [form, setForm] = useState(EMPTY_ITEM);
   const [editingId, setEditingId] = useState(null);
+  const [orderPreview, setOrderPreview] = useState('desktop');
+  const orderedItems = [
+    ...sortGalleryImages(items.filter(item => item.type === 'image'), orderPreview),
+    ...items.filter(item => item.type === 'video'),
+  ];
 
   const reload = useCallback(() => worklifeApi.getAdminAll()
     .then(setItems)
@@ -48,6 +56,8 @@ export default function WorkLifePanel() {
       posterUrl: item.posterUrl || '',
       active: item.active !== false,
       order: item.order || 0,
+      desktopOrder: item.desktopOrder ?? '',
+      mobileOrder: item.mobileOrder ?? '',
     });
     setError('');
     setModalOpen(true);
@@ -58,6 +68,10 @@ export default function WorkLifePanel() {
   }
 
   async function handleSave() {
+    if (form.type === 'image' && ['desktopOrder', 'mobileOrder'].some(key => form[key] !== '' && (!Number.isSafeInteger(Number(form[key])) || Number(form[key]) < 0))) {
+      setError('Desktop and mobile positions must be whole numbers of zero or higher.');
+      return;
+    }
     if (!form.title.trim()) {
       setError('Title is required.');
       return;
@@ -119,26 +133,42 @@ export default function WorkLifePanel() {
         </button>
       </div>
 
+      <div className="dash-content-filters">
+        <label className="dash-form-group">
+          <span className="dash-form-label">Preview gallery order</span>
+          <select className="dash-form-select" value={orderPreview} onChange={event => setOrderPreview(event.target.value)}>
+            <option value="desktop">Desktop and tablet</option>
+            <option value="mobile">Mobile phones</option>
+          </select>
+        </label>
+        <p className="dash-field-help">Images are listed in the selected device order. Edit an image to set its positions; lower numbers appear first. Hidden images are not shown on the website.</p>
+      </div>
+      {!modalOpen && error && <p role="alert" className="dash-login-err">{error}</p>}
+
       {loading ? (
         <div className="dash-empty">Loading…</div>
       ) : items.length === 0 ? (
         <div className="dash-empty">No images or videos uploaded yet. Add worklife media to populate the page.</div>
       ) : (
-        <table className="dash-table">
+        <div className="dash-table-wrap"><table className="dash-table">
           <thead>
             <tr>
               <th>Title</th>
               <th>Type</th>
               <th>Active</th>
+              <th>Desktop order</th>
+              <th>Mobile order</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {items.map(item => (
+            {orderedItems.map(item => (
               <tr key={item._id}>
                 <td>{item.title}</td>
                 <td>{item.type === 'video' ? 'Video' : 'Image'}</td>
                 <td>{item.active ? 'Yes' : 'No'}</td>
+                <td>{item.type === 'image' ? getGalleryOrder(item, 'desktop') : item.order}</td>
+                <td>{item.type === 'image' ? getGalleryOrder(item, 'mobile') : 'Same as desktop'}</td>
                 <td>
                   <div className="dash-table-actions">
                     <button className="dash-btn dash-btn-ghost dash-btn-sm" onClick={() => openEdit(item)} title="Edit">
@@ -152,7 +182,7 @@ export default function WorkLifePanel() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       )}
 
       {modalOpen && (
@@ -173,10 +203,25 @@ export default function WorkLifePanel() {
                   </select>
                 </div>
                 <div className="dash-form-group">
-                  <label className="dash-form-label">Order</label>
+                  <label className="dash-form-label">{form.type === 'image' ? 'Default order' : 'Video order'}</label>
                   <input className="dash-form-input" type="number" value={form.order} onChange={e => setField('order', Number(e.target.value))} />
                 </div>
               </div>
+
+              {form.type === 'image' && <fieldset className="dash-seo-fields">
+                <legend>Gallery order by device</legend>
+                <p className="dash-field-help">Set independent positions for each layout. Lower numbers appear first; leave a position blank to use the default order. Equal positions use the default order, then the upload date. Mobile applies up to 700px; tablets and larger screens use desktop order.</p>
+                <div className="dash-form-row">
+                  <label className="dash-form-group">
+                    <span className="dash-form-label">Desktop / tablet position</span>
+                    <input className="dash-form-input" type="number" min="0" step="1" inputMode="numeric" placeholder={`Default: ${form.order}`} value={form.desktopOrder} onChange={event => setField('desktopOrder', event.target.value)} />
+                  </label>
+                  <label className="dash-form-group">
+                    <span className="dash-form-label">Mobile position</span>
+                    <input className="dash-form-input" type="number" min="0" step="1" inputMode="numeric" placeholder={`Default: ${form.order}`} value={form.mobileOrder} onChange={event => setField('mobileOrder', event.target.value)} />
+                  </label>
+                </div>
+              </fieldset>}
 
               <div className="dash-form-group">
                 <label className="dash-form-label">Title *</label>

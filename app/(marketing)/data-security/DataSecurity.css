@@ -122,19 +122,27 @@
 }
 
 .ds-pillar-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
   margin-bottom: 20px;
 }
 
 .ds-pillar-icon {
-  width: 64px; height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 48px;
   transition: transform 0.3s;
+}
+
+.ds-pillar-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .ds-pillar:hover .ds-pillar-icon {
@@ -150,9 +158,22 @@
 }
 
 .ds-pillar h3 {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 48px;
   font-size: 1.25rem;
+  line-height: 1.2;
   color: var(--navy);
-  margin-bottom: 12px;
+  margin: 0;
+}
+
+.ds-pillar h3 span {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .ds-pillar-desc {
@@ -205,16 +226,30 @@
   transform: translateY(-4px);
 }
 
+.ds-feature-heading {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
 .ds-feature-icon {
-  width: 50px; height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--r-sm);
   background: rgba(31,158,142,0.15);
   color: var(--teal);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  flex: 0 0 48px;
   transition: all 0.3s;
+}
+
+.ds-feature-icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .ds-feature-card:hover .ds-feature-icon {
@@ -223,9 +258,22 @@
 }
 
 .ds-feature-card h4 {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 48px;
   font-size: 0.95rem;
+  line-height: 1.35;
   color: var(--white);
-  margin-bottom: 8px;
+  margin: 0;
+}
+
+.ds-feature-card h4 span {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .ds-feature-card p {
@@ -318,6 +366,10 @@
 }
 
 @media (max-width: 640px) {
+  .ds-pillar { padding: 30px 22px; }
+  .ds-pillar-header { gap: 10px; }
+  .ds-pillar-num { font-size: 2rem; }
+  .ds-pillar h3 { font-size: 1.1rem; }
   .ds-features-grid { grid-template-columns: 1fr; }
   .ds-trust-divider { display: none; }
 }

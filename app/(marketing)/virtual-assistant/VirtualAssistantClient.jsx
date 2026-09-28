@@ -149,11 +149,11 @@ export default function VirtualAssistant() {
           <div className="va-tasks-grid" ref={r2}>
             {tasks.map((t, i) => (
               <div key={i} className={`va-task-card reveal reveal-delay-${(i % 4) + 1}`}>
-                <div className="va-task-icon">{t.icon}</div>
-                <div>
+                <div className="va-task-heading">
+                  <div className="va-task-icon">{t.icon}</div>
                   <h4 className="va-task-title">{t.label}</h4>
-                  <p className="va-task-desc">{t.desc}</p>
                 </div>
+                <p className="va-task-desc">{t.desc}</p>
               </div>
             ))}
           </div>

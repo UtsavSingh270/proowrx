@@ -177,10 +177,12 @@ export default function Accounting() {
                 className={`acc-svc-card reveal reveal-delay-${(i % 4) + 1}`}
                 style={{ '--acc-color': svc.color }}
               >
-                <div className="acc-svc-icon" style={{ color: svc.color, background: svc.color + '18' }}>
-                  {svc.icon}
+                <div className="acc-svc-heading">
+                  <div className="acc-svc-icon" style={{ color: svc.color, background: svc.color + '18' }}>
+                    {svc.icon}
+                  </div>
+                  <h4><span>{svc.title}</span></h4>
                 </div>
-                <h4>{svc.title}</h4>
                 <p>{svc.desc}</p>
               </div>
             ))}
@@ -219,8 +221,10 @@ export default function Accounting() {
           <div className="acc-why-grid">
             {whyUs.map((w, i) => (
               <div key={i} className={`acc-why-card reveal reveal-delay-${(i % 3) + 1}`}>
-                <span className="acc-why-icon" aria-hidden="true">{w.icon}</span>
-                <h4>{w.title}</h4>
+                <div className="acc-why-header">
+                  <span className="acc-why-icon" aria-hidden="true">{w.icon}</span>
+                  <h4>{w.title}</h4>
+                </div>
                 <p>{w.desc}</p>
               </div>
             ))}

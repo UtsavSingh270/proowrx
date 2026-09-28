@@ -28,7 +28,16 @@
   transition: all 0.3s var(--ease);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+}
+
+.ppa-why-heading {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  height: 48px;
+  min-width: 0;
 }
 
 .ppa-why-card:hover {
@@ -50,9 +59,15 @@
 }
 
 .ppa-why-title {
+  min-width: 0;
+  max-height: 48px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-size: 1rem;
   color: var(--navy);
-  line-height: 1.25;
+  line-height: 24px;
 }
 
 .ppa-why-body {

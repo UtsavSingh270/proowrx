@@ -65,8 +65,10 @@ export default function IpExclusionsPanel() {
 
       <div className="ip-exclusions-grid">
         <form className="ip-exclusions-form" onSubmit={addIp}>
-          <div className="ip-exclusions-icon"><ShieldCheck size={24} /></div>
-          <h2>Add an IP address</h2>
+          <div className="ip-exclusions-card-heading">
+            <div className="ip-exclusions-icon" aria-hidden="true"><ShieldCheck size={24} /></div>
+            <h2>Add an IP address</h2>
+          </div>
           <p>Exclusions apply to future activity. Ensure the backend proxy configuration reflects your hosting provider.</p>
           <label>IP address<input required value={form.ip} onChange={event => setForm(current => ({ ...current, ip: event.target.value }))} placeholder="203.0.113.42 or 2001:db8::1" /></label>
           <label>Label <span>Optional</span><input maxLength={120} value={form.label} onChange={event => setForm(current => ({ ...current, label: event.target.value }))} placeholder="Office, developer, agency…" /></label>

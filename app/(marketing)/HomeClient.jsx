@@ -392,14 +392,12 @@ export default function HomeClient({ insights }) {
                 style={{ transitionDelay: `${i * 140 + 100}ms` }}
               >
                 {/* <div className="svc-top-bar" style={{ background: `linear-gradient(90deg, ${svc.accent}, transparent)` }} /> */}
+                <span className="svc-tag" style={{ color: svc.accent }}>{svc.tag}</span>
                 <div className="svc-header">
                   <div className="svc-icon-wrap" style={{ background: svc.glow, borderColor: `${svc.accent}33`, color: svc.accent }}>
                     {svc.icon}
                   </div>
-                  <div>
-                    <span className="svc-tag" style={{ color: svc.accent }}>{svc.tag}</span>
-                    <h3 className="svc-title">{svc.title}</h3>
-                  </div>
+                  <h3 className="svc-title">{svc.title}</h3>
                 </div>
                 <p className="svc-desc">{svc.desc}</p>
                 <ul className="svc-bullets">
@@ -566,7 +564,7 @@ export default function HomeClient({ insights }) {
       <section className="section faq-section" ref={faqRef}>
         <div className="container">
           <div className={`section-head fade-up${faqVisible ? ' in' : ''}`}>
-            <span className="pill">FAQs</span>
+            {/* <span className="pill">FAQs</span> */}
             <h2 className="section-title">Frequently Asked Questions</h2>
             <p className="section-sub">
               Answers to the questions we hear most from Australian brokers, accountants and finance businesses.

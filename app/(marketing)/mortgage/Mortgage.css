@@ -233,14 +233,21 @@
   transform: translateY(-6px);
 }
 
+.why-tile-header {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
 .why-tile-icon {
   display: grid;
   width: 48px;
   height: 48px;
   place-items: center;
   flex: 0 0 48px;
-  margin-inline: auto;
-  margin-bottom: 14px;
   border-radius: 14px;
   color: var(--gold);
   background: rgba(240, 165, 0, 0.12);
@@ -258,9 +265,16 @@
 }
 
 .why-tile h4 {
+  display: -webkit-box;
+  height: 48px;
+  margin: 0;
+  overflow: hidden;
   font-size: 0.95rem;
+  line-height: 24px;
   color: var(--white);
-  margin-bottom: 8px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .why-tile p {

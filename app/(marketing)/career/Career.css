@@ -142,15 +142,24 @@
   border-color: var(--gold);
 }
 
+.career-perk-heading {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
 .career-perk-icon {
-  width: 54px; height: 54px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--r-md);
   background: var(--gold-pale);
   color: var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  flex: 0 0 auto;
   transition: all 0.3s;
 }
 
@@ -160,7 +169,8 @@
   transform: scale(1.1);
 }
 
-.career-perk h4 { font-size: 1rem; color: var(--navy); margin-bottom: 8px; }
+.career-perk h4 { height: 48px; min-width: 0; display: flex; align-items: center; color: var(--navy); font-size: 1rem; line-height: 1.35; margin: 0; }
+.career-perk h4 span { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .career-perk p { font-size: 0.82rem; color: var(--text-2); line-height: 1.65; }
 
 /* ── Culture Section ─────────────────────── */
@@ -623,9 +633,18 @@
 
 .career-step:hover .career-step-num { opacity: 1; }
 
+.career-step-heading {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
 .career-step-icon {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -633,14 +652,14 @@
   background: var(--sky-glow);
   border: 1px solid rgba(14, 165, 233, .2);
   border-radius: var(--r-md);
-  margin: 0 auto 12px;
   transition: color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
 }
 
 .career-step-icon svg { width: 23px; height: 23px; }
 .career-step:hover .career-step-icon { color: var(--white); background: var(--sky); transform: translateY(-2px); }
 
-.career-step h4 { font-size: 0.95rem; color: var(--navy); margin-bottom: 8px; }
+.career-step h4 { height: 48px; min-width: 0; display: flex; align-items: center; color: var(--navy); font-size: 0.95rem; line-height: 1.4; margin: 0; }
+.career-step h4 span { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .career-step p { font-size: 0.80rem; color: var(--text-2); line-height: 1.6; }
 
 /* ── CTA ─────────────────────────────────── */

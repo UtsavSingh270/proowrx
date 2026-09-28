@@ -66,8 +66,10 @@ export default function Services() {
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
-                <div className="svc-big-icon" aria-hidden="true"><House size={28} /></div>
-                <h2>Mortgage Outsourcing Service</h2>
+                <div className="svc-big-header">
+                  <div className="svc-big-icon" aria-hidden="true"><House size={28} /></div>
+                  <h2>Mortgage Outsourcing Service</h2>
+                </div>
                 <p>Optimise your brokerage efficiently without increasing back-office admin tasks. By outsourcing mortgage loan processing to our dedicated team, you keep files moving faster.</p>
                 <ul>
                   {['End-to-End Loan Processing', 'Pipeline Management', 'Broker & Client Support'].map(b => (
@@ -86,8 +88,10 @@ export default function Services() {
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
-                <div className="svc-big-icon" aria-hidden="true"><Calculator size={28} /></div>
-                <h2>Accounting Outsourcing Services</h2>
+                <div className="svc-big-header">
+                  <div className="svc-big-icon" aria-hidden="true"><Calculator size={28} /></div>
+                  <h2>Accounting Outsourcing Services</h2>
+                </div>
                 <p>Secure your business’s profit margins and eliminate the tax season bottlenecks with a high-precision outsourced accounting service. Our team handles routine compliance and ledger maintenance so you can focus on building client relationships.</p>
                 <ul>
                   {['Bookkeeping & Reconciliation', 'Compliance Preparation', 'SMSF outsourcing service'].map(b => (
@@ -105,8 +109,10 @@ export default function Services() {
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
-                <div className="svc-big-icon" aria-hidden="true"><CarFront size={28} /></div>
-                <h2>Asset Finance Outsourcing Service</h2>
+                <div className="svc-big-header">
+                  <div className="svc-big-icon" aria-hidden="true"><CarFront size={28} /></div>
+                  <h2>Asset Finance Outsourcing Service</h2>
+                </div>
                 <p>Proowrx provides dedicated asset finance support for brokers across commercial loans, equipment finance, vehicle finance, personal loans, chattel mortgages, and other lending scenarios.</p>
                 <ul>{['Credit & Deal Structuring Support','Lender Submissions & Follow-Up','CRM & Pipeline Management'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
                 <p className="font-medium">Fast-track approvals with specialist asset finance back-office support.</p>
@@ -120,8 +126,10 @@ export default function Services() {
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
-                <div className="svc-big-icon" aria-hidden="true"><Megaphone size={28} /></div>
-                <h2>Digital Marketing Support</h2>
+                <div className="svc-big-header">
+                  <div className="svc-big-icon" aria-hidden="true"><Megaphone size={28} /></div>
+                  <h2>Digital Marketing Support</h2>
+                </div>
                 <p>Build a stronger online presence with all-in-one digital marketing packages designed for mortgage brokers, accountants, asset finance brokers, real estate agents, and buyer’s agents.</p>
                 <ul>{['SEO & Website Optimisation','Email Marketing','Paid Advertising & Lead Generation'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
                 <p className="font-medium">Full-service digital marketing packages for Australian Businesses. </p>
@@ -142,8 +150,10 @@ export default function Services() {
           <div className="quality-grid">
             {qualities.map((q, i) => (
               <div key={i} className="quality-tile reveal">
-                <span className="quality-icon" aria-hidden="true">{q.icon}</span>
-                <h4>{q.title}</h4>
+                <div className="quality-header">
+                  <span className="quality-icon" aria-hidden="true">{q.icon}</span>
+                  <h4>{q.title}</h4>
+                </div>
                 <p>{q.desc}</p>
               </div>
             ))}

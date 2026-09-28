@@ -158,8 +158,10 @@ export default function Bookkeeping() {
           <div className="bk-provide-grid">
             {provideItems.map((item, i) => (
               <div key={i} className={`bk-provide-item reveal reveal-delay-${(i % 4) + 1}`}>
-                <div className="bk-provide-icon">{item.icon}</div>
-                <h4 className="bk-provide-title">{item.title}</h4>
+                <div className="bk-provide-heading">
+                  <div className="bk-provide-icon">{item.icon}</div>
+                  <h4 className="bk-provide-title">{item.title}</h4>
+                </div>
                 <p className="bk-provide-body">{item.body}</p>
               </div>
             ))}
@@ -177,8 +179,10 @@ export default function Bookkeeping() {
           <div className="bk-why-grid">
             {whyItems.map((w, i) => (
               <div key={i} className={`bk-why-card reveal reveal-delay-${i + 1}`}>
-                <div className="bk-why-icon">{w.icon}</div>
-                <h4 className="bk-why-title">{w.title}</h4>
+                <div className="bk-why-heading">
+                  <div className="bk-why-icon">{w.icon}</div>
+                  <h4 className="bk-why-title">{w.title}</h4>
+                </div>
                 <p className="bk-why-body">{w.body}</p>
               </div>
             ))}

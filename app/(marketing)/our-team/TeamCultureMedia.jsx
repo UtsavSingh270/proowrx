@@ -2,8 +2,9 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { sortGalleryImages } from '@/lib/galleryOrder';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import { Maximize2, Minus, Play, Plus, RotateCcw, Video, X } from 'lucide-react';
+import { Images, Maximize2, Minus, Play, Plus, RotateCcw, Video, X } from 'lucide-react';
 import './TeamCultureMedia.css';
 
 const MIN_IMAGE_ZOOM = 1;
@@ -36,16 +37,29 @@ const cardMotion = {
 };
 
 function ScrollGallery({ images, onSelect, reduceMotion }) {
-  const sectionRef = useRef(null);
+  const stageRef = useRef(null);
   const viewportRef = useRef(null);
   const trackRef = useRef(null);
   const [distance, setDistance] = useState(0);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
+  const [isMobile, setIsMobile] = useState(false);
+  const { scrollYProgress } = useScroll({ target: stageRef, offset: ['start start', 'end end'] });
   const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
+  const orderedImages = sortGalleryImages(images, isMobile ? 'mobile' : 'desktop');
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 700px)');
+    const syncViewport = () => {
+      setIsMobile(mediaQuery.matches);
+      if (!mediaQuery.matches && viewportRef.current) viewportRef.current.scrollLeft = 0;
+    };
+    syncViewport();
+    mediaQuery.addEventListener('change', syncViewport);
+    return () => mediaQuery.removeEventListener('change', syncViewport);
+  }, []);
 
   useLayoutEffect(() => {
     const calculate = () => {
-      const nextDistance = Math.max(0, (trackRef.current?.scrollWidth || 0) - (viewportRef.current?.clientWidth || 0));
+      const nextDistance = isMobile ? 0 : Math.max(0, (trackRef.current?.scrollWidth || 0) - (viewportRef.current?.clientWidth || 0));
       setDistance(nextDistance);
     };
 
@@ -54,49 +68,96 @@ function ScrollGallery({ images, onSelect, reduceMotion }) {
     if (trackRef.current) observer.observe(trackRef.current);
     if (viewportRef.current) observer.observe(viewportRef.current);
     return () => observer.disconnect();
-  }, [images.length]);
+  }, [images.length, isMobile]);
 
   return (
     <section
       id="worklife-gallery"
-      ref={sectionRef}
       className={`worklife-gallery-scroll${distance === 0 ? ' worklife-gallery-scroll--compact' : ''}`}
-      style={{ '--worklife-scroll-distance': `${distance}px` }}
     >
-      <div className="worklife-gallery-sticky">
-        <motion.div className="worklife-section-head worklife-gallery-heading" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={sectionMotion}>
-          <span className="chip chip-sky section-eyebrow">Photo Gallery</span>
-          <h2 className="section-title">Workplace & Team Gallery </h2>
-          <p className="section-body">A look inside our workspaces, team collaborations, and daily office culture.</p>
-        </motion.div>
-        <div ref={viewportRef} className="worklife-gallery-viewport">
-          <motion.div ref={trackRef} className="worklife-gallery-track" style={{ x }}>
-            {images.map((item, index) => (
-              <motion.button
-                type="button"
-                key={item._id || index}
-                className={`worklife-gallery-item${index % 7 === 3 ? ' worklife-gallery-item--wide' : index % 5 === 0 ? ' worklife-gallery-item--tall' : ''}`}
-                initial={reduceMotion ? false : { opacity: 0, y: 35, rotate: index % 2 ? 1.5 : -1.5 }}
-                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.55, delay: Math.min(index * 0.04, 0.25) }}
-                whileHover={reduceMotion ? undefined : { y: -10, scale: 1.018 }}
-                onClick={() => onSelect(item)}
-                aria-label={`View ${item.title || 'photo'} in full screen`}
-              >
-                <motion.span className="worklife-gallery-image" layoutId={`worklife-image-${item._id || index}`}>
-                  <Image src={normalizeMediaUrl(item.url)} fill alt={item.title || 'Life at Proowrx'} sizes="(max-width: 700px) 82vw, 46vw" />
-                </motion.span>
-                <span className="worklife-gallery-shade" />
-                {/* <span className="worklife-gallery-index">{String(index + 1).padStart(2, '0')}</span> */}
-                <span className="worklife-gallery-copy"><strong>{item.title}</strong><small>{item.caption}</small></span>
-                <span className="worklife-expand"><Maximize2 size={16} /></span>
-              </motion.button>
-            ))}
-          </motion.div>
+      <motion.div className="worklife-section-head worklife-gallery-heading" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={sectionMotion}>
+        <span className="chip chip-sky section-eyebrow">Photo Gallery</span>
+        <h2 className="section-title">Workplace & Team Gallery</h2>
+        <p className="section-body">A look inside our workspaces, team collaborations, and daily office culture.</p>
+      </motion.div>
+
+      <div className="worklife-gallery-mobile-intro">
+        <span><Images size={17} aria-hidden="true" /> {images.length} {images.length === 1 ? 'moment' : 'moments'}</span>
+        <small>Tap a photo to explore</small>
+      </div>
+
+      <div
+        ref={stageRef}
+        className="worklife-gallery-stage"
+        style={{ '--worklife-scroll-distance': `${distance}px` }}
+      >
+        <div className="worklife-gallery-sticky">
+          <div
+            ref={viewportRef}
+            className="worklife-gallery-viewport"
+            role="region"
+            aria-label="Team photo gallery"
+          >
+            <motion.div ref={trackRef} className="worklife-gallery-track" style={{ x: isMobile ? 0 : x }}>
+              {orderedImages.map((item, index) => (
+                <motion.button
+                  type="button"
+                  key={item._id || images.indexOf(item)}
+                  className={`worklife-gallery-item${index % 7 === 3 ? ' worklife-gallery-item--wide' : index % 5 === 0 ? ' worklife-gallery-item--tall' : ''}`}
+                  initial={reduceMotion || isMobile ? false : { opacity: 0, y: 35, rotate: index % 2 ? 1.5 : -1.5 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: isMobile || reduceMotion ? 0 : 0.55, delay: isMobile ? 0 : Math.min(index * 0.04, 0.25) }}
+                  whileHover={reduceMotion || isMobile ? undefined : { y: -10, scale: 1.018 }}
+                  onClick={() => onSelect(item)}
+                  aria-label={`View ${item.title || 'photo'} in full screen`}
+                >
+                  <motion.span className="worklife-gallery-image" layoutId={`worklife-image-${item._id || images.indexOf(item)}`}>
+                    <Image src={normalizeMediaUrl(item.url)} fill alt={item.title || 'Life at Proowrx'} sizes={index % 5 === 0 || (index === images.length - 1 && [2, 4].includes(images.length % 5)) ? '(max-width: 700px) calc(100vw - 32px), 46vw' : '(max-width: 700px) calc(50vw - 22px), 46vw'} />
+                  </motion.span>
+                  <span className="worklife-gallery-shade" />
+                  {/* <span className="worklife-gallery-index">{String(index + 1).padStart(2, '0')}</span> */}
+                  <span className="worklife-gallery-copy"><strong>{item.title}</strong><small>{item.caption}</small></span>
+                  <span className="worklife-expand"><Maximize2 size={16} /></span>
+                </motion.button>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function CultureVideoCard({ item, index, onSelect, reduceMotion, featured = false }) {
+  const posterUrl = normalizeMediaUrl(item.posterUrl);
+
+  return (
+    <motion.article
+      className={`worklife-video-card${featured ? ' worklife-video-card--featured' : ''}`}
+      variants={cardMotion}
+      layout
+    >
+      <button
+        type="button"
+        className="worklife-video-poster"
+        onClick={() => onSelect(item)}
+        aria-label={`Play ${item.title || 'team video'} in full screen`}
+      >
+        {posterUrl ? (
+          <Image
+            src={posterUrl}
+            fill
+            alt=""
+            sizes={featured ? '(max-width: 1100px) 100vw, 56vw' : '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 24vw'}
+          />
+        ) : <span className="worklife-video-fallback"><Video size={featured ? 54 : 40} /></span>}
+        <motion.span className="worklife-video-sweep" animate={reduceMotion ? undefined : { x: ['-130%', '160%'] }} transition={{ duration: 4.5, repeat: Infinity, repeatDelay: 2.5, ease: 'easeInOut', delay: Math.min(index * 0.18, 0.72) }} />
+        <span className="worklife-video-shade" />
+        <span className="worklife-play"><Play size={featured ? 26 : 20} fill="currentColor" /></span>
+        <span className="worklife-video-copy"><small>Watch story</small><strong>{item.title}</strong><span>{item.caption}</span></span>
+      </button>
+    </motion.article>
   );
 }
 
@@ -111,6 +172,11 @@ export default function TeamCultureMedia({ initialItems = [] }) {
 
   const images = initialItems.filter(item => item.type === 'image');
   const videos = initialItems.filter(item => item.type === 'video');
+  const featuredVideo = videos[0];
+  const supportingVideos = videos.slice(1, 5).map((item, index) => ({ item, index: index + 1 }));
+  const leftVideos = supportingVideos.filter((_, index) => index % 2 === 0);
+  const rightVideos = supportingVideos.filter((_, index) => index % 2 === 1);
+  const extraVideos = videos.slice(5).map((item, index) => ({ item, index: index + 5 }));
 
   const closeImage = () => {
     panRef.current = null;
@@ -227,33 +293,41 @@ export default function TeamCultureMedia({ initialItems = [] }) {
           </motion.div>
 
           {videos.length === 0 ? <div className="worklife-empty">No videos are currently available.</div> : (
-            <motion.div className="worklife-video-grid" initial={initial} whileInView="visible" viewport={viewport} variants={gridMotion}>
-              {videos.map((item, index) => {
-                const posterUrl = normalizeMediaUrl(item.posterUrl);
-                return (
-                  <motion.article
-                    key={item._id || index}
-                    className="worklife-video-card"
-                    variants={cardMotion}
-                    whileHover={reduceMotion ? undefined : { y: -10, scale: 1.015 }}
-                    layout
-                  >
-                    <button
-                      type="button"
-                      className="worklife-video-poster"
-                      onClick={() => setActiveVideo(item)}
-                      aria-label={`Play ${item.title || 'team video'} in full screen`}
-                    >
-                      {posterUrl ? <Image src={posterUrl} fill alt="" sizes="(max-width: 900px) 100vw, 50vw" /> : <span className="worklife-video-fallback"><Video size={46} /></span>}
-                      <motion.span className="worklife-video-sweep" animate={reduceMotion ? undefined : { x: ['-130%', '160%'] }} transition={{ duration: 4.5, repeat: Infinity, repeatDelay: 2.5, ease: 'easeInOut' }} />
-                      <span className="worklife-video-shade" />
-                      <span className="worklife-play"><Play size={24} fill="currentColor" /></span>
-                      <span className="worklife-video-copy"><small>Watch story</small><strong>{item.title}</strong><span>{item.caption}</span></span>
-                    </button>
-                  </motion.article>
-                );
-              })}
-            </motion.div>
+            <>
+              <motion.div
+                className={`worklife-video-showcase worklife-video-showcase--${Math.min(videos.length, 5)}`}
+                initial={initial}
+                whileInView="visible"
+                viewport={viewport}
+                variants={gridMotion}
+              >
+                <CultureVideoCard item={featuredVideo} index={0} onSelect={setActiveVideo} reduceMotion={reduceMotion} featured />
+
+                {leftVideos.length > 0 && (
+                  <div className={`worklife-video-side worklife-video-side--left${leftVideos.length === 1 ? ' worklife-video-side--single' : ''}`}>
+                    {leftVideos.map(({ item, index }) => (
+                      <CultureVideoCard key={item._id || `left-${index}`} item={item} index={index} onSelect={setActiveVideo} reduceMotion={reduceMotion} />
+                    ))}
+                  </div>
+                )}
+
+                {rightVideos.length > 0 && (
+                  <div className={`worklife-video-side worklife-video-side--right${rightVideos.length === 1 ? ' worklife-video-side--single' : ''}`}>
+                    {rightVideos.map(({ item, index }) => (
+                      <CultureVideoCard key={item._id || `right-${index}`} item={item} index={index} onSelect={setActiveVideo} reduceMotion={reduceMotion} />
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+
+              {extraVideos.length > 0 && (
+                <motion.div className="worklife-video-more-grid" initial={initial} whileInView="visible" viewport={viewport} variants={gridMotion}>
+                  {extraVideos.map(({ item, index }) => (
+                    <CultureVideoCard key={item._id || `extra-${index}`} item={item} index={index} onSelect={setActiveVideo} reduceMotion={reduceMotion} />
+                  ))}
+                </motion.div>
+              )}
+            </>
           )}
         </div>
       </section>

@@ -15,6 +15,7 @@ const PAGES_WITH_OWN_CTA = new Set([
   '/our-team',
   '/pricing',
   '/resources',
+  '/downloadable-resources',
   '/testimonials',
 ]);
 

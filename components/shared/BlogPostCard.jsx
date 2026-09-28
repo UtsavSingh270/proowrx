@@ -31,12 +31,15 @@ export default function BlogPostCard({ post, referenceTime, index = 0 }) {
       <div className="blog-card-body">
         <div className="blog-card-details">
           <span className="blog-time"><Clock size={12} /> {formatPostedTime(post.createdAt, effectiveReferenceTime)}</span>
-          {post.author && <span className="blog-author"><User size={12} /> {post.author}</span>}
+          {post.author && <span className="blog-author">
+            <User size={12} /> {post.author}</span>}
         </div>
-        <h3 className="blog-card-title"><Link href={href}>{post.title}</Link></h3>
+        <h3 className="blog-card-title">
+          <Link href={href}>{post.title}</Link>
+        </h3>
         <p className="blog-card-excerpt">{post.excerpt}</p>
         {!!post.tags?.length && <div className="blog-tags">{post.tags.slice(0, 3).map(tag => <span key={tag} className="blog-tag">{tag}</span>)}</div>}
-        <Link href={href} className="blog-card-link">Read Article <ArrowRight size={14} /></Link>
+        <Link href={href} className="blog-card-link color-[#fff]">Read Article <ArrowRight size={14} /></Link>
       </div>
     </article>
   );

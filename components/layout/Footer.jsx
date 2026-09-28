@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, ArrowRight, Send, CircleCheckBig } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, Send, CircleCheckBig, ImageIcon } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { newsletter } from '@/services/api';
@@ -61,12 +61,14 @@ export default function Footer() {
             <h4 className="footer-heading">Company</h4>
             <ul className="footer-links">
               {[
-                ['/','Home'],['/about','About Us'],['/services','Our Services'],
+                ['/','Home'],
+                ['/about','About Us'],
+                ['/services','Services'],
                 // ['/mortgage','Mortgage'],['/accounting','Accounting'],
                 // ['/asset-finance','Asset Finance'],['/digital-marketing','Digital Marketing'],
                 // ['/pricing','Pricing'],
                 // ['/case-study','Case Study'],
-                ['/blog','Blog'],
+                ['/resources','Resources'],
                 // ['/data-security','Data Security'],
                 ['/our-team','Our Team'],
                 ['/career','Career'],['/contact','Contact Us'],
@@ -83,7 +85,7 @@ export default function Footer() {
 
           {/* Offices + newsletter */}
           <div className="footer-contact-area">
-            <h4 className="footer-heading">Our Offices</h4>
+            {/* <h4 className="footer-heading">Our Offices</h4> */}
             <div className="footer-offices-grid">
               <div className="office-card">
                 <Image src="https://flagcdn.com/w40/in.png" alt="India" className="office-flag" width="28" height="20" />
@@ -107,20 +109,24 @@ export default function Footer() {
             </div>
 
             <div className="footer-newsletter">
-              <div className="footer-newsletter-copy">
-                <h4 className="footer-heading">Stay Updated</h4>
-                <p className="footer-newsletter-desc">Get tips on mortgage outsourcing, accounting, and business growth.</p>
+              {/* Replace this neutral slot with the approved ISO badge artwork when it is available. */}
+              <div className="footer-iso-slot" role="img" aria-label="Reserved image area for an ISO badge">
+                <ImageIcon size={20} aria-hidden="true" />
+                <span>ISO badge area</span>
               </div>
-              <div className="footer-newsletter-action">
-                {done ? (
-                  <div className="newsletter-success"><CircleCheckBig size={16} aria-hidden="true" /> <span>You&apos;re subscribed!</span></div>
-                ) : (
-                  <form onSubmit={submit} className="newsletter-form">
-                    <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
-                    <button type="submit" aria-label="Subscribe" disabled={submitting}><Send size={15} /></button>
-                  </form>
-                )}
-                {subscribeError && <p className="newsletter-error" role="alert">{subscribeError}</p>}
+              <div className="footer-newsletter-content">
+                <h4 className="footer-heading">Stay Updated</h4>
+                <div className="footer-newsletter-action">
+                  {done ? (
+                    <div className="newsletter-success"><CircleCheckBig size={16} aria-hidden="true" /> <span>You&apos;re subscribed!</span></div>
+                  ) : (
+                    <form onSubmit={submit} className="newsletter-form">
+                      <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
+                      <button type="submit" aria-label="Subscribe" disabled={submitting}><Send size={15} /></button>
+                    </form>
+                  )}
+                  {subscribeError && <p className="newsletter-error" role="alert">{subscribeError}</p>}
+                </div>
               </div>
             </div>
           </div>

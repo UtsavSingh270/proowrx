@@ -240,8 +240,10 @@ export default function Mortgage() {
           <div className="why-grid">
             {whyUs.map((w, i) => (
               <div key={i} className="why-tile">
-                <span className="why-tile-icon" aria-hidden="true">{w.icon}</span>
-                <h4>{w.title}</h4>
+                <div className="why-tile-header">
+                  <span className="why-tile-icon" aria-hidden="true">{w.icon}</span>
+                  <h4>{w.title}</h4>
+                </div>
                 <p>{w.desc}</p>
               </div>
             ))}

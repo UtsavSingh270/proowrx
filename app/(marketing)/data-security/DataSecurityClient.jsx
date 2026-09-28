@@ -206,9 +206,9 @@ export default function DataSecurity() {
                   <div className="ds-pillar-icon" style={{ color: p.color, background: p.glow }}>
                     {p.icon}
                   </div>
+                  <h3><span>{p.title}</span></h3>
                   <div className="ds-pillar-num">{p.num}</div>
                 </div>
-                <h3>{p.title}</h3>
                 <p className="ds-pillar-desc">{p.desc}</p>
                 <ul className="ds-pillar-list">
                   {p.points.map((pt, j) => (
@@ -237,8 +237,10 @@ export default function DataSecurity() {
           <div className="ds-features-grid">
             {features.map((f, i) => (
               <div key={i} className={`ds-feature-card reveal reveal-delay-${(i % 3) + 1}`}>
-                <div className="ds-feature-icon">{f.icon}</div>
-                <h4>{f.title}</h4>
+                <div className="ds-feature-heading">
+                  <div className="ds-feature-icon">{f.icon}</div>
+                  <h4><span>{f.title}</span></h4>
+                </div>
                 <p>{f.desc}</p>
               </div>
             ))}

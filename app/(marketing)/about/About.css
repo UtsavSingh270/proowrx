@@ -61,7 +61,7 @@
   background: var(--white);
   border-radius: var(--r-lg);
   padding: 32px 24px;
-  text-align: center;
+  text-align: left;
   border: 1px solid var(--border);
   transition: all 0.3s var(--ease);
 }
@@ -72,24 +72,48 @@
   border-color: var(--gold);
 }
 
+.value-card-head {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
 .value-icon {
-  width: 56px; height: 56px;
+  width: 48px; height: 48px;
   background: var(--gold-pale);
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--gold);
-  margin: 0 auto 16px;
+  margin: 0;
+  flex: 0 0 48px;
   transition: all 0.3s;
 }
+
+.value-icon svg { display: block; width: 22px; height: 22px; }
 
 .value-card:hover .value-icon {
   background: var(--gold);
   color: var(--navy);
 }
 
-.value-card h3 { font-size: 1rem; color: var(--navy); margin-bottom: 10px; }
+.value-card h3 {
+  min-width: 0;
+  min-height: 48px;
+  max-height: 48px;
+  margin: 0;
+  overflow: hidden;
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
 .value-card p { font-size: 0.84rem; color: var(--text-2); line-height: 1.6; }
 
 /* Diff */

@@ -169,7 +169,7 @@ export default function Navbar() {
 
   const isActiveLink = item => {
     if (item.serviceMenu) return pathname === item.to || ALL_SERVICE_LINKS.some(l => l.to === pathname);
-    if (item.mega) return item.mega.filter(m => m.type !== 'heading').some(m => m.to === pathname);
+    if (item.mega) return pathname === item.to || pathname.startsWith(`${item.to}/`) || item.mega.filter(m => m.type !== 'heading').some(m => m.to === pathname || pathname.startsWith(`${m.to}/`));
     return pathname === item.to;
   };
 

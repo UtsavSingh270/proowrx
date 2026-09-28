@@ -135,8 +135,10 @@ export default function PayPerApplication() {
           <div className="ppa-why-grid" ref={r2}>
             {whyItems.map((w, i) => (
               <div key={i} className={`ppa-why-card reveal reveal-delay-${i + 1}`}>
-                <div className="ppa-why-icon">{w.icon}</div>
-                <h4 className="ppa-why-title">{w.title}</h4>
+                <div className="ppa-why-heading">
+                  <div className="ppa-why-icon">{w.icon}</div>
+                  <h4 className="ppa-why-title">{w.title}</h4>
+                </div>
                 <p className="ppa-why-body">{w.body}</p>
               </div>
             ))}

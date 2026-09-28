@@ -15,8 +15,10 @@
 .growth-grid.four { grid-template-columns: repeat(4,minmax(0,1fr)); }
 .growth-card { position: relative; height: 100%; padding: 26px; background: #fff; border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 12px 36px rgba(13,31,59,.06); }
 .growth-card.featured { border-color: rgba(240,165,0,.55); box-shadow: 0 18px 48px rgba(240,165,0,.12); }
-.growth-card-icon { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 18px; color: #8a5d00; background: #fff2cc; border-radius: 14px; font-size: 1.35rem; }
-.growth-card h3 { margin: 0 0 10px; color: var(--text-1); font-size: 1.12rem; }
+.growth-card-header { display: grid; grid-template-columns: 46px minmax(0,1fr); align-items: start; gap: 14px; margin-bottom: 14px; }
+.growth-card-icon { display: grid; place-items: center; width: 46px; height: 46px; margin: 0; color: #8a5d00; background: #fff2cc; border-radius: 14px; font-size: 1.35rem; flex: 0 0 46px; }
+.growth-card-icon svg { display: block; width: 22px; height: 22px; }
+.growth-card h3 { min-width: 0; min-height: 46px; max-height: 46px; margin: 0; overflow: hidden; color: var(--text-1); font-size: 1.12rem; line-height: 1.28; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
 .growth-card p { margin: 0; color: var(--text-2); font-size: .88rem; line-height: 1.7; }
 .growth-list { display: grid; gap: 10px; padding: 0; margin: 20px 0 0; list-style: none; }
 .growth-list li { display: flex; align-items: flex-start; gap: 9px; color: var(--text-2); font-size: .84rem; line-height: 1.5; }

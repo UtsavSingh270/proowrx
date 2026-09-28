@@ -136,8 +136,10 @@ export default function About({ initialMembers = [] }) {
           <div className="values-grid">
             {values.map((v, i) => (
               <div key={i} className={`value-card reveal reveal-delay-${i + 1}`}>
-                <div className="value-icon">{v.icon}</div>
-                <h3>{v.title}</h3>
+                <div className="value-card-head">
+                  <div className="value-icon">{v.icon}</div>
+                  <h3>{v.title}</h3>
+                </div>
                 <p>{v.desc}</p>
               </div>
             ))}

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   ArrowRight, CheckCircle, X as XIcon, Zap, Shield,
-  FileCheck, TrendingUp, Clock, BarChart3,
+  BriefcaseBusiness, FileCheck, TrendingUp, Clock, BarChart3,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './PayPerApplication.css';
@@ -112,8 +112,11 @@ export default function PayPerApplication() {
               sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="page-hero-badge-float">
-              <strong>💼 No Lock-in Contract</strong>
-              <span>Standard &amp; Comprehensive</span>
+              <span className="ppa-hero-badge-icon" aria-hidden="true"><BriefcaseBusiness size={24} /></span>
+              <div>
+                <strong>No Lock-in Contract</strong>
+                <span>Standard &amp; Comprehensive</span>
+              </div>
             </div>
           </div>
         </div>

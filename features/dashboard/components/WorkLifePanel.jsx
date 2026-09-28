@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Plus, Edit2, Trash2, Save } from 'lucide-react';
+import { Plus, Edit2, Trash2, Save, X } from 'lucide-react';
 import { worklife as worklifeApi, upload as uploadApi } from '@/services/api';
 import FileUploadInput from '@/components/shared/FileUploadInput';
 
@@ -160,7 +160,7 @@ export default function WorkLifePanel() {
           <div className="dash-modal">
             <div className="dash-modal-header">
               <span className="dash-modal-title">{editingId ? 'Edit WorkLife Item' : 'New WorkLife Item'}</span>
-              <button className="dash-modal-close" onClick={() => setModalOpen(false)}>×</button>
+              <button className="dash-modal-close" onClick={() => setModalOpen(false)} aria-label="Close WorkLife editor"><X size={18} /></button>
             </div>
 
             <div className="dash-modal-body">

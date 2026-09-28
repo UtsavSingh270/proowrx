@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Lottie } from 'lottie-react';
 import {
   ArrowRight, ChevronLeft, ChevronRight, House, Calculator, Car, Megaphone,
-  ClipboardCheck, RefreshCw, GraduationCap, ShieldCheck
+  Check, ClipboardCheck, RefreshCw, GraduationCap, ShieldCheck, Star
 } from 'lucide-react';
 import CtaBanner from '../../components/shared/CtaBanner';
 import './Home.css';
@@ -405,13 +405,13 @@ export default function HomeClient({ insights }) {
                 <ul className="svc-bullets">
                   {svc.bullets.map((b) => (
                     <li key={b}>
-                      <span className="svc-check" style={{ color: svc.accent }}>✦</span>
+                      <span className="svc-check" style={{ color: svc.accent }} aria-hidden="true"><Check size={13} strokeWidth={2.8} /></span>
                       {b}
                     </li>
                   ))}
                 </ul>
                 <Link href={svc.to} className="svc-link" style={{ color: svc.accent, borderBottomColor: `${svc.accent}55` }}>
-                  Explore {svc.title} →
+                  Explore {svc.title} <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               </div>
             ))}
@@ -543,7 +543,9 @@ export default function HomeClient({ insights }) {
                           <span className="testi-initials" aria-hidden="true">{story.name.charAt(0)}</span>
                           <div><div className="testi-name">{story.name}</div><div className="testi-role">{story.role}</div></div>
                         </div>
-                        <div className="testi-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                        <div className="testi-stars" aria-label="5 out of 5 stars">
+                          {Array.from({ length: 5 }, (_, starIndex) => <Star key={starIndex} size={12} fill="currentColor" aria-hidden="true" />)}
+                        </div>
                       </div>
                     </article>
                   ))}

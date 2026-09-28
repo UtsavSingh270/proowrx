@@ -8,6 +8,17 @@
 /* Uses the shared .page-hero / .page-hero--split / .page-hero--img
    system from the main services page — no overrides needed here. */
 
+.bk-hero-badge-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  flex: 0 0 38px;
+  border-radius: 11px;
+  color: var(--navy);
+  background: var(--gold-pale);
+}
+
 /* ── 2. Service Intro ────────────────────── */
 .bk-intro {
   display: grid;

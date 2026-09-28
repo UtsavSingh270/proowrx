@@ -8,7 +8,7 @@ import {
   ArrowRight, BarChart3, BookOpenCheck, Calculator, CarFront,
   ChevronDown, Download, FileChartColumn, FileCheck2, FileStack,
   Globe, House, Landmark, Megaphone, Menu, Mic, Newspaper, Palette,
-  PenTool, Receipt, Shield, ShieldCheck, Target, UserRound, Users,
+  PenTool, Phone, Mail, Receipt, Shield, ShieldCheck, Target, UserRound, Users,
   Wallet, X,
 } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
@@ -182,8 +182,8 @@ export default function Navbar() {
       <div className="topbar">
         <div className="container topbar-inner">
           <div className="topbar-left">
-            <a href="tel:+61288341222">📞 02 8834 1222</a>
-            <a href="mailto:support@proowrx.com">✉️ support@proowrx.com</a>
+            <a href="tel:+61288341222"><Phone size={13} aria-hidden="true" /> <span>02 8834 1222</span></a>
+            <a href="mailto:support@proowrx.com"><Mail size={13} aria-hidden="true" /> <span>support@proowrx.com</span></a>
           </div>
           <div className="topbar-socials">
             {[

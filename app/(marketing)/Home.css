@@ -405,7 +405,8 @@
 .home .svc-desc { font-size: 0.87rem; color: rgba(255,255,255,0.58); line-height: 1.78; margin-bottom: 22px; }
 .home .svc-bullets { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; padding: 0; }
 .home .svc-bullets li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.80rem; font-weight: 600; color: rgba(255,255,255,0.82); line-height: 1.4; }
-.home .svc-check { flex-shrink: 0; font-size: 0.7rem; margin-top: 2px; }
+.home .svc-check { display: inline-flex; width: 14px; height: 14px; flex: 0 0 14px; align-items: center; justify-content: center; margin-top: 2px; }
+.home .svc-check svg { display: block; width: 13px; height: 13px; }
 .home .svc-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.84rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid; padding-bottom: 2px; transition: gap 0.2s; }
 .home .svc-link:hover { gap: 12px; }
 
@@ -780,7 +781,8 @@
 }
 .home .testi-name { color: #0b1f42; font-size: .84rem; }
 .home .testi-role { overflow: hidden; color: #71809a; font-size: .69rem; text-overflow: ellipsis; white-space: nowrap; }
-.home .testi-stars { flex: 0 0 auto; margin: 0; color: #d99a00; font-size: .76rem; }
+.home .testi-stars { display: inline-flex; width: auto; flex: 0 0 auto; align-items: center; gap: 2px; margin: 0; color: #d99a00; }
+.home .testi-stars svg { display: block; width: 12px; height: 12px; }
 
 @media (max-width: 560px) {
   .home .testi-section .section-title { font-size: clamp(1rem, 5.2vw, 1.3rem); letter-spacing: -.035em; }
@@ -790,7 +792,8 @@
   .home .testi-card { width: min(86vw, 325px); min-height: 220px; padding: 21px 19px 21px 27px; }
   .home .testi-text { font-size: .8rem; line-height: 1.62; }
   .home .testi-meta { gap: 10px; }
-  .home .testi-stars { font-size: .68rem; }
+  .home .testi-stars { gap: 1px; }
+  .home .testi-stars svg { width: 11px; height: 11px; }
 }
 @media (min-width: 561px) and (max-width: 768px) {
   .home .testi-track, .home .testi-group { gap: 18px; }

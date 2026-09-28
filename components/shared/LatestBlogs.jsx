@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { serverPosts } from '@/lib/serverApi';
 import BlogPostCard from './BlogPostCard';
 import './PageInsights.css';
@@ -19,7 +20,7 @@ export default async function LatestBlogs() {
             <h2 id="home-insights-title">Insights</h2>
             <p>Our latest practical ideas and guidance for Australian businesses.</p>
           </div>
-          <Link href="/blog">Explore all insights →</Link>
+          <Link href="/blog">Explore all insights <ArrowRight size={15} aria-hidden="true" /></Link>
         </div>
         <div className="blog-grid">
           {posts.map((post, index) => <BlogPostCard post={post} referenceTime={generatedAt} index={index} key={post._id} />)}

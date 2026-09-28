@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { X } from 'lucide-react';
 import { resources } from '@/services/api';
 import '@/styles/InfoPages.css';
 
@@ -38,7 +39,7 @@ export default function DownloadButton({ resource }) {
   }
   return <><button ref={trigger} className="btn btn-gold" type="button" onClick={() => { setOpen(true); setError(''); setDownloadUrl(''); }}>Download</button>
     {open && <div className="resource-modal-overlay" onMouseDown={event => { if (event.target === event.currentTarget && !busy) setOpen(false); }}><div ref={dialog} className="resource-modal" role="dialog" aria-modal="true" aria-label={`Download ${resource.title}`} onKeyDown={keyDown}>
-      <button type="button" className="resource-modal-close" disabled={busy} aria-label="Close download form" onClick={() => setOpen(false)}>×</button>
+      <button type="button" className="resource-modal-close" disabled={busy} aria-label="Close download form" onClick={() => setOpen(false)}><X size={17} /></button>
       <h2>{resource.title}</h2>
       {downloadUrl ? <div role="status"><p>Your download is ready.</p><a href={downloadUrl} className="btn btn-gold" download target="_blank" rel="noreferrer">Download file</a><p className="dash-field-help">This link is available for 10 minutes.</p></div> : <form className="resource-form" onSubmit={submit}>
         <p>Enter your details to access this file.</p>

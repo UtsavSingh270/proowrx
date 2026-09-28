@@ -122,6 +122,8 @@
   justify-content: center;
 }
 
+.resource-modal-close svg { display: block; width: 17px; height: 17px; }
+
 .resource-modal-head {
   display: flex;
   gap: 14px;

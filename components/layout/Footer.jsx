@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, ArrowRight, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, Send, CircleCheckBig } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { newsletter } from '@/services/api';
@@ -113,7 +113,7 @@ export default function Footer() {
               </div>
               <div className="footer-newsletter-action">
                 {done ? (
-                  <div className="newsletter-success">✓ You&apos;re subscribed!</div>
+                  <div className="newsletter-success"><CircleCheckBig size={16} aria-hidden="true" /> <span>You&apos;re subscribed!</span></div>
                 ) : (
                   <form onSubmit={submit} className="newsletter-form">
                     <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
@@ -122,11 +122,6 @@ export default function Footer() {
                 )}
                 {subscribeError && <p className="newsletter-error" role="alert">{subscribeError}</p>}
               </div>
-              {/* <div className="footer-trust">
-                <div className="trust-item">🔒 ISO-compliant data security</div>
-                <div className="trust-item">✓ Australian-owned & operated</div>
-                <div className="trust-item">🌐 Serving brokers Australia-wide</div>
-              </div> */}
             </div>
           </div>
         </div>

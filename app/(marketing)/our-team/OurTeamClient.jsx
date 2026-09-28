@@ -2,7 +2,16 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { ArrowRight, X } from 'lucide-react';
+import {
+  ArrowRight,
+  HandHeart,
+  MessagesSquare,
+  Scale,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  X,
+} from 'lucide-react';
 import { FaLinkedinIn } from 'react-icons/fa';
 import CtaBanner from '@/components/shared/CtaBanner';
 import TeamCultureMedia from './TeamCultureMedia';
@@ -111,12 +120,12 @@ function TeamProfileModal({ member, onClose }) {
 }
 
 const values = [
-  { emoji: '🎯', title: 'COMMIT TO DELIVERY EXCELLENCE', desc: 'We complete assigned tasks accurately, follow set industry guidelines, and meet daily turnaround times. ' },
-  { emoji: '🔒', title: 'EMBRACE INTEGRITY AND OPENNESS', desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
-  { emoji: '🚀', title: 'PRACTICE RESPONSIBLE STEWARDSHIP', desc: 'We handle client files, financial records, and business systems with strict privacy and security.' },
-  { emoji: '🤝', title: 'IGNITE PASSION FOR THE GREATER GOOD', desc: 'We channel our energy into positive work that benefits our clients, team, and wider community.' },
-  { emoji: '⚡', title: 'INVEST IN AN EXCEPTIONAL CULTURE', desc: 'We build a workplace founded on mutual respect, continuous learning, and strong team collaboration.' },
-  { emoji: '🌏', title: 'LIVE A BALANCED LIFE', desc: 'We support healthy boundaries between work and personal life to maintain well-being and focus.' },
+  { icon: Target, title: 'COMMIT TO DELIVERY EXCELLENCE', desc: 'We complete assigned tasks accurately, follow set industry guidelines, and meet daily turnaround times. ' },
+  { icon: MessagesSquare, title: 'EMBRACE INTEGRITY AND OPENNESS', desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
+  { icon: ShieldCheck, title: 'PRACTICE RESPONSIBLE STEWARDSHIP', desc: 'We handle client files, financial records, and business systems with strict privacy and security.' },
+  { icon: HandHeart, title: 'IGNITE PASSION FOR THE GREATER GOOD', desc: 'We channel our energy into positive work that benefits our clients, team, and wider community.' },
+  { icon: Sparkles, title: 'INVEST IN AN EXCEPTIONAL CULTURE', desc: 'We build a workplace founded on mutual respect, continuous learning, and strong team collaboration.' },
+  { icon: Scale, title: 'LIVE A BALANCED LIFE', desc: 'We support healthy boundaries between work and personal life to maintain well-being and focus.' },
 ];
 
 export default function OurTeamClient({ initialMembers, initialCultureItems }) {
@@ -182,10 +191,10 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
                 <div className="team-member-img-wrap">
                   {member.img ? <Image src={member.img} alt={member.name} fill sizes="(max-width: 640px) 42vw, (max-width: 1200px) 23vw, 320px" /> : <div className="team-image-placeholder" aria-hidden="true" />}
                   <div className="team-member-overlay" style={{ background: `linear-gradient(to top, ${member.color}44 0%, transparent 50%)` }} />
-                  <div className="team-member-role-badge">{member.role}</div>
                 </div>
                 <div className="team-member-body">
                   <h3 className="team-member-name">{member.name}</h3>
+                  <div className="team-member-role">{member.role}</div>
                   <p className="team-member-summary">{member.shortSummary || 'Learn more about this member of the Proowrx team.'}</p>
                   <button type="button" className="team-member-read-more" onClick={() => setSelectedMember(member)} aria-label={`Read more about ${member.name}`}>
                     Read More <ArrowRight size={16} />
@@ -228,11 +237,13 @@ export default function OurTeamClient({ initialMembers, initialCultureItems }) {
             </p>
           </div>
           <div className="team-values-grid">
-            {values.map((v, i) => (
-              <div key={i} className={`team-value-card reveal reveal-delay-${(i % 3) + 1}`}>
-                <span className="team-value-emoji">{v.emoji}</span>
-                <h4>{v.title}</h4>
-                <p>{v.desc}</p>
+            {values.map(({ icon: ValueIcon, title, desc }, i) => (
+              <div key={title} className={`team-value-card reveal reveal-delay-${(i % 3) + 1}`}>
+                <span className="team-value-icon" aria-hidden="true">
+                  <ValueIcon size={24} strokeWidth={1.9} />
+                </span>
+                <h4>{title}</h4>
+                <p>{desc}</p>
               </div>
             ))}
           </div>

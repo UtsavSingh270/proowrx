@@ -2,7 +2,23 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ArrowRight, ExternalLink, CheckCircle, GraduationCap, TrendingUp, Heart, HandHeart, Zap, Globe, Star } from 'lucide-react';
+import {
+  ArrowRight,
+  Briefcase,
+  CheckCircle,
+  ClipboardCheck,
+  FileText,
+  Globe,
+  GraduationCap,
+  HandHeart,
+  Heart,
+  MapPin,
+  PhoneCall,
+  Star,
+  TrendingUp,
+  UserCheck,
+  Zap,
+} from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import './Career.css';
 
@@ -27,6 +43,13 @@ const perks = [
   { icon: <Zap size={24} />, title: 'Dynamic Environment', desc: 'Fast-paced, innovative workplace where your contributions make a real and visible impact from day one.' },
   { icon: <Heart size={24} />, title: 'Work-Life Balance', desc: 'We value your well-being — structured hours, supportive culture, and a management team that genuinely cares.' },
   { icon: <HandHeart size={24} />, title: 'Meaningful Work', desc: 'Help Australian businesses thrive. What you do here matters — every file you process is real value for a real client.' },
+];
+
+const hiringSteps = [
+  { num: '01', icon: FileText, title: 'Apply Online', desc: 'Submit your application through our ZappyHire portal with your CV and a brief cover note.' },
+  { num: '02', icon: PhoneCall, title: 'Initial Screening', desc: 'Our team reviews your application and reaches out for a short initial phone or video call.' },
+  { num: '03', icon: ClipboardCheck, title: 'Skills Assessment', desc: 'Role-specific assessment to evaluate your technical skills and industry knowledge.' },
+  { num: '04', icon: UserCheck, title: 'Final Interview', desc: 'In-depth interview with the hiring manager to assess fit, expectations, and growth potential.' },
 ];
 
 export default function CareerClient({ initialJobs }) {
@@ -156,7 +179,10 @@ export default function CareerClient({ initialJobs }) {
                     </span>
                     {role.department && <span className="career-role-dept">{role.department}</span>}
                     {role.department && <span className="career-role-dot">·</span>}
-                    <span className="career-role-loc">📍 {role.location}</span>
+                    <span className="career-role-loc">
+                      <MapPin size={14} aria-hidden="true" />
+                      {role.location}
+                    </span>
                     <span className="career-role-dot">·</span>
                     <span className="career-role-type">{role.type}</span>
                     {role.experience && <><span className="career-role-dot">·</span><span className="career-role-type">{role.experience}</span></>}
@@ -183,7 +209,9 @@ export default function CareerClient({ initialJobs }) {
 
           <div className="career-no-match">
             <div className="career-no-match-inner">
-              <span style={{ fontSize: '2.5rem' }}>💼</span>
+              <span className="career-no-match-icon" aria-hidden="true">
+                <Briefcase size={25} strokeWidth={1.9} />
+              </span>
               <div>
                 <h4>Don&apos;t see a perfect match?</h4>
                 <p>We&apos;re always open to hearing from talented people. Send us your CV and tell us how you can add value to our team.</p>
@@ -205,17 +233,14 @@ export default function CareerClient({ initialJobs }) {
             <p className="section-body" style={{ margin: '0 auto' }}>Simple, transparent, and respectful of your time.</p>
           </div>
           <div className="career-process-grid">
-            {[
-              { num: '01', emoji: '📄', title: 'Apply Online', desc: 'Submit your application through our ZappyHire portal with your CV and a brief cover note.' },
-              { num: '02', emoji: '📞', title: 'Initial Screening', desc: 'Our team reviews your application and reaches out for a short initial phone or video call.' },
-              { num: '03', emoji: '✍️', title: 'Skills Assessment', desc: 'Role-specific assessment to evaluate your technical skills and industry knowledge.' },
-              { num: '04', emoji: '🎯', title: 'Final Interview', desc: 'In-depth interview with the hiring manager to assess fit, expectations, and growth potential.' },
-            ].map((step, i) => (
-              <div key={i} className={`career-step reveal reveal-delay-${i + 1}`}>
-                <div className="career-step-num">{step.num}</div>
-                <span className="career-step-emoji">{step.emoji}</span>
-                <h4>{step.title}</h4>
-                <p>{step.desc}</p>
+            {hiringSteps.map(({ num, icon: StepIcon, title, desc }, i) => (
+              <div key={title} className={`career-step reveal reveal-delay-${i + 1}`}>
+                <div className="career-step-num">{num}</div>
+                <span className="career-step-icon" aria-hidden="true">
+                  <StepIcon size={23} strokeWidth={1.9} />
+                </span>
+                <h4>{title}</h4>
+                <p>{desc}</p>
               </div>
             ))}
           </div>

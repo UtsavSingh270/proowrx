@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   ArrowRight, CheckCircle, Clock, Calendar, Users, Mail,
-  FileText, Phone, Database, FileChartColumn, Headphones,
+  FileText, Phone, Database, FileChartColumn, Headphones, UserRoundCheck,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './VirtualAssistant.css';
@@ -126,8 +126,11 @@ export default function VirtualAssistant() {
               sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="page-hero-badge-float">
-              <strong>👤 Dedicated Resource</strong>
-              <span>AU Business Hours</span>
+              <span className="va-hero-badge-icon" aria-hidden="true"><UserRoundCheck size={24} /></span>
+              <div>
+                <strong>Dedicated Resource</strong>
+                <span>AU Business Hours</span>
+              </div>
             </div>
           </div>
         </div>

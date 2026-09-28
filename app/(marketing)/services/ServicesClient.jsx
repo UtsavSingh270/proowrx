@@ -2,15 +2,26 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import {
+  ArrowRight,
+  Calculator,
+  CarFront,
+  CheckCircle,
+  ClipboardCheck,
+  GraduationCap,
+  House,
+  Megaphone,
+  RefreshCw,
+  ShieldCheck,
+} from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Services.css';
 
 const qualities = [
-  { icon: '🎯', title: 'ISO Certified Security', desc: 'ISO 27001:2022 certified protocols and secure infrastructure protecting your sensitive information 24/7.' },
-  { icon: '⚡', title: 'Regulatory Compliance', desc: 'Comprehensive compliance management covering all industry standards, governing bodies, and frameworks.' },
-  { icon: '🔄', title: 'Expert Training', desc: 'Ongoing, structured training and development programmes keep our 150+ professionals at the top of their game.' },
-  { icon: '🔧', title: 'Seamless Adaptability', desc: 'Flexible service models built on 25+ years of leadership experience to fit your shifting business needs.' },
+  { icon: <ShieldCheck size={25} aria-hidden="true" />, title: 'ISO Certified Security', desc: 'ISO 27001:2022 certified protocols and secure infrastructure protecting your sensitive information 24/7.' },
+  { icon: <ClipboardCheck size={25} aria-hidden="true" />, title: 'Regulatory Compliance', desc: 'Comprehensive compliance management covering all industry standards, governing bodies, and frameworks.' },
+  { icon: <GraduationCap size={25} aria-hidden="true" />, title: 'Expert Training', desc: 'Ongoing, structured training and development programmes keep our 150+ professionals at the top of their game.' },
+  { icon: <RefreshCw size={25} aria-hidden="true" />, title: 'Seamless Adaptability', desc: 'Flexible service models built on 25+ years of leadership experience to fit your shifting business needs.' },
 ];
 
 // const steps = [
@@ -55,7 +66,7 @@ export default function Services() {
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
-                <div className="svc-big-icon">🏠</div>
+                <div className="svc-big-icon" aria-hidden="true"><House size={28} /></div>
                 <h2>Mortgage Outsourcing Service</h2>
                 <p>Optimise your brokerage efficiently without increasing back-office admin tasks. By outsourcing mortgage loan processing to our dedicated team, you keep files moving faster.</p>
                 <ul>
@@ -75,7 +86,7 @@ export default function Services() {
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
-                <div className="svc-big-icon">📊</div>
+                <div className="svc-big-icon" aria-hidden="true"><Calculator size={28} /></div>
                 <h2>Accounting Outsourcing Services</h2>
                 <p>Secure your business’s profit margins and eliminate the tax season bottlenecks with a high-precision outsourced accounting service. Our team handles routine compliance and ledger maintenance so you can focus on building client relationships.</p>
                 <ul>
@@ -94,7 +105,7 @@ export default function Services() {
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
-                <div className="svc-big-icon">🚗</div>
+                <div className="svc-big-icon" aria-hidden="true"><CarFront size={28} /></div>
                 <h2>Asset Finance Outsourcing Service</h2>
                 <p>Proowrx provides dedicated asset finance support for brokers across commercial loans, equipment finance, vehicle finance, personal loans, chattel mortgages, and other lending scenarios.</p>
                 <ul>{['Credit & Deal Structuring Support','Lender Submissions & Follow-Up','CRM & Pipeline Management'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
@@ -109,7 +120,7 @@ export default function Services() {
                 <div className="svc-big-overlay" />
               </div>
               <div className="svc-big-content">
-                <div className="svc-big-icon">📣</div>
+                <div className="svc-big-icon" aria-hidden="true"><Megaphone size={28} /></div>
                 <h2>Digital Marketing Support</h2>
                 <p>Build a stronger online presence with all-in-one digital marketing packages designed for mortgage brokers, accountants, asset finance brokers, real estate agents, and buyer’s agents.</p>
                 <ul>{['SEO & Website Optimisation','Email Marketing','Paid Advertising & Lead Generation'].map(b=><li key={b}><CheckCircle size={14}/>{b}</li>)}</ul>
@@ -131,7 +142,7 @@ export default function Services() {
           <div className="quality-grid">
             {qualities.map((q, i) => (
               <div key={i} className="quality-tile reveal">
-                <span className="quality-icon">{q.icon}</span>
+                <span className="quality-icon" aria-hidden="true">{q.icon}</span>
                 <h4>{q.title}</h4>
                 <p>{q.desc}</p>
               </div>

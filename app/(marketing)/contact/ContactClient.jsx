@@ -2,7 +2,18 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { ArrowRight, MapPin, Phone, Mail, Clock, CheckCircle, Send } from 'lucide-react';
+import {
+  ArrowRight,
+  CheckCircle,
+  Clock,
+  Globe2,
+  Mail,
+  MapPin,
+  MapPinned,
+  Phone,
+  PhoneCall,
+  Send,
+} from 'lucide-react';
 import { contact } from '@/services/api';
 import './Contact.css';
 
@@ -22,7 +33,7 @@ function useReveal() {
 
 const offices = [
   {
-    flag: '🇮🇳',
+    icon: <MapPinned size={23} aria-hidden="true" />,
     city: 'Jaipur, India',
     address: '2nd Floor, PTI Building, Jhalana Institutional Area, Jaipur – 302004',
     phones: ['+91 96104 11400', '+91-141-2952294'],
@@ -30,7 +41,7 @@ const offices = [
     color: '#1f9e8e',
   },
   {
-    flag: '🇦🇺',
+    icon: <MapPinned size={23} aria-hidden="true" />,
     city: 'Sydney, Australia',
     address: 'Suite 215, East Wing, 33 Lexington Drive, Bella Vista NSW – 2153',
     phones: ['02 8834 1222'],
@@ -95,7 +106,7 @@ export default function Contact() {
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">🇦🇺 🇮🇳</span>
+                <span className="page-hero-stat-num contact-hero-stat-icon" aria-hidden="true"><Globe2 size={28} /></span>
                 <span className="page-hero-stat-label">AU &amp; IN Support</span>
               </div>
             </div>
@@ -103,7 +114,7 @@ export default function Contact() {
           <div className="page-hero-visual">
             <Image src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=900&q=85" alt="Contact Proowrx" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
             <div className="page-hero-badge-float">
-              <span style={{ fontSize: '1.6rem' }}>📞</span>
+              <span className="contact-hero-badge-icon" aria-hidden="true"><PhoneCall size={24} /></span>
               <div>
                 <strong>Always Available</strong>
                 <span>Mon–Fri, 9AM–6PM</span>
@@ -128,7 +139,7 @@ export default function Contact() {
             {offices.map((o, i) => (
               <div key={i} className="office-info-card" style={{ '--office-color': o.color }}>
                 <div className="office-info-header">
-                  <span className="office-flag-large">{o.flag}</span>
+                  <span className="office-location-icon" aria-hidden="true">{o.icon}</span>
                   <div>
                     <h3 className="office-city">{o.city}</h3>
                     <div className="office-color-bar" style={{ background: o.color }} />

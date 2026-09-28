@@ -105,8 +105,11 @@ export default function Bookkeeping() {
               sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="page-hero-badge-float">
-              <strong>📊 No Lock-in Contract</strong>
-              <span>Standard &amp; Comprehensive</span>
+              <span className="bk-hero-badge-icon" aria-hidden="true"><BarChart3 size={24} /></span>
+              <div>
+                <strong>No Lock-in Contract</strong>
+                <span>Standard &amp; Comprehensive</span>
+              </div>
             </div>
           </div>
         </div>

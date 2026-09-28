@@ -3,6 +3,17 @@
 ═══════════════════════════════════════════ */
 
 /* ── Tasks Grid ──────────────────────────── */
+.va-hero-badge-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  flex: 0 0 38px;
+  border-radius: 11px;
+  color: var(--navy);
+  background: var(--gold-pale);
+}
+
 .va-tasks-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

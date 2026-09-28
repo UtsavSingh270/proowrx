@@ -17,37 +17,37 @@ export const KB = [
   },
   {
     keywords: ['mortgage', 'loan', 'broker', 'settlement', 'lender', 'home loan', 'property loan'],
-    response: "Our Mortgage Processing service handles the entire back-office workflow for Australian mortgage brokers:\n\n• Loan application data entry & lodgement\n• Document collection & verification\n• Serviceability calculations\n• Compliance file preparation (NCCP)\n• Lender submissions & follow-up\n• Condition management\n• Settlement coordination\n• Post-settlement support\n\nOur team is trained on all major Australian lender requirements.",
+    response: "Our Mortgage Processing service handles the entire back-office workflow for Australian mortgage brokers:\n\n- Loan application data entry & lodgement\n- Document collection & verification\n- Serviceability calculations\n- Compliance file preparation (NCCP)\n- Lender submissions & follow-up\n- Condition management\n- Settlement coordination\n- Post-settlement support\n\nOur team is trained on all major Australian lender requirements.",
     buttons: ['What are your turnaround times?', 'What software do you support?', 'How do I get started?'],
   },
   {
     keywords: ['accounting', 'bookkeeping', 'tax', 'bas', 'ias', 'xero', 'myob', 'quickbooks', 'accountant', 'lodgement', 'lodgment'],
-    response: "Our Accounting Services support Australian firms with:\n\n• Bookkeeping & bank reconciliation (Xero, MYOB, QuickBooks)\n• BAS & IAS preparation\n• Individual & company tax return preparation\n• SMSF administration & audit prep\n• Financial statement preparation\n• Payroll processing (STP Phase 2)\n• Management reporting\n\nAll work is prepared by qualified accountants and reviewed before delivery.",
+    response: "Our Accounting Services support Australian firms with:\n\n- Bookkeeping & bank reconciliation (Xero, MYOB, QuickBooks)\n- BAS & IAS preparation\n- Individual & company tax return preparation\n- SMSF administration & audit prep\n- Financial statement preparation\n- Payroll processing (STP Phase 2)\n- Management reporting\n\nAll work is prepared by qualified accountants and reviewed before delivery.",
     buttons: ['Tell me about SMSF support', 'What software do you use?', 'How does quality control work?'],
   },
   {
     keywords: ['smsf', 'self managed super', 'superannuation', 'fund', 'sar', 'actuarial', 'class super', 'bgl'],
-    response: "Proowrx provides comprehensive SMSF administration support:\n\n• Fund establishment & trust deed coordination\n• Annual financial statements\n• Member statements\n• Investment transaction reconciliation (ASX, managed funds, property)\n• SMSF tax return preparation (SAR)\n• Actuarial certificate coordination\n• Audit preparation — full documentation package\n\nWe support practices managing 30 to 800+ funds.",
+    response: "Proowrx provides comprehensive SMSF administration support:\n\n- Fund establishment & trust deed coordination\n- Annual financial statements\n- Member statements\n- Investment transaction reconciliation (ASX, managed funds, property)\n- SMSF tax return preparation (SAR)\n- Actuarial certificate coordination\n- Audit preparation — full documentation package\n\nWe support practices managing 30 to 800+ funds.",
     buttons: ['What SMSF software do you support?', 'How does pricing work?'],
   },
   {
     keywords: ['virtual assistant', 'va ', 'remote staff', 'dedicated staff', 'remote worker', 'full time'],
-    response: "Our Virtual Assistant service provides dedicated remote staff members who work exclusively for your firm during your business hours.\n\nVAs can handle:\n• Client communications & scheduling\n• CRM management & data entry\n• Document preparation & filing\n• Email management\n• Research & reporting\n• Process documentation\n\nYour VA is fully integrated into your team — trained on your systems and processes.",
+    response: "Our Virtual Assistant service provides dedicated remote staff members who work exclusively for your firm during your business hours.\n\nVAs can handle:\n- Client communications & scheduling\n- CRM management & data entry\n- Document preparation & filing\n- Email management\n- Research & reporting\n- Process documentation\n\nYour VA is fully integrated into your team — trained on your systems and processes.",
     buttons: ['What are your business hours?', 'How does pricing work?'],
   },
   {
     keywords: ['pay per application', 'ppa', 'per application', 'no commitment', 'flexible', 'trial', 'test'],
-    response: "Pay Per Application is our most flexible engagement model — ideal for brokers who want to try outsourcing without a monthly commitment.\n\nHow it works:\n• Submit applications when you need them processed\n• Pay a fixed fee per application\n• No monthly retainer, no lock-in contract\n• Same quality as our full-service offering\n• Ideal for brokers writing 5–20 loans per month\n\nAs volume grows, we transition you to a more cost-effective monthly model.",
+    response: "Pay Per Application is our most flexible engagement model — ideal for brokers who want to try outsourcing without a monthly commitment.\n\nHow it works:\n- Submit applications when you need them processed\n- Pay a fixed fee per application\n- No monthly retainer, no lock-in contract\n- Same quality as our full-service offering\n- Ideal for brokers writing 5–20 loans per month\n\nAs volume grows, we transition you to a more cost-effective monthly model.",
     buttons: ['What does it cost per application?', 'How do I get started?'],
   },
   {
     keywords: ['price', 'cost', 'charge', 'fee', 'rate', 'expensive', 'affordable', 'how much', 'pricing', 'quote', 'invoice'],
-    response: "Proowrx pricing is tailored to your firm's volume and requirements:\n\n• **Pay Per Application** — fixed fee per loan processed (great for lower volume)\n• **Monthly retainer packages** — for firms with consistent workloads\n• **Dedicated VA** — monthly pricing for full-time equivalent staff\n\nAs a guide, our services typically cost **40–60% less** than equivalent in-house staff when you account for salary, super, leave, and overhead.\n\nContact us for a personalised quote.",
+    response: "Proowrx pricing is tailored to your firm's volume and requirements:\n\n- **Pay Per Application** — fixed fee per loan processed (great for lower volume)\n- **Monthly retainer packages** — for firms with consistent workloads\n- **Dedicated VA** — monthly pricing for full-time equivalent staff\n\nAs a guide, our services typically cost **40–60% less** than equivalent in-house staff when you account for salary, super, leave, and overhead.\n\nContact us for a personalised quote.",
     buttons: ['Book a call to discuss pricing', 'What services do you offer?'],
   },
   {
     keywords: ['where', 'located', 'office', 'address', 'india', 'australia', 'jaipur', 'sydney', 'country', 'based'],
-    response: "Proowrx has two offices:\n\n**🇮🇳 Jaipur, India**\n1st Floor, Patrika Building, 5E, Jhalana Institutional Area, JLN Marg, Jaipur – 302004\nPhone: +91 96104 11400\n\n**🇦🇺 Sydney, Australia**\nSuite 215, East Wing, 33 Lexington Drive, Bella Vista NSW – 2153\nPhone: 02 8834 1222\n\nEmail: support@proowrx.com",
+    response: "Proowrx has two offices:\n\n**Jaipur, India**\n1st Floor, Patrika Building, 5E, Jhalana Institutional Area, JLN Marg, Jaipur – 302004\nPhone: +91 96104 11400\n\n**Sydney, Australia**\nSuite 215, East Wing, 33 Lexington Drive, Bella Vista NSW – 2153\nPhone: 02 8834 1222\n\nEmail: support@proowrx.com",
     buttons: ['What are your business hours?', 'How do I contact you?'],
   },
   {
@@ -72,7 +72,7 @@ export const KB = [
   },
   {
     keywords: ['turnaround', 'fast', 'quick', 'how long', 'speed', 'delivery', 'deadline', 'sla', 'days', 'timeline'],
-    response: "Our standard turnaround times:\n\n• **Loan applications (standard):** 24–48 business hours from document receipt\n• **BAS/IAS preparation:** 2–5 business days\n• **Tax return preparation:** 2–5 business days\n• **Bookkeeping:** Daily or weekly batches\n• **SMSF annual accounts:** 5–10 business days\n\nPriority processing is available for urgent files — please discuss specific requirements with our team.",
+    response: "Our standard turnaround times:\n\n- **Loan applications (standard):** 24–48 business hours from document receipt\n- **BAS/IAS preparation:** 2–5 business days\n- **Tax return preparation:** 2–5 business days\n- **Bookkeeping:** Daily or weekly batches\n- **SMSF annual accounts:** 5–10 business days\n\nPriority processing is available for urgent files — please discuss specific requirements with our team.",
     buttons: ['What are your business hours?', 'How do I get started?'],
   },
   {
@@ -87,27 +87,27 @@ export const KB = [
   },
   {
     keywords: ['team', 'staff', 'employee', 'people', 'qualified', 'experience', 'who', 'expert', 'background'],
-    response: "The Proowrx team consists of:\n\n• Qualified accountants (CA/CPA equivalent)\n• Mortgage processing specialists trained in Australian lender requirements\n• Virtual assistants with financial services experience\n\nAll staff are based in our Jaipur, India office and undergo Australian financial services training before client assignment. Team leads provide quality control on every deliverable.",
+    response: "The Proowrx team consists of:\n\n- Qualified accountants (CA/CPA equivalent)\n- Mortgage processing specialists trained in Australian lender requirements\n- Virtual assistants with financial services experience\n\nAll staff are based in our Jaipur, India office and undergo Australian financial services training before client assignment. Team leads provide quality control on every deliverable.",
     buttons: ['How does quality control work?', 'What are your turnaround times?'],
   },
   {
     keywords: ['quality', 'accuracy', 'review', 'check', 'control', 'error', 'mistake', 'standard', 'reliable'],
-    response: "Quality control is built into every Proowrx workflow:\n\n• **Maker-checker process:** Every file is prepared and independently reviewed\n• **Documented SOPs:** Standardised procedures for every task type\n• **Regular calibration:** Team leads review sample outputs regularly\n• **Client feedback loops:** Regular check-ins to address issues early\n\nOur mortgage processing accuracy rate consistently exceeds **98%**.",
+    response: "Quality control is built into every Proowrx workflow:\n\n- **Maker-checker process:** Every file is prepared and independently reviewed\n- **Documented SOPs:** Standardised procedures for every task type\n- **Regular calibration:** Team leads review sample outputs regularly\n- **Client feedback loops:** Regular check-ins to address issues early\n\nOur mortgage processing accuracy rate consistently exceeds **98%**.",
     buttons: ['What are your turnaround times?', 'How do I get started?'],
   },
   {
     keywords: ['why outsource', 'benefit', 'advantage', 'reason', 'should i', 'worth it', 'value', 'roi', 'return'],
-    response: "The main benefits of outsourcing with Proowrx:\n\n💰 **Cost savings:** 40–60% lower cost than in-house staff\n⚡ **Speed:** Dedicated teams with fast turnaround\n📈 **Scalability:** Scale up or down as workload changes\n🎯 **Focus:** Senior staff focus on clients & advisory\n🔒 **Risk reduction:** No recruitment or turnover risk\n✅ **Compliance:** Work done by trained specialists\n\nMost clients see ROI within **60–90 days**.",
+    response: "The main benefits of outsourcing with Proowrx:\n\n- **Cost savings:** 40–60% lower cost than in-house staff\n- **Speed:** Dedicated teams with fast turnaround\n- **Scalability:** Scale up or down as workload changes\n- **Focus:** Senior staff focus on clients & advisory\n- **Risk reduction:** No recruitment or turnover risk\n- **Compliance:** Work done by trained specialists\n\nMost clients see ROI within **60–90 days**.",
     buttons: ['How much does it cost?', 'How do I get started?'],
   },
   {
     keywords: ['compliance', 'nccp', 'responsible lending', 'asic', 'afsl', 'regulation', 'ato', 'legal'],
-    response: "Proowrx is well-versed in Australian financial services compliance:\n\n• **Mortgage:** NCCP responsible lending obligations, lender-specific requirements\n• **Accounting:** ATO requirements, tax agent obligations, ASIC reporting\n• **SMSF:** SIS Act compliance, ATO SMSF regulations, audit requirements\n• **Privacy:** Australian Privacy Principles (APPs), Privacy Act 1988\n\nOur compliance knowledge is regularly updated as regulations change.",
+    response: "Proowrx is well-versed in Australian financial services compliance:\n\n- **Mortgage:** NCCP responsible lending obligations, lender-specific requirements\n- **Accounting:** ATO requirements, tax agent obligations, ASIC reporting\n- **SMSF:** SIS Act compliance, ATO SMSF regulations, audit requirements\n- **Privacy:** Australian Privacy Principles (APPs), Privacy Act 1988\n\nOur compliance knowledge is regularly updated as regulations change.",
     buttons: ['Tell me about data security', 'What services do you offer?'],
   },
   {
     keywords: ['payroll', 'stp', 'pay run', 'wages', 'employee pay', 'award', 'entitlement'],
-    response: "Our payroll processing service handles the complexity of Australian payroll:\n\n• Single Touch Payroll (STP Phase 2) compliant reporting\n• Award and EBA interpretation\n• Leave management and accruals\n• Superannuation calculations and remittance\n• PAYG withholding\n• End-of-year payment summaries\n\nYour clients get accurate, on-time payroll — your team gets time back.",
+    response: "Our payroll processing service handles the complexity of Australian payroll:\n\n- Single Touch Payroll (STP Phase 2) compliant reporting\n- Award and EBA interpretation\n- Leave management and accruals\n- Superannuation calculations and remittance\n- PAYG withholding\n- End-of-year payment summaries\n\nYour clients get accurate, on-time payroll — your team gets time back.",
     buttons: ['Tell me about Accounting services', 'What are your turnaround times?'],
   },
   {
@@ -117,13 +117,13 @@ export const KB = [
   },
   {
     keywords: ['no', 'nothing', 'done', 'bye', 'goodbye', "that's all", 'all good', 'nevermind'],
-    response: "Thanks for chatting! Feel free to come back anytime if you have more questions. You can also reach us at support@proowrx.com or call 02 8834 1222 (Australia).\n\nHave a great day! 👋",
+    response: "Thanks for chatting! Feel free to come back anytime if you have more questions. You can also reach us at support@proowrx.com or call 02 8834 1222 (Australia).\n\nHave a great day!",
     buttons: ['Start over'],
   },
 ];
 
 export const FALLBACK = {
-  response: "Thanks for your question! I may not have a specific answer for that yet. For detailed enquiries, I'd recommend:\n\n• **Email:** support@proowrx.com\n• **Call (AU):** 02 8834 1222\n• **Book a call:** Free 30-min discovery call\n\nOr try rephrasing your question — I may have the answer under different keywords!",
+    response: "Thanks for your question! I may not have a specific answer for that yet. For detailed enquiries, I'd recommend:\n\n- **Email:** support@proowrx.com\n- **Call (AU):** 02 8834 1222\n- **Book a call:** Free 30-min discovery call\n\nOr try rephrasing your question — I may have the answer under different keywords!",
   buttons: ['What services do you offer?', 'How do I contact you?', 'Book a discovery call'],
 };
 
@@ -147,7 +147,7 @@ export function renderAIText(text) {
     const parts = line.split(/(\*\*[^*]+\*\*)/g).map((p, j) => {
       if (p.startsWith('**') && p.endsWith('**'))
         return <strong key={j}>{p.slice(2, -2)}</strong>;
-      if (p.startsWith('• ')) return <span key={j}>{p}</span>;
+      if (p.startsWith('- ')) return <span key={j}>{p}</span>;
       return p;
     });
     return <span key={i} style={{ display: 'block', marginBottom: 2 }}>{parts}</span>;

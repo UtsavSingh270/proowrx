@@ -19,8 +19,8 @@
 .growth-card h3 { margin: 0 0 10px; color: var(--text-1); font-size: 1.12rem; }
 .growth-card p { margin: 0; color: var(--text-2); font-size: .88rem; line-height: 1.7; }
 .growth-list { display: grid; gap: 10px; padding: 0; margin: 20px 0 0; list-style: none; }
-.growth-list li { display: flex; gap: 9px; color: var(--text-2); font-size: .84rem; line-height: 1.5; }
-.growth-list li::before { content: '✓'; flex: none; color: var(--mode-accent); font-weight: 900; }
+.growth-list li { display: flex; align-items: flex-start; gap: 9px; color: var(--text-2); font-size: .84rem; line-height: 1.5; }
+.growth-list li > svg { display: block; width: 15px; height: 15px; flex: 0 0 15px; margin-top: .2em; color: var(--mode-accent); stroke-width: 2.8; }
 .growth-model-label { display: inline-flex; margin-bottom: 12px; color: #a06c00; font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .growth-model-time { margin: 8px 0 16px; color: var(--text-1); font-size: 1.45rem; font-weight: 800; }
 .growth-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,6vw,80px); align-items: center; }
@@ -32,6 +32,7 @@
 .growth-metric span { color: var(--text-2); font-size: .78rem; }
 .story-video { aspect-ratio: 16/10; display: grid; place-items: center; margin-bottom: 18px; color: #fff; background: linear-gradient(135deg,#11284a,#071124); border-radius: 16px; }
 .story-play { display: grid; place-items: center; width: 58px; height: 58px; padding-left: 4px; color: var(--accent-contrast); background: var(--mode-accent); border-radius: 50%; font-size: 1.3rem; box-shadow: var(--shadow-gold); }
+.story-play svg { display: block; width: 22px; height: 22px; }
 .case-result { display: flex; gap: 10px; align-items: baseline; margin: 18px 0; color: var(--text-1); }
 .case-result strong { color: var(--mode-accent); font-size: 2rem; }
 .growth-faq { max-width: 900px; margin: auto; display: grid; gap: 12px; }

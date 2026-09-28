@@ -31,6 +31,18 @@
   white-space: nowrap;
 }
 
+.topbar-left a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topbar-left a svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+}
+
 .topbar-left a:hover,
 .topbar-socials a:hover { color: var(--gold); }
 

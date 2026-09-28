@@ -205,6 +205,9 @@
 .newsletter-form button:hover { background: var(--gold-light); }
 
 .newsletter-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   background: rgba(31,158,142,0.12);
   border: 1px solid var(--teal);
   color: var(--teal);
@@ -212,6 +215,12 @@
   border-radius: var(--r-full);
   font-size: 0.85rem;
   margin-bottom: 0;
+}
+
+.newsletter-success svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
 }
 
 .newsletter-error {

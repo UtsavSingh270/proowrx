@@ -311,6 +311,18 @@
   font-weight: 500;
 }
 
+.career-role-loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.career-role-loc svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+}
+
 .career-role-title {
   font-size: 1.15rem;
   color: var(--navy);
@@ -357,6 +369,21 @@
   gap: 24px;
   flex-wrap: wrap;
 }
+
+.career-no-match-icon {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 52px;
+  color: var(--gold);
+  background: rgba(240, 165, 0, .12);
+  border: 1px solid rgba(240, 165, 0, .26);
+  border-radius: var(--r-md);
+}
+
+.career-no-match-icon svg { width: 25px; height: 25px; }
 
 .career-no-match-inner > div { flex: 1; min-width: 200px; }
 
@@ -596,11 +623,22 @@
 
 .career-step:hover .career-step-num { opacity: 1; }
 
-.career-step-emoji {
-  font-size: 1.8rem;
-  display: block;
-  margin-bottom: 12px;
+.career-step-icon {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sky);
+  background: var(--sky-glow);
+  border: 1px solid rgba(14, 165, 233, .2);
+  border-radius: var(--r-md);
+  margin: 0 auto 12px;
+  transition: color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
 }
+
+.career-step-icon svg { width: 23px; height: 23px; }
+.career-step:hover .career-step-icon { color: var(--white); background: var(--sky); transform: translateY(-2px); }
 
 .career-step h4 { font-size: 0.95rem; color: var(--navy); margin-bottom: 8px; }
 .career-step p { font-size: 0.80rem; color: var(--text-2); line-height: 1.6; }

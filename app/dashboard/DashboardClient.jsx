@@ -10,7 +10,8 @@ import {
   Users, Inbox, Mail, CalendarDays, Maximize2, Minimize2, BarChart3,
   Clock3, Download, FileChartColumn, Images, Moon,
   Newspaper, PanelLeftOpen, PanelLeftClose, ScrollText, SearchCheck,
-  ShieldUser, Sun, Table2,
+  ShieldUser, Sun, Table2, X, ExternalLink, Bold, Italic, Underline,
+  Heading2, Heading3, Pilcrow, List, ListOrdered, Link2, RemoveFormatting,
 } from 'lucide-react';
 import { auth, adminPosts, adminJobs, teamMembers, contact, newsletter, meetings } from '@/services/api';
 import { useTheme } from '@/components/providers/ThemeProvider';
@@ -106,7 +107,7 @@ function TagsInput({ value, onChange }) {
       {value.map(t => (
         <span key={t} className="dash-tag-pill">
           {t}
-          <button type="button" onClick={() => remove(t)}>×</button>
+          <button type="button" onClick={() => remove(t)} aria-label={`Remove ${t}`}><X size={12} /></button>
         </span>
       ))}
       <input
@@ -248,19 +249,19 @@ function RichEditor({ value, onChange }) {
   return (
     <div className={`dash-editor-wrap${fullView ? ' dash-editor-full' : ''}`}>
       <div className="dash-editor-toolbar">
-        <button type="button" className="dash-tool-btn" title="Bold"      onClick={() => exec('bold')}><b>B</b></button>
-        <button type="button" className="dash-tool-btn" title="Italic"    onClick={() => exec('italic')}><i>I</i></button>
-        <button type="button" className="dash-tool-btn" title="Underline" onClick={() => exec('underline')}><u>U</u></button>
+        <button type="button" className="dash-tool-btn" title="Bold" aria-label="Bold" onClick={() => exec('bold')}><Bold size={14} /></button>
+        <button type="button" className="dash-tool-btn" title="Italic" aria-label="Italic" onClick={() => exec('italic')}><Italic size={14} /></button>
+        <button type="button" className="dash-tool-btn" title="Underline" aria-label="Underline" onClick={() => exec('underline')}><Underline size={14} /></button>
         <span className="dash-tool-btn sep" />
-        <button type="button" className="dash-tool-btn" style={{ fontSize: '0.80rem' }} title="Heading 2"  onClick={() => exec('formatBlock', 'H2')}>H2</button>
-        <button type="button" className="dash-tool-btn" style={{ fontSize: '0.76rem' }} title="Heading 3"  onClick={() => exec('formatBlock', 'H3')}>H3</button>
-        <button type="button" className="dash-tool-btn" style={{ fontSize: '0.76rem' }} title="Paragraph" onClick={() => exec('formatBlock', 'P')}>¶</button>
+        <button type="button" className="dash-tool-btn" title="Heading 2" aria-label="Heading 2" onClick={() => exec('formatBlock', 'H2')}><Heading2 size={15} /></button>
+        <button type="button" className="dash-tool-btn" title="Heading 3" aria-label="Heading 3" onClick={() => exec('formatBlock', 'H3')}><Heading3 size={15} /></button>
+        <button type="button" className="dash-tool-btn" title="Paragraph" aria-label="Paragraph" onClick={() => exec('formatBlock', 'P')}><Pilcrow size={14} /></button>
         <span className="dash-tool-btn sep" />
-        <button type="button" className="dash-tool-btn" title="Bullet list"   onClick={() => exec('insertUnorderedList')}>• —</button>
-        <button type="button" className="dash-tool-btn" title="Ordered list"  onClick={() => exec('insertOrderedList')}>1.</button>
+        <button type="button" className="dash-tool-btn" title="Bullet list" aria-label="Bullet list" onClick={() => exec('insertUnorderedList')}><List size={15} /></button>
+        <button type="button" className="dash-tool-btn" title="Ordered list" aria-label="Ordered list" onClick={() => exec('insertOrderedList')}><ListOrdered size={15} /></button>
         <span className="dash-tool-btn sep" />
-        <button type="button" className="dash-tool-btn" title="Link"   style={{ fontSize: '0.78rem' }} onClick={() => { const u = prompt('URL:'); if (u) exec('createLink', u); }}>🔗</button>
-        <button type="button" className="dash-tool-btn" title="Clear format" style={{ fontSize: '0.76rem' }} onClick={() => exec('removeFormat')}>Tx</button>
+        <button type="button" className="dash-tool-btn" title="Link" aria-label="Insert link" onClick={() => { const u = prompt('URL:'); if (u) exec('createLink', u); }}><Link2 size={14} /></button>
+        <button type="button" className="dash-tool-btn" title="Clear format" aria-label="Clear formatting" onClick={() => exec('removeFormat')}><RemoveFormatting size={15} /></button>
         <span className="dash-tool-btn sep" />
         {/* Image button — always in toolbar, opens inline panel */}
         <button
@@ -444,7 +445,7 @@ function PostModal({ post, members, onClose, onSave }) {
       <div className="dash-modal">
         <div className="dash-modal-header">
           <span className="dash-modal-title">{isNew ? 'New Blog Post' : 'Edit Post'}</span>
-          <button className="dash-modal-close" onClick={onClose}>×</button>
+          <button className="dash-modal-close" onClick={onClose} aria-label="Close blog editor"><X size={18} /></button>
         </div>
 
         <div className="dash-modal-body">
@@ -637,7 +638,7 @@ function JobModal({ job, onClose, onSave }) {
       <div className="dash-modal">
         <div className="dash-modal-header">
           <span className="dash-modal-title">{job ? 'Edit Job' : 'New Job Posting'}</span>
-          <button className="dash-modal-close" onClick={onClose}>×</button>
+          <button className="dash-modal-close" onClick={onClose} aria-label="Close job editor"><X size={18} /></button>
         </div>
 
         <div className="dash-modal-body">
@@ -917,12 +918,13 @@ function JobsPanel() {
               )}
               <div className="dash-job-footer">
                 <a
+                  className="dash-job-apply-link"
                   href={job.applyLink}
                   target="_blank"
                   rel="noreferrer"
                   style={{ fontSize: '0.78rem', color: '#f0a500', fontWeight: 600 }}
                 >
-                  Apply Link ↗
+                  Apply Link <ExternalLink size={13} aria-hidden="true" />
                 </a>
                 <div className="dash-job-footer-actions">
                   <button className="dash-btn dash-btn-ghost dash-btn-sm" onClick={() => setModal(job)}><Edit2 size={13} /></button>

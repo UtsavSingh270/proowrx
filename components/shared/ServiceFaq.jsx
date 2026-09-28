@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react';
 import './ServiceFaq.css';
 
 const FAQ_SETS = {
@@ -72,7 +73,7 @@ export default function ServiceFaq({
             <details key={question}>
               <summary>
                 {question}
-                <span aria-hidden="true">+</span>
+                <span className="service-faq-toggle-icon" aria-hidden="true"><Plus size={18} /></span>
               </summary>
               <p>{answer}</p>
             </details>

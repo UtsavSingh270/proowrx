@@ -4,7 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   MessageCircle, X, Bot, Send,
   Phone, Mail, Clock, ChevronRight, CheckCircle, ExternalLink,
-  RefreshCw,
+  RefreshCw, UserRound, Calculator, CalendarDays, Sparkles,
+  DollarSign, Landmark, FileText, Zap,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import './Chatbot.css';
@@ -158,28 +159,28 @@ function HomeView({ setView }) {
   const options = [
     {
       id: 'expert',
-      icon: '👤',
+      icon: UserRound,
       title: 'Ask an Expert',
       desc: 'Chat live with our team',
       color: '#f0a500',
     },
     {
       id: 'calculator',
-      icon: '🧮',
+      icon: Calculator,
       title: 'Mortgage Calculators',
       desc: 'Repayment, stamp duty & more',
       color: '#d99a00',
     },
     {
       id: 'ai',
-      icon: '🤖',
+      icon: Bot,
       title: 'Ask AI',
       desc: 'Instant answers about Proowrx',
       color: '#c08200',
     },
     {
       id: 'schedule',
-      icon: '📅',
+      icon: CalendarDays,
       title: 'Schedule a Call',
       desc: 'Book a free 30-min discovery call',
       color: '#10b981',
@@ -190,23 +191,26 @@ function HomeView({ setView }) {
     <div className="cb-home">
       <div className="cb-home-greeting">
         <span className="cb-home-eyebrow"><span /> Available now</span>
-        <p className="cb-home-wave">👋</p>
+        <span className="cb-home-wave" aria-hidden="true"><Sparkles size={22} /></span>
         <h3>How can we help?</h3>
         <p>Choose an option or ask our assistant anything about Proowrx.</p>
       </div>
       <div className="cb-home-options">
-        {options.map(o => (
-          <button key={o.id} className="cb-option-card" onClick={() => setView(o.id)}>
-            <span className="cb-option-icon" style={{ background: `${o.color}20`, color: o.color }}>
-              {o.icon}
-            </span>
-            <div className="cb-option-text">
-              <span className="cb-option-title">{o.title}</span>
-              <span className="cb-option-desc">{o.desc}</span>
-            </div>
-            <ChevronRight size={16} className="cb-option-arrow" />
-          </button>
-        ))}
+        {options.map(o => {
+          const OptionIcon = o.icon;
+          return (
+            <button key={o.id} className="cb-option-card" onClick={() => setView(o.id)}>
+              <span className="cb-option-icon" style={{ background: `${o.color}20`, color: o.color }} aria-hidden="true">
+                <OptionIcon size={20} />
+              </span>
+              <div className="cb-option-text">
+                <span className="cb-option-title">{o.title}</span>
+                <span className="cb-option-desc">{o.desc}</span>
+              </div>
+              <ChevronRight size={16} className="cb-option-arrow" />
+            </button>
+          );
+        })}
       </div>
       <p className="cb-home-footer">Proowrx · support@proowrx.com</p>
     </div>
@@ -252,7 +256,7 @@ function ExpertView() {
   return (
     <div className="cb-expert">
       <div className="cb-view-heading">
-        <span className="cb-view-icon">👤</span>
+        <span className="cb-view-icon" aria-hidden="true"><UserRound size={20} /></span>
         <div>
           <h4>Ask an Expert</h4>
           <p>Leave your details and we&apos;ll be in touch within a few hours.</p>
@@ -284,10 +288,10 @@ function ExpertView() {
 //  CALCULATOR VIEW
 // ════════════════════════════════════════════════════════════
 const CALC_TABS = [
-  { id: 'repayment', label: 'Repayment', emoji: '💰' },
-  { id: 'borrowing', label: 'Borrowing', emoji: '🏦' },
-  { id: 'stamp', label: 'Stamp Duty', emoji: '📄' },
-  { id: 'extra', label: 'Extra Pay', emoji: '⚡' },
+  { id: 'repayment', label: 'Repayment', icon: DollarSign },
+  { id: 'borrowing', label: 'Borrowing', icon: Landmark },
+  { id: 'stamp', label: 'Stamp Duty', icon: FileText },
+  { id: 'extra', label: 'Extra Pay', icon: Zap },
 ];
 
 function CalcInput({ label, value, onChange, prefix, suffix, min, max, step, type = 'number' }) {
@@ -414,23 +418,26 @@ function CalculatorView() {
   return (
     <div className="cb-calculator">
       <div className="cb-view-heading">
-        <span className="cb-view-icon">🧮</span>
+        <span className="cb-view-icon" aria-hidden="true"><Calculator size={20} /></span>
         <div>
           <h4>Mortgage Calculators</h4>
           <p>Quick estimates to guide your planning</p>
         </div>
       </div>
       <div className="cb-calc-tabs">
-        {CALC_TABS.map(t => (
-          <button
-            key={t.id}
-            className={`cb-calc-tab${tab === t.id ? ' active' : ''}`}
-            onClick={() => setTab(t.id)}
-          >
-            <span>{t.emoji}</span>
-            <span>{t.label}</span>
-          </button>
-        ))}
+        {CALC_TABS.map(t => {
+          const TabIcon = t.icon;
+          return (
+            <button
+              key={t.id}
+              className={`cb-calc-tab${tab === t.id ? ' active' : ''}`}
+              onClick={() => setTab(t.id)}
+            >
+              <span className="cb-calc-tab-icon" aria-hidden="true"><TabIcon size={14} /></span>
+              <span>{t.label}</span>
+            </button>
+          );
+        })}
       </div>
       <div className="cb-calc-content">
         {tab === 'repayment' && <RepaymentCalc />}
@@ -449,7 +456,7 @@ function AIView() {
   const [messages, setMessages] = useState([
     {
       role: 'ai',
-      text: "Hi! I'm the Proowrx AI. Ask me anything about our services, pricing, process, team, data security, or anything else about Proowrx. I'll do my best to help! 😊",
+      text: "Hi! I'm the Proowrx AI. Ask me anything about our services, pricing, process, team, data security, or anything else about Proowrx. I'll do my best to help!",
       buttons: ['What services do you offer?', 'How much does it cost?', 'How do I get started?'],
     },
   ]);
@@ -484,7 +491,7 @@ function AIView() {
       <div className="cb-ai-messages">
         {messages.map((msg, i) => (
           <div key={i} className={`cb-msg cb-msg--${msg.role}`}>
-            {msg.role === 'ai' && <div className="cb-msg-avatar">🤖</div>}
+            {msg.role === 'ai' && <div className="cb-msg-avatar" aria-hidden="true"><Bot size={16} /></div>}
             <div className="cb-msg-bubble">
               <div className="cb-msg-text">{msg.role === 'ai' ? renderAIText(msg.text) : msg.text}</div>
               {msg.buttons && msg.role === 'ai' && (
@@ -499,7 +506,7 @@ function AIView() {
         ))}
         {thinking && (
           <div className="cb-msg cb-msg--ai">
-            <div className="cb-msg-avatar">🤖</div>
+            <div className="cb-msg-avatar" aria-hidden="true"><Bot size={16} /></div>
             <div className="cb-msg-bubble cb-typing">
               <span /><span /><span />
             </div>
@@ -537,7 +544,7 @@ function ScheduleView() {
   return (
     <div className="cb-schedule">
       <div className="cb-view-heading">
-        <span className="cb-view-icon">📅</span>
+        <span className="cb-view-icon" aria-hidden="true"><CalendarDays size={20} /></span>
         <div>
           <h4>Schedule a Discovery Call</h4>
           <p>Free 30-minute call with our team</p>
@@ -616,7 +623,7 @@ export default function Chatbot() {
     <>
       {/* ── Tooltip ── */}
       {!isOpen && pulse && (
-        <div className="cb-tooltip">💬 How can we help?</div>
+        <div className="cb-tooltip"><MessageCircle size={15} aria-hidden="true" /> <span>How can we help?</span></div>
       )}
 
       {/* ── Panel ── */}

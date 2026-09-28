@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Plus, Edit2, Trash2, Save } from 'lucide-react';
+import { Plus, Edit2, Trash2, Save, X } from 'lucide-react';
 import { resources as resourcesApi, upload as uploadApi } from '@/services/api';
 import SeoFields from './SeoFields';
 import FileUploadInput from '@/components/shared/FileUploadInput';
@@ -167,7 +167,7 @@ export default function ResourcePanel() {
           <div className="dash-modal">
             <div className="dash-modal-header">
               <span className="dash-modal-title">{editingId ? 'Edit Downloadable' : 'New Downloadable'}</span>
-              <button className="dash-modal-close" onClick={() => setModalOpen(false)}>×</button>
+              <button className="dash-modal-close" onClick={() => setModalOpen(false)} aria-label="Close downloadable editor"><X size={18} /></button>
             </div>
 
             <div className="dash-modal-body">

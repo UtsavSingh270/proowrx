@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import {
   ArrowRight, CheckCircle, BookOpenCheck, BadgeDollarSign, ReceiptText,
   PieChart, ChartSpline, PiggyBank, ScanSearch, FileCheck2,
+  Gauge, Handshake, Headset, MapPinned, ShieldCheck, TrendingUp,
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -76,12 +77,12 @@ const services = [
 ];
 
 const whyUs = [
-  { icon: '🇦🇺', title: 'Australian Market Expertise', desc: 'Deep understanding of ATO requirements, Australian tax laws, and compliance obligations.' },
-  { icon: '🔒', title: 'Secured Data Management', desc: 'Australia-based servers, 2FA, encrypted transfers — your clients\' data is always protected.' },
-  { icon: '⚡', title: 'Quick Data Processing', desc: 'Fast, accurate turnaround so your firm stays ahead of deadlines without the pressure.' },
-  { icon: '🎯', title: 'Dedicated Service Support', desc: 'A dedicated team that understands your firm\'s processes and delivers consistent results.' },
-  { icon: '📈', title: 'Scalable Solutions', desc: 'Scale your support up or down as your practice grows — with no lock-in contracts.' },
-  { icon: '🤝', title: 'Personalized Approach', desc: 'We adapt to your workflow and software stack, not the other way around.' },
+  { icon: <MapPinned size={24} aria-hidden="true" />, title: 'Australian Market Expertise', desc: 'Deep understanding of ATO requirements, Australian tax laws, and compliance obligations.' },
+  { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Secured Data Management', desc: 'Australia-based servers, 2FA, encrypted transfers — your clients\' data is always protected.' },
+  { icon: <Gauge size={24} aria-hidden="true" />, title: 'Quick Data Processing', desc: 'Fast, accurate turnaround so your firm stays ahead of deadlines without the pressure.' },
+  { icon: <Headset size={24} aria-hidden="true" />, title: 'Dedicated Service Support', desc: 'A dedicated team that understands your firm\'s processes and delivers consistent results.' },
+  { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Scalable Solutions', desc: 'Scale your support up or down as your practice grows — with no lock-in contracts.' },
+  { icon: <Handshake size={24} aria-hidden="true" />, title: 'Personalized Approach', desc: 'We adapt to your workflow and software stack, not the other way around.' },
 ];
 
 export default function Accounting() {
@@ -126,7 +127,7 @@ export default function Accounting() {
           <div className="page-hero-visual">
             <Image src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=85" alt="Accounting team" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
             <div className="page-hero-badge-float">
-              <span style={{ fontSize: '1.6rem' }}>📊</span>
+              <span className="acc-hero-badge-icon" aria-hidden="true"><ChartSpline size={24} /></span>
               <div>
                 <strong>Full-Spectrum Support</strong>
                 <span>Xero · MYOB · QuickBooks</span>
@@ -218,7 +219,7 @@ export default function Accounting() {
           <div className="acc-why-grid">
             {whyUs.map((w, i) => (
               <div key={i} className={`acc-why-card reveal reveal-delay-${(i % 3) + 1}`}>
-                <span className="acc-why-icon">{w.icon}</span>
+                <span className="acc-why-icon" aria-hidden="true">{w.icon}</span>
                 <h4>{w.title}</h4>
                 <p>{w.desc}</p>
               </div>

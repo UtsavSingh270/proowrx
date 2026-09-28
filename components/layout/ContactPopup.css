@@ -248,10 +248,20 @@
 }
 
 .cpopup-privacy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   text-align: center;
   font-size: 0.73rem;
   color: var(--text-3);
   margin-top: 12px;
+}
+
+.cpopup-privacy svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
 }
 
 /* ── Success ─────────────────────────────── */
@@ -273,11 +283,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  flex: 0 0 72px;
   font-weight: 700;
   margin-bottom: 20px;
   animation: pulseBig 1.5s ease infinite;
 }
+
+.cpopup-success-check svg { display: block; }
 
 .cpopup-success h4 {
   font-size: 1.4rem;

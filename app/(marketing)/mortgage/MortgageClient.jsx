@@ -3,7 +3,18 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-import { ArrowRight, CheckCircle, X as XIcon } from 'lucide-react';
+import {
+  ArrowRight,
+  Award,
+  CheckCircle,
+  ClipboardList,
+  House,
+  PhoneCall,
+  ShieldCheck,
+  TrendingUp,
+  Workflow,
+  X as XIcon,
+} from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './Mortgage.css';
 
@@ -73,10 +84,10 @@ const postSubmission = [
 ];
 
 const whyUs = [
-  { icon: '🏆', title: 'Industry Expertise', desc: 'Trained specifically on the Australian mortgage market by an experienced Australia-based broker.' },
-  { icon: '⚡', title: 'Streamlined Solutions', desc: 'Technology to automate manual tasks and plug seamlessly into your existing workflow.' },
-  { icon: '📈', title: 'Scalability', desc: 'From 1 file a week to 100 — our service adapts as your business grows.' },
-  { icon: '🛡️', title: 'Unwavering Support', desc: 'A dedicated team that helps you move faster, eliminate stress, and focus on clients.' },
+  { icon: <Award size={24} aria-hidden="true" />, title: 'Industry Expertise', desc: 'Trained specifically on the Australian mortgage market by an experienced Australia-based broker.' },
+  { icon: <Workflow size={24} aria-hidden="true" />, title: 'Streamlined Solutions', desc: 'Technology to automate manual tasks and plug seamlessly into your existing workflow.' },
+  { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Scalability', desc: 'From 1 file a week to 100 — our service adapts as your business grows.' },
+  { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Unwavering Support', desc: 'A dedicated team that helps you move faster, eliminate stress, and focus on clients.' },
 ];
 
 export default function Mortgage() {
@@ -121,7 +132,7 @@ export default function Mortgage() {
           <div className="page-hero-visual">
             <Image src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85" alt="Mortgage processing" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
             <div className="page-hero-badge-float">
-              <span style={{ fontSize: '1.6rem' }}>🏠</span>
+              <span className="mortgage-hero-badge-icon" aria-hidden="true"><House size={24} /></span>
               <div>
                 <strong>Expert Processors</strong>
                 <span>Pre &amp; Post-Submission</span>
@@ -199,7 +210,7 @@ export default function Mortgage() {
           <div className="activities-grid">
             <div className="activity-col activity-pre">
               <div className="activity-header">
-                <span className="activity-icon">📋</span>
+                <span className="activity-icon" aria-hidden="true"><ClipboardList size={23} /></span>
                 <h3>Pre-Submission</h3>
               </div>
               <ul>
@@ -208,7 +219,7 @@ export default function Mortgage() {
             </div>
             <div className="activity-col activity-post">
               <div className="activity-header">
-                <span className="activity-icon">📞</span>
+                <span className="activity-icon" aria-hidden="true"><PhoneCall size={23} /></span>
                 <h3>Post-Submission</h3>
               </div>
               <ul>
@@ -229,7 +240,7 @@ export default function Mortgage() {
           <div className="why-grid">
             {whyUs.map((w, i) => (
               <div key={i} className="why-tile">
-                <span className="why-tile-icon">{w.icon}</span>
+                <span className="why-tile-icon" aria-hidden="true">{w.icon}</span>
                 <h4>{w.title}</h4>
                 <p>{w.desc}</p>
               </div>

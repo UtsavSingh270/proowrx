@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { X } from 'lucide-react';
 import { apiClient } from '@/lib/apiClient';
 import { uploadImageValue } from '@/lib/media';
 import FileUploadInput from '@/components/shared/FileUploadInput';
@@ -26,7 +27,7 @@ function CaseStudyEditor({ item, onClose, onSaved }) {
     finally { setBusy(false); }
   }
   return <div className="dash-modal-overlay"><form className="dash-modal" onSubmit={save} role="dialog" aria-modal="true" aria-labelledby="case-editor-title">
-    <div className="dash-modal-header"><h2 id="case-editor-title" className="dash-modal-title">{item ? 'Edit case study' : 'New case study'}</h2><button type="button" className="dash-modal-close" onClick={onClose} disabled={busy || uploading} aria-label="Close">×</button></div>
+    <div className="dash-modal-header"><h2 id="case-editor-title" className="dash-modal-title">{item ? 'Edit case study' : 'New case study'}</h2><button type="button" className="dash-modal-close" onClick={onClose} disabled={busy || uploading} aria-label="Close case study editor"><X size={18} /></button></div>
     <fieldset disabled={busy} className="dash-modal-body dash-upload-field">
       <p className="dash-field-help">Tell the project story: the client’s challenge, your approach, and the outcome. Use only approved client details and results.</p>
       <div className="dash-form-row">{[['title', 'Case study title *'], ['clientName', 'Client / organisation'], ['industry', 'Industry'], ['service', 'Service delivered'], ['duration', 'Project duration']].map(([key, label]) => <label className="dash-form-group" key={key}><span className="dash-form-label">{label}</span><input className="dash-form-input" required={key === 'title'} value={form[key]} onChange={event => set(key, event.target.value)} /></label>)}</div>

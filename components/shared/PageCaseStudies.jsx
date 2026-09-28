@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { serverCaseStudies } from '@/lib/serverApi';
 import CaseStudyCards from './CaseStudyCards';
 import './PageInsights.css';
@@ -16,7 +17,7 @@ export default async function PageCaseStudies({ path }) {
             <h2 id="page-cases-title">Our work in practice</h2>
             <p>Explore the projects behind the results.</p>
           </div>
-          <Link href="/case-study">All case studies →</Link>
+          <Link href="/case-study">All case studies <ArrowRight size={15} aria-hidden="true" /></Link>
         </div>
         <CaseStudyCards items={items} />
       </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, ArrowRight, Phone, Mail, Calendar } from 'lucide-react';
+import { X, ArrowRight, Phone, Mail, Calendar, CircleCheckBig, LockKeyhole } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import Image from 'next/image';
@@ -108,7 +108,7 @@ export default function ContactPopup() {
         <div className="cpopup-right">
           {sent ? (
             <div className="cpopup-success">
-              <div className="cpopup-success-check">✓</div>
+              <div className="cpopup-success-check" aria-hidden="true"><CircleCheckBig size={34} strokeWidth={2} /></div>
               <h4>We&apos;ll be in touch!</h4>
               <p>Thank you — our team will contact you within 24 hours.</p>
             </div>
@@ -149,7 +149,7 @@ export default function ContactPopup() {
                 </button>
               </form>
 
-              <p className="cpopup-privacy">🔒 Your data is safe. We never share your information.</p>
+              <p className="cpopup-privacy"><LockKeyhole size={14} aria-hidden="true" /> <span>Your data is safe. We never share your information.</span></p>
             </>
           )}
         </div>

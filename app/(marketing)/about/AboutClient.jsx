@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Target, Rocket, Handshake, TrendingUp } from 'lucide-react';
+import { ArrowRight, Flag, Target, Rocket, Handshake, TrendingUp } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './About.css';
@@ -75,10 +75,10 @@ export default function About({ initialMembers = [] }) {
     alt="Proowrx team"
     fill
     sizes="(max-width:768px) 100vw, 50vw"
-    style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover" }}
   />
             <div className="page-hero-badge-float">
-              <span style={{ fontSize: '1.6rem' }}>🇦🇺</span>
+              <span className="page-hero-badge-icon" aria-hidden="true"><Flag size={20} /></span>
               <div>
                 <strong>Australian-Owned</strong>
                 <span>Operating Since 2021</span>

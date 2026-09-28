@@ -55,11 +55,16 @@
 }
 
 .service-faq-list summary span {
-  flex: none;
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  place-items: center;
   color: var(--mode-accent);
-  font-size: 1.4rem;
   transition: transform .2s ease;
 }
+
+.service-faq-toggle-icon svg { display: block; width: 18px; height: 18px; }
 
 .service-faq-list details[open] summary span {
   transform: rotate(45deg);

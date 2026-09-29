@@ -41,7 +41,7 @@ const HERO_SLIDES = [
   },
   {
     eyebrow: 'Asset Finance Support',
-    title: 'Keep Deals Moving From Application to Settlement.',
+    title: 'Keep Deals Moving From Application to Settlement',
     description: 'We help with application packaging, document collection, lender coordination, matrix checks and settlement tasks, so your asset finance deals keep moving forward.',
     image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=88',
     primaryLabel: 'Explore Asset Finance',
@@ -51,7 +51,7 @@ const HERO_SLIDES = [
   },
   {
     eyebrow: 'Digital Marketing Support',
-    title: 'Build Your Online Presence. With Dedicated Marketing Support.',
+    title: 'Build Your Online Presence. With Dedicated Marketing Support',
     description: 'From SEO and social media to paid ads and content. We help financial services businesses build visibility, attract the right audience, and turn digital activity into real opportunities.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=88',
     primaryLabel: 'Explore Marketing',

@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, ArrowRight, Send, CircleCheckBig, ImageIcon } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, Send, CircleCheckBig } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
 import { newsletter } from '@/services/api';
 import './Footer.css';
 import Image from 'next/image';
 
 const LOGO = '/Proowrx_Logo.png';
+const BADGE = '/ISO Badge.jpg';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -64,14 +64,10 @@ export default function Footer() {
                 ['/','Home'],
                 ['/about','About Us'],
                 ['/services','Services'],
-                // ['/mortgage','Mortgage'],['/accounting','Accounting'],
-                // ['/asset-finance','Asset Finance'],['/digital-marketing','Digital Marketing'],
-                // ['/pricing','Pricing'],
-                // ['/case-study','Case Study'],
-                ['/resources','Resources'],
-                // ['/data-security','Data Security'],
                 ['/our-team','Our Team'],
-                ['/career','Career'],['/contact','Contact Us'],
+                ['/resources','Resources'],
+                ['/career','Career'],
+                ['/contact','Contact Us'],
               ].map(([to, label]) => (
                 <li key={to}>
                   <Link href={to}>
@@ -110,9 +106,15 @@ export default function Footer() {
 
             <div className="footer-newsletter">
               {/* Replace this neutral slot with the approved ISO badge artwork when it is available. */}
-              <div className="footer-iso-slot" role="img" aria-label="Reserved image area for an ISO badge">
-                <ImageIcon size={20} aria-hidden="true" />
-                <span>ISO badge area</span>
+              <div className="footer-iso-slot">
+                <Image
+                  src={BADGE}
+                  alt="Proowrx ISO certification badge"
+                  width={160}
+                  height={80}
+                  className="footer-iso-badge"
+                />
+                {/* <span>ISO badge area</span> */}
               </div>
               <div className="footer-newsletter-content">
                 <h4 className="footer-heading">Stay Updated</h4>
@@ -141,7 +143,6 @@ export default function Footer() {
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-of-use">Terms of Use</Link>
             <Link href="/disclaimer">Disclaimer</Link>
-            <Link href="/data-security">Data Security</Link>
           </div>
         </div>
       </div>

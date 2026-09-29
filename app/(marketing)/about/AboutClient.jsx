@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Flag, Target, Rocket, Handshake, TrendingUp } from 'lucide-react';
+import { Flag, Target, Rocket, Handshake, TrendingUp } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import './About.css';
@@ -21,7 +21,7 @@ function useReveal() {
 const values = [
   { icon: <Target size={24} />, title: 'Our Vision', desc: 'To be the first choice for businesses seeking a trusted outsourcing partner to accelerate performance, stability, and sustainable long-term market expansion.'},
   { icon: <Rocket size={24} />, title: 'Our Mission', desc: 'To deliver exceptional outsourcing services that enable clients to optimise operational performance, improve daily productivity, and achieve continuous growth over the long term.'},
-  { icon: <Handshake size={24} />, title: 'Our Approach', desc: 'To understand your processes, systems and business requirements before we get to work. Our teams work as an extension of your business—following your workflows, adapting to your requirements and maintaining clear communication at every stage.'},
+  { icon: <Handshake size={24} />, title: 'Our Approach', desc: 'By understanding processes before starting, our teams act as a dedicated extension of the business, adopting existing workflows and maintaining clear communication throughout.'},
   { icon: <TrendingUp size={24} />, title: 'Our Focus', desc: 'To manage administrative tasks that consume operational time, enabling businesses to improve efficiency and direct internal resources toward core objectives and expansion strategies.'},
 ];
 
@@ -157,7 +157,7 @@ export default function About({ initialMembers = [] }) {
           <div className="diff-grid">
             {[
               { img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=85', title: 'We Understand The Australian Market', desc: 'Our teams are trained around Australian processes and industry requirements, with guidance from Australia-based professionals. That means we approach the work with a clear understanding of how Australian businesses operate.' },
-              { img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=85', title: 'BID Trained Teams', desc: 'Our mortgage support teams are trained to understand the processes and documentation requirements that underpin Best Interests Duty (BID).' },
+              { img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=85', title: 'BID-Compliant Teams', desc: 'Our teams undergo comprehensive training focused specifically on the strict compliance and documentation standards underpinning Best Interests Duty (BID). As a result, we manage every application with deep insight into industry regulatory obligations.' },
               { img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85', title: 'Flexible Business Support', desc: 'Your workload can change from month to month. We can take on specific tasks, provide ongoing support or add capacity when things get busy, all while working with the systems and processes you already use.' },
             ].map((d, i) => (
               <div key={i} className={`diff-card reveal reveal-delay-${i + 1}`}>
@@ -182,7 +182,7 @@ export default function About({ initialMembers = [] }) {
 
       <ServiceFaq
         variant="about"
-        title="Questions about Proowrx"
+        title="Got Questions? We’ve Got Answers. "
         intro="Learn more about our team, operating model and approach to long-term client partnerships."
       />
       <CtaBanner />

@@ -185,7 +185,7 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
 
         </div>
 
-        <div className="post-engagement-wrap">
+        {/* <div className="post-engagement-wrap">
 
           <section className="post-engagement" aria-labelledby="post-discussion-title">
             <div className="post-engagement-summary">
@@ -223,7 +223,7 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
             </div>
           </section>
 
-        </div>
+        </div> */}
       </section>
 
       <CtaBanner />

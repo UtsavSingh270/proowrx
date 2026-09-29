@@ -181,7 +181,7 @@
   color: var(--text-2);
   line-height: 1.7;
   margin: 0 0 20px;
-  text-align: justify;
+  text-align: left;
   text-justify: inter-word;
 }
 
@@ -380,8 +380,8 @@
 }
 .team-profile-kicker { display: block; margin-bottom: 17px; color: var(--navy); font-size: clamp(1.08rem, 1.6vw, 1.3rem); font-weight: 800; letter-spacing: .01em; }
 .team-profile-kicker strong { color: inherit; font-weight: 850; }
-.team-profile-intro { margin: 0 0 22px; color: var(--navy); font-size: clamp(1.04rem, 1.55vw, 1.25rem); font-weight: 700; line-height: 1.55; text-align: justify; text-justify: inter-word; }
-.team-profile-copy { color: var(--text-2); font-size: .94rem; line-height: 1.8; text-align: justify; text-justify: inter-word; white-space: pre-line; }
+.team-profile-intro { margin: 0 0 22px; color: var(--gold); font-size: clamp(.80rem, 1.55vw, .90rem); font-weight: 500; line-height: 1.55; text-align: justify; text-justify: inter-word; }
+.team-profile-copy { color: var(--text-2); font-size: .94rem; line-height: 1.8;font-weight: 700; text-align: justify; text-justify: inter-word; white-space: pre-line; }
 .team-profile-copy:empty::before { content: 'More information about this team member will be available soon.'; color: var(--text-3); }
 .team-profile-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .team-profile-button { min-width: 132px; min-height: 46px; padding: 11px 18px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid transparent; border-radius: 12px; font-size: .84rem; font-weight: 800; text-decoration: none; transition: transform .22s ease, box-shadow .22s ease, background .22s ease; }

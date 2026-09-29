@@ -39,32 +39,22 @@
 .footer-iso-slot {
   width: 100%;
   min-height: 78px;
-  padding: 9px 10px;
-  border: 1px dashed rgba(8, 15, 32, 0.22);
-  border-radius: 14px;
+  /* padding: 9px 10px; */
+  /* border: 1px dashed rgba(8, 15, 32, 0.22);
+  border-radius: 14px; */
   background: rgba(255,255,255,0.54);
   color: var(--text-3);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 2px;
   text-align: center;
 }
 
-.footer-iso-slot svg {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 20px;
-  color: var(--gold-dark, var(--gold));
-}
-
-.footer-iso-slot span {
-  font-size: 0.66rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.footer-iso-badge{
+  width: 400px;
+  height: 100px;
 }
 
 .social-btn {
@@ -184,9 +174,9 @@
 .footer-newsletter {
   order: 1;
   display: grid;
-  grid-template-columns: minmax(104px, .34fr) minmax(240px, 1.66fr);
+  grid-template-columns: minmax(104px, .60fr) minmax(240px, 1.40fr);
   align-items: end;
-  gap: 18px;
+  gap: 10px;
   margin-bottom: 18px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);

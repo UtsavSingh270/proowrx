@@ -45,10 +45,12 @@ const FAQ_SETS = {
     { question: 'Can we move to a dedicated resource later?', answer: 'Yes. If volume becomes consistent, the service model can be reviewed and moved to dedicated support.' },
   ],
   about: [
-    { question: 'Is Proowrx Australian-owned?', answer: 'Yes. Proowrx is an Australian-owned knowledge process outsourcing provider supporting Australian finance and accounting businesses.' },
-    { question: 'Where is the Proowrx delivery team based?', answer: 'Proowrx operates with an Australian presence and a delivery centre in Jaipur, India.' },
-    { question: 'Which industries does Proowrx specialise in?', answer: 'Our core focus is mortgage, accounting, asset finance and related back-office and digital marketing support.' },
-    { question: 'How does Proowrx build long-term partnerships?', answer: 'We focus on documented workflows, responsive communication, secure operations and ongoing quality oversight.' },
+    { question: 'Where is Proowrx based?', answer: 'Proowrx is an Australian-owned business headquartered in Sydney, NSW, Australia. Our highly trained offshore teams operate from secured and strictly monitored delivery centres to support businesses.' },
+    { question: 'What service models does Proowrx offer?', answer: 'Proowrx offers highly flexible options without lock-in contracts. You can hire a dedicated full-time resource or choose scalable support during seasonal business peaks.' },
+    { question: 'Which industries does Proowrx support?', answer: 'We specialise in supporting Australian mortgage brokers, asset finance brokers, accounting practices, and financial businesses with dedicated back-office and digital marketing operations.' },
+    { question: 'How does Proowrx ensure data security?', answer: 'We are ISO 27001:2022 certified. We protect data using multi-factor authentication, biometric office access, a secure wireless network, and zero local data storage.' },
+    { question: 'Is Proowrx compliant with the Modern Slavery Act?', answer: 'Yes, we strictly adhere to the Modern Slavery Act. Our teams follow a clear code of ethics, ensuring fair, safe, and ethical working conditions.' },
+    { question: 'Is Proowrx compliant with the Australian Privacy Principles?', answer: 'Yes, we strictly follow the Australian Privacy Principles. Our staff sign NDAs, and we handle client information securely within clients’ approved cloud-based systems only.' },
   ],
 };
 

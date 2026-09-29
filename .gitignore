@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/.animation-browser-check/
 
 # next.js
 /.next/

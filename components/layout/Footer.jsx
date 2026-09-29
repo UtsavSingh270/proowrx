@@ -9,7 +9,7 @@ import './Footer.css';
 import Image from 'next/image';
 
 const LOGO = '/Proowrx_Logo.png';
-const BADGE = '/ISO Badge.jpg';
+const BADGE = '/images/ISO Badge.jpg';
 
 export default function Footer() {
   const [email, setEmail] = useState('');

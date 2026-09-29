@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Lottie } from 'lottie-react';
+import { LottieLight } from 'lottie-react';
 import {
   ArrowRight, ChevronLeft, ChevronRight, House, Calculator, Car, Megaphone,
   Check, ClipboardCheck, RefreshCw, GraduationCap, ShieldCheck, Star
@@ -500,7 +500,8 @@ export default function HomeClient({ insights }) {
                 style={{ transitionDelay: `${i * 110 + 150}ms` }}
               >
                 <div className="process-node" aria-hidden="true">
-                  <Lottie
+                  {/* Keyframes work without the expression engine blocked by production CSP. */}
+                  <LottieLight
                     key={`${step.animation}-${processStage === i + 1 ? 'active' : 'idle'}`}
                     src={step.animation}
                     className="process-node-animation"

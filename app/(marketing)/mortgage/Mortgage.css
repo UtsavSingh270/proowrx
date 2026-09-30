@@ -286,11 +286,16 @@
 /* ── Partner Strip ──────────────────────── */
 .mortgage-why-section {
   /* Keep the navy section breathing on tall and wide displays. */
-  padding-bottom: clamp(50px, 4vw, 80px);
+  padding-bottom: clamp(50px, 4vw, 80px) !important;
+}
+
+.mortgage-why-section .why-grid {
+  margin-bottom: clamp(50px, 4vw, 80px);
 }
 
 @media (max-width: 640px) {
-  .mortgage-why-section { padding-bottom: 30px; }
+  .mortgage-why-section { padding-bottom: 30px !important; }
+  .mortgage-why-section .why-grid { margin-bottom: 30px; }
 }
 
 .partner-strip {

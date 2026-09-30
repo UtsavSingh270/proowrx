@@ -284,7 +284,7 @@ export default function TeamCultureMedia({ initialItems = [] }) {
         <section id="worklife-gallery" className="section worklife-gallery-section"><div className="container"><div className="worklife-empty">No photos have been published yet.</div></div></section>
       ) : <ScrollGallery images={images} onSelect={openImage} reduceMotion={reduceMotion} />}
 
-      <section className="section worklife-video-section">
+      {/* <section className="section worklife-video-section">
         <div className="container">
           <motion.div className="worklife-section-head" initial={initial} whileInView="visible" viewport={viewport} variants={sectionMotion}>
             <span className="chip chip-violet section-eyebrow">Culture in Motion</span>
@@ -330,7 +330,7 @@ export default function TeamCultureMedia({ initialItems = [] }) {
             </>
           )}
         </div>
-      </section>
+      </section> */}
 
       <AnimatePresence>
         {activeImage && (

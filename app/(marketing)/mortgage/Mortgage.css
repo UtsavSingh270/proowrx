@@ -285,7 +285,12 @@
 
 /* ── Partner Strip ──────────────────────── */
 .mortgage-why-section {
-  padding-bottom: 22px;
+  /* Keep the navy section breathing on tall and wide displays. */
+  padding-bottom: clamp(50px, 4vw, 80px);
+}
+
+@media (max-width: 640px) {
+  .mortgage-why-section { padding-bottom: 30px; }
 }
 
 .partner-strip {
@@ -342,6 +347,12 @@
 
 
 /* ── Comparison Table ────────────────────── */
+.mortgage-comparison-section {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: var(--surface);
+}
+
 .ppa-table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;

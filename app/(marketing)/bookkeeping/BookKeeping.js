@@ -9,6 +9,7 @@ import {
   BarChart3, Settings2, Percent, CalendarCheck,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
+import ServiceBenefits from '@/components/shared/ServiceBenefits';
 import './BookKeeping.css';
 
 function useReveal() {
@@ -169,6 +170,12 @@ export default function Bookkeeping() {
         </div>
       </section>
 
+      <ServiceBenefits service="Bookkeeping Outsourcing" intro="Keep your books current and your team focused with dependable support that follows your processes and reporting expectations." benefits={[
+        { title: 'Books kept up to date', text: 'Regular transaction processing keeps your records ready for review and reporting.' },
+        { title: 'Better visibility', text: 'Consistent categorisation and reconciliations give you a clearer view of performance.' },
+        { title: 'Flexible support', text: 'Add capacity when workload rises without changing the way your firm operates.' },
+        { title: 'More advisory time', text: 'Reduce routine administration so your team can focus on higher-value client work.' },
+      ]} />
       {/* ── 4. Why Choose ── */}
       <section className="section">
         <div className="container">

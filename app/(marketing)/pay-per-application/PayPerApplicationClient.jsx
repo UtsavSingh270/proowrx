@@ -8,6 +8,7 @@ import {
   BriefcaseBusiness, FileCheck, TrendingUp, Clock, BarChart3,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
+import ServiceBenefits from '@/components/shared/ServiceBenefits';
 import './PayPerApplication.css';
 
 function useReveal() {
@@ -122,6 +123,12 @@ export default function PayPerApplication() {
         </div>
       </section>
 
+      <ServiceBenefits service="Pay Per Application" intro="Process more applications with predictable support, faster turnaround, and a delivery model built around your actual volume." benefits={[
+        { title: 'Pay for completed work', text: 'Keep costs aligned with application volume instead of adding a fixed salary.' },
+        { title: 'Faster turnaround', text: 'Give your team extra processing capacity when deadlines are tight.' },
+        { title: 'Handle volume peaks', text: 'Absorb busy periods without overloading your permanent staff.' },
+        { title: 'Clear delivery standards', text: 'Use agreed scopes and service levels to keep every handoff accountable.' },
+      ]} />
       {/* ── Why PPA ── */}
       <section className="section">
         <div className="container">

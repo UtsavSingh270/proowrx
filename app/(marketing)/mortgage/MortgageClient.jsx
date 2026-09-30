@@ -16,6 +16,7 @@ import {
   X as XIcon,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
+import ServiceBenefits from '@/components/shared/ServiceBenefits';
 import './Mortgage.css';
 
 function useReveal() {
@@ -230,12 +231,18 @@ export default function Mortgage() {
         </div>
       </section>
 
+      <ServiceBenefits service="Mortgage Outsourcing" intro="Give your brokerage more capacity, faster turnaround, and dependable support without adding fixed overhead." benefits={[
+        { title: 'More time for clients', text: 'Spend more of your day advising clients while routine processing keeps moving.' },
+        { title: 'Flexible capacity', text: 'Scale support around settlements, campaigns, and seasonal workload peaks.' },
+        { title: 'Consistent processing', text: 'Documented workflows help keep applications accurate, organised, and on schedule.' },
+        { title: 'Lower operating pressure', text: 'Access trained support without the cost and commitment of another full-time hire.' },
+      ]} />
       {/* Why us */}
       <section className="section mortgage-why-section" style={{ background: 'var(--navy)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <span className="chip chip-white section-eyebrow">Why Proowrx</span>
-            <h2 className="section-title section-title--white">Why Brokers Choose Us</h2>
+            <span className="chip chip-white section-eyebrow">Why Us</span>
+            <h2 className="section-title section-title--white">Why Choose Proowrx for Mortgage Outsourcing</h2>
           </div>
           <div className="why-grid">
             {whyUs.map((w, i) => (
@@ -249,7 +256,7 @@ export default function Mortgage() {
             ))}
           </div>
 
-          <section className="section" ref={r4}>
+          <section className="section mortgage-comparison-section" ref={r4}>
         <div className="container">
           <div className="reveal" style={{ textAlign: 'center', marginBottom: 48 }}>
             <span className="chip chip-violet section-eyebrow">Comparison</span>
@@ -280,7 +287,7 @@ export default function Mortgage() {
         </div>
       </section>
 
-          <div className="partner-strip">
+          {/* <div className="partner-strip">
             <div className="partner-strip-item">
               <h4>Focus on Your Clients</h4>
               <p>Free up time to deliver exceptional service and grow your relationships.</p>
@@ -295,7 +302,7 @@ export default function Mortgage() {
               <h4>Scale Efficiently</h4>
               <p>Grow without adding staff overhead — flexible support at every stage.</p>
             </div>
-          </div>
+          </div> */}
 
           {/* <div style={{ textAlign: 'center', marginTop: 48 }}>
             <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">

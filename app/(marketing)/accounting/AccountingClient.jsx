@@ -9,6 +9,7 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import ServiceFaq from '@/components/shared/ServiceFaq';
+import ServiceBenefits from '@/components/shared/ServiceBenefits';
 import './Accounting.css';
 
 function useReveal() {
@@ -208,6 +209,12 @@ export default function Accounting() {
         </div>
       </section>
 
+      <ServiceBenefits service="Accounting Outsourcing" intro="Build a more efficient practice with accurate back-office support that fits your systems, standards, and growth plans." benefits={[
+        { title: 'Improve practice efficiency', text: 'Move recurring bookkeeping and accounting tasks through clear, repeatable workflows.' },
+        { title: 'Protect accuracy', text: 'Dedicated checks and documented processes help reduce avoidable rework.' },
+        { title: 'Create room to grow', text: 'Increase capacity without immediately expanding your internal team.' },
+        { title: 'Keep clients informed', text: 'Reliable turnaround gives your team more time for advice and relationships.' },
+      ]} />
       {/* Why Us */}
       <section className="section" style={{ background: 'var(--navy)' }}>
         <div className="container">

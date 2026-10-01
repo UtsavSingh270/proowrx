@@ -124,7 +124,7 @@ const values = [
   { icon: MessagesSquare, title: 'COMMUNICATING WITH INTEGRITY', titleLines: ['COMMUNICATING WITH', 'INTEGRITY'], desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
   { icon: ShieldCheck, title: 'PROTECT CLIENT TRUST', titleLines: ['PROTECT CLIENT', 'TRUST'], desc: 'We handle client information, financial records, and business systems with care, confidentiality, and accountability.' },
   { icon: HandHeart, title: 'WORKING WITH PURPOSE', titleLines: ['WORKING WITH', 'PURPOSE'], desc: 'We bring energy and purpose to our work, investigating how to create meaningful value for our clients, our team, and the businesses we support.' },
-  { icon: Sparkles, title: 'GROW TOGETHER', titleLines: ['GROW', 'TOGETHER'], desc: 'We build a supportive workplace where people share knowledge, work together, learn continuously, and grow with the team.' },
+  { icon: Sparkles, title: 'GROW TOGETHER', titleLines: ['GROW TOGETHER'], desc: 'We build a supportive workplace where people share knowledge, work together, learn continuously, and grow with the team.' },
   { icon: Scale, title: 'UPHOLD NCCP COMPLIANCE', titleLines: ['UPHOLD NCCP', 'COMPLIANCE'], desc: 'We follow NCCP requirements and established compliance processes, maintaining accurate documentation, responsible practices, and high professional standards.' },
 ];
 

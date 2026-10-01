@@ -48,10 +48,9 @@ const pillars = [
     title: 'Physical Security',
     desc: 'Our office has physical security measures to control access to the building and secure the operational areas. These measures also cover what happens in the event of an unexpected incident.',
     points: [
-      'Fingerprint access for secure areas.',
-'24/7 CCTV monitoring across the building.',
-'Controlled access to the office and operations areas.',
-'Disaster response plan for unexpected events.'
+      'Every team member signs a non-disclosure agreement before handling client data.',
+      'Only staff who need it for their assigned work can access client information.',
+      'We have business continuity plans for unexpected disruptions in client operations.'
     ],
   },
   {
@@ -62,10 +61,10 @@ const pillars = [
     title: 'Technological Security',
     desc: 'The technology we use to handle client information includes security measures to protect electronic data and reduce the risk of cyberattacks. This includes the tools we use to protect and exchange information.',
     points: [
-      'Firewalls to help block external threats.',
-'Data encryption for sensitive information.',
-'Secure file exchange tools for sending and receiving data.',
-'Security measures to help prevent cyberattacks.'
+      'Firewalls & Antivirus to help block unexpected cyber threats.',
+      'Restricted access to approved and whitelisted websites.',
+      'Data encryption for sensitive information.',
+      'Secure file exchange tools for sending and receiving data.'
     ],
   },
   {
@@ -92,7 +91,7 @@ const features = [
   { icon: <KeyRound size={22} />, title: 'Multi-Factor Authentication', desc: 'We use multi-factor authentication across our systems and applications. Staff need an additional verification step beyond their password to access the system.' },
   { icon: <UserRoundCheck size={22} />, title: 'Tiered Data Access', desc: 'Access to client information is based on staff roles and responsibilities. Staff can access only the information they need for their assigned work.'},
   { icon: <WifiOff size={22} />, title: 'Restricted Internet Access', desc: 'Internet access on office devices is limited to approved websites using a firewall. This keeps internet use focused on work-related activities and reduces exposure to unwanted websites and online threats.' },
-  { icon: <ShieldCheck size={22} />, title: 'Cyber Security Software', desc: 'Our systems use email security, antivirus and anti-malware software, and intrusion detection and prevention systems. These tools help protect electronic data from external threats and cyber attacks.' },
+  { icon: <ShieldCheck size={22} />, title: 'Cyber Security Software', desc: 'Our systems use email security, antivirus & anti-malware software, and data loss prevention and EDP control software. These tools help protect electronic data from external threats and cyber attacks.' },
   { icon: <GraduationCap size={22} />, title: 'Security Awareness Training', desc: 'We conduct regular training programs for our teams to ensure they understand security protocols, recognise potential risks, and protect client data.' },
 ];
 
@@ -162,10 +161,10 @@ export default function DataSecurity() {
               When you work with Proowrx, our staff handles financial records, customer information, and other business documents that should not be shared outside the scope of their assigned work. That is why access to client information is restricted. Our staff sign non-disclosure agreements, and we use measures such as firewalls, encryption and restricted system access to protect client information.
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
-              The working area is restricted and monitored by 24/7 CCTV. Staff follow procedures to ensure client information is not copied, removed, or accessed without authorisation. We review security policies regularly to prevent data breaches and other security threats.
+              The working area is secured with biometric access and monitored by 24/7 CCTV. Staff follow procedures to ensure client information is not copied, removed, or accessed without authorisation. We review security policies regularly to prevent data breaches and other security threats.
             </p>
             <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {['Every team member signs a non-disclosure agreement before handling client data.', 'Our operations area is secured with biometric access and CCTV.', 'Only staff who need it for their assigned work can access client information.'].map(t => (
+              {['Every team member signs a non-disclosure agreement before handling client data.', 'Only staff who need it for their assigned work can access client information.', 'We have business continuity plans for unexpected disruptions in client operations.'].map(t => (
                 <div key={t} className="ds-promise-point">
                   <CheckCircle size={18} color="var(--teal)" />
                   <span>{t}</span>

@@ -120,12 +120,12 @@ function TeamProfileModal({ member, onClose }) {
 }
 
 const values = [
-  { icon: Target, title: 'DELIVERING WITH ACCOUNTABILITY', titleLines: ['COMMIT TO DELIVERY', 'EXCELLENCE'], desc: 'We take ownership of every task, maintain high standards of accuracy, and deliver work on time without compromising quality.' },
-  { icon: MessagesSquare, title: 'COMMUNICATING WITH INTEGRITY', titleLines: ['EMBRACE INTEGRITY', 'AND OPENNESS'], desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
-  { icon: ShieldCheck, title: 'PROTECT CLIENT TRUST', titleLines: ['PRACTICE RESPONSIBLE', 'STEWARDSHIP'], desc: 'We handle client information, financial records, and business systems with care, confidentiality, and accountability.' },
-  { icon: HandHeart, title: 'WORK WITH PURPOSE', titleLines: ['IGNITE PASSION FOR', 'THE GREATER GOOD'], desc: 'We bring energy and purpose to our work, investigating how to create meaningful value for our clients, our team, and the businesses we support.' },
-  { icon: Sparkles, title: 'GROW TOGETHER', titleLines: ['INVEST IN AN', 'EXCEPTIONAL CULTURE'], desc: 'We build a supportive workplace where people share knowledge, work together, learn continuously, and grow with the team.' },
-  { icon: Scale, title: 'UPHOLD NCCP COMPLIANCE', titleLines: ['LIVE A BALANCED', 'LIFE'], desc: 'We follow NCCP requirements and established compliance processes, maintaining accurate documentation, responsible practices, and high professional standards.' },
+  { icon: Target, title: 'DELIVERING WITH ACCOUNTABILITY', titleLines: ['DELIVERING WITH', 'ACCOUNTABILITY'], desc: 'We take ownership of every task, maintain high standards of accuracy, and deliver work on time without compromising quality.' },
+  { icon: MessagesSquare, title: 'COMMUNICATING WITH INTEGRITY', titleLines: ['COMMUNICATING WITH', 'AND OPENNESS'], desc: 'We communicate clearly with your onshore team, report delays early, and provide straightforward updates.' },
+  { icon: ShieldCheck, title: 'PROTECT CLIENT TRUST', titleLines: ['PROTECT CLIENT', 'STEWARDSHIP'], desc: 'We handle client information, financial records, and business systems with care, confidentiality, and accountability.' },
+  { icon: HandHeart, title: 'WORK WITH PURPOSE', titleLines: ['WORK WITH', 'THE GREATER GOOD'], desc: 'We bring energy and purpose to our work, investigating how to create meaningful value for our clients, our team, and the businesses we support.' },
+  { icon: Sparkles, title: 'GROW TOGETHER', titleLines: ['GROW', 'TOGETHER'], desc: 'We build a supportive workplace where people share knowledge, work together, learn continuously, and grow with the team.' },
+  { icon: Scale, title: 'UPHOLD NCCP COMPLIANCE', titleLines: ['UPHOLD NCCP', 'COMPLIANCE'], desc: 'We follow NCCP requirements and established compliance processes, maintaining accurate documentation, responsible practices, and high professional standards.' },
 ];
 
 export default function OurTeamClient({ initialMembers, initialCultureItems }) {

@@ -48,9 +48,10 @@ const pillars = [
     title: 'Physical Security',
     desc: 'Our office has physical security measures to control access to the building and secure the operational areas. These measures also cover what happens in the event of an unexpected incident.',
     points: [
-      'Every team member signs a non-disclosure agreement before handling client data.',
-      'Only staff who need it for their assigned work can access client information.',
-      'We have business continuity plans for unexpected disruptions in client operations.'
+      'Biometric-controlled office access.',
+      'Visitor identification and logging.',
+      'Dedicated visitor areas separated from operational workspaces.',
+      'Disaster response plan for unexpected events.'
     ],
   },
   {

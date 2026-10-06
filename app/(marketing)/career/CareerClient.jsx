@@ -8,16 +8,16 @@ import {
   CheckCircle,
   ClipboardCheck,
   FileText,
-  Globe,
+  Globe2,
   GraduationCap,
   HandHeart,
-  Heart,
+  Scale,
   MapPin,
   PhoneCall,
   Star,
   TrendingUp,
   UserCheck,
-  Zap,
+  Sparkles,
 } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import './Career.css';
@@ -37,19 +37,19 @@ function useReveal() {
 }
 
 const perks = [
-  { icon: <TrendingUp size={24} />, title: 'Career Growth', desc: 'Clear advancement paths and ongoing training to help you develop your skills and grow your career with Proowrx.' },
-  { icon: <GraduationCap size={24} />, title: 'Expert Mentorship', desc: 'Work alongside experienced professionals and learn directly from Australian mortgage and accounting industry leaders.' },
-  { icon: <Globe size={24} />, title: 'Global Exposure', desc: 'Work with top Australian financial professionals and gain international industry knowledge that sets your CV apart.' },
-  { icon: <Zap size={24} />, title: 'Dynamic Environment', desc: 'Fast-paced, innovative workplace where your contributions make a real and visible impact from day one.' },
-  { icon: <Heart size={24} />, title: 'Work-Life Balance', desc: 'We value your well-being — structured hours, supportive culture, and a management team that genuinely cares.' },
-  { icon: <HandHeart size={24} />, title: 'Meaningful Work', desc: 'Help Australian businesses thrive. What you do here matters — every file you process is real value for a real client.' },
+  { icon: <TrendingUp size={24} />, title: 'Grow With Us', desc: 'Diverse growth opportunities and continuous training will help you enhance your abilities and advance your career.' },
+  { icon: <GraduationCap size={24} />, title: 'Learn From The Best', desc: 'Engage with experienced professionals and learn directly from Australian mortgage and accounting industry leaders.' },
+  { icon: <Globe2 size={24} />, title: 'Think Beyond Borders', desc: 'Work with some of the top Australian financial professionals and gain industry knowledge that sets your career apart.' },
+  { icon: <Sparkles size={24} />, title: 'Purpose-Driven Culture', desc: 'Be part of a fast-paced workplace where your contributions make a real and visible impact from day one.' },
+  { icon: <Scale size={24} />, title: 'Work-Life Balance', desc: 'A supportive workplace, structured working hours and a team that respects your time.' },
+  { icon: <HandHeart size={24} />, title: 'Make an Impact', desc: 'Your work will directly support Australian businesses, giving you the opportunity to contribute, learn and create real impact.' },
 ];
 
 const hiringSteps = [
-  { num: '01', icon: FileText, title: 'Apply Online', desc: 'Submit your application through our ZappyHire portal with your CV and a brief cover note.' },
-  { num: '02', icon: PhoneCall, title: 'Initial Screening', desc: 'Our team reviews your application and reaches out for a short initial phone or video call.' },
-  { num: '03', icon: ClipboardCheck, title: 'Skills Assessment', desc: 'Role-specific assessment to evaluate your technical skills and industry knowledge.' },
-  { num: '04', icon: UserCheck, title: 'Final Interview', desc: 'In-depth interview with the hiring manager to assess fit, expectations, and growth potential.' },
+  { num: '01', icon: FileText, title: 'Apply Online', desc: 'Find a role that matches your skills and submit your application and CV through our career page. ' },
+  { num: '02', icon: PhoneCall, title: 'Meet Our HR Team', desc: 'Have a quick conversation with our HR team about your experience, expectations, and the role you’ve applied for.' },
+  { num: '03', icon: ClipboardCheck, title: 'Skill Assessment', desc: 'Complete a short, role-specific assessment that helps us understand your skills and approach to the work.' },
+  { num: '04', icon: UserCheck, title: 'Meet the Industry Professionals Panel', desc: 'Have a detailed conversation about the role, the team, your experience, and opportunities to grow at Proowrx.' },
 ];
 
 export default function CareerClient({ initialJobs }) {
@@ -69,15 +69,15 @@ export default function CareerClient({ initialJobs }) {
         <div className="container career-hero-inner">
           <div className="career-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 16 }}>Careers at Proowrx</span>
-            <h1>Build Your Career<br />with Purpose</h1>
-            <p>Join a growing team redefining KPO for Australian financial professionals. We hire for attitude and train for skill.</p>
+            <h1>Build Your Career<br />with the Right Purpose</h1>
+            <p>Build an extraordinary global career supporting top-tier Australian financial and mortgage professionals. We invest in people with the right mindset.</p>
           </div>
           <div className="career-hero-stats">
             {[
-              // { num: '2021', label: 'Year Founded' },
-              // { num: '2', label: 'Global Offices' },
-              { num: '24hr', label: 'Turnaround SLA' },
-              { num: '100%', label: 'Compliance Focus' },
+              { num: '150+', label: 'Industry Professionals' },
+              { num: '25+ Years', label: 'Industry Experience' },
+              // { num: '24hr', label: 'Turnaround SLA' },
+              { num: '100%', label: 'Focus on Training & Quality Standards' },
             ].map((s, i) => (
               <div key={i} className="career-hero-stat">
                 <span className="career-hero-stat-num">{s.num}</span>
@@ -95,7 +95,7 @@ export default function CareerClient({ initialJobs }) {
             <span className="chip chip-sky section-eyebrow">Why Proowrx</span>
             <h2 className="section-title">Why You&apos;ll Love Working Here</h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              We&apos;re not just a workplace — we&apos;re a community committed to doing exceptional work together.
+              We are a community of industry professionals who have come together to accomplish remarkable growth.
             </p>
           </div>
           <div className="career-perks-grid">
@@ -119,15 +119,15 @@ export default function CareerClient({ initialJobs }) {
             <span className="chip chip-white section-eyebrow">Our Culture</span>
             <h2 className="section-title section-title--white">A Culture Built on Excellence & Continuous Growth</h2>
             <p className="section-body section-body--white">
-              At Proowrx, we believe the best results come from teams that are empowered, well-trained, and genuinely care about their work. We invest in our people through continuous training under the guidance of experienced Australian industry professionals.
+              At Proowrx, we believe the best results come from teams that are empowered, well-trained, and genuinely care about their work. We invest in our people through continuous training under the guidance of experienced industry professionals.
             </p>
             <ul className="career-values-list">
               {[
-                'Integrity and transparency in everything we do',
-                'Commitment to continuous learning and improvement',
-                'Client-first mindset across all roles',
-                'Collaborative, inclusive, and supportive culture',
-                'Excellence in delivery — quality over quantity, always',
+                'Integrity & Transparency in Every Decision',
+                'Continuous Learning & Professional Development',
+                'A Client-First Approach in Every Role',
+                'A Collaborative & Supportive Team Culture',
+                'Consistent Quality in Every Delivery'
               ].map((v, i) => (
                 <li key={i}>
                   <CheckCircle size={16} color="var(--gold)" />
@@ -162,7 +162,7 @@ export default function CareerClient({ initialJobs }) {
             <span className="chip chip-gold section-eyebrow">Open Roles</span>
             <h2 className="section-title">Current Opportunities</h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              We&apos;re growing and looking for talented people. Check out our current openings below.
+              Explore our current job openings to find your next opportunity at Proowrx. 
             </p>
           </div>
           {dynamicJobs.length === 0 && (
@@ -237,7 +237,7 @@ export default function CareerClient({ initialJobs }) {
           <div className="career-process-grid">
             {hiringSteps.map(({ num, icon: StepIcon, title, desc }, i) => (
               <div key={title} className={`career-step reveal reveal-delay-${i + 1}`}>
-                <div className="career-step-num">{num}</div>
+                <div className="career-step-num" aria-hidden="true">{num}</div>
                 <div className="career-step-heading">
                   <span className="career-step-icon" aria-hidden="true">
                     <StepIcon size={23} strokeWidth={1.9} />

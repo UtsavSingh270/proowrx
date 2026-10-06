@@ -82,28 +82,32 @@
 }
 
 .career-hero-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: 0;
   width: min(100%, 720px);
   animation: fadeIn 1s var(--ease-out) 0.3s both;
 }
 
 .career-hero-stat {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: var(--r-lg);
-  padding: 28px 24px;
+  position: relative;
+  flex: 1 1 0;
+  padding: 8px 24px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  transition: all 0.3s var(--ease);
+  text-align: center;
 }
 
-.career-hero-stat:hover {
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(240,165,0,0.30);
-  transform: translateY(-3px);
+.career-hero-stat + .career-hero-stat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: rgba(255,255,255,0.24);
 }
 
 .career-hero-stat-num {
@@ -606,6 +610,8 @@
 }
 
 .career-step {
+  position: relative;
+  overflow: hidden;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
@@ -621,17 +627,22 @@
 }
 
 .career-step-num {
+  position: absolute;
+  z-index: 0;
+  top: 12px;
+  right: 18px;
   font-family: 'Noto Sans', sans-serif;
-  font-size: 2.2rem;
+  font-size: 5.5rem;
   font-weight: 800;
   color: var(--sky);
-  opacity: 0.25;
-  margin-bottom: 10px;
+  opacity: 0.08;
   line-height: 1;
-  transition: opacity 0.3s;
+  pointer-events: none;
+  user-select: none;
 }
 
-.career-step:hover .career-step-num { opacity: 1; }
+.career-step-heading,
+.career-step p { position: relative; z-index: 1; }
 
 .career-step-heading {
   display: grid;
@@ -698,7 +709,7 @@
 
 @media (max-width: 960px) {
   .career-hero-inner { grid-template-columns: 1fr; gap: 32px; padding-top: 0; text-align: center; }
-  .career-hero-stats { display: none; }
+  .career-hero-stats { display: flex; width: 100%; justify-content: center; }
   .career-perks-grid { grid-template-columns: repeat(2, 1fr); }
   .career-culture-grid { grid-template-columns: 1fr; gap: 40px; }
   .career-culture-image { display: none; }
@@ -712,6 +723,10 @@
   .career-hero { min-height: auto; }
   .career-perks-grid { grid-template-columns: 1fr; }
   .career-process-grid { grid-template-columns: 1fr; }
+  .career-hero-stats { gap: 0; }
+  .career-hero-stat { padding-inline: 10px; }
+  .career-hero-stat-num { font-size: 1.45rem; }
+  .career-hero-stat-label { font-size: .68rem; }
   .form-row { grid-template-columns: 1fr; }
   .career-no-match-inner { flex-direction: column; }
   .refer-form-card { padding: 28px 20px; }

@@ -8,6 +8,7 @@ const JobSchema = new mongoose.Schema({
   type:        { type: String, default: 'Full-time' },
   experience:  { type: String, default: '' },
   applyLink:   { type: String, required: true },
+  displayOrder: { type: Number, default: 0, min: 0 },
   tags:        [String],
   status:      { type: String, enum: ['active', 'inactive'], default: 'active' },
 }, { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } });

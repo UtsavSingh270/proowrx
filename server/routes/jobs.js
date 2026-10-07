@@ -10,7 +10,7 @@ const router = express.Router();
 // GET /api/jobs  — active jobs only
 router.get('/', async (req, res) => {
   try {
-    const jobs = await Job.find({ status: 'active' }).sort({ createdAt: -1 });
+    const jobs = await Job.find({ status: 'active' }).sort({ displayOrder: 1, createdAt: -1 });
     res.json(jobs);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 // GET /api/jobs/admin/all  — all jobs
 router.get('/admin/all', requireAdmin, async (req, res) => {
   try {
-    const jobs = await Job.find().sort({ createdAt: -1 });
+    const jobs = await Job.find().sort({ displayOrder: 1, createdAt: -1 });
     res.json(jobs);
   } catch (err) {
     res.status(500).json({ error: err.message });

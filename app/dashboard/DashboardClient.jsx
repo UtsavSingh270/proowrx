@@ -610,6 +610,7 @@ function JobModal({ job, onClose, onSave }) {
     type: job?.type || 'Full-time',
     experience: job?.experience || '',
     applyLink: job?.applyLink || '',
+    displayOrder: job?.displayOrder ?? 0,
     tags: job?.tags || [],
     status: job?.status || 'active',
   });
@@ -688,6 +689,12 @@ function JobModal({ job, onClose, onSave }) {
             <div className="dash-form-group">
               <label className="dash-form-label">Apply Link URL *</label>
               <input className="dash-form-input" type="url" value={form.applyLink} onChange={e => set('applyLink', e.target.value)} placeholder="https://..." />
+            </div>
+
+            <div className="dash-form-group">
+              <label className="dash-form-label">Website Display Order</label>
+              <input className="dash-form-input" type="number" min="0" step="1" value={form.displayOrder} onChange={e => set('displayOrder', Math.max(0, Number(e.target.value) || 0))} />
+              <small className="dash-form-help">Lower numbers appear first on the Careers page. Jobs with the same order use newest first.</small>
             </div>
 
             <div className="dash-form-group">

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import ServiceFaq from '@/components/shared/ServiceFaq';
+import NewDigitalMarketingPage from './DigitalMarketingPage';
 import '../GrowthPages.css';
 
 const metadata ={title:'Digital Marketing Support Services',description:'Outsourced digital marketing support for Australian mortgage brokers, accountants and finance businesses—content, social media, SEO, email campaigns and reporting.',keywords:['digital marketing outsourcing Australia','mortgage broker marketing support','accounting firm digital marketing','SEO content support','social media virtual assistant'],alternates:{canonical:'/digital-marketing'},openGraph:{title:'Digital Marketing Support for Finance Businesses | Proowrx',description:'Consistent, practical marketing execution for mortgage, accounting and finance brands.',url:'/digital-marketing'}};
@@ -34,4 +35,4 @@ function DigitalMarketingPage(){return <main className="growth-page"><section cl
 export function generateMetadata() { return pageMetadata('/digital-marketing', metadata); }
 export const dynamic = 'force-dynamic';
 
-export default function PageWithInsights() { return <><DigitalMarketingPage /><PageInsights path="/digital-marketing" /></>; }
+export default function PageWithInsights() { return <><NewDigitalMarketingPage /><PageInsights path="/digital-marketing" /></>; }

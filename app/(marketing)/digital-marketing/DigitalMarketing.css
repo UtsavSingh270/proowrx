@@ -1,0 +1,8 @@
+.digital-marketing-page .growth-service-group { margin-top: 46px; }
+.digital-marketing-page .growth-service-group-head { max-width: 680px; margin-bottom: 20px; }
+.digital-marketing-page .growth-service-group-head h3 { margin: 0 0 8px; color: var(--text-1); font-size: 1.35rem; }
+.digital-marketing-page .growth-service-group-head p { margin: 0; color: var(--text-2); line-height: 1.7; }
+.digital-marketing-page .growth-inline-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; color: var(--mode-accent); font-size: .82rem; font-weight: 750; }
+.digital-marketing-page .growth-copy h2 { color: var(--text-1); font-size: clamp(1.35rem, 2.5vw, 2.1rem); line-height: 1.35; letter-spacing: -.02em; }
+.digital-marketing-page .growth-split::after { content: ''; display: block; min-height: 360px; border-radius: 22px; background: linear-gradient(180deg, rgba(7,17,36,.04), rgba(7,17,36,.28)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85') center/cover no-repeat; box-shadow: 0 18px 48px rgba(13,31,59,.14); }
+@media (max-width: 700px) { .digital-marketing-page .growth-split::after { min-height: 240px; order: -1; } }

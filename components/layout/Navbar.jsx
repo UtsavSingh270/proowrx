@@ -63,12 +63,12 @@ const SERVICE_GROUPS = [
     to: '/digital-marketing',
     icon: Megaphone,
     children: [
-      { label: 'Demand/Lead Generation', to: '/digital-marketing', desc: 'Paid Advertising, SEO, Email Marketing and CRO Assistance', icon: Target },
-      { label: 'Social & Reputation', to: '/digital-marketing', desc: 'Social Media Marketing and Online Reputation Management', icon: Users },
-      { label: 'Content Services', to: '/digital-marketing', desc: 'Content Writing and Content Marketing Assistance', icon: PenTool },
-      { label: 'Web Support', to: '/digital-marketing', desc: 'Website Development & Maintenance Assistance', icon: Globe },
-      { label: 'Digital Events', to: '/digital-marketing', desc: 'Podcasts & Webinars Market Growth Assistance', icon: Mic },
-      { label: 'Graphic Events', to: '/digital-marketing', desc: 'Graphics Designing and Video Creation & Editing Assistance', icon: Palette },
+      { label: 'Demand/Lead Generation', to: '/digital-marketing/paid-advertising', desc: 'Paid Advertising, SEO, Email Marketing and CRO Assistance', icon: Target },
+      { label: 'Social & Reputation', to: '/digital-marketing/social-media-marketing', desc: 'Social Media Marketing and Online Reputation Management', icon: Users },
+      { label: 'Content Services', to: '/digital-marketing/content-writing-services', desc: 'Content Writing and Content Marketing Assistance', icon: PenTool },
+      { label: 'Web Support', to: '/digital-marketing/website-development', desc: 'Website Development & Maintenance Assistance', icon: Globe },
+      { label: 'Digital Events', to: '/digital-marketing/podcast-marketing', desc: 'Podcasts & Webinars Market Growth Assistance', icon: Mic },
+      { label: 'Graphic Events', to: '/digital-marketing/graphics-designing', desc: 'Graphics Designing and Video Creation & Editing Assistance', icon: Palette },
     ],
   },
 ];
@@ -284,10 +284,11 @@ export default function Navbar() {
                         })}
                       </div>
                       <div className="services-mega-detail" aria-live="polite">
-                        <div className="services-mega-detail-heading">
+                        <Link href={selectedService.to} className="services-mega-detail-heading">
                           <span className="services-mega-detail-icon"><SelectedServiceIcon size={20} /></span>
                           <div><small>Explore</small><strong>{selectedService.label}</strong></div>
-                        </div>
+                          <ArrowRight size={16} aria-hidden="true" />
+                        </Link>
                         <div
                           className={`services-mega-subcategories${
                             selectedService.children.length > 4 ? ' services-mega-subcategories--two-col' : ''

@@ -365,7 +365,13 @@ html:not(.dark) .topbar {
   padding-bottom: 9px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background .2s ease, padding .2s ease;
 }
+.services-mega-detail-heading:hover { background: var(--surface); padding-inline: 8px; }
+.services-mega-detail-heading > svg { margin-left: auto; color: #9aa7ba; transition: transform .2s ease, color .2s ease; }
+.services-mega-detail-heading:hover > svg { color: var(--gold); transform: translateX(3px); }
 .services-mega-detail-heading > div { display: grid; gap: 1px; }
 .services-mega-detail-heading small { color: #71809a; font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .services-mega-detail-heading strong { color: #0b1f42; font-size: 1rem; }

@@ -44,18 +44,7 @@ const SERVICE_GROUPS = [
       { label: 'Audit Support', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: ShieldCheck },
     ],
   },
-  {
-    id: 'asset-finance',
-    label: 'Asset Finance',
-    description: 'Faster application processing',
-    to: '/asset-finance',
-    icon: CarFront,
-    children: [
-      { label: 'Asset Finance Processing', to: '/asset-finance', desc: 'Vehicle, equipment and commercial finance support', icon: CarFront },
-      { label: 'Application Packaging', to: '/asset-finance', desc: 'Document validation and lender-ready packaging', icon: FileStack },
-      { label: 'Settlement Support', to: '/asset-finance', desc: 'Lender follow-up and settlement coordination', icon: Landmark },
-    ],
-  },
+  
   {
     id: 'digital-marketing',
     label: 'Digital Marketing',
@@ -69,6 +58,18 @@ const SERVICE_GROUPS = [
       { label: 'Web Support', to: '/digital-marketing/website-development', desc: 'Website Development & Maintenance Assistance', icon: Globe },
       { label: 'Digital Events', to: '/digital-marketing/podcast-marketing', desc: 'Podcasts & Webinars Market Growth Assistance', icon: Mic },
       { label: 'Graphic Events', to: '/digital-marketing/graphics-designing', desc: 'Graphics Designing and Video Creation & Editing Assistance', icon: Palette },
+    ],
+  },
+  {
+    id: 'asset-finance',
+    label: 'Asset Finance',
+    description: 'Faster application processing',
+    to: '/asset-finance',
+    icon: CarFront,
+    children: [
+      { label: 'Asset Finance Processing', to: '/asset-finance', desc: 'Vehicle, equipment and commercial finance support', icon: CarFront },
+      { label: 'Application Packaging', to: '/asset-finance', desc: 'Document validation and lender-ready packaging', icon: FileStack },
+      { label: 'Settlement Support', to: '/asset-finance', desc: 'Lender follow-up and settlement coordination', icon: Landmark },
     ],
   },
 ];

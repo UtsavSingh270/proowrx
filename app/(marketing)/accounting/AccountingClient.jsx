@@ -86,6 +86,18 @@ const whyUs = [
   { icon: <Handshake size={24} aria-hidden="true" />, title: 'Personalized Approach', desc: 'We adapt to your workflow and software stack, not the other way around.' },
 ];
 
+const softwareLogos = {
+  Xero: 'https://icons.duckduckgo.com/ip3/xero.com.ico',
+  MYOB: 'https://icons.duckduckgo.com/ip3/myob.com.ico',
+  QuickBooks: 'https://icons.duckduckgo.com/ip3/quickbooks.intuit.com.ico',
+  HandiSoft: 'https://icons.duckduckgo.com/ip3/handisoft.com.au.ico',
+  'Class Super': 'https://icons.duckduckgo.com/ip3/class.com.au.ico',
+  'BGL Simple Fund': 'https://icons.duckduckgo.com/ip3/bglcorp.com.ico',
+  FuturePlanner: 'https://icons.duckduckgo.com/ip3/futureplanner.com.au.ico',
+  APS: 'https://icons.duckduckgo.com/ip3/aps.net.au.ico',
+};
+const softwareNames = ['Xero', 'MYOB', 'QuickBooks', 'HandiSoft', 'Class Super', 'BGL Simple Fund', 'FuturePlanner', 'APS'];
+
 export default function Accounting() {
   const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(), r4 = useReveal();
 
@@ -100,8 +112,8 @@ export default function Accounting() {
         <div className="container">
           <div className="page-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 20 }}>Accounting Services</span>
-            <h1>Accounting Outsourcing<br />for Australian Firms</h1>
-            <p>Let your team focus on advisory work while we handle compliance, bookkeeping, tax, SMSF, and reporting — all behind the scenes.</p>
+            <h1>Grow Your Accounting Business<br />With Expert Outsourced Accounting Services</h1>
+            <p>Helping Australian accounting firms manage fluctuating workloads without the costs of full-time hires by tapping into our reliable outsourced accounting services, tailored to fit the systems and processes your team is already using.</p>
             {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Meeting <ArrowRight size={15} />
@@ -115,8 +127,8 @@ export default function Accounting() {
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">8+</span>
-                <span className="page-hero-stat-label">Platforms Supported</span>
+                <span className="page-hero-stat-num">AUSTRALIAN</span>
+                <span className="page-hero-stat-label">ACCOUNTING EXPERTISE</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
@@ -143,12 +155,12 @@ export default function Accounting() {
         <div className="container acc-intro">
           <div ref={r1} className="reveal-left acc-intro-text">
             <span className="chip chip-gold section-eyebrow">The Problem We Solve</span>
-            <h2 className="section-title">Free Your Accountants to Do What Matters Most</h2>
+            <h2 className="section-title">Expand Your Accounting Firm’s Capacity Through Dedicated Back-Office Support</h2>
             <p className="section-body" style={{ maxWidth: '100%' }}>
-              Australian accounting firms spend enormous time on compliance tasks — bookkeeping, BAS lodgements, payroll, and tax returns — leaving little capacity for high-value advisory services that actually grow the business.
+              An accounting business demands far more than just client meetings and tax advice. Between daily bookkeeping, payroll, reconciliations, tax returns, and compliance deadlines, the sheer volume of routine work can easily overwhelm your team.
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
-              Proowrx provides a trained, dedicated accounting support team operating from India with expertise in Australian accounting standards and software. We integrate directly into your workflow, giving you the bandwidth to deliver more strategic value to your clients.
+              Proowrx handles daily operations on your behalf, working with the systems and processes already in use at your practice and eliminating disruptions to your team’s day-to-day work. This way, your team can focus on the more critical aspects of your clients’ needs.
             </p>
           </div>
           <div ref={r2} className="reveal-right acc-intro-image">
@@ -166,9 +178,9 @@ export default function Accounting() {
         <div className="container">
           <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="chip chip-teal section-eyebrow">What We Handle</span>
-            <h2 className="section-title">Comprehensive Accounting Support</h2>
+            <h2 className="section-title">Accounting Outsourcing Services for Australian Accounting Firms</h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              From day-to-day bookkeeping to complex SMSF management — we cover the full spectrum of accounting back-office tasks.
+              Our accounting support covers the core functions your firm relies on daily, from everyday bookkeeping and payroll to specialist tax and compliance and delivers dedicated support right where your team needs it most.
             </p>
           </div>
           <div className="acc-services-grid">
@@ -201,19 +213,21 @@ export default function Accounting() {
               Our team is trained on all major Australian accounting platforms — we plug into your workflow from day one.
             </p>
           </div>
-          <div className="acc-software-grid">
-            {['Xero', 'MYOB', 'QuickBooks', 'HandiSoft', 'Class Super', 'BGL Simple Fund', 'FuturePlanner', 'APS'].map(sw => (
-              <div key={sw} className="acc-software-chip">{sw}</div>
-            ))}
+          <div className="acc-software-marquee" aria-label="Accounting software platforms">
+            <div className="acc-software-track">
+              {[...Array(2)].flatMap(() => softwareNames).map((sw, i) => (
+                <div key={`${sw}-${i}`} className="acc-software-chip">{softwareLogos[sw] ? <img src={softwareLogos[sw]} alt="" aria-hidden="true" /> : <span className="acc-software-mark" aria-hidden="true">{sw.split(' ').map(word => word[0]).join('').slice(0, 3)}</span>}<span>{sw}</span></div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <ServiceBenefits service="Accounting Outsourcing" intro="Build a more efficient practice with accurate back-office support that fits your systems, standards, and growth plans." benefits={[
-        { title: 'Improve practice efficiency', text: 'Move recurring bookkeeping and accounting tasks through clear, repeatable workflows.' },
-        { title: 'Protect accuracy', text: 'Dedicated checks and documented processes help reduce avoidable rework.' },
-        { title: 'Create room to grow', text: 'Increase capacity without immediately expanding your internal team.' },
-        { title: 'Keep clients informed', text: 'Reliable turnaround gives your team more time for advice and relationships.' },
+        { title: 'Significant Cost Reduction', text: 'Eliminate full-time salaries, recruitment costs, overhead expenses, and costly software subscriptions with flexible support.' },
+        { title: 'Access to Specialised Expertise', text: 'Gain trained professionals experienced in changing tax laws, cloud software, and reliable compliance standards.' },
+        { title: 'Focus on Core Business Operations', text: 'Free your leadership and client-facing accountants from data entry, reconciliation, and administrative bottlenecks.' },
+        { title: 'Flexible Scalability', text: 'Scale support up during peak tax seasons or down during slower periods without permanent hires.' },
       ]} />
       {/* Why Us */}
       <section className="section" style={{ background: 'var(--navy)' }}>

@@ -12,8 +12,8 @@ export default function ServiceBenefits({ service, intro, benefits }) {
         <div className="service-benefits-grid">
           {benefits.map((benefit) => (
             <article className="service-benefit-card" key={benefit.title}>
-              <span className="service-benefit-icon" aria-hidden="true"><CheckCircle2 size={22} /></span>
-              <div><h3>{benefit.title}</h3><p>{benefit.text}</p></div>
+              <div className="service-benefit-heading"><span className="service-benefit-icon" aria-hidden="true"><CheckCircle2 size={22} /></span><h3>{benefit.title}</h3></div>
+              <p>{benefit.text}</p>
             </article>
           ))}
         </div>

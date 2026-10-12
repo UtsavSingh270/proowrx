@@ -153,6 +153,15 @@
   justify-content: center;
 }
 
+.acc-software-marquee { overflow: hidden; width: 100%; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.acc-software-track { display: flex; width: max-content; gap: 16px; animation: accSoftwareMarquee 28s linear infinite; }
+.acc-software-marquee:hover .acc-software-track { animation-play-state: paused; }
+.acc-software-chip { min-width: 170px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; }
+.acc-software-chip img { width: 28px; height: 28px; object-fit: contain; }
+.acc-software-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; color: #fff; background: var(--blue); font-size: .62rem; font-weight: 850; letter-spacing: -.04em; }
+@keyframes accSoftwareMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .acc-software-track { animation: none; } }
+
 .acc-software-chip {
   background: var(--surface);
   border: 1.5px solid var(--border);

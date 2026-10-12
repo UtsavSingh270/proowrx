@@ -15,8 +15,10 @@ const FAQ_SETS = {
     { question: 'Is support available for changing application volumes?', answer: 'Yes. Pay-per-application and dedicated resource options accommodate different workflow and volume requirements.' },
   ],
   accounting: [
-    { question: 'Which accounting tasks can be outsourced?', answer: 'Scope can include bookkeeping, payroll, workpaper preparation, tax-return preparation support, SMSF administration and management reporting.' },
-    { question: 'Which accounting platforms can your team work with?', answer: 'Resources are assigned and trained around the software stack, workpapers and review process used by your firm.' },
+    { question: 'Which accounting services can we outsource?', answer: 'You can outsource a variety of accounting services to Proowrx, including Bookkeeping, Payroll Processing, Annual Tax Returns, Tax Planning, SMSF, Audit Support, BAS, IAS, Pay Day Super, STP Lodgements and Cash Forecast Statements.' },
+    { question: 'Can Proowrx work with our existing accounting software?', answer: 'Yes, our team can work on the accounting platforms you already use including Xero, MYOB, QuickBooks, HandiSoft, Class Super, BGL Simple Fund, FuturePlanner and APS.' },
+    { question: 'Who reviews the work before it goes to the client?', answer: 'Your accountants are responsible for reviewing and approving the work. Proowrx manages the agreed accounting tasks and returns the completed work for your team to review.' },
+    { question: 'Can we increase support when the workload grows?', answer: 'Yes, you can scale the outsourced services as required to accommodate the growing demands of your practice, taking on specific tasks to begin with, then increasing support when you need it most.' },
     { question: 'How is completed work reviewed?', answer: 'The workflow includes documented preparation and review stages, clear handovers and issue tracking aligned with your firm’s quality process.' },
     { question: 'Can support increase during busy periods?', answer: 'Yes. Capacity can be planned around recurring deadlines, seasonal peaks and changes in client workload.' },
   ],

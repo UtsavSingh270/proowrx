@@ -31,59 +31,59 @@ const services = [
     icon: <BookOpenCheck size={26} />,
     color: '#c9a227',
     title: 'Bookkeeping',
-    desc: 'Comprehensive bookkeeping including bank reconciliation, accounts payable/receivable, mailbox services, month-end finalization, cash forecasts, and annual workbook reconciliation.',
+    desc: 'Manage client emails, day-to-day transaction processing, and bank reconciliations effortlessly. Our outsourced bookkeeping services keep your files up to date and your practice running smoothly.',
   },
   {
     icon: <BadgeDollarSign size={26} />,
     color: '#1f9e8e',
     title: 'Payroll Processing',
-    desc: 'Complete payroll management — employee payments, tax deductions, admin tasks, and monthly/quarterly/annual tax filings — ensuring accuracy and employee satisfaction.',
+    desc: 'We handle pay runs, timesheets, leave records, and Single Touch Payroll lodgements accurately. Our payroll outsourcing services give your accountants reliable support without adding permanent overhead.',
   },
   {
     icon: <ReceiptText size={26} />,
     color: '#c9a227',
     title: 'Annual Tax Returns',
-    desc: 'Expert handling of complex Australian tax compliance, document management, and accurate lodgement, reducing your compliance risk.',
+    desc: 'We prepare the accounting work needed for individual and business tax returns, organising financial information and supporting schedules so your team has a cleaner file to review.',
   },
   {
     icon: <ChartSpline size={26} />,
     color: '#1f9e8e',
     title: 'Tax Planning',
-    desc: 'Customized, proactive tax preparation strategies that optimize your clients\' tax positions throughout the year.',
+    desc: 'Deliver proactive mid-year reviews and tax positioning insights. We help your clients assess upcoming obligations and identify legitimate planning opportunities well before year-end.',
   },
   {
     icon: <PiggyBank size={26} />,
     color: '#c9a227',
     title: 'SMSF Management',
-    desc: 'Fund setup, period processing, bank reconciliation, audit support, and customized reporting for Self-Managed Superannuation Funds.',
+    desc: 'We handle fund records, reconciliations, and financial accounts seamlessly. We manage the back-office accounting work behind self-managed super funds while your practice retains client relationships.',
   },
   {
     icon: <ScanSearch size={26} />,
     color: '#1f9e8e',
     title: 'Audit Support',
-    desc: 'Comprehensive analysis and thorough working file preparation that makes your audit process smooth and stress-free.',
+    desc: 'Make audits straightforward with organised financial records, supporting schedules, and working papers. We reduce the time your team spends chasing information and assembling files.',
   },
   {
     icon: <FileCheck2 size={26} />,
     color: '#c9a227',
     title: 'BAS, IAS, Super & STP',
-    desc: 'End-to-end compliance management for Business Activity Statements, Instalment Activity Statements, superannuation, and Single Touch Payroll lodgements.',
+    desc: 'Stay on top of recurring compliance work with support for BAS, IAS, Pay Day Super, and STP requirements, helping your practice keep client obligations moving throughout the year.',
   },
   {
     icon: <PieChart size={26} />,
     color: '#1f9e8e',
     title: 'Cash Forecast Statements',
-    desc: 'Liquidity planning based on closing balances to prevent cash shortages and keep your clients\' businesses financially healthy.',
+    desc: 'Transform financial figures into clear insights. We prepare detailed cash forecasts that help your team give clients a reliable view of upcoming liquidity needs.',
   },
 ];
 
 const whyUs = [
-  { icon: <MapPinned size={24} aria-hidden="true" />, title: 'Australian Market Expertise', desc: 'Deep understanding of ATO requirements, Australian tax laws, and compliance obligations.' },
-  { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Secured Data Management', desc: 'Australia-based servers, 2FA, encrypted transfers — your clients\' data is always protected.' },
-  { icon: <Gauge size={24} aria-hidden="true" />, title: 'Quick Data Processing', desc: 'Fast, accurate turnaround so your firm stays ahead of deadlines without the pressure.' },
-  { icon: <Headset size={24} aria-hidden="true" />, title: 'Dedicated Service Support', desc: 'A dedicated team that understands your firm\'s processes and delivers consistent results.' },
-  { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Scalable Solutions', desc: 'Scale your support up or down as your practice grows — with no lock-in contracts.' },
-  { icon: <Handshake size={24} aria-hidden="true" />, title: 'Personalized Approach', desc: 'We adapt to your workflow and software stack, not the other way around.' },
+  { icon: <MapPinned size={24} aria-hidden="true" />, title: 'Australian Market Expertise', desc: 'Our team deeply understands Australian accounting requirements, local compliance workflows, and the specialised software platforms your practice commonly uses.' },
+  { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Secure Data Management', desc: 'Client information needs to be handled carefully. We use controlled access and secure processes to protect the data your practice entrusts to us.' },
+  { icon: <Gauge size={24} aria-hidden="true" />, title: 'Quick Data Processing', desc: 'Late returns create unnecessary bottlenecks. We focus on accurate processing and rapid turnaround times to keep your files moving forward without interruption.' },
+  { icon: <Headset size={24} aria-hidden="true" />, title: 'Dedicated Service Support', desc: 'A dedicated professional team handles your assigned workload, providing consistent operational support and making routine accounting tasks much easier to manage.' },
+  { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Scalable Solutions', desc: 'Your workload fluctuates throughout the year. Easily scale support up or down as needed, avoiding permanent hires for every busy season.' },
+  { icon: <Handshake size={24} aria-hidden="true" />, title: 'Personalised Approach', desc: 'Choose the exact level of support that fits your workload, whether you need help with specific tasks or comprehensive back-office assistance.' },
 ];
 
 const softwareLogos = {
@@ -207,10 +207,10 @@ export default function Accounting() {
       <section className="section acc-software-section">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span className="chip chip-gold section-eyebrow">Software We Work With</span>
-            <h2 className="section-title">Integrated with Your Existing Stack</h2>
+            <span className="chip chip-gold section-eyebrow">ACCOUNTING SOFTWARE</span>
+            <h2 className="section-title">We Work With the Software Your Practice Already Uses</h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              Our team is trained on all major Australian accounting platforms — we plug into your workflow from day one.
+              Bring in extra accounting support without moving files between unfamiliar systems or changing your processes. Our team works with the platforms your practice already uses to keep client work moving.
             </p>
           </div>
           <div className="acc-software-marquee" aria-label="Accounting software platforms">
@@ -223,20 +223,20 @@ export default function Accounting() {
         </div>
       </section>
 
-      <ServiceBenefits service="Accounting Outsourcing" intro="Build a more efficient practice with accurate back-office support that fits your systems, standards, and growth plans." benefits={[
-        { title: 'Significant Cost Reduction', text: 'Eliminate full-time salaries, recruitment costs, overhead expenses, and costly software subscriptions with flexible support.' },
-        { title: 'Access to Specialised Expertise', text: 'Gain trained professionals experienced in changing tax laws, cloud software, and reliable compliance standards.' },
-        { title: 'Focus on Core Business Operations', text: 'Free your leadership and client-facing accountants from data entry, reconciliation, and administrative bottlenecks.' },
-        { title: 'Flexible Scalability', text: 'Scale support up during peak tax seasons or down during slower periods without permanent hires.' },
+      <ServiceBenefits service="Accounting Outsourcing Services" intro="Build a more efficient practice with accurate back-office support that fits your systems, standards, and growth plans." benefits={[
+        { title: 'Significant Cost Reduction', text: 'Eliminate full-time salaries, recruitment costs, overhead expenses, and costly software subscriptions with a flexible pay-per-use model that charges only for the hours and services you need.' },
+        { title: 'Access to Specialised Expertise', text: 'Gain an immediate competitive edge by tapping into certified professionals trained in ever-changing tax laws, advanced cloud software, and reliable compliance standards without managing direct training costs.' },
+        { title: 'Focus on Core Business Operations', text: 'Free your internal leadership and client-facing accountants from tedious data entry, reconciliation, and administrative bottlenecks so they can focus entirely on advisory, relationships, and driving revenue.' },
+        { title: 'Flexible Scalability', text: 'Scale your support up during peak tax seasons or down during slow periods, protecting your practice from operational disruptions caused by staff turnover or unexpected leave.' },
       ]} />
       {/* Why Us */}
       <section className="section" style={{ background: 'var(--navy)' }}>
         <div className="container">
           <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="chip chip-white section-eyebrow">Why Proowrx</span>
-            <h2 className="section-title section-title--white">Why Accounting Firms Choose Us</h2>
+            <h2 className="section-title section-title--white">Why Choose Proowrx For Accounting Outsourcing Services</h2>
             <p className="section-body section-body--white" style={{ margin: '0 auto' }}>
-              We&apos;re not a generic outsourcing firm. We specifically understand the Australian accounting landscape and software ecosystem.
+              As a dedicated accounting outsourcing partner, we understand your firm&apos;s strategic goals and help you achieve sustainable growth by integrating bespoke talent and reliable operational support directly into your practice.
             </p>
           </div>
           <div className="acc-why-grid">
@@ -262,10 +262,10 @@ export default function Accounting() {
           </div>
           <div className="acc-process-grid">
             {[
-              { num: '01', title: 'Discovery Call', desc: 'We learn about your firm\'s size, software, and the tasks you want to outsource.' },
-              { num: '02', title: 'Team Assignment', desc: 'A dedicated accountant is assigned and trained on your specific processes and preferences.' },
-              { num: '03', title: 'Workflow Integration', desc: 'We integrate into your existing tools and workflows with minimal disruption.' },
-              { num: '04', title: 'Ongoing Delivery', desc: 'Consistent, quality output delivered on time — with regular reviews to keep improving.' },
+              { num: '01', title: 'Discovery Call', desc: 'Tell us about your practice, the recurring tasks or year-end services you want to outsource, and where your team needs extra operational support.' },
+              { num: '02', title: 'Team Assignment', desc: 'We match your practice requirements with the right accounting professionals on our team based on your specific workflows, software stack, and support needs.' },
+              { num: '03', title: 'Workflow Integration', desc: 'We get familiar with your systems, processes, templates, and review requirements before taking on day-to-day client work or managing your back-office touchpoints.' },
+              { num: '04', title: 'Ongoing Support', desc: 'Once your systems are integrated, send work as needed while we handle the agreed tasks and keep you updated along the way.' },
             ].map((s, i) => (
               <div key={i} className={`acc-process-step reveal reveal-delay-${i + 1}`}>
                 <div className="acc-step-num">{s.num}</div>
@@ -279,8 +279,8 @@ export default function Accounting() {
 
       <ServiceFaq
         variant="accounting"
-        title="Accounting outsourcing questions"
-        intro="What accounting firms commonly ask before adding a Proowrx resource to their workflow."
+        title="Frequently Asked Questions(FAQs)"
+        intro=""
       />
     </div>
   );

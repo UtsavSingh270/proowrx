@@ -71,8 +71,8 @@ export default function Bookkeeping() {
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">Expert</span>
-                <span className="page-hero-stat-label">Bookkeepers</span>
+                <span className="page-hero-stat-num">150+</span>
+                <span className="page-hero-stat-label">Working Professionals</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">

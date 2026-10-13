@@ -45,7 +45,7 @@ const provideItems = [
 const whyItems = [
   { icon: <Shield size={20} />, title: 'Secure Data Management', body: 'Our dedicated team works securely directly inside leading platforms like Xero, MYOB, QuickBooks, HandiSoft, and APS under strict confidentiality protocols.' },
   { icon: <Clock size={20} />, title: 'Turnaround Advantage', body: 'We complete reconciliations and detailed data entry during off-hours, ensuring your internal accountants start every single morning with fully updated ledgers.' },
-  { icon: <FileCheck size={20} />, title: 'Australian Compliance Standards', body: 'Our operational processes are built specifically around Australian GST frameworks, BAS guidelines, and strict data privacy regulations to eliminate risk.' },
+  { icon: <FileCheck size={20} />, title: 'AU Compliance Standards', body: 'Our operational processes are built specifically around Australian GST frameworks, BAS guidelines, and strict data privacy regulations to eliminate risk.' },
   { icon: <TrendingUp size={20} />, title: 'Flexible Overhead Control', body: 'Avoid expensive local recruitment and office desk costs by easily scaling your outsourced bookkeeping support based on seasonal workloads.' },
 ];
 
@@ -110,7 +110,7 @@ export default function Bookkeeping() {
       <section className="section">
         <div className="container bk-intro">
           <div ref={r1} className="reveal bk-intro-text">
-            <span className="chip chip-sky section-eyebrow">Bookkeeping</span>
+            <span className="chip chip-sky section-eyebrow">THE PROBLEM WE SOLVE</span>
             <h2 className="section-title">Scale Your Practice Capacity Without Adding Fixed Overheads</h2>
             <p className="section-body">
               Accurate bookkeeping is the foundation of every financially healthy business. At Proowrx, we provide outsourced bookkeeping services that keep your daily financial transactions recorded, organised and reconciled.
@@ -137,7 +137,7 @@ export default function Bookkeeping() {
       <section className="section" id="services" style={{ background: 'var(--surface)' }}>
         <div className="container">
           <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 56 }}>
-            <span className="chip chip-gold section-eyebrow">Bookkeeping</span>
+            <span className="chip chip-gold section-eyebrow">WHAT WE HANDLE</span>
             <h2 className="section-title">Core Bookkeeping Solutions We Handle For You</h2>
             <p className="section-body" style={{ maxWidth: 560, margin: '0 auto' }}>
               From daily reconciliations to year-end balancing, we manage the work behind your client ledgers.
@@ -195,8 +195,8 @@ export default function Bookkeeping() {
       {/* ── 5. FAQ ── */}
       <ServiceFaq
         variant="bookkeeping"
-        title="Frequently Asked Questions"
-        intro=""
+        title="Got Questions? We’ve Got Answers."
+        intro="Learn more about our bookkeeping services, outsourcing models and approach to long-term client partnerships."
       />
     </div>
   );

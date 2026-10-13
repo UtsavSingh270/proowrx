@@ -77,7 +77,7 @@ export default function Bookkeeping() {
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">100%</span>
-                <span className="page-hero-stat-label">BAS Compliant</span>
+                <span className="page-hero-stat-label">ATO Compliant</span>
               </div>
             </div>
             {/* <div className="page-hero-actions">

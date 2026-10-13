@@ -22,6 +22,12 @@ const FAQ_SETS = {
     { question: 'How is completed work reviewed?', answer: 'The workflow includes documented preparation and review stages, clear handovers and issue tracking aligned with your firm’s quality process.' },
     { question: 'Can support increase during busy periods?', answer: 'Yes. Capacity can be planned around recurring deadlines, seasonal peaks and changes in client workload.' },
   ],
+  bookkeeping: [
+    { question: 'Which bookkeeping tasks can I outsource to Proowrx?', answer: 'You can outsource back-office tasks like bank & credit card reconciliations, accounts payable/receivable management, general ledger entries, payroll processing, and year-end ledger balancing directly inside your existing accounting software.' },
+    { question: 'Can we combine more than one service?', answer: 'Yes, you can easily combine multiple services. We customise our packages to match your firm\'s exact requirements, seamlessly blending reconciliations, ledger maintenance, and accounts management.' },
+    { question: 'Will your team follow our existing process?', answer: 'Yes, our team integrates directly into your established workflows. We adapt to your standard operating procedures, communication tools, and preferred timelines to ensure a completely seamless partnership.' },
+    { question: 'Can the support scale as our business grows?', answer: 'Yes, our support scales effortlessly alongside your practice. You can easily adjust your dedicated bookkeeping hours or add or remove services based on your seasonal capacity.' },
+  ],
   assetFinance: [
     { question: 'What asset finance applications can you support?', answer: 'Support can be tailored for vehicle, equipment, machinery and business-use asset applications across document collection, entry and lender follow-up.' },
     { question: 'Can Proowrx track lender conditions?', answer: 'Yes. Agreed workflows can include outstanding-condition tracking, document requests, milestone updates and escalation to the broker.' },

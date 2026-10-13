@@ -29,34 +29,24 @@ function useReveal() {
 /* ── Content ─────────────────────────────── */
 
 const introPoints = [
-  'No lock-in contracts — scale your bookkeeping up or down with your client base',
-  'Trained across Xero, MYOB and QuickBooks Online',
-  'Bank and credit card reconciliations completed daily or weekly, not at month-end',
-  'BAS-ready books at all times, so lodgement day is never a scramble',
+  'Start your morning with updated ledgers ready for instant client review.',
+  'Free your internal accountants to focus entirely on high-value advisory.',
+  'Scale your practice capacity seamlessly without hiring full-time local staff.',
+  'Eliminate manual bottlenecks to deliver real-time financial clarity every day.',
 ];
 
 const provideItems = [
-  { icon: <Landmark size={20} />, title: 'Bank & Card Reconciliation', body: 'Every transaction matched against your bank feed daily or weekly, so your ledger is accurate, not backdated at month-end.' },
-  { icon: <Receipt size={20} />, title: 'Accounts Payable & Receivable', body: 'Bills entered and scheduled, invoices raised and followed up, so cash keeps moving in both directions.' },
-  { icon: <BadgeDollarSign size={20} />, title: 'Payroll & STP Lodgement', body: 'Pay runs processed on time, every time, with Single Touch Payroll lodged directly to the ATO.' },
-  { icon: <FileCheck size={20} />, title: 'BAS & IAS Preparation', body: 'GST-coded transactions and activity statements prepared and ready for your accountant to review and lodge.' },
-  { icon: <BarChart3 size={20} />, title: 'Financial & Management Reports', body: 'Profit & loss, balance sheet and cash flow reports delivered monthly, in a format you can actually act on.' },
-  { icon: <Settings2 size={20} />, title: 'Software Setup & Clean-up', body: 'Xero, MYOB or QuickBooks configured, migrated or untangled — chart of accounts included.' },
-  { icon: <Percent size={20} />, title: 'Payroll Tax & Super Reconciliation', body: 'Superannuation guarantee and payroll tax obligations tracked and reconciled every quarter.' },
-  { icon: <CalendarCheck size={20} />, title: 'EOFY Finalisation', body: 'Year-end adjustments and STP finalisation handled, with a clean handover file ready for tax time.' },
+  { icon: <Landmark size={20} />, title: 'Bank & Credit Card Reconciliations', body: 'We regularly reconcile all financial transactions to ensure accurate reporting and eliminate discrepancies.' },
+  { icon: <Receipt size={20} />, title: 'Accounts Payable & Receivable Management', body: 'We regularly index supplier invoices, prepare payment runs, issue sales invoices, and maintain aged balances.' },
+  { icon: <FileCheck size={20} />, title: 'General Ledger Maintenance & Reclassifications', body: 'We record journal entries, allocate multi-currency transactions, and resolve unallocated item lists.' },
+  { icon: <BarChart3 size={20} />, title: 'End-of-Month & Year-End Reconciliations', body: 'We reconcile GST accounts, payroll clearing accounts, and loan schedules to streamline year-end preparation.' },
 ];
 
 const whyItems = [
-  { icon: <TrendingUp size={20} />, title: 'Scale Without Overhead', body: 'Onboard one client or fifty — you only pay for the bookkeeping hours you use, with no idle staff costs.' },
-  { icon: <Clock size={20} />, title: '48-Hour Turnaround', body: 'Reconciliations and reports submitted by end of day are returned within 48 business hours, ready to review.' },
-  { icon: <FileCheck size={20} />, title: 'ATO & BAS Compliant', body: 'Every set of books is checked against current ATO and BAS requirements before it comes back to you.' },
-  { icon: <Shield size={20} />, title: 'Bank-Grade Security', body: 'Client financial data is handled in our ISO-aligned secure environment with end-to-end encryption and audit trails.' },
-];
-
-const whySubItems = [
-  { title: 'No Idle Costs', body: 'Nothing to pay in quiet months — your spend moves with your client volume, not a fixed headcount.' },
-  { title: 'Faster Than Hiring', body: 'Onboard in 48 hours instead of the weeks it takes to recruit, train and ramp up an in-house bookkeeper.' },
-  { title: 'Grows With You', body: 'The same team that handles your first client also handles your hundredth, with no renegotiation.' },
+  { icon: <Shield size={20} />, title: 'Secure Data Management', body: 'Our dedicated team works securely directly inside leading platforms like Xero, MYOB, QuickBooks, HandiSoft, and APS under strict confidentiality protocols.' },
+  { icon: <Clock size={20} />, title: 'Turnaround Advantage', body: 'We complete reconciliations and detailed data entry during off-hours, ensuring your internal accountants start every single morning with fully updated ledgers.' },
+  { icon: <FileCheck size={20} />, title: 'Australian Compliance Standards', body: 'Our operational processes are built specifically around Australian GST frameworks, BAS guidelines, and strict data privacy regulations to eliminate risk.' },
+  { icon: <TrendingUp size={20} />, title: 'Flexible Overhead Control', body: 'Avoid expensive local recruitment and office desk costs by easily scaling your outsourced bookkeeping support based on seasonal workloads.' },
 ];
 
 export default function Bookkeeping() {
@@ -72,22 +62,22 @@ export default function Bookkeeping() {
         <div className="container">
           <div className="page-hero-content">
             <span className="chip chip-gold section-eyebrow">Bookkeeping</span>
-            <h1>Accurate Books, Delivered On Time, Every Time</h1>
-            <p>Outsourced bookkeeping for accounting firms and businesses — reconciliations, payroll and BAS-ready reports, without adding headcount.</p>
+            <h1>Dedicated Bookkeeping Support for Accounting Firms</h1>
+            <p>Expand your practice capacity and eliminate ledger backlogs with our offshore bookkeeping support for Australian accounting businesses.</p>
             <div className="page-hero-stats">
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">48hr</span>
-                <span className="page-hero-stat-label">Turnaround<br/>SLA</span>
+                <span className="page-hero-stat-label">Turnaround</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">$0</span>
-                <span className="page-hero-stat-label">Setup or<br/>Retainer</span>
+                <span className="page-hero-stat-num">Expert</span>
+                <span className="page-hero-stat-label">Bookkeepers</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">100%</span>
-                <span className="page-hero-stat-label">BAS<br/>Compliant</span>
+                <span className="page-hero-stat-label">BAS Compliant</span>
               </div>
             </div>
             {/* <div className="page-hero-actions">
@@ -120,12 +110,10 @@ export default function Bookkeeping() {
       <section className="section">
         <div className="container bk-intro">
           <div ref={r1} className="reveal bk-intro-text">
-            <span className="chip chip-sky section-eyebrow">The Smarter Alternative</span>
-            <h2 className="section-title">Bookkeeping That Keeps Pace With Your Business</h2>
+            <span className="chip chip-sky section-eyebrow">Bookkeeping</span>
+            <h2 className="section-title">Scale Your Practice Capacity Without Adding Fixed Overheads</h2>
             <p className="section-body">
-              Between reconciliations, chasing receipts and the EOFY squeeze, bookkeeping is the work that eats
-              your week without growing your business. Proowrx takes the books off your plate — accurate,
-              up to date, and ready whenever your accountant or tax agent needs them.
+              Accurate bookkeeping is the foundation of every financially healthy business. At Proowrx, we provide outsourced bookkeeping services that keep your daily financial transactions recorded, organised and reconciled.
             </p>
             <ul className="bk-point-list">
               {introPoints.map((p, i) => (
@@ -149,11 +137,10 @@ export default function Bookkeeping() {
       <section className="section" id="services" style={{ background: 'var(--surface)' }}>
         <div className="container">
           <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 56 }}>
-            <span className="chip chip-gold section-eyebrow">What We Provide</span>
-            <h2 className="section-title">Everything Your Books Need, Handled</h2>
+            <span className="chip chip-gold section-eyebrow">Bookkeeping</span>
+            <h2 className="section-title">Core Bookkeeping Solutions We Handle For You</h2>
             <p className="section-body" style={{ maxWidth: 560, margin: '0 auto' }}>
-              From daily reconciliations to EOFY finalisation, here&apos;s what a Proowrx bookkeeping engagement
-              actually covers.
+              From daily reconciliations to year-end balancing, we manage the work behind your client ledgers.
             </p>
           </div>
           <div className="bk-provide-grid">
@@ -170,18 +157,18 @@ export default function Bookkeeping() {
         </div>
       </section>
 
-      <ServiceBenefits service="Bookkeeping Outsourcing" intro="Keep your books current and your team focused with dependable support that follows your processes and reporting expectations." benefits={[
-        { title: 'Books kept up to date', text: 'Regular transaction processing keeps your records ready for review and reporting.' },
-        { title: 'Better visibility', text: 'Consistent categorisation and reconciliations give you a clearer view of performance.' },
-        { title: 'Flexible support', text: 'Add capacity when workload rises without changing the way your firm operates.' },
-        { title: 'More advisory time', text: 'Reduce routine administration so your team can focus on higher-value client work.' },
+      <ServiceBenefits service="Bookkeeping Services" heading="Benefits of Outsourcing Bookkeeping Services" intro="Lower your operating expenses, protect profit margins, and keep your client ledgers up to date without the hassle of hiring in-house staff." benefits={[
+        { title: 'Significant Cost Savings', text: 'By eliminating expensive full-time salaries, employee benefits, superannuation, training costs, and office space, this converts fixed overhead into predictable monthly fees and reduces operational expenses.' },
+        { title: 'Access to Expertise & Compliance', text: 'Connecting your practice with trained professionals who understand changing tax laws and compliance frameworks protects your operations from financial risk, thereby reducing human error and costly regulatory penalties.' },
+        { title: 'Scalability & Flexibility', text: 'Scaling support up or down as transaction volumes or seasonal workloads shift provides operational agility without the administrative burden of hiring or firing staff.' },
+        { title: 'Business Continuity', text: 'Maintaining a reliable external team ensures your accounting firm delivers consistent, day-in, day-out bookkeeping outputs without the operational hiccups caused by internal staff churn.' },
       ]} />
       {/* ── 4. Why Choose ── */}
       <section className="section">
         <div className="container">
           <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="chip chip-violet section-eyebrow">Why Proowrx</span>
-            <h2 className="section-title">Why Firms Choose Outsourced Bookkeeping</h2>
+            <h2 className="section-title">Why Choose Proowrx Outsourced Bookkeeping Services</h2>
           </div>
           <div className="bk-why-grid">
             {whyItems.map((w, i) => (
@@ -194,22 +181,22 @@ export default function Bookkeeping() {
               </div>
             ))}
           </div>
-          <div className="bk-why-sub">
+          {/* <div className="bk-why-sub">
             {whySubItems.map((s, i) => (
               <div key={i} className="bk-why-sub-item">
                 <h5>{s.title}</h5>
                 <p>{s.body}</p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* ── 5. FAQ ── */}
       <ServiceFaq
         variant="bookkeeping"
-        title="Bookkeeping questions"
-        intro="Helpful details about outsourced bookkeeping without a monthly headcount commitment."
+        title="Frequently Asked Questions"
+        intro=""
       />
     </div>
   );

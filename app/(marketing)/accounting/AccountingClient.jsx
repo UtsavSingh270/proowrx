@@ -156,7 +156,7 @@ export default function Accounting() {
           <div ref={r1} className="reveal-left acc-intro-text">
             <span className="chip chip-gold section-eyebrow">The Problem We Solve</span>
             <h2 className="section-title">More Capacity for Accounting Firms. More Focus on Client Work. </h2>
-            <p className="section-body" style={{ maxWidth: '100%' }}>
+            <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
               More clients mean more reconciliations, payroll runs, workpapers, tax returns and deadlines, often handled by the same team in the same number of hours. 
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>

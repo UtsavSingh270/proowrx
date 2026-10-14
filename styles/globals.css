@@ -409,7 +409,7 @@ section[class*="-section"]:not([class*="hero"]),
 }
 
 .section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
   color: var(--navy);
   margin: 0 0 20px;
   line-height: 1.15;
@@ -419,10 +419,10 @@ section[class*="-section"]:not([class*="hero"]),
 .section-title--white { color: var(--white); }
 
 .section-body {
-  font-size: 1.05rem;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
   color: var(--text-2);
   line-height: 1.78;
-  max-width: 600px;
+  max-width: 1100px;
 }
 
 .section > .container > :is(header, .section-head) {
@@ -432,6 +432,11 @@ section[class*="-section"]:not([class*="hero"]),
 }
 
 .section-body--white { color: rgba(255,255,255,0.70); }
+
+@media (max-width: 640px) {
+  .section-title { font-size: clamp(1.9rem, 8vw, 2.5rem); }
+  .section-body { font-size: 1rem; }
+}
 
 /* ── Cards ───────────────────────────────── */
 .glass-card {

@@ -3,7 +3,7 @@
 ═══════════════════════════════════════════ */
 
 /* ── Intro ─────────────────────────────────── */
-.acc-hero-description { width: min(100%, 880px); max-width: 880px !important; }
+.acc-hero-description { width: min(100%, 1200px); max-width: 1200px !important; }
 
 @media (max-width: 960px) {
   .acc-hero-description { width: 100%; max-width: 680px !important; }

@@ -31,7 +31,7 @@ const services = [
     icon: <BookOpenCheck size={26} />,
     color: '#c9a227',
     title: 'Bookkeeping',
-    desc: 'Bank reconciliations, transaction processing and day-to-day bookkeeping can take up more hours than you&apos;d like. Proowrx helps keep client records organized and up to date, so your team gets cleaner files and fewer routine tasks hanging over them.',
+    desc: 'Bank reconciliations, transaction processing and day-to-day bookkeeping can take up more hours than you’d like. Proowrx helps keep client records organized and up to date, so your team gets cleaner files and fewer routine tasks hanging over them.',
   },
   {
     icon: <BadgeDollarSign size={26} />,
@@ -67,7 +67,7 @@ const services = [
     icon: <FileCheck2 size={26} />,
     color: '#c9a227',
     title: 'BAS, IAS, Super & STP',
-    desc: 'BAS, IAS, superannuation and STP-related tasks come with recurring deadlines and plenty of detail. Proowrx supports your team by preparing the necessary records, reconciling information and organizing supporting documentation in line with your firm&apos;s processes.',
+    desc: 'BAS, IAS, superannuation and STP-related tasks come with recurring deadlines and plenty of detail. Proowrx supports your team by preparing the necessary records, reconciling information and organizing supporting documentation in line with your firm’s processes.',
   },
   {
     icon: <PieChart size={26} />,
@@ -78,10 +78,10 @@ const services = [
 ];
 
 const whyUs = [
-  { icon: <MapPinned size={24} aria-hidden="true" />, title: 'Knowledge of the Australian Landscape', desc: 'We&apos;re familiar with Australian accounting practices, reporting requirements and established accounting workflows, which helps keep task execution consistent.' },
+  { icon: <MapPinned size={24} aria-hidden="true" />, title: 'Knowledge of the Australian Landscape', desc: 'We’re familiar with Australian accounting practices, reporting requirements and established accounting workflows, which helps keep task execution consistent.' },
   { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Your Data Stays Protected', desc: 'Accounting files contain sensitive financial and personal details. Client information is handled carefully, with secure processes and controlled access around everything you share.' },
   { icon: <Gauge size={24} aria-hidden="true" />, title: 'A Team That Knows Your Work', desc: 'A dedicated team looks after your workload, so you get consistency instead of a different face every week.' },
-  { icon: <Headset size={24} aria-hidden="true" />, title: 'Fast Turnaround, Accurate Work', desc: 'A file sitting untouched can hold up the next step. We work to agreed turnaround times, flag missing information and raise any issues that need your team&apos;s attention.' },
+  { icon: <Headset size={24} aria-hidden="true" />, title: 'Fast Turnaround, Accurate Work', desc: 'A file sitting untouched can hold up the next step. We work to agreed turnaround times, flag missing information and raise any issues that need your team’s attention.' },
   { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Flexibility That Follows Your Workload', desc: 'Accounting workloads rarely stay constant through the year. Support can be scoped around recurring responsibilities and adjusted by agreement as your business needs change.' },
   { icon: <Handshake size={24} aria-hidden="true" />, title: 'Built Around Your Practice', desc: 'Every practice has its own templates, approval steps and preferred ways of communicating. We take time to understand these before work begins, so our support fits into how you already operate.' },
 ];
@@ -180,7 +180,7 @@ export default function Accounting() {
             <span className="chip chip-teal section-eyebrow">What We Handle</span>
             <h2 className="section-title">Outsourced Accounting Support for Accountants & CPA Firms </h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              From everyday bookkeeping and payroll to year-end preparation and SMSF administration, Proowrx supports the accounting tasks that keep client files progressing. Services can be tailored to your firm&apos;s workload, software environment and internal review procedures. 
+              From everyday bookkeeping and payroll to year-end preparation and SMSF administration, Proowrx supports the accounting tasks that keep client files progressing. Services can be tailored to your firm’s workload, software environment and internal review procedures.
             </p>
           </div>
           <div className="acc-services-grid">
@@ -280,7 +280,7 @@ export default function Accounting() {
           </div>
           <div className="acc-process-grid">
             {[
-              { num: '01', title: 'Discovery Call', desc: 'We&apos;ll discuss your workload, recurring tasks, current systems and the areas where your team needs a hand. This helps us define a practical starting point.' },
+              { num: '01', title: 'Discovery Call', desc: 'We’ll discuss your workload, recurring tasks, current systems and the areas where your team needs a hand. This helps us define a practical starting point.' },
               { num: '02', title: 'Meet Your Team ', desc: 'We match you with accounting professionals who suit your requirements, taking your software, task complexity and existing workflows into account.' },
               { num: '03', title: 'Learn Your Way of Working', desc: 'We work through your instructions, templates, access requirements, review steps and communication preferences before the agreed tasks get underway.' },
               { num: '04', title: 'Get to Work, Stay Connected ', desc: 'Once we’re set up, just send it through. We take care of the agreed tasks and keep you posted along the way. Your team retains its agreed review and approval responsibilities.' },

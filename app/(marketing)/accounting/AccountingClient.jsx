@@ -31,59 +31,59 @@ const services = [
     icon: <BookOpenCheck size={26} />,
     color: '#c9a227',
     title: 'Bookkeeping',
-    desc: 'We handle client emails, daily transaction processing and bank reconciliations for you. Our bookkeeping services keep your files current and help your practice run smoothly.',
+    desc: 'Bank reconciliations, transaction processing and day-to-day bookkeeping can take up more hours than you&apos;d like. Proowrx helps keep client records organized and up to date, so your team gets cleaner files and fewer routine tasks hanging over them.',
   },
   {
     icon: <BadgeDollarSign size={26} />,
     color: '#1f9e8e',
     title: 'Payroll Processing',
-    desc: 'We take care of pay runs, timesheets, leave records, and Single Touch Payroll lodgements. Our payroll services give your accountants reliable support without increasing your ongoing costs.',
+    desc: 'From pay runs and timesheets to leave records and Single Touch Payroll (STP) processing, Proowrx helps manage recurring payroll administration without adding to your fixed overheads.',
   },
   {
     icon: <ReceiptText size={26} />,
     color: '#c9a227',
     title: 'Annual Tax Returns',
-    desc: 'We prepare the accounting work for individual and business tax returns, organise financial information and prepare supporting schedules so your team has a clear file to review.',
+    desc: 'Preparing a year-end tax return involves more than filling in forms. Financial records need to be organized, supporting schedules prepared and missing information chased up. We get the groundwork in place, so your accountants have a more complete file to review before lodgement.',
   },
   {
     icon: <ChartSpline size={26} />,
     color: '#1f9e8e',
-    title: 'Tax Planning',
-    desc: 'We provide proactive mid-year reviews and tax insights. This helps your clients understand their upcoming obligations and find planning opportunities before the year ends.',
+    title: 'Tax Planning Support',
+    desc: 'Proowrx supports your team with financial information preparation and scheduled reviews that surface potential tax planning considerations ahead of year-end. Your accountants can then assess the position, talk through suitable options with clients and advise based on their circumstances.',
   },
   {
     icon: <PiggyBank size={26} />,
     color: '#c9a227',
     title: 'SMSF Management',
-    desc: 'We manage fund records, reconciliations, and financial accounts for self-managed super funds, helping your practice maintain the client relationship while we handle the back-office work.',
+    desc: 'Self-managed superannuation funds need organized records, careful reconciliations and dependable year-end preparation. Proowrx supports SMSF accounting and administrative workflows, so practices can manage recurring fund workloads with the right professional oversight still in place.',
   },
   {
     icon: <ScanSearch size={26} />,
     color: '#1f9e8e',
     title: 'Audit Support',
-    desc: 'We make audits easier by keeping financial records, supporting schedules and working papers organised. This saves the time your team spends gathering information and putting files together.',
+    desc: 'When audit work comes around, organized records make a big difference. Proowrx helps compile working papers, supporting schedules and relevant financial documentation, so your team can review the file and spot anything that still needs attention.',
   },
   {
     icon: <FileCheck2 size={26} />,
     color: '#c9a227',
     title: 'BAS, IAS, Super & STP',
-    desc: 'We help you stay on top of regular compliance work like BAS, IAS, Pay Day Super and STP which keeps your clients’ obligations on track all year.',
+    desc: 'BAS, IAS, superannuation and STP-related tasks come with recurring deadlines and plenty of detail. Proowrx supports your team by preparing the necessary records, reconciling information and organizing supporting documentation in line with your firm&apos;s processes.',
   },
   {
     icon: <PieChart size={26} />,
     color: '#1f9e8e',
-    title: 'Cash Forecast Statements',
-    desc: 'We turn financial numbers into clear insights, and our detailed cash forecasts help your team give clients a reliable view of their upcoming cash needs.',
+    title: 'Cash Flow Forecasting ',
+    desc: 'Cash flow forecasts and financial statements show liquidity, upcoming commitments and funding needs. Proowrx supports forecast preparation and financial schedules, so accountants can guide clients on what lies ahead.',
   },
 ];
 
 const whyUs = [
-  { icon: <MapPinned size={24} aria-hidden="true" />, title: 'Australian Market Expertise', desc: 'Our team knows Australian accounting requirements, local compliance workflows, and the software your practice uses every day.' },
-  { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Secure Data Management', desc: 'We handle client information with care and our secure processes and controlled access protect the data you share with us.' },
-  { icon: <Gauge size={24} aria-hidden="true" />, title: 'Quick Data Processing', desc: 'Late returns can slow things down, so we focus on accurate processing and quick turnaround times to keep your files moving without delays.' },
-  { icon: <Headset size={24} aria-hidden="true" />, title: 'Dedicated Service Support', desc: 'A dedicated team manages your assigned workload, giving you steady support and making routine accounting tasks easier to handle.' },
-  { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Scalable Solutions', desc: 'You can easily increase or decrease support as needed when your workload changes during the year, so you don’t have to hire permanent staff for every busy season.' },
-  { icon: <Handshake size={24} aria-hidden="true" />, title: 'Personalised Approach', desc: 'Choose the exact level of support that fits your workload, whether you need help with specific tasks or comprehensive back-office support.' },
+  { icon: <MapPinned size={24} aria-hidden="true" />, title: 'Knowledge of the Australian Landscape', desc: 'We&apos;re familiar with Australian accounting practices, reporting requirements and established accounting workflows, which helps keep task execution consistent.' },
+  { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Your Data Stays Protected', desc: 'Accounting files contain sensitive financial and personal details. Client information is handled carefully, with secure processes and controlled access around everything you share.' },
+  { icon: <Gauge size={24} aria-hidden="true" />, title: 'A Team That Knows Your Work', desc: 'A dedicated team looks after your workload, so you get consistency instead of a different face every week.' },
+  { icon: <Headset size={24} aria-hidden="true" />, title: 'Fast Turnaround, Accurate Work', desc: 'A file sitting untouched can hold up the next step. We work to agreed turnaround times, flag missing information and raise any issues that need your team&apos;s attention.' },
+  { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Flexibility That Follows Your Workload', desc: 'Accounting workloads rarely stay constant through the year. Support can be scoped around recurring responsibilities and adjusted by agreement as your business needs change.' },
+  { icon: <Handshake size={24} aria-hidden="true" />, title: 'Built Around Your Practice', desc: 'Every practice has its own templates, approval steps and preferred ways of communicating. We take time to understand these before work begins, so our support fits into how you already operate.' },
 ];
 
 const softwareLogos = {
@@ -112,8 +112,8 @@ export default function Accounting() {
         <div className="container">
           <div className="page-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 20 }}>Accounting Services</span>
-            <h1>Accounting Outsourcing Services For<br />Australian Accounting Businesses</h1>
-            <p>Routine accounting tasks like bank reconciliations, payroll, and tax returns can't wait as your client workload grows. Proowrx helps Australian accounting firms by taking care of these tasks through outsourcing. Your team can keep using its usual software and processes, so you don't need to hire another full-time employee.</p>
+            <h1>Accounting Outsourcing Services </h1>
+            <p>Take the pressure off your accounting team without taking your hands off the work. Proowrx provides dedicated back-office accounting support to Australian accounting & CPA firms, so you can manage client workloads, keep client jobs moving and get through busy periods without rushing into permanent hires. </p>
             {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Meeting <ArrowRight size={15} />
@@ -122,13 +122,13 @@ export default function Accounting() {
             </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">8</span>
-                <span className="page-hero-stat-label">Core Services</span>
+                <span className="page-hero-stat-num">50%</span>
+                <span className="page-hero-stat-label">Cost Reduction</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">AUSTRALIAN</span>
-                <span className="page-hero-stat-label">ACCOUNTING EXPERTISE</span>
+                <span className="page-hero-stat-num">150+</span>
+                <span className="page-hero-stat-label">Professionals </span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
@@ -155,13 +155,13 @@ export default function Accounting() {
         <div className="container acc-intro">
           <div ref={r1} className="reveal-left acc-intro-text">
             <span className="chip chip-gold section-eyebrow">The Problem We Solve</span>
-            <h2 className="section-title">Expand Your Accounting Firm’s Capacity Through Dedicated Back-Office Support</h2>
+            <h2 className="section-title">More Capacity for Accounting Firms. More Focus on Client Work. </h2>
             <p className="section-body" style={{ maxWidth: '100%' }}>
-              Managing an accounting practice often leaves little time to lead your team, help clients, and handle daily tasks. Bookkeeping, payroll, reconciliations, and tax returns still need attention, even when things get busy. Proowrx helps your practice manage these tasks without changing how your team works. We use your current systems and processes, giving you more time to focus on your clients and your business.
+              More clients mean more reconciliations, payroll runs, workpapers, tax returns and deadlines, often handled by the same team in the same number of hours. 
             </p>
-            {/* <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
-              Proowrx handles daily operations on your behalf, working with the systems and processes already in use at your practice and eliminating disruptions to your team’s day-to-day work. This way, your team can focus on the more critical aspects of your clients’ needs.
-            </p> */}
+            <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
+              Proowrx takes on agreed accounting tasks within your existing workflows, so jobs keep moving without every extra task landing on your in-house team. Your accountants stay in charge of client relationships, technical decisions and final reviews, and get more room for the work that needs their expertise. 
+            </p>
           </div>
           <div ref={r2} className="reveal-right acc-intro-image">
             <Image src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=85" alt="Accounting team" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
@@ -178,9 +178,9 @@ export default function Accounting() {
         <div className="container">
           <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="chip chip-teal section-eyebrow">What We Handle</span>
-            <h2 className="section-title">Accounting Outsourcing Services for Australian Accounting Firms</h2>
+            <h2 className="section-title">Outsourced Accounting Support for Accountants & CPA Firms </h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              Proowrx supports your firm with all the core accounting functions you need each day, from regular bookkeeping and payroll to specialist tax and compliance. Our team gives dedicated help where you need it most.
+              From everyday bookkeeping and payroll to year-end preparation and SMSF administration, Proowrx supports the accounting tasks that keep client files progressing. Services can be tailored to your firm&apos;s workload, software environment and internal review procedures. 
             </p>
           </div>
           <div className="acc-services-grid">
@@ -208,35 +208,53 @@ export default function Accounting() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <span className="chip chip-gold section-eyebrow">ACCOUNTING SOFTWARE</span>
-            <h2 className="section-title">We Work With the Software Your Practice Already Uses</h2>
+            <h2 className="section-title">Your Existing Software, Our Expertise </h2>
             <p className="section-body" style={{ margin: '0 auto' }}>
-              Get extra accounting support without switching systems or changing your processes. Our team works with the platforms your practice already uses to keep client work on track.
+              Our team can work with the accounting platforms your practice already uses, following your established processes, templates and handover requirements. 
             </p>
           </div>
           <div className="acc-software-marquee" aria-label="Accounting software platforms">
             <div className="acc-software-track">
               {[...Array(2)].flatMap(() => softwareNames).map((sw, i) => (
-                <div key={`${sw}-${i}`} className="acc-software-chip">{softwareLogos[sw] ? <img src={softwareLogos[sw]} alt="" aria-hidden="true" /> : <span className="acc-software-mark" aria-hidden="true">{sw.split(' ').map(word => word[0]).join('').slice(0, 3)}</span>}<span>{sw}</span></div>
+                <div key={`${sw}-${i}`} className="acc-software-chip">
+                  {softwareLogos[sw] ? (
+                    <span
+                      className="acc-software-logo"
+                      aria-hidden="true"
+                      style={{
+                        backgroundImage: `url("${softwareLogos[sw]}")`,
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                      }}
+                    />
+                  ) : (
+                    <span className="acc-software-mark" aria-hidden="true">
+                      {sw.split(' ').map(word => word[0]).join('').slice(0, 3)}
+                    </span>
+                  )}
+                  <span>{sw}</span>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <ServiceBenefits service="Outsourcing Accounting Services" intro="Build a more efficient practice with accurate back-office support that fits your systems, standards, and growth plans." benefits={[
-        { title: 'Significant Cost Reduction', text: 'Cut out full-time salaries, recruitment costs, overheads, and expensive software subscriptions. Our flexible pay-per-use model means you only pay for the hours and services you need.' },
-        { title: 'Access to Specialised Expertise', text: 'Get a competitive edge by working with certified professionals who know the latest tax laws, advanced cloud software, and compliance standards without worrying about training costs.' },
-        { title: 'Focus on Core Business Operations', text: 'Let your leaders and client-facing accountants spend less time on data entry, reconciliations, and admin. They can focus more on advising clients, building relationships, and growing your business.' },
-        { title: 'Flexible Scalability', text: 'Increase support during busy tax seasons or reduce it when things slow down. This helps your practice avoid disruptions from staff changes or unexpected absences.' },
+      <ServiceBenefits service="Outsourced Accounting Services" intro="Outsourced accounting support reduces overheads, eases team workloads and keeps routine tasks on track, so Australian accounting firms have more room to focus on clients and growth. " benefits={[
+        { title: 'Significant Cost Reduction', text: 'No monthly salaries, recruitment fees, desk space or extra software license. With pay-per-requirement pricing, you only pay for the resources and services you actually use.' },
+        { title: 'Specialists on Tap', text: 'Work with certified professionals who keep up with tax law changes, cloud platforms and compliance standards, with no training bill landing on you.' },
+        { title: 'Free Your Best People for Better Work', text: 'Less data entry and reconciling for your senior accountants means more time advising clients, building relationships and growing the firm.' },
+        { title: 'Manage Busy Seasons with Greater Flexibility', text: 'Tax season and reporting deadlines can stretch existing resources. Extra outsourced capacity helps you handle peak workloads without relying entirely on permanent recruitment.' },
       ]} />
       {/* Why Us */}
       <section className="section" style={{ background: 'var(--navy)' }}>
         <div className="container">
           <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="chip chip-white section-eyebrow">Why Proowrx</span>
-            <h2 className="section-title section-title--white">Why Choose Proowrx For Accounting Outsourcing Services</h2>
+            <h2 className="section-title section-title--white">Why Accounting Firms Pick Proowrx </h2>
             <p className="section-body section-body--white" style={{ margin: '0 auto' }}>
-              As your accounting outsourcing partner, we understand your firm’s goals and help you grow by bringing in the right talent and reliable support for your practice.
+              As your outsourcing partner, we take the time to understand where your firm is headed, then back you with the right people and dependable support to get there. 
             </p>
           </div>
           <div className="acc-why-grid">
@@ -257,15 +275,18 @@ export default function Accounting() {
       <section className="section">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 60 }}>
-            <span className="chip chip-teal section-eyebrow">Getting Started</span>
-            <h2 className="section-title">Simple Onboarding Process</h2>
+            <span className="chip chip-teal section-eyebrow">HOW WE GET STARTED </span>
+            <h2 className="section-title">Four Steps to Getting Extra Support in Place </h2>
+            <p className="section-body section-body--white" style={{ margin: '0 auto' }}>
+              A straightforward onboarding process, from understanding your workload to bringing accounting support into your existing workflows.  
+            </p>
           </div>
           <div className="acc-process-grid">
             {[
-              { num: '01', title: 'Discovery Call', desc: 'Let us know about your practice, which recurring tasks or year-end services you want to outsource, and where your team could use extra support.' },
-              { num: '02', title: 'Team Assignment', desc: 'We match your practice requirements with the right accounting professionals on our team based on your specific workflows, software stack, and support needs.' },
-              { num: '03', title: 'Workflow Integration', desc: 'We learn your systems, processes, templates, and review steps before starting daily client work or managing your back-office tasks.' },
-              { num: '04', title: 'Ongoing Support', desc: 'Once we’re set up with your systems, you can send us work as needed. We’ll handle the agreed tasks and keep you updated throughout the process.' },
+              { num: '01', title: 'Discovery Call', desc: 'We&apos;ll discuss your workload, recurring tasks, current systems and the areas where your team needs a hand. This helps us define a practical starting point.' },
+              { num: '02', title: 'Meet Your Team ', desc: 'We match you with accounting professionals who suit your requirements, taking your software, task complexity and existing workflows into account.' },
+              { num: '03', title: 'Learn Your Way of Working', desc: 'We work through your instructions, templates, access requirements, review steps and communication preferences before the agreed tasks get underway.' },
+              { num: '04', title: 'Get to Work, Stay Connected ', desc: 'Once we’re set up, just send it through. We take care of the agreed tasks and keep you posted along the way. Your team retains its agreed review and approval responsibilities.' },
             ].map((s, i) => (
               <div key={i} className={`acc-process-step reveal reveal-delay-${i + 1}`}>
                 <div className="acc-step-num">{s.num}</div>
@@ -279,7 +300,7 @@ export default function Accounting() {
 
       <ServiceFaq
         variant="accounting"
-        title="Frequently Asked Questions(FAQs)"
+        title="Questions AU Accounting Firms Often Ask."
         intro=""
       />
     </div>

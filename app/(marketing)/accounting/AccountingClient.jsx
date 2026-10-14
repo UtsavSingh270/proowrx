@@ -218,15 +218,12 @@ export default function Accounting() {
               {[...Array(2)].flatMap(() => softwareNames).map((sw, i) => (
                 <div key={`${sw}-${i}`} className="acc-software-chip">
                   {softwareLogos[sw] ? (
-                    <span
+                    <img
                       className="acc-software-logo"
+                      src={softwareLogos[sw]}
+                      alt={`${sw} logo`}
                       aria-hidden="true"
-                      style={{
-                        backgroundImage: `url("${softwareLogos[sw]}")`,
-                        backgroundSize: 'contain',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                      }}
+                      onError={(event) => event.currentTarget.classList.add('is-fallback')}
                     />
                   ) : (
                     <span className="acc-software-mark" aria-hidden="true">

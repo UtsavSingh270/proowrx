@@ -158,6 +158,9 @@
 .acc-software-marquee:hover .acc-software-track { animation-play-state: paused; }
 .acc-software-chip { min-width: 170px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; }
 .acc-software-chip img { width: 28px; height: 28px; object-fit: contain; }
+.acc-software-logo { display: block; width: 32px; height: 32px; flex: 0 0 32px; border-radius: 8px; padding: 3px; object-fit: contain; background-color: #fff; }
+.acc-software-logo.is-fallback { background: var(--blue); }
+.acc-software-logo.is-fallback::after { content: '◆'; display: grid; width: 100%; height: 100%; place-items: center; color: var(--yellow); font-size: .72rem; }
 .acc-software-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; color: #fff; background: var(--blue); font-size: .62rem; font-weight: 850; letter-spacing: -.04em; }
 @keyframes accSoftwareMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .acc-software-track { animation: none; } }

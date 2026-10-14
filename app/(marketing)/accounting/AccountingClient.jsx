@@ -113,7 +113,7 @@ export default function Accounting() {
           <div className="page-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 20 }}>Accounting Services</span>
             <h1>Accounting Outsourcing Services </h1>
-            <p>Take the pressure off your accounting team without taking your hands off the work. Proowrx provides dedicated back-office accounting support to Australian accounting & CPA firms, so you can manage client workloads, keep client jobs moving and get through busy periods without rushing into permanent hires. </p>
+            <p className="acc-hero-description">Take the pressure off your accounting team without taking your hands off the work. Proowrx provides dedicated back-office accounting support to Australian accounting & CPA firms, so you can manage client workloads, keep client jobs moving and get through busy periods without rushing into permanent hires. </p>
             {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Meeting <ArrowRight size={15} />

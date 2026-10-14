@@ -37,7 +37,7 @@ const services = [
     icon: <BadgeDollarSign size={26} />,
     color: '#1f9e8e',
     title: 'Payroll Processing',
-    desc: 'From pay runs and timesheets to leave records and Single Touch Payroll (STP) processing, Proowrx helps manage recurring payroll administration without adding to your fixed overheads.',
+    desc: 'From pay runs and timesheet management to leave records and Single Touch Payroll (STP) processing, Proowrx supports your day-to-day payroll tasks with accuracy and consistency and keeps your process running smoothly and reducing the administrative burden from your team.',
   },
   {
     icon: <ReceiptText size={26} />,

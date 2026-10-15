@@ -203,6 +203,36 @@ export default function Accounting() {
         </div>
       </section>
 
+      <ServiceBenefits service="What’s In It for You?" intro="Outsourced accounting support will allow you to take on additional work without limitations of overheads, workloads and still delivering results well on time, fully compliant.So, you can focus on new clients and business growth." benefits={[
+        { title: 'Significant Cost Reduction', text: 'No monthly salaries, recruitment fees, desk space or extra software license. With pay-per-requirement pricing, you only pay for the resources and services you actually use.' },
+        { title: 'Specialists on Tap', text: 'Work with trained & experienced professionals who keep up with tax law changes, cloud platforms and compliance standards, with no extra cost landing on you.' },
+        { title: 'Best People for Better Work', text: 'Let your people spend more time advising clients, building relationships and growing the firm while we do data entry, reconciliation and other repetitive tasks.' },
+        { title: 'More Flexibility for Busy Seasons', text: 'We understand the stretch which tax seasons and reporting deadlines bring for you. Have extra outsourced capacity at hand so you can handle new clients even in peak seasons without committing a fixed cost.' },
+      ]} />
+      {/* Why Us */}
+      <section className="section" style={{ background: 'var(--navy)' }}>
+        <div className="container">
+          <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
+            <span className="chip chip-white section-eyebrow">Why Proowrx</span>
+            <h2 className="section-title section-title--white">The First Choice for Accounting Firms</h2>
+            <p className="section-body section-body--white" style={{ margin: '0 auto' }}>
+              We take the time to understand the blockages in your growth path and offer customized solutions backed with trained and dependable professionals who lead your business to success.
+            </p>
+          </div>
+          <div className="acc-why-grid">
+            {whyUs.map((w, i) => (
+              <div key={i} className={`acc-why-card reveal reveal-delay-${(i % 3) + 1}`}>
+                <div className="acc-why-header">
+                  <span className="acc-why-icon" aria-hidden="true">{w.icon}</span>
+                  <h4>{w.title}</h4>
+                </div>
+                <p>{w.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Software Strip */}
       <section className="section acc-software-section">
         <div className="container">
@@ -234,36 +264,6 @@ export default function Accounting() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <ServiceBenefits service="What’s In It for You?" intro="Outsourced accounting support will allow you to take on additional work without limitations of overheads, workloads and still delivering results well on time, fully compliant.So, you can focus on new clients and business growth." benefits={[
-        { title: 'Significant Cost Reduction', text: 'No monthly salaries, recruitment fees, desk space or extra software license. With pay-per-requirement pricing, you only pay for the resources and services you actually use.' },
-        { title: 'Specialists on Tap', text: 'Work with trained & experienced professionals who keep up with tax law changes, cloud platforms and compliance standards, with no extra cost landing on you.' },
-        { title: 'Best People for Better Work', text: 'Let your people spend more time advising clients, building relationships and growing the firm while we do data entry, reconciliation and other repetitive tasks.' },
-        { title: 'More Flexibility for Busy Seasons', text: 'We understand the stretch which tax seasons and reporting deadlines bring for you. Have extra outsourced capacity at hand so you can handle new clients even in peak seasons without committing a fixed cost.' },
-      ]} />
-      {/* Why Us */}
-      <section className="section" style={{ background: 'var(--navy)' }}>
-        <div className="container">
-          <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="chip chip-white section-eyebrow">Why Proowrx</span>
-            <h2 className="section-title section-title--white">The First Choice for Accounting Firms</h2>
-            <p className="section-body section-body--white" style={{ margin: '0 auto' }}>
-              We take the time to understand the blockages in your growth path and offer customized solutions backed with trained and dependable professionals who lead your business to success.
-            </p>
-          </div>
-          <div className="acc-why-grid">
-            {whyUs.map((w, i) => (
-              <div key={i} className={`acc-why-card reveal reveal-delay-${(i % 3) + 1}`}>
-                <div className="acc-why-header">
-                  <span className="acc-why-icon" aria-hidden="true">{w.icon}</span>
-                  <h4>{w.title}</h4>
-                </div>
-                <p>{w.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

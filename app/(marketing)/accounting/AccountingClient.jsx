@@ -238,7 +238,7 @@ export default function Accounting() {
         </div>
       </section>
 
-      <ServiceBenefits service="What’s In It for You?" intro="Outsourced accounting support will allow you to take on additional work without limitations of overheads, workloads and still delivering results well on time, fully compliant.<br />So, you can focus on new clients and business growth." benefits={[
+      <ServiceBenefits service="What’s In It for You?" intro="Outsourced accounting support will allow you to take on additional work without limitations of overheads, workloads and still delivering results well on time, fully compliant.So, you can focus on new clients and business growth." benefits={[
         { title: 'Significant Cost Reduction', text: 'No monthly salaries, recruitment fees, desk space or extra software license. With pay-per-requirement pricing, you only pay for the resources and services you actually use.' },
         { title: 'Specialists on Tap', text: 'Work with trained & experienced professionals who keep up with tax law changes, cloud platforms and compliance standards, with no extra cost landing on you.' },
         { title: 'Best People for Better Work', text: 'Let your people spend more time advising clients, building relationships and growing the firm while we do data entry, reconciliation and other repetitive tasks.' },

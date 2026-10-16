@@ -113,7 +113,7 @@ export default function Accounting() {
           <div className="page-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 20 }}>Accounting Services</span>
             <h1>Accounting Outsourcing Services </h1>
-            <p className="acc-hero-description">Take on more clients and grow your accounting practice without adding to your team’s workload.<br />Proowrx integrates with your existing workflows to manage recurring accounting tasks, improve team capacity and free up time for client relationships, advisory services and business growth without committing cost to permanent hires.</p>
+            <p className="acc-hero-description">Take on more clients and grow your accounting practice without adding headcount.<br />Proowrx integrates with your existing workflows to manage recurring accounting tasks, improve team capacity and free up time for client relationships, advisory services and business growth without committing cost to permanent hires.</p>
             {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a Meeting <ArrowRight size={15} />

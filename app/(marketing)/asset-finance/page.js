@@ -69,7 +69,7 @@ function AssetFinancePage(){
         <div className="growth-head asset-finance-intro-head">
           <span className="chip chip-gold">Flexible Asset Finance</span>
           <h2>Our Suite of Services for Asset Finance Brokers</h2>
-          <p className="asset-finance-intro-description">Our specialists manage the operational tasks behind every file, enabling your business to process higher deal volumes efficiently.</p>
+          <p className="asset-finance-intro-description">At Proowrx, we handle the operational tasks behind every file, helping your business to manage higher deal volumes with greater efficiency and accuracy.</p>
         </div>
         <div className="growth-grid">
           {serviceGroups.map(({ icon, title, items }) => (

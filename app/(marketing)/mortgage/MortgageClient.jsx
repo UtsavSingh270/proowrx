@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import {
   ArrowRight,
@@ -18,6 +19,7 @@ import {
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import ServiceBenefits from '@/components/shared/ServiceBenefits';
 import './Mortgage.css';
+import '../GrowthPages.css';
 
 function useReveal() {
   const ref = useRef(null);
@@ -34,37 +36,19 @@ function useReveal() {
 }
 
 const comparisons = [
-  { label: 'Pay monthly retainer', standard: false, comprehensive: false, hiring: true },
-  { label: 'Pay only per file', standard: true, comprehensive: true, hiring: false },
-  { label: 'Lock-in contract', standard: false, comprehensive: false, hiring: true },
-  { label: 'Trained in AOL & aggregator CRMs', standard: true, comprehensive: true, hiring: '?' },
-  { label: '24-hr turnaround SLA', standard: true, comprehensive: true, hiring: false },
-  { label: 'Post-lodgement follow-up', standard: false, comprehensive: true, hiring: true },
-  { label: 'Scales with your volume', standard: true, comprehensive: true, hiring: false },
+  { label: 'Research & Scenario · $100', Research: true, Intake: false, Processing: false, Valuation: false, Tracking: false },
+  { label: 'Lodge & Track · $160', Research: false, Intake: true, Processing: true, Valuation: true, Tracking: true },
+  { label: 'Assess, Lodge & Track · $250', Research: true, Intake: true, Processing: true, Valuation: true, Tracking: true },
+  // { label: 'Trained in AOL & aggregator CRMs', Research: true, Intake: true, Processing: '?' },
+  // { label: '24-hr turnaround SLA', Research: true, Intake: true, Processing: false },
+  // { label: 'Post-lodgement follow-up', Research: false, Intake: true, Processing: true },
+  // { label: 'Scales with your volume', Research: true, Intake: true, Processing: false },
 ];
 
 const models = [
-  {
-    num: '01',
-    title: 'Pay-Per-Application',
-    tag: 'Flexible',
-    tagColor: 'var(--gold)',
-    desc: 'Perfect for brokers who need help without committing to fixed monthly volumes. Pay only when you have a file.',
-    benefits: ['No lock-in contracts', 'Tailored processing to your workflow', 'Manage peak loads without extra hires', 'No setup costs or fixed fees'],
-    packages: [
-      { name: 'Standard', desc: 'Data entry on aggregator CRM, validation, compliance checks, coordination, and accurate lodgements on the lender portal.' },
-      { name: 'Comprehensive', desc: 'Everything in Standard plus follow-ups with solicitors, lenders & clients. Handles valuations, pricing, and construction progress payments.' },
-    ],
-  },
-  {
-    num: '02',
-    title: 'Dedicated Resource Model',
-    tag: 'Most Popular',
-    tagColor: 'var(--teal)',
-    desc: 'Our resources act as a direct extension of your team — available full-time or part-time based on your needs.',
-    benefits: ['Full-time: 8hrs/day, 5 days/week', 'Part-time: 4hrs/day, 5 days/week', 'Consistent support & familiarity with your workflow', 'Scales with your portfolio growth'],
-    packages: null,
-  },
+  { num: '01', title: 'Pay per application', tag: 'Flexible', tagColor: 'var(--gold)', desc: 'Service-based processing priced per file, from assessment only to full lodgement and tracking.', benefits: ['From $100 per file'], href: '#mortgage-pricing', packages: null },
+  { num: '02', title: 'Para broker', tag: 'Flexible', tagColor: 'var(--teal)', desc: 'Detailed research, lender recommendations, submission packaging and post-settlement support.', benefits: ["See what's included"], href: '#mortgage-para', packages: null },
+  { num: '03', title: 'Dedicated resources', tag: 'Flexible', tagColor: 'var(--teal)', desc: 'Part-time or full-time specialists working as an extension of your team.', benefits: ['Meet the roles'], href: '#mortgage-team', packages: null },
 ];
 
 const preSubmission = [
@@ -84,6 +68,23 @@ const postSubmission = [
   'Manage construction progress payments where applicable',
 ];
 
+const draftModels = [
+  ['Pay per application', 'Service-based processing priced per file, from assessment only to full lodgement and tracking.', 'From $100 per file'],
+  ['Para broker', 'Detailed research, lender recommendations, submission packaging and post-settlement support.', 'See what’s included'],
+  ['Dedicated resources', 'Part-time or full-time specialists working as an extension of your team.', 'Meet the roles'],
+];
+const draftScope = [
+  ['Documents and loan preparation', ['Supporting document management: filing, renaming, organisation', 'Loan preparation, including credit checks', 'Data entry and document upload to MyCRM, AOL, Simpology and others']],
+  ['Processing', ['Prepares the serviceability calculator', 'Prepares the lender’s file', 'Orders valuation and pricing', 'Review and signature collection']],
+  ['Lodgement and tracking', ['Prepares the bank file for lodgement and attaches NCCP and other support files to your CRM', 'Application lodgement', 'Post-lodgement follow-ups with lenders for timely assessment and approval', 'Keeps you updated all the way to settlement']],
+  ['Compliance', ['Reviews signed documents to keep you compliant', 'Compliance checks and audits']],
+];
+const draftPara = [
+  ['Research and structuring', ['Detailed scenario search', 'Detailed policy research', 'Borrowing capacity calculations', 'Send scenarios to lenders and BDMs', 'Funding position and product comparison', 'Lender recommendation and alternative option']],
+  ['Submission', ['Document identification and collection', 'Submission packaging', 'Compliance check', 'Data entry in CRM: MyCRM, AOL, Simpology and others', 'Contact with client pre-submission (if required)', 'Work on credit-related MIRs with the assessor (post-submission)']],
+  ['After settlement', ['Post-settlement support', 'Loan increase and refinancing', 'Additional admin-related work']],
+];
+
 const whyUs = [
   { icon: <Award size={24} aria-hidden="true" />, title: 'Industry Expertise', desc: 'Trained specifically on the Australian mortgage market by an experienced Australia-based broker.' },
   { icon: <Workflow size={24} aria-hidden="true" />, title: 'Streamlined Solutions', desc: 'Technology to automate manual tasks and plug seamlessly into your existing workflow.' },
@@ -98,7 +99,7 @@ export default function Mortgage() {
     <div>
       {/* ── Hero ── */}
       <section
-        className="page-hero page-hero--split page-hero--img"
+        className="page-hero page-hero--split page-hero--img mortgage-page-hero"
         style={{ '--hero-bg': 'url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1800&q=85")' }}
       >
         <div className="page-hero-orb-1" />
@@ -106,12 +107,11 @@ export default function Mortgage() {
         <div className="container">
           <div className="page-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 10 }}>Mortgage Services</span>
-            <h1>Mortgage Outsourcing<br />Services</h1>
-            <p>We handle everything behind the scenes — loan processing, compliance, data entry, and post-submission follow-ups — so you can focus on closing more deals.</p>
+            <h1>Mortgage process outsourcing for brokers who want to write more loans, not push more paper.</h1>
+            <p>From scenario research to lodgement and settlement follow-ups, our team handles the processing so you can stay with clients. Pay per application, add a para broker, or build a dedicated team.</p>
             {/* <div className="page-hero-actions">
-              <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
-                Book a Meeting <ArrowRight size={15} />
-              </a>
+              <a href="#mortgage-pricing" className="btn btn-gold">See pay-per-application pricing <ArrowRight size={15} /></a>
+              <a href="#mortgage-models" className="btn btn-outline-gold">Compare ways to work</a>
             </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
@@ -130,21 +130,12 @@ export default function Mortgage() {
               </div>
             </div>
           </div>
-          <div className="page-hero-visual">
-            <Image src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85" alt="Mortgage processing" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
-            <div className="page-hero-badge-float">
-              <span className="mortgage-hero-badge-icon" aria-hidden="true"><House size={24} /></span>
-              <div>
-                <strong>Expert Processors</strong>
-                <span>Pre &amp; Post-Submission</span>
-              </div>
-            </div>
-          </div>
+          <ol className="mortgage-stage-flow"><h2>One file, five stages</h2>{[['Research','Scenarios, lender policy, borrowing capacity'],['Intake','Supporting documents checked and attached'],['Processing','Calculators, CRM and Apply Online data entry, bank file prep'],['Valuation','Ordered, managed and followed up'],['Tracking','Lender and solicitor follow-ups through to settlement']].map(([title, text], index) => <li key={title}><span>{index + 1}</span><div><strong>{title}</strong><small>{text}</small></div></li>)}</ol>
         </div>
       </section>
 
       {/* Intro split */}
-      <section className="section">
+      {/* <section className="section">
         <div className="container ma-intro">
           <div ref={r1} className="reveal-left ma-intro-text">
             <span className="chip chip-gold section-eyebrow">The Problem We Solve</span>
@@ -160,14 +151,15 @@ export default function Mortgage() {
             <Image src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85" alt="Mortgage processing" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Service models */}
-      <section className="section" style={{ background: 'var(--surface)' }}>
+      <section id="mortgage-models" className="section" style={{ background: 'var(--surface)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 60 }}>
             <span className="chip chip-teal section-eyebrow">Service Models</span>
-            <h2 className="section-title">Two Ways to Work with Us</h2>
+            <h2 className="section-title">Three Ways to Work with Us</h2>
+            <p>Start with the model that matches how your business runs today. You can change as you grow.</p>
           </div>
           <div className="models-grid">
             {models.map((m, i) => (
@@ -175,15 +167,15 @@ export default function Mortgage() {
                 <div className="model-header">
                   <div className="model-num">{m.num}</div>
                   <div>
-                    <span className="model-tag" style={{ color: m.tagColor, borderColor: m.tagColor }}>
+                    {/* <span className="model-tag" style={{ color: m.tagColor, borderColor: m.tagColor }}>
                       {m.tag}
-                    </span>
+                    </span> */}
                     <h3>{m.title}</h3>
                   </div>
                 </div>
                 <p className="model-desc">{m.desc}</p>
                 <ul className="model-benefits">
-                  {m.benefits.map((b, j) => <li key={j}><CheckCircle size={15} />{b}</li>)}
+                  {m.benefits.map((b, j) => <li key={j}><Link className="model-link" href={m.href}>{b}<ArrowRight size={15} aria-hidden="true" /></Link></li>)}
                 </ul>
                 {m.packages && (
                   <div className="packages">
@@ -201,8 +193,70 @@ export default function Mortgage() {
         </div>
       </section>
 
+      <section className="section mortgage-draft-section">
+        <div className="container">
+          <div className="mortgage-draft-heading"><span className="chip chip-teal section-eyebrow">What’s included</span><h2 className="section-title">What’s included in our processing service</h2><p>Every file is prepared, lodged and followed up by a team that knows lender requirements and compliance obligations.</p></div>
+          <div className="mortgage-draft-box-grid">{draftScope.map(([title, items]) => <article className="mortgage-draft-box" key={title}><h3>{title}</h3><ul>{items.map(item => <li key={item}><CheckCircle size={15} />{item}</li>)}</ul></article>)}</div>
+          <div className="mortgage-processing-outputs"><h3>Processing outputs</h3><ul><li>Lender application form</li><li>NCCP documents</li><li>Lender serviceability calculator</li><li>Discharge form <small>(if applicable)</small></li><li>FHOG <small>(if applicable)</small></li><li>Other FHLDS forms <small>(depending on lender requirements)</small></li></ul></div>
+        </div>
+      </section>
+      <section id="mortgage-pricing" className="section mortgage-pricing-section" style={{ background: 'var(--surface)' }}>
+        <div className="container">
+          <div className="mortgage-draft-heading"><h2 className="section-title">Pay per application: get your loan files processed from $160</h2><p>Choose the stages you need. Prices are per file.</p></div>
+          <div className="mortgage-price-grid">
+            <article className="mortgage-price-card"><span>Stage 1: Assess</span><h3>Research &amp; Scenario</h3><strong>$100 <small>/ file</small></strong><p>No minimum</p><h4>Research</h4><ul>{['Scenario research activity','Lender policy research','Borrowing capacity across potential lenders','Lender recommendation with an alternative'].map(item => <li key={item}><CheckCircle size={14} />{item}</li>)}</ul></article>
+            <article className="mortgage-price-card"><span>Stages 2–6: Process &amp; track</span><h3>Lodge &amp; Track</h3><strong>$160 <small>/ file</small></strong><p>Minimum 5 cases commitment (pre-paid)</p><em>Everything in Research &amp; Scenario</em><h4>Intake</h4><ul>{['Supporting documents checked and attached'].map(item => <li key={item}><CheckCircle size={14} />{item}</li>)}</ul><h4>Processing</h4><ul>{['Servicing calculator and application pricing','Aggregator CRM and Apply Online data entry','Bank file prep, TFN/CRN removal','FHOG and discharge forms'].map(item => <li key={item}><CheckCircle size={14} />{item}</li>)}</ul><h4>Valuation</h4><ul><li><CheckCircle size={14} />Valuations managed and followed up</li></ul><h4>Tracking</h4><ul>{['Follow-up with lenders','Follow-up with solicitors for settlement'].map(item => <li key={item}><CheckCircle size={14} />{item}</li>)}</ul></article>
+            <article className="mortgage-price-card mortgage-price-card--best"><b>Best value</b><span>Stages 1–6</span><h3>Assess, Lodge &amp; Track</h3><strong>$250 <small>/ file</small></strong><p>Minimum 5 cases commitment (pre-paid)</p><em>Everything in Research &amp; Scenario, plus everything in Lodge &amp; Track, bundled.</em><ul><li><CheckCircle size={14} />One file, one price, one team from first scenario to settlement</li></ul></article>
+          </div>
+          <span className="text-2xl font-bold">Coverage by Plan:</span>
+          <div className="ppa-table-wrap">
+            <table className="ppa-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><span className="ppa-th-label">Research</span></th>
+                  <th><span className="ppa-th-label">Intake</span></th>
+                  <th><span className="ppa-th-label">Processing</span></th>
+                  <th><span className="ppa-th-label">Valuation</span></th>
+                  <th><span className="ppa-th-label">Tracking</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisons.map((row, i) => (
+                  <tr key={i}>
+                    <td className="ppa-row-label">{row.label}</td>
+                    <td><CmpCell val={row.Research} /></td>
+                    <td><CmpCell val={row.Intake} /></td>
+                    <td><CmpCell val={row.Processing} /></td>
+                    <td><CmpCell val={row.Valuation} /></td>
+                    <td><CmpCell val={row.Tracking} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      {/* <section className="section mortgage-comparison-after-pricing">
+        <div className="container">
+          <div className="mortgage-draft-heading"><span className="chip chip-violet section-eyebrow">Comparison</span><h2 className="section-title">PPA vs Hiring In-House</h2></div>
+          <div className="ppa-table-wrap"><table className="ppa-table"><thead><tr><th></th><th><span className="ppa-th-label">Standard</span></th><th><span className="ppa-th-label">Comprehensive</span></th><th><span className="ppa-th-label ppa-th-label--dim">Hiring</span></th></tr></thead><tbody>{comparisons.map((row, i) => <tr key={i}><td className="ppa-row-label">{row.label}</td><td><CmpCell val={row.standard} /></td><td><CmpCell val={row.comprehensive} /></td><td><CmpCell val={row.hiring} dim /></td></tr>)}</tbody></table></div>
+        </div>
+      </section> */}
+
+      <section id="mortgage-para" className="section mortgage-draft-section" style={{ background: 'var(--surface)' }}>
+        <div className="container">
+          <div className="mortgage-draft-heading">
+            <span className="chip chip-gold section-eyebrow">Para broker</span>
+            <h2 className="section-title">Para broker support</h2>
+            <p>An experienced team that works your files from scenario to post-settlement.</p>
+          </div>
+          <div className="mortgage-draft-box-grid">{draftPara.map(([title, items]) => <article className="mortgage-draft-box" key={title}><h3>{title}</h3><ul>{items.map(item => <li key={item}><CheckCircle size={15} />{item}</li>)}</ul></article>)}</div>
+        </div>
+      </section>
+
       {/* Activities */}
-      <section className="section">
+      {/* <section className="section">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="chip chip-gold section-eyebrow">What We Handle</span>
@@ -229,16 +283,58 @@ export default function Mortgage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <ServiceBenefits service="Mortgage Outsourcing" intro="Give your brokerage more capacity, faster turnaround, and dependable support without adding fixed overhead." benefits={[
+      {/* <ServiceBenefits service="Mortgage Outsourcing" intro="Give your brokerage more capacity, faster turnaround, and dependable support without adding fixed overhead." benefits={[
         { title: 'More time for clients', text: 'Spend more of your day advising clients while routine processing keeps moving.' },
         { title: 'Flexible capacity', text: 'Scale support around settlements, campaigns, and seasonal workload peaks.' },
         { title: 'Consistent processing', text: 'Documented workflows help keep applications accurate, organised, and on schedule.' },
         { title: 'Lower operating pressure', text: 'Access trained support without the cost and commitment of another full-time hire.' },
-      ]} />
+      ]} /> */}
+
+      
+      <section id="mortgage-team" className="section mortgage-draft-section mortgage-dedicated-section">
+        <div className="container">
+          <div className="mortgage-dedicated-heading">
+            <span className="chip chip-gold section-eyebrow">Dedicated resources</span>
+            <h2>Dedicated resources model</h2>
+            <p>Specialists who work as part of your team, on the schedule that suits your volume.</p>
+          </div>
+          <div className="mortgage-dedicated-toggle">
+            <button type="button">Part-time</button>
+            <button type="button">Full-time</button>
+          </div>
+          <div className="roles">
+            <div className="role">
+              <h3>Loan Processing Specialist</h3>
+            </div>
+            <div className="role">
+              <h3>Credit Analyst (Research Analyst)</h3>
+            </div>
+            <div className="role">
+              <h3>Post-Settlement Specialist</h3>
+            </div>
+            <div className="role">
+              <h3>Mortgage Sales Support Specialist</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="asset-finance-unique-cta mortgage-marketing-cta">
+        <div className="container asset-finance-unique-cta-inner">
+          <Image className="asset-finance-unique-cta-image" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=2200&q=85" alt="Finance professionals collaborating" fill sizes="100vw" />
+          <div className="asset-finance-unique-cta-content">
+            <h2>Explore our digital marketing services, custom-tailored for mortgage brokers</h2>
+            <p>Processing keeps your pipeline moving. Marketing keeps it full.</p>
+            <Link href="/digital-marketing" className="asset-finance-unique-cta-link">Explore Marketing Support <ArrowRight size={18} aria-hidden="true" /></Link>
+          </div>
+        </div>
+      </section>
+
       {/* Why us */}
-      <section className="section mortgage-why-section" style={{ background: 'var(--navy)' }}>
+      {/* <section className="section mortgage-why-section" style={{ background: 'var(--navy)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="chip chip-white section-eyebrow">Why Us</span>
@@ -267,25 +363,29 @@ export default function Mortgage() {
               <thead>
                 <tr>
                   <th></th>
-                  <th><span className="ppa-th-label">Standard</span></th>
-                  <th><span className="ppa-th-label">Comprehensive</span></th>
-                  <th><span className="ppa-th-label ppa-th-label--dim">Hiring</span></th>
+                  <th><span className="ppa-th-label">Research</span></th>
+                  <th><span className="ppa-th-label">Intake</span></th>
+                  <th><span className="ppa-th-label">Processing</span></th>
+                  <th><span className="ppa-th-label">Valuation</span></th>
+                  <th><span className="ppa-th-label">Tracking</span></th>
                 </tr>
               </thead>
               <tbody>
                 {comparisons.map((row, i) => (
                   <tr key={i}>
                     <td className="ppa-row-label">{row.label}</td>
-                    <td><CmpCell val={row.standard} /></td>
-                    <td><CmpCell val={row.comprehensive} /></td>
-                    <td><CmpCell val={row.hiring} dim /></td>
+                    <td><CmpCell val={row.Research} /></td>
+                    <td><CmpCell val={row.Intake} /></td>
+                    <td><CmpCell val={row.Processing} /></td>
+                    <td><CmpCell val={row.Valuation} /></td>
+                    <td><CmpCell val={row.Tracking} /></td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
           {/* <div className="partner-strip">
             <div className="partner-strip-item">
@@ -309,8 +409,10 @@ export default function Mortgage() {
               Book a Discovery Call <ArrowRight size={15} />
             </a>
           </div> */}
-        </div>
-      </section>
+        {/* </div>
+      </section> */}
+
+      
       <ServiceFaq
         variant="mortgage"
         title="Mortgage outsourcing questions"

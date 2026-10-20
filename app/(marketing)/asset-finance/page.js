@@ -52,8 +52,8 @@ function AssetFinancePage(){
       <div className="container asset-finance-flexible-layout">
         <div className="asset-finance-flexible-content">
           {/* <span className="chip chip-gold">Flexible Asset Finance</span> */}
-          <h2>Empower Your Business with Flexible Asset Finance</h2>
-          <p>Asset financing is an essential tool for firms looking to grow or modernise their operations. Whether you&apos;re investing in new equipment, renovating old machinery, or purchasing vehicles to keep your business running, asset finance lets you access the funds you need without paying the full amount upfront. This not only relieves the financial burden but also supports smooth operations and growth.</p>
+          <h2>Flexible Outsourcing Support for Asset Finance Brokers</h2>
+          <p>As your asset finance brokerage grows, so does the work involved in managing applications, meeting lender requirements and keeping deals on track. With Proowrx, you can manage this growing workload without the added costs and responsibilities of hiring more staff. We support Australian brokers with loan processing, documentation and lender follow-ups across vehicle, equipment, machinery and commercial finance. Our flexible outsourcing options allow you to get the support you need, whether for daily operations or during periods of increased demand.</p>
           <div className="growth-actions"><Link href="/contact" className="btn btn-gold">Book Your Discovery Call Today <ArrowRight size={15} /></Link></div>
         </div>
         <div className="asset-finance-flexible-image">

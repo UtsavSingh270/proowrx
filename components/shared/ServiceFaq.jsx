@@ -30,10 +30,11 @@ const FAQ_SETS = {
     { question: 'Can the support scale as our business grows?', answer: 'Yes, our support scales effortlessly alongside your practice. You can easily adjust your dedicated bookkeeping hours or add or remove services based on your seasonal capacity.' },
   ],
   assetFinance: [
-    { question: 'What asset finance applications can you support?', answer: 'Support can be tailored for vehicle, equipment, machinery and business-use asset applications across document collection, entry and lender follow-up.' },
-    { question: 'Can Proowrx track lender conditions?', answer: 'Yes. Agreed workflows can include outstanding-condition tracking, document requests, milestone updates and escalation to the broker.' },
-    { question: 'Will clients still communicate with our brokerage?', answer: 'Yes. Your team controls the client relationship and decides which routine administrative communications are delegated.' },
-    { question: 'How are application updates reported?', answer: 'Progress can be recorded in your CRM and communicated through the reporting rhythm agreed during onboarding.' },
+    { question: "What can we outsource to you as an Asset Finance Broker?", answer: "From loan processing, CRM and sales support to customer service, compliance and communication management, you can outsource the entire asset finance workflow to Proowrx, in whole or in part." },
+    { question: "Can you work inside our CRM and aggregator systems?", answer: "Yes. We work within your existing CRM, aggregator platform, and lender portals. There is no new software to learn and no disruption to your workflow." },
+    { question: "How secure is my client's data?", answer: "Proowrx is ISO 27001:2022 certified. We use multi-factor authentication, biometric office access, secure email access, and a firewall-secured network, and we store no data locally." },
+    { question: "How does this help my business grow?", answer: "Every hour you spend on admin is an hour not spent with clients. By handing over the processing work to Proowrx, you can take on more deals without adding headcount." },
+    { question: "How do I get started?", answer: "Book a consultation with our team. We will understand your process, scope the support you need, and begin with a pilot, so you can see the results first." },
   ],
   digitalMarketing: [
     { question: 'Can you work within our existing brand guidelines?', answer: 'Yes. Content and creative tasks follow your approved messaging, brand assets, compliance process and publishing permissions.' },

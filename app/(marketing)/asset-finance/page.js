@@ -1,13 +1,19 @@
 import PageInsights from '@/components/shared/PageInsights';
+import Image from 'next/image';
 import { pageMetadata } from '@/lib/seo';
 import {
   ArrowRight,
   Check,
   CircleCheckBig,
+  CarFront,
+  BriefcaseBusiness,
+  Building2,
+  Cog,
+  Headphones,
+  MessagesSquare,
   Database,
   FileText,
-  Landmark,
-  SearchCheck,
+  Network,
   ShieldCheck,
 } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
@@ -16,23 +22,109 @@ import ServiceFaq from '@/components/shared/ServiceFaq';
 import '../GrowthPages.css';
 
 const metadata ={title:'Asset Finance Processing Support',description:'Outsourced asset finance processing support for Australian brokers, including document collection, CRM updates, lender packaging, compliance checks and settlement follow-up.',keywords:['asset finance outsourcing Australia','asset finance loan processing','broker support services','equipment finance processing','car finance administration'],alternates:{canonical:'/asset-finance'},openGraph:{title:'Asset Finance Processing Support for Australian Brokers | Proowrx',description:'Reliable back-office support from enquiry and document collection through submission and settlement.',url:'/asset-finance'}};
-const services=[
-  [<FileText key="application" size={23} aria-hidden="true" />,'Application Preparation','Organise borrower information, supporting documents and lender-ready application packs.'],
-  [<SearchCheck key="verification" size={23} aria-hidden="true" />,'Document Verification','Check required documents, identify missing information and maintain clear file notes.'],
-  [<Database key="crm" size={23} aria-hidden="true" />,'CRM & Data Entry','Keep client records, application milestones and communications accurate and current.'],
-  [<Landmark key="lender" size={23} aria-hidden="true" />,'Lender Coordination','Support lender submissions, condition tracking and follow-ups through approval.'],
-  [<ShieldCheck key="compliance" size={23} aria-hidden="true" />,'Compliance Support','Maintain process checklists and documentation aligned with your compliance workflow.'],
-  [<CircleCheckBig key="settlement" size={23} aria-hidden="true" />,'Settlement Follow-Up','Track outstanding requirements and help keep clients informed until completion.'],
+const serviceGroups = [
+  { title: 'End-to-End Loan Processing', icon: <FileText size={23} aria-hidden="true" />, items: ['Data entry and application setup', 'Credit checks and credit policy checks', 'Client document collection and verification', 'Income verification and bank statement checks', 'Asset valuation coordination', 'Lender portal submissions', 'Settlement coordination'] },
+  { title: 'Customer Relationship Management (CRM)', icon: <Database size={23} aria-hidden="true" />, items: ['CRM data updates and pipeline tracking', 'Daily status tracking and milestone updates', 'Automated and manual follow-up reminders', 'Client communications management'] },
+  { title: 'Sales Support', icon: <CarFront size={23} aria-hidden="true" />, items: ['Inbound and outbound sales administration', 'Preparing quotations and proposal documents', 'Generating repayment schedules', 'Comparing lender products and policy requirements', 'Scheduling client appointments', 'Supporting up-sell and cross-sell opportunities'] },
+  { title: 'Customer Service Support', icon: <Headphones size={23} aria-hidden="true" />, items: ['Real-time loan status updates', 'Document collection follow-ups', 'Appointment scheduling', 'Settlement coordination with lenders and solicitors', 'Customer onboarding', 'Post-settlement support'] },
+  { title: 'Compliance Support', icon: <ShieldCheck size={23} aria-hidden="true" />, items: ['Know Your Customer (KYC) verification', 'Anti-Money Laundering (AML) checks', 'Comprehensive file and document audits', 'Compliance checklists and aggregator standard alignment', 'Privacy documentation management', 'Internal quality assurance reviews'] },
+  { title: 'Community & Communication Management', icon: <MessagesSquare size={23} aria-hidden="true" />, items: ['Inbox monitoring and email response management', 'Social media listening and monitoring', 'Online audience engagement', 'Feedback and escalation management'] },
 ];
-function AssetFinancePage(){return <main className="growth-page"><section className="growth-hero"><div className="container"><span className="growth-eyebrow">Asset Finance Services</span><h1>Move asset finance applications forward faster</h1><p>Give your brokers reliable processing support for vehicle, equipment and commercial asset finance—from initial document collection to lender follow-up and settlement.</p>
-{/* <div className="growth-actions">
-    <a className="btn btn-gold" href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer">Book a Meeting <ArrowRight size={15}/></a>
-<Link href="/contact" className="btn btn-gold">Send a Message<ArrowRight size={15} /></Link>
-</div> */}
-</div></section><section className="growth-section">
-    <div className="container"><div className="growth-head"><span className="chip chip-gold">End-to-End Support</span><h2>Back-office assistance across the application lifecycle</h2><p>Our team works inside your established process, helping reduce administrative bottlenecks without changing the client relationship.</p></div><div className="growth-grid">{services.map(([icon,title,text])=><article className="growth-card" key={title}><div className="growth-card-header"><div className="growth-card-icon" aria-hidden="true">{icon}</div><h3>{title}</h3></div><p>{text}</p></article>)}</div></div></section><section className="growth-section alt"><div className="container growth-split"><div className="growth-copy"><span className="chip chip-teal">For Growing Brokerages</span><h2>More time for customers and referral partners</h2><p>Asset finance can involve frequent document requests, lender updates and time-sensitive follow-ups. A trained remote resource helps your brokers stay focused on advice, relationships and new opportunities while administration keeps moving.</p><ul className="growth-list growth-list--lucide"><li><Check size={16} aria-hidden="true" />Passenger and commercial vehicle finance</li><li><Check size={16} aria-hidden="true" />Equipment and machinery applications</li><li><Check size={16} aria-hidden="true" />Business-use asset finance support</li><li><Check size={16} aria-hidden="true" />Repeatable broker-specific workflows</li></ul></div><div className="growth-metrics"><div className="growth-metric"><strong>1 team</strong><span>Integrated with your workflow</span></div><div className="growth-metric"><strong>Daily</strong><span>Progress and exception reporting</span></div><div className="growth-metric"><strong>Secure</strong><span>Controlled data access</span></div><div className="growth-metric"><strong>Flexible</strong><span>Part-time or full-time models</span></div></div></div></section><ServiceFaq variant="assetFinance" title="Asset finance support questions" intro="Answers for brokers considering additional processing capacity."/><CtaBanner/></main>}
+const valueItems = [
+  ['Serve More Loans with Less Headcount', 'Expand your asset financing without increasing fixed operational costs.'],
+  ['Improve Settlement Rates', 'Fast-track files with accurate pre-submission checks and daily tracking.'],
+  ['Reduce Turnaround Times', 'Eliminate paperwork bottlenecks and clear conditional delays swiftly.'],
+  ['Increase Customer Retention', 'Deliver faster outcomes and consistent communication to your clients.'],
+  ['Lower Operating Costs', 'Save up to 50–60% compared to local hiring expenses.'],
+  ['Enhance Compliance', 'Maintain strict alignment with aggregator rules and lender policies.'],
+];
+function AssetFinancePage(){
+  return <main className="growth-page">
+    <section className="growth-hero">
+      <div className="container">
+        <span className="growth-eyebrow">Asset Finance Services</span>
+        <h1>Asset Finance Outsourcing Service </h1>
+        <p>Reliable processing support for automobile, equipment, and commercial asset financing, from initial document collection and CRM administration to lender follow-up and settlement.</p>
+        <div className="growth-actions"><Link href="/contact" className="btn btn-gold">Book Your Discovery Call Today <ArrowRight size={15} /></Link></div>
+      </div>
+    </section>
+    <section className="growth-section asset-finance-flexible-section">
+      <div className="container asset-finance-flexible-layout">
+        <div className="asset-finance-flexible-content">
+          {/* <span className="chip chip-gold">Flexible Asset Finance</span> */}
+          <h2>Empower Your Business with Flexible Asset Finance</h2>
+          <p>Asset financing is an essential tool for firms looking to grow or modernise their operations. Whether you&apos;re investing in new equipment, renovating old machinery, or purchasing vehicles to keep your business running, asset finance lets you access the funds you need without paying the full amount upfront. This not only relieves the financial burden but also supports smooth operations and growth.</p>
+          <div className="growth-actions"><Link href="/contact" className="btn btn-gold">Book Your Discovery Call Today <ArrowRight size={15} /></Link></div>
+        </div>
+        <div className="asset-finance-flexible-image">
+          <Image src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1200&q=85" alt="Asset finance documents and calculator" width={1200} height={900} sizes="(max-width: 900px) 100vw, 50vw" />
+        </div>
+      </div>
+    </section>
+    <section className="growth-section asset-finance-intro-section">
+      <div className="container">
+        <div className="growth-head asset-finance-intro-head">
+          <span className="chip chip-gold">Flexible Asset Finance</span>
+          <h2>Our Suite of Services for Asset Finance Brokers</h2>
+          <p className="asset-finance-intro-description">Our specialists manage the operational tasks behind every file, enabling your business to process higher deal volumes efficiently.</p>
+        </div>
+        <div className="growth-grid">
+          {serviceGroups.map(({ icon, title, items }) => (
+            <article className="growth-card" key={title}>
+              <div className="growth-card-header">
+                <div className="growth-card-icon" aria-hidden="true">
+                  {icon}
+                </div>
+                <h3>{title}</h3>
+              </div>
+              <ul className="growth-list growth-list--lucide">{items.map(item => <li key={item}><Check size={16} aria-hidden="true" />{item}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section className="growth-section alt">
+      <div className="container growth-value-layout">
+        <div className="growth-copy">
+          <span className="chip chip-teal">HOW WE ADD VALUE</span>
+          <h2>More Time. Better Network. More Business</h2>
+          <div className="growth-grid">{valueItems.map(([title, text]) => <article className="growth-card" key={title}><div className="growth-card-header"><div className="growth-card-icon"><CircleCheckBig size={22} aria-hidden="true" /></div><h3>{title}</h3></div><p>{text}</p></article>)}</div>
+        </div>
+      </div>
+    </section>
+    <section className="asset-finance-unique-cta">
+      <div className="container asset-finance-unique-cta-inner">
+        <Image className="asset-finance-unique-cta-image" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=2200&q=85" alt="Finance professionals collaborating" fill sizes="100vw" />
+        <div className="asset-finance-unique-cta-content">
+          <h2>Want to Get More Asset Finance Clients Without the Guesswork?</h2>
+          <p>Proowrx combines asset finance expertise with performance marketing to attract high-value clients through a predictable, always-on lead pipeline.</p>
+          <Link href="/digital-marketing" className="asset-finance-unique-cta-link">Explore Marketing Support <ArrowRight size={18} aria-hidden="true" /></Link>
+        </div>
+      </div>
+    </section>
+    <section className="growth-section alt asset-finance-support-section">
+      <div className="container">
+        <div className="growth-head"><span className="chip chip-teal">Asset Finance Brokers</span><h2>Whom We Support</h2></div>
+        <div className="growth-grid four">
+          <article className="growth-card"><div className="growth-card-header"><div className="growth-card-icon"><BriefcaseBusiness size={22} aria-hidden="true" /></div><h3>Independent Brokers</h3></div><p>Expand operational capacity without adding local overheads.</p></article>
+          <article className="growth-card"><div className="growth-card-header"><div className="growth-card-icon"><Network size={22} aria-hidden="true" /></div><h3>Aggregator-Based Brokers</h3></div><p>Ensure complete compliance with aggregator standards and portal requirements.</p></article>
+          <article className="growth-card"><div className="growth-card-header"><div className="growth-card-icon"><Building2 size={22} aria-hidden="true" /></div><h3>Commercial Finance Specialists</h3></div><p>Streamline complex commercial loans, chattel mortgages, and finance leases.</p></article>
+          <article className="growth-card"><div className="growth-card-header"><div className="growth-card-icon"><Cog size={22} aria-hidden="true" /></div><h3>Equipment Finance Specialists</h3></div><p>Accelerate turnarounds for machinery, vehicle fleets, and specialized commercial assets.</p></article>
+        </div>
+      </div>
+    </section>
+    <ServiceFaq variant="assetFinance" title="Asset Finance Brokers Ask. We Answer." intro="" />
+    <CtaBanner />
+  </main>;
+}
 
-export function generateMetadata() { return pageMetadata('/asset-finance', metadata); }
+export function generateMetadata() {
+  return pageMetadata('/asset-finance', metadata); }
 export const dynamic = 'force-dynamic';
 
-export default function PageWithInsights() { return <><AssetFinancePage /><PageInsights path="/asset-finance" /></>; }
+export default function PageWithInsights() {
+  return <>
+  <AssetFinancePage />
+  <PageInsights path="/asset-finance" />
+  </>;
+}

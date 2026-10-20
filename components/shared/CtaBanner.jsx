@@ -3,18 +3,14 @@ import Image from 'next/image';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import './CtaBanner.css';
 
-export default function CtaBanner() {
+export default function CtaBanner({ eyebrow = 'Get Started Today', heading = 'Clear Your Operational Bottlenecks Today', description = 'Whether you need support for seasonal peaks or one dedicated resource doing all your back-office tasks, Proowrx provides flexible business outsourcing support designed around your business.', primaryLabel = 'Book a Discovery Call', primaryHref = 'https://calendly.com/proowrx/30min' }) {
   return (
     <section className="cta-banner">
       <div className="container cta-banner-inner">
         <div className="cta-banner-copy">
-          <span className="cta-banner-pill">Get Started Today</span>
-          <h2 className="cta-banner-heading">
-            Clear Your Operational Bottlenecks Today
-          </h2>
-          <p className="cta-banner-sub">
-            Whether you need support for seasonal peaks or one dedicated resource doing all your back-office tasks, Proowrx provides flexible business outsourcing support designed around your business.
-          </p>
+          <span className="cta-banner-pill">{eyebrow}</span>
+          <h2 className="cta-banner-heading">{heading}</h2>
+          <p className="cta-banner-sub">{description}</p>
           <div className="cta-banner-assurances">
             {['No lock-in contracts', 'Onboard in 48 hours', 'Australian compliance guaranteed'].map((t) => (
               <span key={t} className="cta-banner-assurance">
@@ -23,8 +19,8 @@ export default function CtaBanner() {
             ))}
           </div>
           <div className="cta-banner-buttons">
-            <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
-              Book a Discovery Call <ArrowRight size={15} />
+            <a href={primaryHref} target={primaryHref.startsWith('http') ? '_blank' : undefined} rel={primaryHref.startsWith('http') ? 'noreferrer' : undefined} className="btn btn-gold">
+              {primaryLabel} <ArrowRight size={15} />
             </a>
             <Link href="/contact" className="btn btn-ghost">Send a Message</Link>
           </div>

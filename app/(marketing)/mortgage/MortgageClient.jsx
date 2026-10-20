@@ -46,9 +46,9 @@ const comparisons = [
 ];
 
 const models = [
-  { num: '01', title: 'Pay per application', tag: 'Flexible', tagColor: 'var(--gold)', desc: 'Service-based processing priced per file, from assessment only to full lodgement and tracking.', benefits: ['From $100 per file'], href: '#mortgage-pricing', packages: null },
-  { num: '02', title: 'Para broker', tag: 'Flexible', tagColor: 'var(--teal)', desc: 'Detailed research, lender recommendations, submission packaging and post-settlement support.', benefits: ["See what's included"], href: '#mortgage-para', packages: null },
-  { num: '03', title: 'Dedicated resources', tag: 'Flexible', tagColor: 'var(--teal)', desc: 'Part-time or full-time specialists working as an extension of your team.', benefits: ['Meet the roles'], href: '#mortgage-team', packages: null },
+  { num: '01', title: 'Pay per application', tag: 'Service Model', tagColor: 'var(--gold)', desc: 'Service-based processing priced per file, from assessment only to full lodgement and tracking.', benefits: ['From $100 per file'], href: '#mortgage-pricing', packages: null },
+  { num: '02', title: 'Para broker', tag: 'Service Model', tagColor: 'var(--teal)', desc: 'Detailed research, lender recommendations, submission packaging and post-settlement support.', benefits: ["See what's included"], href: '#mortgage-para', packages: null },
+  { num: '03', title: 'Dedicated resources', tag: 'Service Model', tagColor: 'var(--teal)', desc: 'Part-time or full-time specialists working as an extension of your team.', benefits: ['Meet the roles'], href: '#mortgage-team', packages: null },
 ];
 
 const preSubmission = [
@@ -156,7 +156,7 @@ export default function Mortgage() {
       {/* Service models */}
       <section id="mortgage-models" className="section" style={{ background: 'var(--surface)' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: 60 }}>
+          <div className="mortgage-draft-heading mortgage-models-heading">
             <span className="chip chip-teal section-eyebrow">Service Models</span>
             <h2 className="section-title">Three Ways to Work with Us</h2>
             <p>Start with the model that matches how your business runs today. You can change as you grow.</p>
@@ -167,9 +167,9 @@ export default function Mortgage() {
                 <div className="model-header">
                   <div className="model-num">{m.num}</div>
                   <div>
-                    {/* <span className="model-tag" style={{ color: m.tagColor, borderColor: m.tagColor }}>
+                    <span className="model-tag" style={{ color: m.tagColor, borderColor: m.tagColor }}>
                       {m.tag}
-                    </span> */}
+                    </span>
                     <h3>{m.title}</h3>
                   </div>
                 </div>
@@ -195,7 +195,11 @@ export default function Mortgage() {
 
       <section className="section mortgage-draft-section">
         <div className="container">
-          <div className="mortgage-draft-heading"><span className="chip chip-teal section-eyebrow">What’s included</span><h2 className="section-title">What’s included in our processing service</h2><p>Every file is prepared, lodged and followed up by a team that knows lender requirements and compliance obligations.</p></div>
+          <div className="mortgage-draft-heading">
+            <span className="chip chip-teal section-eyebrow">What’s included</span>
+            <h2 className="section-title">What’s included in our processing service</h2>
+            <p>Every file is prepared, lodged and followed up by a team that knows lender requirements and compliance obligations.</p>
+          </div>
           <div className="mortgage-draft-box-grid">{draftScope.map(([title, items]) => <article className="mortgage-draft-box" key={title}><h3>{title}</h3><ul>{items.map(item => <li key={item}><CheckCircle size={15} />{item}</li>)}</ul></article>)}</div>
           <div className="mortgage-processing-outputs"><h3>Processing outputs</h3><ul><li>Lender application form</li><li>NCCP documents</li><li>Lender serviceability calculator</li><li>Discharge form <small>(if applicable)</small></li><li>FHOG <small>(if applicable)</small></li><li>Other FHLDS forms <small>(depending on lender requirements)</small></li></ul></div>
         </div>

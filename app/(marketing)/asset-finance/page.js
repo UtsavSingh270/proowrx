@@ -54,7 +54,7 @@ function AssetFinancePage(){
     <section className="growth-section asset-finance-flexible-section">
       <div className="container asset-finance-flexible-layout">
         <div className="asset-finance-flexible-content">
-          {/* <span className="chip chip-gold">Flexible Asset Finance</span> */}
+          <span className="chip chip-gold">THE PROBLEM WE SOLVE</span>
           <h2>Flexible Outsourcing Support for Asset Finance Brokers</h2>
           <p>As your asset finance brokerage grows, so does the work involved in managing applications, meeting lender requirements and keeping deals on track. With Proowrx, you can manage this growing workload without the added costs and responsibilities of hiring more staff. We support Australian brokers with loan processing, documentation and lender follow-ups across vehicle, equipment, machinery and commercial finance. Our flexible outsourcing options allow you to get the support you need, whether for daily operations or during periods of increased demand.</p>
           <div className="growth-actions"><Link href="/contact" className="btn btn-gold">Book Your Discovery Call Today <ArrowRight size={15} /></Link></div>

@@ -16,7 +16,7 @@
 .marketing-site .asset-finance-intro-section > .container { width: min(100%, 1600px); }
 .marketing-site .asset-finance-intro-section .growth-head.asset-finance-intro-head { width: min(100%, 1600px); max-width: 1600px; }
 .asset-finance-flexible-section { background: #fff; }
-.marketing-site .asset-finance-flexible-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(34px, 7vw, 100px); align-items: center; width: min(100%, 1400px); max-width: 1400px; }
+.marketing-site .asset-finance-flexible-layout { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(34px, 7vw, 100px); align-items: center; width: min(100%, 1400px); max-width: 1400px; }
 .asset-finance-flexible-content h2 { margin: 14px 0 18px; font-size: clamp(2.3rem, 4.5vw, 4.2rem); line-height: 1.04; }
 .asset-finance-flexible-content p { max-width: 100% !important; margin: 0 0 24px; }
 .asset-finance-flexible-content .growth-actions { justify-content: flex-start; }

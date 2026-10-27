@@ -5,14 +5,15 @@
 /* ── Main area ──────────────────────────── */
 .footer-main {
   background: #f2f5fa;
-  padding: 20px 0 20px;
+  padding: clamp(24px, 2.6vw, 36px) 0 clamp(22px, 2.4vw, 32px);
   border-top: 1px solid var(--border);
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(220px, .9fr) minmax(130px, .45fr) minmax(520px, 2fr);
-  gap: 32px;
+  grid-template-columns: minmax(240px, .9fr) minmax(145px, .52fr) minmax(540px, 1.85fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
 }
 
 /* ── Logo ────────────────────────────────── */
@@ -26,7 +27,7 @@
   color: var(--text-2);
   font-size: 0.875rem;
   line-height: 1.7;
-  max-width: 280px;
+  max-width: 320px;
 }
 
 /* ── Socials ─────────────────────────────── */
@@ -38,11 +39,11 @@
 
 .footer-iso-slot {
   width: 100%;
-  min-height: 78px;
-  /* padding: 9px 10px; */
-  /* border: 1px dashed rgba(8, 15, 32, 0.22);
-  border-radius: 14px; */
-  background: rgba(255,255,255,0.54);
+  min-height: 116px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.72);
   color: var(--text-3);
   display: flex;
   flex-direction: column;
@@ -53,8 +54,10 @@
 }
 
 .footer-iso-badge{
-  width: 400px;
-  height: 100px;
+  width: min(100%, 180px);
+  height: auto;
+  max-height: 92px;
+  object-fit: contain;
 }
 
 .social-btn {
@@ -103,7 +106,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 6px;
-  width: 150px;
+  width: 100%;
   font-size: 0.875rem;
   color: var(--text-2);
   transition: all 0.2s;
@@ -123,35 +126,93 @@
 
 .footer-links a:hover .link-arrow { opacity: 1; transform: translateX(0); }
 
-/* ── Office cards ────────────────────────── */
-.footer-contact-area { display: flex; min-width: 0; flex-direction: column; }
-.footer-contact-area > .footer-heading { order: 2; }
-.footer-offices-grid { order: 3; }
-.footer-offices-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+/* ── Locations and contact ───────────────── */
+.footer-contact-area { min-width: 0; }
 
-.office-card {
+.footer-contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(130px, .72fr) minmax(145px, 180px);
+  gap: clamp(18px, 2.3vw, 34px);
+  align-items: start;
+}
+
+.footer-contact-layout .footer-heading { margin-bottom: 12px; }
+
+.footer-addresses {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin-top: 2px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-location-list,
+.footer-phone-list {
+  display: grid;
+  gap: 14px;
+}
+
+.footer-phone-list {
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+
+.footer-legal-menu {
+  gap: 9px;
+}
+
+/* Match the Contact rows exactly: same line-height, height and vertical gap. */
+.footer-legal-menu a {
+  min-height: 24px;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.footer-phone-link,
+.footer-email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 24px;
+  color: var(--text-3);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  transition: color .2s ease;
+}
+
+.footer-email-link { grid-column: 1 / -1; }
+
+.footer-phone-link svg,
+.footer-email-link svg { flex: 0 0 auto; color: var(--gold); }
+.footer-phone-link:hover,
+.footer-email-link:hover { color: var(--gold); }
+
+.footer-location-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 0;
+}
+
+.footer-location + .footer-location {
+  padding-left: clamp(20px, 3vw, 42px);
+  border-left: 1px solid var(--border);
+}
+
+.footer-location-title {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
-.office-flag {
-  width: 28px;
-  height: 20px;
-  object-fit: cover;
-  border-radius: 3px;
-  flex-shrink: 0;
-  margin-top: 3px;
-}
-
-.office-card strong {
+.footer-location strong {
   display: block;
   font-size: 0.875rem;
   color: var(--navy);
-  margin-bottom: 5px;
+  margin: 0;
 }
 
-.office-card p {
+.footer-location p {
   display: flex;
   align-items: flex-start;
   gap: 6px;
@@ -161,25 +222,24 @@
   line-height: 1.4;
 }
 
-.office-card p svg { flex-shrink: 0; margin-top: 2px; }
+.footer-location p svg { flex-shrink: 0; margin-top: 2px; }
 
-.office-card a {
-  color: var(--text-3);
-  transition: color 0.2s;
+.footer-country-flag {
+  width: 24px;
+  height: 17px;
+  object-fit: cover;
+  border: 1px solid rgba(11, 31, 63, 0.16);
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(8, 15, 32, 0.08);
+  flex: 0 0 auto;
 }
-
-.office-card a:hover { color: var(--gold); }
 
 /* ── Newsletter ──────────────────────────── */
 .footer-newsletter {
-  order: 1;
-  display: grid;
-  grid-template-columns: minmax(104px, .60fr) minmax(240px, 1.40fr);
-  align-items: end;
-  gap: 10px;
-  margin-bottom: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
+  min-width: 0;
+  align-self: start;
+  display: flex;
+  align-items: center;
 }
 .footer-newsletter-content { min-width: 0; }
 .footer-newsletter .footer-heading { margin-bottom: 8px; }
@@ -339,9 +399,13 @@ html.dark .footer-iso-slot {
 
 html.dark .footer-links a { color: rgba(255,255,255,0.55); }
 
-html.dark .office-card strong { color: rgba(255,255,255,0.85); }
-html.dark .office-card p,
-html.dark .office-card a     { color: rgba(255,255,255,0.50); }
+html.dark .footer-location strong { color: rgba(255,255,255,0.85); }
+html.dark .footer-location p,
+html.dark .footer-phone-link,
+html.dark .footer-email-link { color: rgba(255,255,255,0.58); }
+html.dark .footer-country-flag { border-color: rgba(255,255,255,0.18); }
+html.dark .footer-addresses,
+html.dark .footer-location + .footer-location { border-color: rgba(255,255,255,0.1); }
 
 html.dark .newsletter-form {
   border-color: rgba(255,255,255,0.12);
@@ -372,14 +436,16 @@ html.dark .footer-legal button { color: rgba(255,255,255,0.30); }
 
 /* ── 2-column tablet ── */
 @media (max-width: 1000px) {
-  .footer-grid { grid-template-columns: .8fr 1.8fr; gap: 28px; }
+  .footer-grid { grid-template-columns: minmax(210px, .78fr) minmax(0, 1.75fr); gap: 32px; }
   .footer-grid > :nth-child(2) { grid-row: 2; }
   .footer-contact-area { grid-row: 1 / span 2; grid-column: 2; }
+  .footer-contact-layout { grid-template-columns: minmax(0, 1fr) minmax(118px, .6fr) minmax(125px, 150px); }
+  .footer-iso-slot { max-width: 170px; }
 }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
-  .footer-main { padding: 48px 0 32px; }
+  .footer-main { padding: 32px 0 28px; }
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
@@ -392,15 +458,21 @@ html.dark .footer-legal button { color: rgba(255,255,255,0.30); }
   .footer-brand p { max-width: 100%; }
   .footer-socials { justify-content: flex-start; }
 
-  .office-card { gap: 10px; }
-  .office-card p { font-size: 0.75rem; }
-  .office-card strong { font-size: 0.82rem; }
+  .footer-location p,
+  .footer-phone-link,
+  .footer-email-link { font-size: 0.75rem; }
+  .footer-location strong { font-size: 0.82rem; }
 }
 
 /* ── Small phones ── */
 @media (max-width: 600px) {
-  .footer-offices-grid { grid-template-columns: 1fr; gap: 16px; }
-  .footer-newsletter { grid-template-columns: minmax(88px, 104px) minmax(0, 1fr); gap: 12px; }
+  .footer-contact-layout { grid-template-columns: 1fr; gap: 24px; }
+  .footer-phone-list { grid-template-columns: 1fr; gap: 9px; }
+  .footer-addresses { margin-top: 0; padding-top: 22px; }
+  .footer-location-list { grid-template-columns: 1fr; gap: 16px; }
+  .footer-location + .footer-location { padding: 16px 0 0; border-left: 0; border-top: 1px solid var(--border); }
+  .footer-newsletter { grid-column: auto; justify-content: stretch; }
+  .footer-iso-slot { max-width: none; min-height: 100px; }
   .footer-trust { grid-column: auto; }
 
   .footer-bottom-inner { flex-direction: column; text-align: center; gap: 10px; }
@@ -446,7 +518,8 @@ html.dark .footer-legal button { color: rgba(255,255,255,0.30); }
     justify-content: center;
   }
 
-  .office-card { gap: 8px; }
-  .office-card p { font-size: 0.72rem; }
-  .office-card strong { margin-bottom: 6px; }
+  .footer-location p,
+  .footer-phone-link,
+  .footer-email-link { font-size: 0.72rem; }
+  .footer-location strong { margin-bottom: 6px; }
 }

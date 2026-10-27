@@ -1,0 +1,191 @@
+/* AUDIT SUPPORT — matched to the Payroll page */
+
+/* 1. Hero uses shared .page-hero styles. */
+.as-hero-badge-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  flex: 0 0 38px;
+  border-radius: 11px;
+  color: var(--navy);
+  background: var(--gold-pale);
+}
+
+/* 2. Service intro */
+.as-intro {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.as-intro-visual img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.as-point-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 24px 0 0;
+  padding: 0;
+}
+
+.as-point-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.as-point-check {
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* 3. What we provide */
+.as-provide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  max-width: none;
+  margin: 0 auto;
+}
+
+/* This content-heavy set has six cards, so it needs a wider canvas than the
+   standard marketing container. */
+.marketing-site .as-provide-container {
+  width: min(100% - 48px, 1600px);
+}
+
+.as-provide-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.as-provide-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-md);
+}
+
+.as-provide-heading,
+.as-why-heading {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  min-width: 0;
+}
+
+.as-provide-icon,
+.as-why-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-sm);
+  background: var(--gold-pale);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.as-provide-title,
+.as-why-title {
+  min-width: 0;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 24px;
+  color: var(--navy);
+}
+
+.as-provide-body {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.as-section-heading {
+  max-width: 1100px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.as-section-heading .section-body {
+  margin: 14px auto 0;
+}
+
+/* 4. Why choose */
+.as-why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.as-why-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.as-why-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.as-why-body {
+  margin: 0;
+  font-size: 0.83rem;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .as-why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .as-intro { grid-template-columns: 1fr; gap: 32px; }
+  .as-intro-visual { order: -1; }
+  .as-intro-visual img { height: 280px; }
+}
+
+@media (max-width: 860px) {
+  .as-provide-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+}
+
+@media (max-width: 640px) {
+  .as-why-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .as-provide-item,
+  .as-why-card { transition: none; }
+  .as-provide-item:hover,
+  .as-why-card:hover { transform: none; }
+}

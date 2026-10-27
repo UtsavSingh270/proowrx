@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, ArrowRight, Send, CircleCheckBig } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import { newsletter } from '@/services/api';
 import './Footer.css';
 import Image from 'next/image';
 
@@ -12,27 +11,6 @@ const LOGO = '/Proowrx_Logo.png';
 const BADGE = '/images/ISO Badge.jpg';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [done, setDone] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [subscribeError, setSubscribeError] = useState('');
-
-  const submit = async e => {
-    e.preventDefault();
-    setSubmitting(true);
-    setSubscribeError('');
-    try {
-      await newsletter.subscribe(email);
-      setDone(true);
-      setEmail('');
-      setTimeout(() => setDone(false), 4000);
-    } catch (error) {
-      setSubscribeError(error.message || 'Unable to subscribe right now.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   return (
     <footer className="footer">
       {/* Main */}
@@ -41,7 +19,7 @@ export default function Footer() {
           {/* Brand col */}
           <div className="footer-brand">
             <Image src={LOGO} alt="Proowrx" className="footer-logo" width={160} height={44} />
-            <p>An Australian-owned KPO providing expert back-office support for mortgage brokers and accountants across Australia, operating from Jaipur, India.</p>
+            <p>Proowrx is an Australian-owned outsourcing company helping businesses streamline operations, reduce costs and grow through specialised mortgage, accounting, asset finance and digital marketing support.</p>
             <div className="footer-socials">
               {[
                 { href: 'https://www.facebook.com/proowrx/', icon: <FaFacebook size={16} />, title: 'Facebook', color: '#1877f2' },
@@ -79,57 +57,55 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Offices + newsletter */}
+          {/* Contact details, legal links, locations and certification */}
           <div className="footer-contact-area">
-            {/* <h4 className="footer-heading">Our Offices</h4> */}
-            <div className="footer-offices-grid">
-              <div className="office-card">
-                <Image src="https://flagcdn.com/w40/in.png" alt="India" className="office-flag" width="28" height="20" />
-                <div>
-                  <strong>Jaipur, India</strong>
-                  <p><MapPin size={12} />2nd Floor, Press Trust Of India, 5 B, Jhalana Institutional Area, J L N Marg, Jaipur, Rajasthan 302004</p>
-                  <p><Phone size={12} /> <a href="tel:+919610411400">+91 96104 11400</a></p>
-                  <p><Phone size={12} /> <a href="tel:+911412952294">+91-141-2952294</a></p>
-                  <p><Mail size={12} /> <a href="mailto:support@proowrx.com">support@proowrx.com</a></p>
+            <div className="footer-contact-layout">
+              <section className="footer-contact-details" aria-labelledby="footer-contact-title">
+                <h4 id="footer-contact-title" className="footer-heading">Contact</h4>
+                <div className="footer-phone-list">
+                  <a className="footer-phone-link" href="tel:+919610411400"><Phone size={14} aria-hidden="true" /><span>+91 96104 11400</span></a>
+                  <a className="footer-phone-link" href="tel:+911412952294"><Phone size={14} aria-hidden="true" /><span>+91-141-2952294</span></a>
+                  <a className="footer-phone-link" href="tel:+61288341222"><Phone size={14} aria-hidden="true" /><span>+61 02 8834 1222</span></a>
+                  <a className="footer-email-link" href="mailto:support@proowrx.com"><Mail size={14} aria-hidden="true" /><span>support@proowrx.com</span></a>
                 </div>
-              </div>
-              <div className="office-card">
-                <Image src="https://flagcdn.com/w40/au.png" alt="Australia" className="office-flag" width="28" height="20" />
-                <div>
-                  <strong>Sydney, Australia</strong>
-                  <p><MapPin size={12} /> Suite 215, East Wing, 33 Lexington Drive, Bella Vista NSW-2153</p>
-                  <p><Phone size={12} /> <a href="tel:+61288341222">02 8834 1222</a></p>
-                  <p><Mail size={12} /> <a href="mailto:support@proowrx.com">support@proowrx.com</a></p>
-                </div>
-              </div>
-            </div>
+              </section>
 
-            <div className="footer-newsletter">
-              {/* Replace this neutral slot with the approved ISO badge artwork when it is available. */}
-              <div className="footer-iso-slot">
-                <Image
-                  src={BADGE}
-                  alt="Proowrx ISO certification badge"
-                  width={160}
-                  height={80}
-                  className="footer-iso-badge"
-                />
-                {/* <span>ISO badge area</span> */}
-              </div>
-              <div className="footer-newsletter-content">
-                <h4 className="footer-heading">Stay Updated</h4>
-                <div className="footer-newsletter-action">
-                  {done ? (
-                    <div className="newsletter-success"><CircleCheckBig size={16} aria-hidden="true" /> <span>You&apos;re subscribed!</span></div>
-                  ) : (
-                    <form onSubmit={submit} className="newsletter-form">
-                      <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
-                      <button type="submit" aria-label="Subscribe" disabled={submitting}><Send size={15} /></button>
-                    </form>
-                  )}
-                  {subscribeError && <p className="newsletter-error" role="alert">{subscribeError}</p>}
+              <section className="footer-legal-details" aria-labelledby="footer-legal-title">
+                <h4 id="footer-legal-title" className="footer-heading">Legal</h4>
+                <ul className="footer-links footer-legal-menu">
+                  {[
+                    ['/privacy-policy', 'Privacy Policy'],
+                    ['/terms-of-use', 'Terms of Use'],
+                    ['/disclaimer', 'Disclaimer'],
+                    ['/terms-of-access', 'Terms of Access'],
+                  ].map(([to, label]) => (
+                    <li key={to}>
+                      <Link href={to}>{label}<ArrowRight size={12} className="link-arrow" /></Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <div className="footer-newsletter">
+                {/* Replace this neutral slot with the approved ISO badge artwork when it is available. */}
+                <div className="footer-iso-slot">
+                  <Image src={BADGE} alt="Proowrx ISO certification badge" width={160} height={80} className="footer-iso-badge" />
                 </div>
               </div>
+
+              <section className="footer-addresses" aria-labelledby="footer-addresses-title">
+                <h4 id="footer-addresses-title" className="footer-heading">Our locations</h4>
+                <div className="footer-location-list">
+                  <article className="footer-location">
+                    <div className="footer-location-title"><Image src="https://flagcdn.com/w40/in.png" alt="India" className="footer-country-flag" width={28} height={20} /><strong>Jaipur, India</strong></div>
+                    <p><MapPin size={13} aria-hidden="true" /><span>2nd Floor, Press Trust Of India, 5 B, Jhalana Institutional Area, J L N Marg, Jaipur, Rajasthan 302004</span></p>
+                  </article>
+                  <article className="footer-location">
+                    <div className="footer-location-title"><Image src="https://flagcdn.com/w40/au.png" alt="Australia" className="footer-country-flag" width={28} height={20} /><strong>Sydney, Australia</strong></div>
+                    <p><MapPin size={13} aria-hidden="true" /><span>Suite 215, East Wing, 33 Lexington Drive, Bella Vista NSW-2153</span></p>
+                  </article>
+                </div>
+              </section>
             </div>
           </div>
         </div>
@@ -139,11 +115,11 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
           <p>© {new Date().getFullYear()} Proowrx Knowledge Centre Pvt. Ltd. All rights reserved.</p>
-          <div className="footer-legal">
+          {/* <div className="footer-legal">
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-of-use">Terms of Use</Link>
             <Link href="/disclaimer">Disclaimer</Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

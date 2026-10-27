@@ -60,6 +60,12 @@ const FAQ_SETS = {
     { question: 'How does Proowrx protect confidential employee and payroll information?', answer: 'Proowrx maintains strict, enterprise-grade security protocols, restricted user access, secure Australian server environments, and encrypted file transfers to protect sensitive employee pay details and tax file numbers.' },
     { question: 'What is Payday Super and how does Proowrx handle payroll around it?', answer: 'Payday Super requires employers to pay superannuation simultaneously with employee pay runs. Proowrx prepares your clients by configuring automated superannuation calculations, setting up clearing house workflows, and keeping client pay runs fully compliant.' },
   ],
+  auditsupport: [
+    { question: 'Why should an Australian accounting firm outsource audit work?', answer: 'Outsourcing audit preparation reduces administrative chaos during peak compliance windows and keeps your senior staff focused on high-value client advisory work year-round.' },
+    { question: 'Can you help with ASIC-related audit requirements?', answer: 'Yes, we help compile structured audit documentation and financial reporting schedules aligned with ASIC guidelines, AASB frameworks, and Australian Auditing Standards.' },
+    { question: 'Is audit outsourcing suitable for small and medium-sized accounting firms?', answer: 'Yes, it is ideal for growing firms looking to increase capacity without taking on permanent domestic payroll risk or hiring full-time local office staff.' },
+    { question: 'Can we outsource audit work during the busy season?', answer: 'Yes, our flexible support models let you clear seasonal bottlenecks, handle workload spikes, and manage client files effortlessly year-round.' },
+  ],
   about: [
     { question: 'Where is Proowrx based?', answer: 'Proowrx is an Australian-owned business headquartered in Sydney, NSW, Australia. Our highly trained offshore teams operate from secured and strictly monitored delivery centres to support businesses.' },
     { question: 'What service models does Proowrx offer?', answer: 'Proowrx offers highly flexible options without lock-in contracts. You can hire a dedicated full-time resource or choose scalable support during seasonal business peaks.' },

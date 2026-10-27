@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import {
   CheckCircle2, Shield, FileCheck, TrendingUp, Clock,
-  Wallet, PiggyBank, FileText, CalendarCheck,
+  Wallet, PiggyBank, FileText, CalendarCheck, Users,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import ServiceBenefits from '@/components/shared/ServiceBenefits';
@@ -38,8 +38,8 @@ const provideItems = [
   { icon: <PiggyBank size={20} />, title: 'PAYG & Payroll Tax Support', body: 'We calculate the tax that needs to be withheld from employee wages and help with payroll tax records and reporting, based on your practice’s requirements.' },
   { icon: <FileText size={20} />, title: 'Pay Day Super Management', body: 'We help calculate super contributions, keep payment records up to date and manage the steps involved in making payments within the required timeframes.' },
   { icon: <CalendarCheck size={20} />, title: 'Payroll Compliance & Reporting', body: 'We handle STP Phase 2 reporting and keep payroll information organised for ATO reporting. We also help maintain records relating to employee pay and applicable workplace requirements.' },
-  { icon: <Wallet size={20} />, title: 'Employee Payments & Records Management', body: 'From preparing payment details to updating employee information, we help keep payroll records current when salaries, working hours or other employment details change.' },
-  { icon: <Wallet size={20} />, title: 'Leave & Entitlement Management', body: 'We track employee leave balances, including annual and personal leave, and help ensure they are recorded correctly in payroll.' },
+  { icon: <Users size={20} />, title: 'Employee Payments & Records Management', body: 'From preparing payment details to updating employee information, we help keep payroll records current when salaries, working hours or other employment details change.' },
+  { icon: <CalendarCheck size={20} />, title: 'Leave & Entitlement Management', body: 'We track employee leave balances, including annual and personal leave, and help ensure they are recorded correctly in payroll.' },
 ];
 
 const whyItems = [

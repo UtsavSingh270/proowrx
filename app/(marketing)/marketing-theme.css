@@ -132,6 +132,277 @@
 .marketing-site :is(.section-title, .section-title--white, .section-heading, .growth-head h2) { color: var(--navy) !important; }
 .marketing-site :is(.section-body, .section-body--white, .section-sub, .growth-head p) { color: var(--text-2) !important; max-width: 1100px !important; }
 
+/* One heading and card-icon language across every marketing page.
+   These values match the Home services heading. */
+.marketing-site {
+  --section-title-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  --section-title-leading: 1.12;
+  --section-title-tracking: -.035em;
+  --card-icon-color: #173f78;
+  --card-icon-surface: rgba(23, 63, 120, .09);
+  --card-icon-border: rgba(23, 63, 120, .18);
+  --card-icon-hover-color: #0b1f42;
+  --card-icon-hover-surface: #ffd16a;
+  --card-icon-hover-border: #ffd16a;
+}
+
+.marketing-site :is(
+  .section-title, .section-heading, .growth-head h2, .blog-section-heading h2,
+  .worklife-section-head h2, .service-faq-heading h2, .service-benefits-head h2,
+  .page-hero-title, .growth-hero h1, .post-hero-title
+) {
+  font-family: 'Noto Sans', sans-serif !important;
+  font-size: var(--section-title-size) !important;
+  font-weight: 800 !important;
+  line-height: var(--section-title-leading) !important;
+  letter-spacing: var(--section-title-tracking) !important;
+}
+
+/* Some service pages use a plain h1/h2 instead of the shared title class. */
+.marketing-site main :is(h1, h2) {
+  font-family: 'Noto Sans', sans-serif !important;
+  font-size: var(--section-title-size) !important;
+  font-weight: 800 !important;
+  line-height: var(--section-title-leading) !important;
+  letter-spacing: var(--section-title-tracking) !important;
+}
+
+.marketing-site :is(.section-title--white, .section-title--white *) {
+  color: #fff !important;
+}
+
+/* Each icon tile uses the same navy-on-soft-blue treatment on light cards. */
+.marketing-site :is(
+  .svc-icon-wrap, .value-icon, .quality-icon, .why-card-icon, .why-feat-icon,
+  .outsrc-icon, .process-node, .growth-card-icon, .acc-svc-icon, .acc-why-icon,
+  .team-value-icon, .career-perk-icon, .career-step-icon, .va-task-icon,
+  .ppa-why-icon, .service-benefit-icon, .security-icon, .ds-feature-icon,
+  .ds-pillar-icon, .resource-icon, .resources-hub-icon, .as-provide-icon,
+  .as-why-icon, .bk-provide-icon, .bk-why-icon, .pr-provide-icon, .pr-why-icon,
+  .role-icon, .para-icon, .mortgage-outputs-icon, .mp-icon-wrapper
+) {
+  color: var(--card-icon-color) !important;
+  background: var(--card-icon-surface) !important;
+  border-color: var(--card-icon-border) !important;
+  transition: color .22s ease, background-color .22s ease, border-color .22s ease, transform .22s ease !important;
+}
+
+.marketing-site :is(
+  .svc-icon-wrap, .value-icon, .quality-icon, .why-card-icon, .why-feat-icon,
+  .outsrc-icon, .process-node, .growth-card-icon, .acc-svc-icon, .acc-why-icon,
+  .team-value-icon, .career-perk-icon, .career-step-icon, .va-task-icon,
+  .ppa-why-icon, .service-benefit-icon, .security-icon, .ds-feature-icon,
+  .ds-pillar-icon, .resource-icon, .resources-hub-icon, .as-provide-icon,
+  .as-why-icon, .bk-provide-icon, .bk-why-icon, .pr-provide-icon, .pr-why-icon,
+  .role-icon, .para-icon, .mortgage-outputs-icon, .mp-icon-wrapper
+) :is(svg, svg *) {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* The same icon state is applied whenever the surrounding card is hovered or focused. */
+.marketing-site :is(
+  .value-card, .quality-tile, .svc-card, .svc-process-card, .model-card,
+  .acc-svc-card, .acc-process-step, .team-value-card, .career-perk,
+  .career-role-card, .va-task-card, .va-plan-card, .ppa-why-card,
+  .ppa-package, .resource-card, .growth-card, .growth-metric, .why-card,
+  .why-feat-card, .outsrc-card, .service-benefit-card, .role, .para-card,
+  .mortgage-output-card
+):is(:hover, :focus-within) :is(
+  .svc-icon-wrap, .value-icon, .quality-icon, .why-card-icon, .why-feat-icon,
+  .outsrc-icon, .process-node, .growth-card-icon, .acc-svc-icon, .acc-why-icon,
+  .team-value-icon, .career-perk-icon, .career-step-icon, .va-task-icon,
+  .ppa-why-icon, .service-benefit-icon, .security-icon, .ds-feature-icon,
+  .ds-pillar-icon, .resource-icon, .resources-hub-icon, .as-provide-icon,
+  .as-why-icon, .bk-provide-icon, .bk-why-icon, .pr-provide-icon, .pr-why-icon,
+  .role-icon, .para-icon, .mortgage-outputs-icon, .mp-icon-wrapper
+) {
+  color: var(--card-icon-hover-color) !important;
+  background: var(--card-icon-hover-surface) !important;
+  border-color: var(--card-icon-hover-border) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Inverse icon treatment for cards that intentionally use a dark surface. */
+.marketing-site :is(.home .services-section, .mortgage-dedicated-section) :is(
+  .svc-card, .role
+) {
+  --card-icon-color: #ffd16a;
+  --card-icon-surface: rgba(255, 209, 106, .12);
+  --card-icon-border: rgba(255, 209, 106, .3);
+  --card-icon-hover-color: #0b1f42;
+  --card-icon-hover-surface: #ffd16a;
+  --card-icon-hover-border: #ffd16a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marketing-site :is(
+    .svc-icon-wrap, .value-icon, .quality-icon, .why-card-icon, .why-feat-icon,
+    .outsrc-icon, .process-node, .growth-card-icon, .acc-svc-icon, .acc-why-icon,
+    .team-value-icon, .career-perk-icon, .career-step-icon, .va-task-icon,
+    .ppa-why-icon, .service-benefit-icon, .security-icon, .ds-feature-icon,
+    .ds-pillar-icon, .resource-icon, .resources-hub-icon, .as-provide-icon,
+    .as-why-icon, .bk-provide-icon, .bk-why-icon, .pr-provide-icon, .pr-why-icon,
+    .role-icon, .para-icon, .mortgage-outputs-icon, .mp-icon-wrapper
+  ) { transition: none !important; }
+}
+
+/* Match the Home heading scale on phones as well as larger screens. */
+@media (max-width: 800px) {
+  .marketing-site { --section-title-size: clamp(1.7rem, 5vw, 2.4rem); }
+}
+
+/* Count-aware card grids: each row uses the available section width without
+   leaving an unbalanced final row.  Individual card content remains readable. */
+@media (min-width: 1001px) {
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ) {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    align-items: stretch;
+  }
+
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(1):last-child) { grid-template-columns: minmax(0, 1fr) !important; }
+
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+
+  /* Rich service cards remain comfortably readable when there are four. */
+  .marketing-site :is(
+    .home .services-grid, .services-grid, .acc-services-grid, .acc-why-grid,
+    .acc-process-grid, .as-provide-grid, .bk-provide-grid, .pr-provide-grid,
+    .va-tasks-grid, .mortgage-growth-grid
+  ):has(> :nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+  /* Five cards: a balanced three-card top row and two centred cards below. */
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(5):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(5):last-child) > * { grid-column: span 2; }
+
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(5):last-child) > :nth-child(4) { grid-column: 2 / span 2; }
+
+  /* Six cards have two equal rows of three. */
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(6):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+
+  /* Seven cards: four across, then three centred below. */
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(7):last-child) { grid-template-columns: repeat(12, minmax(0, 1fr)) !important; }
+
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(7):last-child) > * { grid-column: span 3; }
+
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ):has(> :nth-child(7):last-child) > :nth-child(5) { grid-column: 2 / span 3; }
+}
+
+@media (min-width: 641px) and (max-width: 1000px) {
+  .marketing-site :is(
+    .service-benefits-grid, .growth-grid, .quality-grid, .svc-process-grid,
+    .acc-services-grid, .acc-why-grid, .acc-process-grid, .as-provide-grid,
+    .as-why-grid, .bk-provide-grid, .bk-why-grid, .pr-provide-grid,
+    .pr-why-grid, .ds-pillars-grid, .ds-features-grid, .career-perks-grid,
+    .career-process-grid, .va-tasks-grid, .va-steps, .team-values-grid,
+    .team-core-grid, .resources-hub-grid, .page-insights-grid, .blog-value-grid,
+    .why-feat-grid, .outsrc-grid, .mortgage-outputs-grid, .mortgage-growth-grid,
+    .para-grid
+  ) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
 /* Consistent cards and controls. */
 .marketing-site :is(
   .value-card, .quality-tile, .svc-card, .svc-process-card, .model-card,

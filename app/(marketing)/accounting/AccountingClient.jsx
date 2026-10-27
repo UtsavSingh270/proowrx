@@ -30,51 +30,57 @@ const services = [
   {
     icon: <BookOpenCheck size={26} />,
     color: '#c9a227',
+    href: '/bookkeeping',
     title: 'Bookkeeping',
     desc: 'Proowrx fits into your existing workflows to manage bank reconciliations, transaction processing and day-to-day bookkeeping workloads, keep client records up to date and create more capacity for your team to serve more clients without the same increase in internal workload.',
   },
   {
     icon: <BadgeDollarSign size={26} />,
     color: '#1f9e8e',
+    href: '/payroll',
     title: 'Payroll Processing',
     desc: 'From pay runs and timesheet management to leave records and Single Touch Payroll (STP) processing, Proowrx helps absorb this growing workload within your existing processes, allowing your team to support more businesses while maintaining consistent service and keeping additional hiring pressure in check.',
   },
   {
     icon: <ReceiptText size={26} />,
     color: '#c9a227',
+    href: '/annual-tax-return',
     title: 'Annual Tax Returns',
     desc: 'Proowrx supports the preparation of annual tax returns by organizing financial records, preparing supporting schedules and coordinating missing information. With more groundwork completed before reviewing, your accountants can serve a higher volume of returns requests without every additional client adding the same administrative burden.',
   },
   {
-    icon: <ChartSpline size={26} />,
-    color: '#1f9e8e',
-    title: 'Tax Planning Support',
-    desc: 'Proowrx supports the preparation of financial information and scheduled reviews, giving your accountants a stronger foundation to serve additional planning opportunities, advise clients and dedicate more time to services that strengthen client relationships and practice growth.',
-  },
-  {
     icon: <PiggyBank size={26} />,
     color: '#c9a227',
+    href: '/accounting#services',
     title: 'SMSF Management',
     desc: 'Proowrx supports SMSF accounting and administrative workflows, helping your practice manage a growing portfolio while allowing your accountants to retain oversight and focus on review, client advice and more complex work.',
   },
-  {
-    icon: <ScanSearch size={26} />,
-    color: '#1f9e8e',
-    title: 'Audit Support',
-    desc: 'Proowrx helps organize working papers, supporting schedules and financial documentation, giving your accountants a more structured review process and helping your practice manage overlapping workloads avoiding any roadblock in serving new clients in the pipeline with more efficiency.',
-  },
-  {
-    icon: <FileCheck2 size={26} />,
-    color: '#c9a227',
-    title: 'BAS, IAS, Super & STP',
-    desc: 'Proowrx supports BAS, IAS, superannuation and STP workflows, helping your team manage recurring deadlines, maintain consistent records and accommodate new growth opportunities without proportionately increasing internal workload.',
-  },
-  {
-    icon: <PieChart size={26} />,
-    color: '#1f9e8e',
-    title: 'Cash Flow Forecasting ',
-    desc: 'Proowrx supports the preparation of cash flow forecasts, financial statements and supporting schedules, helping your accountants spend less time assembling information and more time interpreting results, advising clients and identifying opportunities to add value.',
-  },
+  // {
+  //   icon: <ChartSpline size={26} />,
+  //   color: '#1f9e8e',
+  //   href: '/tax-planning',
+  //   title: 'Tax Planning Support',
+  //   desc: 'Proowrx supports the preparation of financial information and scheduled reviews, giving your accountants a stronger foundation to serve additional planning opportunities, advise clients and dedicate more time to services that strengthen client relationships and practice growth.',
+  // },
+  // {
+  //   icon: <ScanSearch size={26} />,
+  //   color: '#1f9e8e',
+  //   href: '/audit-support',
+  //   title: 'Audit Support',
+  //   desc: 'Proowrx helps organize working papers, supporting schedules and financial documentation, giving your accountants a more structured review process and helping your practice manage overlapping workloads avoiding any roadblock in serving new clients in the pipeline with more efficiency.',
+  // },
+  // {
+  //   icon: <FileCheck2 size={26} />,
+  //   color: '#c9a227',
+  //   title: 'BAS, IAS, Super & STP',
+  //   desc: 'Proowrx supports BAS, IAS, superannuation and STP workflows, helping your team manage recurring deadlines, maintain consistent records and accommodate new growth opportunities without proportionately increasing internal workload.',
+  // },
+  // {
+  //   icon: <PieChart size={26} />,
+  //   color: '#1f9e8e',
+  //   title: 'Cash Flow Forecasting ',
+  //   desc: 'Proowrx supports the preparation of cash flow forecasts, financial statements and supporting schedules, helping your accountants spend less time assembling information and more time interpreting results, advising clients and identifying opportunities to add value.',
+  // },
 ];
 
 const whyUs = [
@@ -184,11 +190,14 @@ export default function Accounting() {
             </p>
           </div>
           <div className="acc-services-grid">
-            {services.map((svc, i) => (
-              <div
+            {services.map((svc, i) => {
+              const Card = svc.href ? Link : 'div';
+
+              return <Card
                 key={i}
                 className={`acc-svc-card reveal reveal-delay-${(i % 4) + 1}`}
                 style={{ '--acc-color': svc.color }}
+                {...(svc.href ? { href: svc.href, 'aria-label': `Explore ${svc.title}` } : {})}
               >
                 <div className="acc-svc-heading">
                   <div className="acc-svc-icon" style={{ color: svc.color, background: svc.color + '18' }}>
@@ -197,8 +206,8 @@ export default function Accounting() {
                   <h4><span>{svc.title}</span></h4>
                 </div>
                 <p>{svc.desc}</p>
-              </div>
-            ))}
+              </Card>;
+            })}
           </div>
         </div>
       </section>

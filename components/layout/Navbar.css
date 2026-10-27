@@ -484,7 +484,7 @@ html:not(.dark) .topbar {
   gap: 14px;
   padding: 11px 20px;
   background: #f6f8fc;
-  border-top: 1px solid var(--border);
+  /* border-top: 1px solid var(--border); */
   color: #6b7d98;
   font-size: .78rem;
 }

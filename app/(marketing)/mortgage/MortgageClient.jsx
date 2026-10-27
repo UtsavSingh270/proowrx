@@ -15,6 +15,9 @@ import {
   Send,
   PhoneCall,
   FileSearch,
+  FileCheck2,
+  SearchCheck,
+  UsersRound,
   Search,
   BadgeCheck,
   ShieldCheck,
@@ -242,7 +245,6 @@ export default function Mortgage() {
               </div>
             </div>
           </div>
-          <MortgageTimeline />
         </div>
       </section>
 
@@ -398,6 +400,7 @@ export default function Mortgage() {
     ))}
   </ul>
 </div>
+<MortgageTimeline />
         </div>
       </section>
 
@@ -406,8 +409,8 @@ export default function Mortgage() {
         <div className="container">
           <div className="mortgage-draft-heading">
             <span className="chip chip-gold section-eyebrow">Pay per application</span>
-            <h2 className="section-title">Get Your Loan Files Processed From $160</h2>
-            <p>Choose the stages you need. Prices are per file.</p></div>
+            <h2 className="section-title">Pay as Each Loan File Gets Done</h2>
+            <p>Get your loan files processed from $160 with a flexible pay-per-application model. Pay only for the applications you get processed, without the ongoing overhead of an in-house team.</p></div>
           <div className="pricing-grid">
   {pricingPlans.map(plan => (
     <article key={plan.id} className={`pricing-card${plan.featured ? ' pricing-card--featured' : ''}`}>
@@ -556,33 +559,127 @@ export default function Mortgage() {
       ]} /> */}
 
       
-      <section id="mortgage-team" className="section mortgage-draft-section mortgage-dedicated-section">
-        <div className="container">
-          <div className="mortgage-dedicated-heading">
-            <span className="chip chip-gold section-eyebrow">Dedicated resources</span>
-            <h2>Dedicated Resources Model</h2>
-            <p>Specialists who work as part of your team, on the schedule that suits your volume.</p>
+      {/* ── DEDICATED RESOURCES MODEL ── */}
+
+<section
+  id="mortgage-team"
+  className="section mortgage-draft-section mortgage-dedicated-section"
+>
+  <div className="container">
+
+    {/* Section Heading */}
+    <div className="mortgage-dedicated-heading">
+
+      <span className="chip chip-gold section-eyebrow">
+        Dedicated Resources
+      </span>
+
+      <h2 className="section-title">
+        Dedicated Resources Model
+      </h2>
+
+      <p>
+        Specialists who work as part of your team,
+        on the schedule that suits your volume.
+      </p>
+
+    </div>
+
+    {/* Resource Cards */}
+    <div className="roles">
+
+      {/* Card 1 */}
+      <div className="role">
+
+        <div className="role-header">
+          <div className="role-icon">
+            <FileCheck2 size={24} strokeWidth={1.8} />
           </div>
-          <div className="roles">
-            <div className="role">
-              <h3>Loan Processing Specialist</h3>
-              <p>Manages end-to-end loan application workflows from data entry to submission. Ensures complete documentation accuracy to fast-track lender approvals and reduce turnaround times.</p>
-            </div>
-            <div className="role">
-              <h3>Credit Analyst (Research Analyst)</h3>
-              <p>Evaluates borrower financials, borrowing capacity, and credit history against lender policies. Prepares comprehensive scenario research and structuring notes to mitigate risk.</p>
-            </div>
-            <div className="role">
-              <h3>Post-Settlement Specialist</h3>
-              <p>Handles post-approval compliance, broker-client follow-ups and settlement tracking tasks. Ensures all lender conditions are seamlessly met for a smooth, hassle-free handoff.</p>
-            </div>
-            <div className="role">
-              <h3>Mortgage Sales Support Specialist</h3>
-              <p>Drives lead nurturing, appointment setting and pipeline management administrative tasks. Frees up your sales team to focus entirely on client-facing meetings and closing deals.</p>
-            </div>
-          </div>
+
+          <h3>Loan Processing Specialist</h3>
         </div>
-      </section>
+
+        <p>
+          Manages end-to-end loan application workflows
+          from data entry to submission. Ensures complete
+          documentation accuracy to fast-track lender
+          approvals and reduce turnaround times.
+        </p>
+
+        <span className="role-bottom-line" />
+
+      </div>
+
+      {/* Card 2 */}
+      <div className="role">
+
+        <div className="role-header">
+          <div className="role-icon">
+            <SearchCheck size={24} strokeWidth={1.8} />
+          </div>
+
+          <h3>Credit Analyst (Research Analyst)</h3>
+        </div>
+
+        <p>
+          Evaluates borrower financials, borrowing capacity,
+          and credit history against lender policies.
+          Prepares comprehensive scenario research and
+          structuring notes to mitigate risk.
+        </p>
+
+        <span className="role-bottom-line" />
+
+      </div>
+
+      {/* Card 3 */}
+      <div className="role">
+
+        <div className="role-header">
+          <div className="role-icon">
+            <ClipboardCheck size={24} strokeWidth={1.8} />
+          </div>
+
+          <h3>Post-Settlement Specialist</h3>
+        </div>
+
+        <p>
+          Handles post-approval compliance, broker-client
+          follow-ups and settlement tracking tasks.
+          Ensures all lender conditions are seamlessly
+          met for a smooth, hassle-free handoff.
+        </p>
+
+        <span className="role-bottom-line" />
+
+      </div>
+
+      {/* Card 4 */}
+      <div className="role">
+
+        <div className="role-header">
+          <div className="role-icon">
+            <UsersRound size={24} strokeWidth={1.8} />
+          </div>
+
+          <h3>Mortgage Sales Support Specialist</h3>
+        </div>
+
+        <p>
+          Drives lead nurturing, appointment setting and
+          pipeline management administrative tasks.
+          Frees up your sales team to focus entirely
+          on client-facing meetings and closing deals.
+        </p>
+
+        <span className="role-bottom-line" />
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
 
       <section className="asset-finance-unique-cta mortgage-marketing-cta">

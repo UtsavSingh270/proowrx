@@ -64,6 +64,8 @@
 }
 
 .acc-svc-card {
+  color: inherit;
+  text-decoration: none;
   background: var(--white);
   border-radius: var(--r-lg);
   padding: 28px 24px;

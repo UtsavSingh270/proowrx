@@ -99,8 +99,10 @@ function AssetFinancePage(){
       <div className="container asset-finance-unique-cta-inner">
         <Image className="asset-finance-unique-cta-image" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=2200&q=85" alt="Finance professionals collaborating" fill sizes="100vw" />
         <div className="asset-finance-unique-cta-content">
-          <h2>Want to Get More Asset Finance Clients Without the Guesswork?</h2>
-          <p>Proowrx combines asset finance expertise with performance marketing to attract high-value clients through a predictable, always-on lead pipeline.</p>
+          <div className="asset-finance-unique-cta-copy">
+            <h2>Want to Get More Asset Finance Clients Without the Guesswork?</h2>
+            <p>Proowrx combines asset finance expertise with performance marketing to attract high-value clients through a predictable, always-on lead pipeline.</p>
+          </div>
           <Link href="/digital-marketing" className="asset-finance-unique-cta-link">Explore Marketing Support <ArrowRight size={18} aria-hidden="true" /></Link>
         </div>
       </div>

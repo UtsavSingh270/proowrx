@@ -71,13 +71,13 @@ export default function Bookkeeping() {
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">150+</span>
-                <span className="page-hero-stat-label">Working Professionals</span>
+                <span className="page-hero-stat-num">Expert</span>
+                <span className="page-hero-stat-label">Bookkeepers</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">100%</span>
-                <span className="page-hero-stat-label">ATO Compliant</span>
+                <span className="page-hero-stat-label">BAS Compliant</span>
               </div>
             </div>
             {/* <div className="page-hero-actions">
@@ -111,7 +111,7 @@ export default function Bookkeeping() {
         <div className="container bk-intro">
           <div ref={r1} className="reveal bk-intro-text">
             <span className="chip chip-sky section-eyebrow">THE PROBLEM WE SOLVE</span>
-            <h2 className="section-title">Scale Your Practice Capacity Without Adding Fixed Overheads</h2>
+            <h2 className="section-title"> Scale Your Practice Capacity Without Adding Fixed Overheads</h2>
             <p className="section-body">
               Accurate bookkeeping is the foundation of every financially healthy business. At Proowrx, we provide outsourced bookkeeping services that keep your daily financial transactions recorded, organised and reconciled.
             </p>

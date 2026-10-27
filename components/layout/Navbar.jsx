@@ -24,9 +24,9 @@ const SERVICE_GROUPS = [
     to: '/mortgage',
     icon: House,
     children: [
-      { label: 'Mortgage Process', to: '/mortgage', desc: 'Full-cycle loan processing and lodgement', icon: FileCheck2 },
-      { label: 'Dedicated Resource', to: '/virtual-assistant', desc: 'Dedicated remote support for your brokerage', icon: UserRound },
       { label: 'Pay Per Application', to: '/pay-per-application', desc: 'Flexible file processing without lock-in contracts', icon: FileStack },
+      { label: 'Para Broker', to: '/mortgage', desc: 'Full-cycle loan processing and lodgement', icon: FileCheck2 },
+      { label: 'Dedicated Resource', to: '/virtual-assistant', desc: 'Dedicated remote support for your brokerage', icon: UserRound },
     ],
   },
   {

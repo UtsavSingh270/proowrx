@@ -1,17 +1,22 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import {
   ArrowRight,
   Award,
   CheckCircle,
   ClipboardList,
+  ClipboardCheck,
   House,
+  Send,
   PhoneCall,
+  FileSearch,
+  Search,
+  BadgeCheck,
   ShieldCheck,
+  FileText, FileCheck, Calculator, FileOutput, Files,
   TrendingUp,
   Workflow,
   X as XIcon,
@@ -85,12 +90,137 @@ const draftPara = [
   ['After settlement', ['Post-settlement support', 'Loan increase and refinancing', 'Additional admin-related work']],
 ];
 
+const timelineStages = [
+  { title: 'Research',   detail: 'Scenarios, lender policy and borrowing capacity across potential lenders.', Icon: FileSearch },
+  { title: 'Intake',     detail: 'Supporting documents checked, renamed and attached to the file.',          Icon: ClipboardCheck },
+  { title: 'Processing', detail: 'Calculators, CRM and Apply Online data entry, plus bank file prep.',       Icon: Workflow },
+  { title: 'Valuation',  detail: 'Valuations ordered, managed and followed up for you.',                      Icon: House },
+  { title: 'Tracking',   detail: 'Lender and solicitor follow-ups all the way through to settlement.',        Icon: Send },
+];
+ 
+const STAGE_INTERVAL = 3800; // ms each stage stays active
+ 
+function MortgageTimeline() {
+  const [active, setActive] = useState(0);
+  const [restart, setRestart] = useState(0);
+  const total = timelineStages.length;
+ 
+  // Starts automatically and loops forever. Clicking a stage jumps to it and the loop carries on from there.
+  useEffect(() => {
+    const t = setTimeout(() => setActive(a => (a + 1) % total), STAGE_INTERVAL);
+    return () => clearTimeout(t);
+  }, [active, restart, total]);
+ 
+  const select = (i) => { setActive(i); setRestart(r => r + 1); };
+ 
+  const current = timelineStages[active];
+ 
+  return (
+    <div
+      className="mt"
+      style={{
+        '--mt-pos': `${((active + 0.5) / total) * 100}%`,
+        '--mt-progress': `${(active / (total - 1)) * 100}%`,
+        '--mt-interval': `${STAGE_INTERVAL}ms`,
+      }}
+    >
+      <h2 className="mt-heading">One file, five stages</h2>
+ 
+      <div className="mt-track">
+        <span className="mt-line" aria-hidden="true"><span className="mt-line-fill" /></span>
+        <ol className="mt-stages">
+          {timelineStages.map(({ title, Icon }, i) => {
+            const state = i === active ? 'active' : i < active ? 'done' : 'idle';
+            return (
+              <li key={title}>
+                <button
+                  type="button"
+                  className="mt-stage"
+                  data-state={state}
+                  aria-pressed={i === active}
+                  aria-label={`Stage ${i + 1}: ${title}`}
+                  onClick={() => select(i)}
+                >
+                  <span className="mt-icon">
+                    <Icon size={24} aria-hidden="true" />
+                  </span>
+                  <span className="mt-title">{title}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+ 
+      {/* Pop-up message: slides under the active stage and re-animates on every change */}
+      <div className="mt-popup-area" aria-live="polite" aria-atomic="true">
+        <span className="mt-popup-arrow" aria-hidden="true" />
+        <div className="mt-popup">
+<div className="mt-popup-body" key={active}>
+            <p>{current.detail}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const whyUs = [
   { icon: <Award size={24} aria-hidden="true" />, title: 'Industry Expertise', desc: 'Trained specifically on the Australian mortgage market by an experienced Australia-based broker.' },
   { icon: <Workflow size={24} aria-hidden="true" />, title: 'Streamlined Solutions', desc: 'Technology to automate manual tasks and plug seamlessly into your existing workflow.' },
   { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Scalability', desc: 'From 1 file a week to 100 — our service adapts as your business grows.' },
   { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Unwavering Support', desc: 'A dedicated team that helps you move faster, eliminate stress, and focus on clients.' },
 ];
+
+const processingOutputs = [
+  { name: 'Lender application form', Icon: FileText },
+  { name: 'NCCP documents', Icon: FileCheck },
+  { name: 'Lender serviceability calculator', Icon: Calculator },
+  { name: 'Discharge form', note: 'If applicable', Icon: FileOutput },
+  { name: 'FHOG', note: 'If applicable', Icon: House },
+  { name: 'Other FHLDS forms', note: 'Depending on lender requirements', Icon: Files },
+];
+
+const pricingPlans = [
+  {
+    id: 'research',
+    stage: 'Stage 1: Assess',
+    title: 'Research & Scenario',
+    price: '$100',
+    note: 'No minimum',
+    groups: [
+      { heading: 'Research', items: ['Scenario research activity', 'Lender policy research', 'Borrowing capacity across potential lenders', 'Lender recommendation with an alternative'] },
+    ],
+  },
+  {
+    id: 'lodge',
+    stage: 'Stages 2–6: Process & track',
+    title: 'Lodge & Track',
+    price: '$160',
+    note: 'Minimum 5 cases commitment (pre-paid)',
+    groups: [
+      { heading: 'Intake', items: ['Supporting documents checked and attached'] },
+      { heading: 'Processing', items: ['Servicing calculator and application pricing', 'Aggregator CRM and Apply Online data entry', 'Bank file prep, TFN/CRN removal', 'FHOG and discharge forms'] },
+      { heading: 'Valuation', items: ['Valuations managed and followed up'] },
+      { heading: 'Tracking', items: ['Follow-up with lenders', 'Follow-up with solicitors for settlement'] },
+    ],
+  },
+  {
+    id: 'bundle',
+    featured: true,
+    stage: 'Stages 1–6',
+    title: 'Assess, Lodge & Track',
+    price: '$250',
+    note: 'Minimum 5 cases commitment (pre-paid)',
+    bundle: [
+      { name: 'Research & Scenario', price: '$100' },
+      { name: 'Lodge & Track', price: '$160' },
+    ],
+    tagline: 'One file, one price, one team from first scenario to settlement.',
+  },
+];
+
+const paraIcons = [Search, FileCheck, BadgeCheck];
 
 export default function Mortgage() {
   const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(), r4 = useReveal();
@@ -107,7 +237,7 @@ export default function Mortgage() {
         <div className="container">
           <div className="page-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 10 }}>Mortgage Services</span>
-            <h1>Mortgage process outsourcing for brokers who want to write more loans, not push more paper.</h1>
+            <h1>Mortgage Outsourcing Services</h1>
             <p>From scenario research to lodgement and settlement follow-ups, our team handles the processing so you can stay with clients. Pay per application, add a para broker, or build a dedicated team.</p>
             {/* <div className="page-hero-actions">
               <a href="#mortgage-pricing" className="btn btn-gold">See pay-per-application pricing <ArrowRight size={15} /></a>
@@ -130,7 +260,7 @@ export default function Mortgage() {
               </div>
             </div>
           </div>
-          <ol className="mortgage-stage-flow"><h2>One file, five stages</h2>{[['Research','Scenarios, lender policy, borrowing capacity'],['Intake','Supporting documents checked and attached'],['Processing','Calculators, CRM and Apply Online data entry, bank file prep'],['Valuation','Ordered, managed and followed up'],['Tracking','Lender and solicitor follow-ups through to settlement']].map(([title, text], index) => <li key={title}><span>{index + 1}</span><div><strong>{title}</strong><small>{text}</small></div></li>)}</ol>
+          <MortgageTimeline />
         </div>
       </section>
 
@@ -158,7 +288,7 @@ export default function Mortgage() {
         <div className="container">
           <div className="mortgage-draft-heading mortgage-models-heading">
             <span className="chip chip-teal section-eyebrow">Service Models</span>
-            <h2 className="section-title">Three Ways to Work with Us</h2>
+            <h2 className="section-title">Three Ways to Work With Us</h2>
             <p>Start with the model that matches how your business runs today. You can change as you grow.</p>
           </div>
           <div className="models-grid">
@@ -167,9 +297,9 @@ export default function Mortgage() {
                 <div className="model-header">
                   <div className="model-num">{m.num}</div>
                   <div>
-                    <span className="model-tag" style={{ color: m.tagColor, borderColor: m.tagColor }}>
+                    {/* <span className="model-tag" style={{ color: m.tagColor, borderColor: m.tagColor }}>
                       {m.tag}
-                    </span>
+                    </span> */}
                     <h3>{m.title}</h3>
                   </div>
                 </div>
@@ -197,22 +327,86 @@ export default function Mortgage() {
         <div className="container">
           <div className="mortgage-draft-heading">
             <span className="chip chip-teal section-eyebrow">What’s included</span>
-            <h2 className="section-title">What’s included in our processing service</h2>
+            <h2 className="section-title">What’s Included in Our Processing Service</h2>
             <p>Every file is prepared, lodged and followed up by a team that knows lender requirements and compliance obligations.</p>
           </div>
           <div className="mortgage-draft-box-grid">{draftScope.map(([title, items]) => <article className="mortgage-draft-box" key={title}><h3>{title}</h3><ul>{items.map(item => <li key={item}><CheckCircle size={15} />{item}</li>)}</ul></article>)}</div>
-          <div className="mortgage-processing-outputs"><h3>Processing outputs</h3><ul><li>Lender application form</li><li>NCCP documents</li><li>Lender serviceability calculator</li><li>Discharge form <small>(if applicable)</small></li><li>FHOG <small>(if applicable)</small></li><li>Other FHLDS forms <small>(depending on lender requirements)</small></li></ul></div>
+         
+          <div className="mortgage-outputs">
+  <div className="mortgage-outputs-head">
+    <h3>Processing Outputs</h3>
+    {/* <p>Everything delivered with each file</p> */}
+  </div>
+  <ul className="mortgage-outputs-grid">
+    {processingOutputs.map(({ name, note, Icon }) => (
+      <li key={name}>
+        <span className="mortgage-outputs-icon"><Icon size={20} aria-hidden="true" /></span>
+        <span className="mortgage-outputs-text">
+          {name}
+          {note && <small className="mortgage-outputs-note">({note})</small>}
+        </span>
+      </li>
+    ))}
+  </ul>
+</div>
         </div>
       </section>
+
+      
       <section id="mortgage-pricing" className="section mortgage-pricing-section" style={{ background: 'var(--surface)' }}>
         <div className="container">
-          <div className="mortgage-draft-heading"><h2 className="section-title">Pay per application: get your loan files processed from $160</h2><p>Choose the stages you need. Prices are per file.</p></div>
-          <div className="mortgage-price-grid">
-            <article className="mortgage-price-card"><span>Stage 1: Assess</span><h3>Research &amp; Scenario</h3><strong>$100 <small>/ file</small></strong><p>No minimum</p><h4>Research</h4><ul>{['Scenario research activity','Lender policy research','Borrowing capacity across potential lenders','Lender recommendation with an alternative'].map(item => <li key={item}><CheckCircle size={14} />{item}</li>)}</ul></article>
-            <article className="mortgage-price-card"><span>Stages 2–6: Process &amp; track</span><h3>Lodge &amp; Track</h3><strong>$160 <small>/ file</small></strong><p>Minimum 5 cases commitment (pre-paid)</p><em>Everything in Research &amp; Scenario</em><h4>Intake</h4><ul>{['Supporting documents checked and attached'].map(item => <li key={item}><CheckCircle size={14} />{item}</li>)}</ul><h4>Processing</h4><ul>{['Servicing calculator and application pricing','Aggregator CRM and Apply Online data entry','Bank file prep, TFN/CRN removal','FHOG and discharge forms'].map(item => <li key={item}><CheckCircle size={14} />{item}</li>)}</ul><h4>Valuation</h4><ul><li><CheckCircle size={14} />Valuations managed and followed up</li></ul><h4>Tracking</h4><ul>{['Follow-up with lenders','Follow-up with solicitors for settlement'].map(item => <li key={item}><CheckCircle size={14} />{item}</li>)}</ul></article>
-            <article className="mortgage-price-card mortgage-price-card--best"><b>Best value</b><span>Stages 1–6</span><h3>Assess, Lodge &amp; Track</h3><strong>$250 <small>/ file</small></strong><p>Minimum 5 cases commitment (pre-paid)</p><em>Everything in Research &amp; Scenario, plus everything in Lodge &amp; Track, bundled.</em><ul><li><CheckCircle size={14} />One file, one price, one team from first scenario to settlement</li></ul></article>
-          </div>
-          <span className="text-2xl font-bold">Coverage by Plan:</span>
+          <div className="mortgage-draft-heading">
+            <span className="chip chip-gold section-eyebrow">Pay per application</span>
+            <h2 className="section-title">Get Your Loan Files Processed From $160</h2>
+            <p>Choose the stages you need. Prices are per file.</p></div>
+          <div className="pricing-grid">
+  {pricingPlans.map(plan => (
+    <article key={plan.id} className={`pricing-card${plan.featured ? ' pricing-card--featured' : ''}`}>
+      {plan.featured && <span className="pricing-badge">Best value</span>}
+
+      <header className="pricing-head">
+        <span className="pricing-stage">{plan.stage}</span>
+        <h3>{plan.title}</h3>
+        <p className="pricing-price"><strong>{plan.price}</strong><span>/ file</span></p>
+        <p className="pricing-note">{plan.note}</p>
+      </header>
+
+      <div className="pricing-body">
+        {plan.groups && plan.groups.map(group => (
+          <section key={group.heading} className="pricing-group">
+            <h4>{group.heading}</h4>
+            <ul>
+              {group.items.map(item => <li key={item}><CheckCircle size={15} aria-hidden="true" />{item}</li>)}
+            </ul>
+          </section>
+        ))}
+
+        {plan.bundle && (
+          <>
+            <section className="pricing-group">
+              <h4>Includes both packages</h4>
+              <ul>
+                {plan.bundle.map(b => (
+                  <li key={b.name}>
+                    <CheckCircle size={15} aria-hidden="true" />
+                    <span>{b.name} <small>({b.price} separately)</small></span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+            <p className="pricing-save">Save $10 per file vs. buying separately</p>
+            <p className="pricing-tagline">{plan.tagline}</p>
+          </>
+        )}
+      </div>
+
+      <a className="pricing-cta" href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer">
+        Get started <ArrowRight size={16} aria-hidden="true" />
+      </a>
+    </article>
+  ))}
+</div>
+          <h3 className="pricing-table-title">Coverage by plan</h3>
           <div className="ppa-table-wrap">
             <table className="ppa-table">
               <thead>
@@ -249,16 +443,32 @@ export default function Mortgage() {
       </section> */}
 
       <section id="mortgage-para" className="section mortgage-draft-section" style={{ background: 'var(--surface)' }}>
-        <div className="container">
-          <div className="mortgage-draft-heading">
-            <span className="chip chip-gold section-eyebrow">Para broker</span>
-            <h2 className="section-title">Para broker support</h2>
-            <p>An experienced team that works your files from scenario to post-settlement.</p>
-          </div>
-          <div className="mortgage-draft-box-grid">{draftPara.map(([title, items]) => <article className="mortgage-draft-box" key={title}><h3>{title}</h3><ul>{items.map(item => <li key={item}><CheckCircle size={15} />{item}</li>)}</ul></article>)}</div>
-        </div>
-      </section>
-
+  <div className="container">
+    <div className="mortgage-draft-heading">
+      <span className="chip chip-gold section-eyebrow">Para broker</span>
+      <h2 className="section-title">Para Broker Support</h2>
+      <p>An experienced team that works your files from scenario to post-settlement.</p>
+    </div>
+    <div className="para-grid">
+      {draftPara.map(([title, items], i) => {
+        const Icon = paraIcons[i];
+        return (
+          <article className="para-card" key={title}>
+            <header className="para-head">
+              <span className="para-icon"><Icon size={22} aria-hidden="true" /></span>
+              <h3>{title}</h3>
+            </header>
+            <ul>
+              {items.map(item => (
+                <li key={item}><CheckCircle size={15} aria-hidden="true" />{item}</li>
+              ))}
+            </ul>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
       {/* Activities */}
       {/* <section className="section">
         <div className="container">
@@ -301,12 +511,8 @@ export default function Mortgage() {
         <div className="container">
           <div className="mortgage-dedicated-heading">
             <span className="chip chip-gold section-eyebrow">Dedicated resources</span>
-            <h2>Dedicated resources model</h2>
+            <h2>Dedicated Resources Model</h2>
             <p>Specialists who work as part of your team, on the schedule that suits your volume.</p>
-          </div>
-          <div className="mortgage-dedicated-toggle">
-            <button type="button">Part-time</button>
-            <button type="button">Full-time</button>
           </div>
           <div className="roles">
             <div className="role">
@@ -330,8 +536,10 @@ export default function Mortgage() {
         <div className="container asset-finance-unique-cta-inner">
           <Image className="asset-finance-unique-cta-image" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=2200&q=85" alt="Finance professionals collaborating" fill sizes="100vw" />
           <div className="asset-finance-unique-cta-content">
-            <h2>Explore our digital marketing services, custom-tailored for mortgage brokers</h2>
-            <p>Processing keeps your pipeline moving. Marketing keeps it full.</p>
+            <div className="asset-finance-unique-cta-copy">
+              <h2>Explore Our Digital Marketing Services, Custom-Tailored for Mortgage Brokers</h2>
+              <p>Processing keeps your pipeline moving. Marketing keeps it full.</p>
+            </div>
             <Link href="/digital-marketing" className="asset-finance-unique-cta-link">Explore Marketing Support <ArrowRight size={18} aria-hidden="true" /></Link>
           </div>
         </div>

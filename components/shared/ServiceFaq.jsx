@@ -54,6 +54,12 @@ const FAQ_SETS = {
     { question: 'Can you follow our brokerage-specific checklist?', answer: 'Yes. Your required documents, CRM stages, compliance checks and handover points are confirmed before processing begins.' },
     { question: 'Can we move to a dedicated resource later?', answer: 'Yes. If volume becomes consistent, the service model can be reviewed and moved to dedicated support.' },
   ],
+  payroll: [
+    { question: 'What payroll processing tasks can Australian accounting firms outsource to Proowrx?', answer: 'You can outsource end-to-end payroll processing services, including pay run execution, STP Phase 2 reporting, superannuation calculations, leave accrual tracking, termination calculations, and EOFY reconciliations, using your firm’s existing cloud payroll software.' },
+    { question: 'Can Proowrx manage weekly, fortnightly and monthly payroll processing?', answer: 'Yes. As a flexible payroll service provider, our team manages weekly, fortnightly, and monthly pay runs for your clients, generating draft ABA payment files and employee pay slips ready for your firm’s final review.' },
+    { question: 'How does Proowrx protect confidential employee and payroll information?', answer: 'Proowrx maintains strict, enterprise-grade security protocols, restricted user access, secure Australian server environments, and encrypted file transfers to protect sensitive employee pay details and tax file numbers.' },
+    { question: 'What is Payday Super and how does Proowrx handle payroll around it?', answer: 'Payday Super requires employers to pay superannuation simultaneously with employee pay runs. Proowrx prepares your clients by configuring automated superannuation calculations, setting up clearing house workflows, and keeping client pay runs fully compliant.' },
+  ],
   about: [
     { question: 'Where is Proowrx based?', answer: 'Proowrx is an Australian-owned business headquartered in Sydney, NSW, Australia. Our highly trained offshore teams operate from secured and strictly monitored delivery centres to support businesses.' },
     { question: 'What service models does Proowrx offer?', answer: 'Proowrx offers highly flexible options without lock-in contracts. You can hire a dedicated full-time resource or choose scalable support during seasonal business peaks.' },

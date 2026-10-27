@@ -727,7 +727,7 @@
   border: 0;
   box-shadow: none;
   text-align: center;
-   margin-top: clamp(18px, 4svh, 50px);
+  margin-top: clamp(32px, 7svh, 80px);
 }
 
 .marketing-site .mortgage-page-hero .mt-heading {
@@ -737,7 +737,7 @@
   line-height: 1.3;
 }
 
-.mt-track { position: relative; }
+.mt-track { position: relative; margin-top: clamp(32px, 7svh, 80px); }
 .mt-line {
   position: absolute;
   top: 28px;

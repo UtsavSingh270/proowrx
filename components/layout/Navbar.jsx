@@ -25,7 +25,7 @@ const SERVICE_GROUPS = [
     icon: House,
     children: [
       { label: 'Pay Per Application', to: '/pay-per-application', desc: 'Flexible file processing without lock-in contracts', icon: FileStack },
-      { label: 'Para Broker', to: '/mortgage', desc: 'Full-cycle loan processing and lodgement', icon: FileCheck2 },
+      { label: 'Para Broker', to: '/para-broker', desc: 'Full-cycle loan processing and lodgement', icon: FileCheck2 },
       { label: 'Dedicated Resource', to: '/virtual-assistant', desc: 'Dedicated remote support for your brokerage', icon: UserRound },
     ],
   },
@@ -36,15 +36,15 @@ const SERVICE_GROUPS = [
     to: '/accounting',
     icon: Calculator,
     children: [
-      { label: 'Accounting Services', to: '/accounting', desc: 'Complete Accounting Services For Your Business', icon: BarChart3 },
       { label: 'Bookkeeping Services', to: '/bookkeeping', desc: 'Reconciliation, payroll and bookkeeping support', icon: BookOpenCheck },
-      { label: 'Tax, BAS & SMSF', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: Receipt },
-      { label: 'Payroll Processing', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: Wallet },
+      { label: 'Tax & BAS', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: Receipt },
+      { label: 'SMSF', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: BarChart3 },
+      { label: 'Payroll Processing', to: '/payroll', desc: 'Australian-compliant preparation and administration', icon: Wallet },
       { label: 'Cash Forecast Statement', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: BarChart3 },
       { label: 'Audit Support', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: ShieldCheck },
     ],
   },
-  
+
   {
     id: 'digital-marketing',
     label: 'Digital Marketing',
@@ -67,7 +67,7 @@ const SERVICE_GROUPS = [
     to: '/asset-finance',
     icon: CarFront,
     children: [
-      { label: 'Asset Finance Processing', to: '/asset-finance', desc: 'Vehicle, equipment and commercial finance support', icon: CarFront },
+      // { label: 'Asset Finance Processing', to: '/asset-finance', desc: 'Vehicle, equipment and commercial finance support', icon: CarFront },
       { label: 'Application Packaging', to: '/asset-finance', desc: 'Document validation and lender-ready packaging', icon: FileStack },
       { label: 'Settlement Support', to: '/asset-finance', desc: 'Lender follow-up and settlement coordination', icon: Landmark },
     ],
@@ -99,12 +99,6 @@ const ALL_SERVICE_LINKS = SERVICE_GROUPS.flatMap(s => [
 function groupMegaColumns(items) {
   const columns = [];
   let current = null;
-
-  function getSubcategoryColumns(count) {
-  if (count > 6) return 3;
-  if (count > 3) return 2;
-  return 1;
-}
 
   items.forEach(item => {
     if (item.type === 'heading') {
@@ -176,6 +170,8 @@ export default function Navbar() {
 
   const selectedService = SERVICE_GROUPS.find(s => s.id === activeService) || SERVICE_GROUPS[0];
   const SelectedServiceIcon = selectedService.icon;
+  // 3 rows per column: up to 3 items -> 1 column, 4-6 items -> 2 columns
+  const subColumns = Math.min(2, Math.ceil(selectedService.children.length / 3));
 
   return (
     <>
@@ -264,6 +260,7 @@ export default function Navbar() {
                       </div>
                       <Link href="/services">View all services <ArrowRight size={14} /></Link>
                     </div>
+
                     <div className="services-mega-grid">
                       <div className="services-mega-list" aria-label="Service categories">
                         {SERVICE_GROUPS.map(service => {
@@ -284,16 +281,16 @@ export default function Navbar() {
                           );
                         })}
                       </div>
+
                       <div className="services-mega-detail" aria-live="polite">
                         <Link href={selectedService.to} className="services-mega-detail-heading">
-                          <span className="services-mega-detail-icon"><SelectedServiceIcon size={20} /></span>
+                          <span className="services-mega-detail-icon"><SelectedServiceIcon size={21} /></span>
                           <div><small>Explore</small><strong>{selectedService.label}</strong></div>
                           <ArrowRight size={16} aria-hidden="true" />
                         </Link>
                         <div
-                          className={`services-mega-subcategories${
-                            selectedService.children.length > 4 ? ' services-mega-subcategories--two-col' : ''
-                          }`}
+                          key={selectedService.id}
+                          className={`services-mega-subcategories services-mega-subcategories--cols-${subColumns}`}
                         >
                           {selectedService.children.map(child => {
                             const ChildIcon = child.icon;
@@ -306,13 +303,18 @@ export default function Navbar() {
                               >
                                 <span><ChildIcon size={18} /></span>
                                 <div><strong>{child.label}</strong><small>{child.desc}</small></div>
-                                <ArrowRight size={14} />
+                                <ArrowRight size={14} aria-hidden="true" />
                               </Link>
                             );
                           })}
                         </div>
                       </div>
                     </div>
+
+                    {/* <div className="services-mega-footer">
+                      <span>Not sure which service fits your business?</span>
+                      <Link href="/contact">Talk to our team <ArrowRight size={14} /></Link>
+                    </div> */}
                   </>
                 ) : (
                   <div className={groupMegaColumns(item.mega).length > 1 ? 'mega-inner mega-inner--columns' : 'mega-inner'}>

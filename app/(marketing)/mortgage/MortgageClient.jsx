@@ -44,39 +44,12 @@ const comparisons = [
   { label: 'Research & Scenario · $100', Research: true, Intake: false, Processing: false, Valuation: false, Tracking: false },
   { label: 'Lodge & Track · $160', Research: false, Intake: true, Processing: true, Valuation: true, Tracking: true },
   { label: 'Assess, Lodge & Track · $250', Research: true, Intake: true, Processing: true, Valuation: true, Tracking: true },
-  // { label: 'Trained in AOL & aggregator CRMs', Research: true, Intake: true, Processing: '?' },
-  // { label: '24-hr turnaround SLA', Research: true, Intake: true, Processing: false },
-  // { label: 'Post-lodgement follow-up', Research: false, Intake: true, Processing: true },
-  // { label: 'Scales with your volume', Research: true, Intake: true, Processing: false },
 ];
 
 const models = [
   { num: '01', title: 'Pay per application', tag: 'Service Model', tagColor: 'var(--gold)', desc: 'Service-based processing priced per file, from assessment only to full lodgement and tracking.', benefits: ['From $100 per file'], href: '#mortgage-pricing', packages: null },
   { num: '02', title: 'Para broker', tag: 'Service Model', tagColor: 'var(--teal)', desc: 'Detailed research, lender recommendations, submission packaging and post-settlement support.', benefits: ["See what's included"], href: '#mortgage-para', packages: null },
   { num: '03', title: 'Dedicated resources', tag: 'Service Model', tagColor: 'var(--teal)', desc: 'Part-time or full-time specialists working as an extension of your team.', benefits: ['Meet the roles'], href: '#mortgage-team', packages: null },
-];
-
-const preSubmission = [
-  'Enter details in CRM and fill in ApplyOnline',
-  'Generate and send loan application forms for signing',
-  'Upload supporting docs with all compliance satisfied',
-  'Complete FHOG, FHLDS and other relevant forms',
-  'Prepare discharge authority forms where necessary',
-  'Complete the file and lodge to the lender',
-];
-
-const postSubmission = [
-  'Monitor application progress and follow up with lender',
-  'Request any outstanding documentation from clients',
-  'Respond to audit/compliance questions from lender',
-  'Coordinate with solicitors and valuers',
-  'Manage construction progress payments where applicable',
-];
-
-const draftModels = [
-  ['Pay per application', 'Service-based processing priced per file, from assessment only to full lodgement and tracking.', 'From $100 per file'],
-  ['Para broker', 'Detailed research, lender recommendations, submission packaging and post-settlement support.', 'See what’s included'],
-  ['Dedicated resources', 'Part-time or full-time specialists working as an extension of your team.', 'Meet the roles'],
 ];
 const draftScope = [
   ['Documents and loan preparation', ['Supporting document management: filing, renaming, organisation', 'Loan preparation, including credit checks', 'Data entry and document upload to MyCRM, AOL, Simpology and others']],
@@ -124,7 +97,7 @@ function MortgageTimeline() {
         '--mt-interval': `${STAGE_INTERVAL}ms`,
       }}
     >
-      <h2 className="mt-heading">One file, five stages</h2>
+      <h2 className="mt-heading">One File, Five Stages</h2>
  
       <div className="mt-track">
         <span className="mt-line" aria-hidden="true"><span className="mt-line-fill" /></span>

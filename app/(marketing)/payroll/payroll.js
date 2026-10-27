@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import ServiceBenefits from '@/components/shared/ServiceBenefits';
-import './Payroll.css';
+import './payroll.css';
 
 function useReveal() {
   const ref = useRef(null);

@@ -7,6 +7,8 @@ import {
   ArrowRight,
   Award,
   CheckCircle,
+  Clock,
+  Users,
   ClipboardList,
   ClipboardCheck,
   House,
@@ -193,6 +195,13 @@ const pricingPlans = [
   },
 ];
 
+const growthPoints = [
+  { Icon: Clock,          title: 'Fewer delays',        text: 'Reduce application delays by keeping documents organised and following up on outstanding requirements.' },
+  { Icon: ClipboardCheck, title: 'Files on track',      text: 'Keep every file on track with consistent application monitoring and lender follow-ups.' },
+  { Icon: Users,          title: 'More client time',    text: 'Save more time for building client relationships by delegating back office processing and administrative tasks.' },
+  { Icon: TrendingUp,     title: 'Scale without hiring', text: 'Handle growing application volumes without having to expand your in-house team for every increase in workload.' },
+];
+
 const paraIcons = [Search, FileCheck, BadgeCheck];
 
 export default function Mortgage() {
@@ -236,6 +245,73 @@ export default function Mortgage() {
           <MortgageTimeline />
         </div>
       </section>
+
+{/* ── Mortgage Growth Challenge ── */}
+<section
+  className="section mp-section"
+  id="mortgage-growth"
+  aria-labelledby="mortgage-growth-title"
+>
+  <div className="container mp-grid">
+
+    {/* LEFT CONTENT */}
+    <div className="mp-content">
+      <div className="mp-eyebrow">
+        <span className="chip chip-teal section-eyebrow">The Challenge</span>
+      </div>
+
+      <h2
+        className="mp-heading"
+        id="mortgage-growth-title"
+      >
+        Grow Your Mortgage
+        Brokering Business
+        <span className="mp-heading-accent">
+          Without Growing
+          Your Overheads.
+        </span>
+      </h2>
+
+      <p className="mp-description">
+        As your mortgage brokerage grows, so does the work behind every loan. From collecting client documents and preparing applications to tracking lender updates and coordinating settlements, the workload can quickly build up.
+      </p>
+
+      <div className="mp-solution">
+        <span className="mp-solution-bar" />
+
+        <p>
+          <strong>That&apos;s where Proowrx comes in.</strong>
+          {" "}Proowrx provides skilled mortgage support to help you manage these tasks efficiently, keep applications moving and give your clients the attention they deserve.
+        </p>
+      </div>
+    </div>
+
+    {/* RIGHT CARDS */}
+    <ul className="mp-cards">
+  {growthPoints.map(({ Icon, title, text }) => (
+    <li className="mp-card" key={title}>
+
+      <div className="mp-card-header">
+        <span className="mp-icon-wrapper">
+          <Icon
+            size={22}
+            strokeWidth={1.8}
+            aria-hidden="true"
+          />
+        </span>
+
+        <h3>{title}</h3>
+      </div>
+
+      <p>{text}</p>
+
+      <span className="mp-card-bottom" aria-hidden="true" />
+    </li>
+  ))}
+</ul>
+
+  </div>
+</section>
 
       {/* Intro split */}
       {/* <section className="section">
@@ -490,15 +566,19 @@ export default function Mortgage() {
           <div className="roles">
             <div className="role">
               <h3>Loan Processing Specialist</h3>
+              <p>Manages end-to-end loan application workflows from data entry to submission. Ensures complete documentation accuracy to fast-track lender approvals and reduce turnaround times.</p>
             </div>
             <div className="role">
               <h3>Credit Analyst (Research Analyst)</h3>
+              <p>Evaluates borrower financials, borrowing capacity, and credit history against lender policies. Prepares comprehensive scenario research and structuring notes to mitigate risk.</p>
             </div>
             <div className="role">
               <h3>Post-Settlement Specialist</h3>
+              <p>Handles post-approval compliance, broker-client follow-ups and settlement tracking tasks. Ensures all lender conditions are seamlessly met for a smooth, hassle-free handoff.</p>
             </div>
             <div className="role">
               <h3>Mortgage Sales Support Specialist</h3>
+              <p>Drives lead nurturing, appointment setting and pipeline management administrative tasks. Frees up your sales team to focus entirely on client-facing meetings and closing deals.</p>
             </div>
           </div>
         </div>

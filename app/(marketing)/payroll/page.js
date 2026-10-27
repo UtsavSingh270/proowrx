@@ -3,11 +3,11 @@ import { pageMetadata } from '@/lib/seo';
 import PayrollClient from './payroll';
 
 const metadata = {
-  title: 'Payroll Services',
+  title: 'Payroll Support',
   description: 'Reliable outsourced payroll processing and compliance support for Australian businesses and accounting practices.',
   alternates: { canonical: '/payroll' },
   openGraph: {
-    title: 'Payroll Services | Proowrx',
+    title: 'Payroll Support | Proowrx',
     description: 'Accurate payroll processing and compliance support from Proowrx.',
     url: '/payroll',
   },

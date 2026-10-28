@@ -3,12 +3,19 @@ import { pageMetadata } from '@/lib/seo';
 import SmsfClient from './smsf';
 
 const metadata = {
-  title: 'SMSF Management',
-  description: 'Reliable outsourced SMSF management and compliance support for Australian businesses and accounting practices.',
+  title: 'SMSF Outsourcing Services for Accounting Firms',
+  description: 'Manage growing SMSF accounting and administration workloads with flexible outsourcing support from Proowrx.',
+  keywords: [
+    'SMSF outsourcing services',
+    'SMSF accounting outsourcing',
+    'SMSF administration support',
+    'SMSF bookkeeping services',
+    'SMSF support for accounting firms',
+  ],
   alternates: { canonical: '/smsf' },
   openGraph: {
-    title: 'SMSF Management | Proowrx',
-    description: 'Accurate SMSF management and compliance support from Proowrx.',
+    title: 'SMSF Outsourcing Services for Accounting Firms | Proowrx',
+    description: 'Manage growing SMSF accounting and administration workloads with flexible outsourcing support from Proowrx.',
     url: '/smsf',
   },
 };

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   PAYROLL PAGE (Accounting)
+   SMSF PAGE (Accounting)
    Structure: Hero → Service Intro → What We
    Provide → Benefits → Why Choose → FAQ
 ═══════════════════════════════════════════ */
@@ -8,7 +8,7 @@
 /* Uses the shared .page-hero / .page-hero--split / .page-hero--img
    system from the main services page — no overrides needed here. */
 
-.pr-hero-badge-icon {
+.smsf-hero-badge-icon {
   display: grid;
   width: 38px;
   height: 38px;
@@ -20,14 +20,14 @@
 }
 
 /* ── 2. Service Intro ────────────────────── */
-.pr-intro {
+.smsf-intro {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 56px;
   align-items: center;
 }
 
-.pr-intro-visual img {
+.smsf-intro-visual img {
   width: 100%;
   height: 420px;
   object-fit: cover;
@@ -35,7 +35,7 @@
   box-shadow: var(--shadow-lg);
 }
 
-.pr-point-list {
+.smsf-point-list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@
   margin-top: 24px;
 }
 
-.pr-point-list li {
+.smsf-point-list li {
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -52,14 +52,14 @@
   line-height: 1.5;
 }
 
-.pr-point-check {
+.smsf-point-check {
   color: var(--gold);
   flex-shrink: 0;
   margin-top: 2px;
 }
 
 /* ── 3. What We Provide ──────────────────── */
-.pr-provide-grid {
+.smsf-provide-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px;
@@ -67,7 +67,7 @@
   margin: 0 auto;
 }
 
-.pr-provide-item {
+.smsf-provide-item {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -78,14 +78,14 @@
   transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
-.pr-provide-item:hover {
+.smsf-provide-item:hover {
   transform: translateY(-5px);
   border-color: var(--gold);
   box-shadow: var(--shadow-md);
 }
 
-.pr-provide-heading,
-.pr-why-heading {
+.smsf-provide-heading,
+.smsf-why-heading {
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
   align-items: center;
@@ -94,7 +94,7 @@
   min-width: 0;
 }
 
-.pr-provide-icon {
+.smsf-provide-icon {
   width: 48px;
   height: 48px;
   border-radius: var(--r-sm);
@@ -106,7 +106,7 @@
   flex-shrink: 0;
 }
 
-.pr-provide-title {
+.smsf-provide-title {
   min-width: 0;
   max-height: 48px;
   overflow: hidden;
@@ -118,7 +118,7 @@
   color: var(--navy);
 }
 
-.pr-provide-body {
+.smsf-provide-body {
   margin: 0;
   color: var(--text-2);
   font-size: 0.85rem;
@@ -126,13 +126,13 @@
 }
 
 /* ── 4. Why Choose ───────────────────────── */
-.pr-why-grid {
+.smsf-why-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
-.pr-why-card {
+.smsf-why-card {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
@@ -143,13 +143,13 @@
   gap: 14px;
 }
 
-.pr-why-card:hover {
+.smsf-why-card:hover {
   border-color: var(--gold);
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
 }
 
-.pr-why-icon {
+.smsf-why-icon {
   width: 48px;
   height: 48px;
   border-radius: var(--r-sm);
@@ -161,7 +161,7 @@
   flex-shrink: 0;
 }
 
-.pr-why-title {
+.smsf-why-title {
   min-width: 0;
   max-height: 48px;
   overflow: hidden;
@@ -173,7 +173,7 @@
   line-height: 24px;
 }
 
-.pr-why-body {
+.smsf-why-body {
   font-size: 0.83rem;
   color: var(--text-2);
   line-height: 1.65;
@@ -181,19 +181,19 @@
 
 /* ── Responsive ──────────────────────────── */
 @media (max-width: 1100px) {
-  .pr-why-grid { grid-template-columns: repeat(2, 1fr); }
+  .smsf-why-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 900px) {
-  .pr-intro { grid-template-columns: 1fr; }
-  .pr-intro-visual { order: -1; }
-  .pr-intro-visual img { height: 280px; }
+  .smsf-intro { grid-template-columns: 1fr; }
+  .smsf-intro-visual { order: -1; }
+  .smsf-intro-visual img { height: 280px; }
 }
 
 @media (max-width: 860px) {
-  .pr-provide-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .smsf-provide-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
 }
 
 @media (max-width: 640px) {
-  .pr-why-grid { grid-template-columns: 1fr; }
+  .smsf-why-grid { grid-template-columns: 1fr; }
 }

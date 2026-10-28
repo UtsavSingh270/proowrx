@@ -57,7 +57,7 @@ export default function Smsf() {
     <div>
       {/* ── 1. Hero ── */}
       <section
-        className="page-hero page-hero--split page-hero--img pr-hero"
+        className="page-hero page-hero--split page-hero--img smsf-hero"
         style={{ '--hero-bg': 'url("https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1800&q=85")' }}
       >
         <div className="container">
@@ -85,13 +85,13 @@ export default function Smsf() {
           <div className="page-hero-visual">
             <Image
               src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=85"
-              alt="Payroll processing and payslip preparation on a laptop"
+              alt="SMSF accounting and financial document preparation"
               width={800}
               height={533}
               sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="page-hero-badge-float">
-              <span className="pr-hero-badge-icon" aria-hidden="true"><Handshake size={24} /></span>
+              <span className="smsf-hero-badge-icon" aria-hidden="true"><Handshake size={24} /></span>
               <div>
                 <strong>No Lock-in Contract</strong>
                 <span>Flexible Support Plans</span>
@@ -103,23 +103,23 @@ export default function Smsf() {
 
       {/* ── 2. Service Intro ── */}
       <section className="section">
-        <div className="container pr-intro">
-          <div ref={r1} className="reveal pr-intro-text">
+        <div className="container smsf-intro">
+          <div ref={r1} className="reveal smsf-intro-text">
             <span className="chip chip-sky section-eyebrow">THE PROBLEM WE SOLVE</span>
             <h2 className="section-title">Expand Your SMSF Capacity With Outsourced Support</h2>
             <p className="section-body">
-              Proowrx helps accounting firms manage their SMSF workload without hiring more in-house staff. From accounting and reconciliations to annual accounts, member reporting, tax workpapers, and administration, we handle day-to-day processing across different types of SMSF portfolios. 
+              Proowrx helps accounting firms manage their SMSF workload without hiring more in-house staff. From accounting and reconciliations to annual accounts, member reporting, tax workpapers, and administration, we handle day-to-day processing across different types of SMSF portfolios.
             </p>
-            <ul className="pr-point-list">
+            <ul className="smsf-point-list">
               {introPoints.map((p, i) => (
-                <li key={i}><CheckCircle2 size={17} className="pr-point-check" /><span>{p}</span></li>
+                <li key={i}><CheckCircle2 size={17} className="smsf-point-check" /><span>{p}</span></li>
               ))}
             </ul>
           </div>
-          <div className="pr-intro-visual reveal reveal-delay-2" ref={r2}>
+          <div className="smsf-intro-visual reveal reveal-delay-2" ref={r2}>
             <Image
               src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=85"
-              alt="Reviewing payroll reports and reconciliations"
+              alt="Reviewing SMSF accounts and reconciliations"
               width={800}
               height={533}
               sizes="(max-width: 960px) 100vw, 45vw"
@@ -138,14 +138,14 @@ export default function Smsf() {
               From transaction processing and reconciliations to annual accounts, member reporting, tax workpapers and fund administration, Proowrx provides reliable back-office support tailored to your firm&apos;s existing systems and procedures.
             </p>
           </div>
-          <div className="pr-provide-grid">
+          <div className="smsf-provide-grid">
             {provideItems.map((item, i) => (
-              <div key={i} className={`pr-provide-item reveal reveal-delay-${(i % 4) + 1}`}>
-                <div className="pr-provide-heading">
-                  <div className="pr-provide-icon">{item.icon}</div>
-                  <h4 className="pr-provide-title">{item.title}</h4>
+              <div key={i} className={`smsf-provide-item reveal reveal-delay-${(i % 4) + 1}`}>
+                <div className="smsf-provide-heading">
+                  <div className="smsf-provide-icon">{item.icon}</div>
+                  <h4 className="smsf-provide-title">{item.title}</h4>
                 </div>
-                <p className="pr-provide-body">{item.body}</p>
+                <p className="smsf-provide-body">{item.body}</p>
               </div>
             ))}
           </div>
@@ -166,14 +166,14 @@ export default function Smsf() {
             <span className="chip chip-violet section-eyebrow">Why Proowrx</span>
             <h2 className="section-title">Why Choose Proowrx for SMSF Outsourcing Services</h2>
           </div>
-          <div className="pr-why-grid">
+          <div className="smsf-why-grid">
             {whyItems.map((w, i) => (
-              <div key={i} className={`pr-why-card reveal reveal-delay-${i + 1}`}>
-                <div className="pr-why-heading">
-                  <div className="pr-why-icon">{w.icon}</div>
-                  <h4 className="pr-why-title">{w.title}</h4>
+              <div key={i} className={`smsf-why-card reveal reveal-delay-${i + 1}`}>
+                <div className="smsf-why-heading">
+                  <div className="smsf-why-icon">{w.icon}</div>
+                  <h4 className="smsf-why-title">{w.title}</h4>
                 </div>
-                <p className="pr-why-body">{w.body}</p>
+                <p className="smsf-why-body">{w.body}</p>
               </div>
             ))}
           </div>

@@ -7,6 +7,7 @@
   { "path": "/pay-per-application", "label": "Mortgage — Pay Per Application", "insights": true },
   { "path": "/accounting", "label": "Accounting Services", "insights": true, "aliases": "Tax BAS SMSF Payroll Processing Cash Forecast Statement Audit Support" },
   { "path": "/bookkeeping", "label": "Accounting — Bookkeeping Services", "insights": true },
+  { "path": "/smsf", "label": "Accounting — SMSF Outsourcing Services", "insights": true, "aliases": "SMSF Accounting Administration Bookkeeping Annual Return Tax Preparation" },
   { "path": "/asset-finance", "label": "Asset Finance", "insights": true, "aliases": "Application Packaging Settlement Support" },
   { "path": "/digital-marketing", "label": "Digital Marketing", "insights": true, "aliases": "Demand Lead Generation Social Reputation Content Services Web Support Digital Events Graphic Events" },
   { "path": "/our-team", "label": "Our Team" },

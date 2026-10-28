@@ -97,6 +97,25 @@
       "url": "/bookkeeping"
     }
   },
+  "/smsf": {
+    "title": "SMSF Outsourcing Services for Accounting Firms",
+    "description": "Manage growing SMSF accounting and administration workloads with flexible outsourcing support from Proowrx.",
+    "keywords": [
+      "SMSF outsourcing services",
+      "SMSF accounting outsourcing",
+      "SMSF administration support",
+      "SMSF bookkeeping services",
+      "SMSF support for accounting firms"
+    ],
+    "alternates": {
+      "canonical": "/smsf"
+    },
+    "openGraph": {
+      "title": "SMSF Outsourcing Services for Accounting Firms | Proowrx",
+      "description": "Manage growing SMSF accounting and administration workloads with flexible outsourcing support from Proowrx.",
+      "url": "/smsf"
+    }
+  },
   "/asset-finance": {
     "title": "Asset Finance Processing Support",
     "description": "Outsourced asset finance processing support for Australian brokers, including document collection, CRM updates, lender packaging, compliance checks and settlement follow-up.",

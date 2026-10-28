@@ -199,10 +199,10 @@ const pricingPlans = [
 ];
 
 const growthPoints = [
-  { Icon: Clock,          title: 'Fewer delays',        text: 'Reduce application delays by keeping documents organised and following up on outstanding requirements.' },
-  { Icon: ClipboardCheck, title: 'Files on track',      text: 'Keep every file on track with consistent application monitoring and lender follow-ups.' },
-  { Icon: Users,          title: 'More client time',    text: 'Save more time for building client relationships by delegating back office processing and administrative tasks.' },
-  { Icon: TrendingUp,     title: 'Scale without hiring', text: 'Handle growing application volumes without having to expand your in-house team for every increase in workload.' },
+  { Icon: Clock,          title: 'Fewer Delays',        text: 'Reduce application delays by keeping documents organised and following up on outstanding requirements.' },
+  { Icon: ClipboardCheck, title: 'Files on Track',      text: 'Keep every file on track with consistent application monitoring and lender follow-ups.' },
+  { Icon: Users,          title: 'More Time for Clients',    text: 'Save more time for building client relationships by delegating back office processing and administrative tasks.' },
+  { Icon: TrendingUp,     title: 'Scale Without Hiring', text: 'Handle growing application volumes without having to expand your in-house team for every increase in workload.' },
 ];
 
 const paraIcons = [Search, FileCheck, BadgeCheck];
@@ -283,7 +283,7 @@ export default function Mortgage() {
 
         <p>
           <strong>That&apos;s where Proowrx comes in.</strong>
-          {" "}Proowrx provides skilled mortgage support to help you manage these tasks efficiently, keep applications moving and give your clients the attention they deserve.
+          {" "}More than just an outsourced team, Proowrx works as an extension of your brokerage, keeping mortgage loan processing on track from application to settlement.
         </p>
       </div>
     </div>
@@ -458,7 +458,7 @@ export default function Mortgage() {
     </article>
   ))}
 </div>
-          <h3 className="pricing-table-title">Coverage by plan</h3>
+          {/* <h3 className="pricing-table-title">Coverage by plan</h3>
           <div className="ppa-table-wrap">
             <table className="ppa-table">
               <thead>
@@ -484,7 +484,7 @@ export default function Mortgage() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> */}
         </div>
       </section>
       {/* <section className="section mortgage-comparison-after-pricing">

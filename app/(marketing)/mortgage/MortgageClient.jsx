@@ -222,26 +222,26 @@ export default function Mortgage() {
         <div className="container">
           <div className="page-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 10 }}>Mortgage Services</span>
-            <h1>Mortgage Outsourcing Services</h1>
-            <p>From scenario research to lodgement and settlement follow-ups, our team handles the processing so you can stay with clients. Pay per application, add a para broker, or build a dedicated team.</p>
+            <h1>Mortgage Process Outsourcing Services</h1>
+            <p>From scenario research to lodgement and settlement follow-ups, our team handles the every stage of the mortgage loan process so that you can serve more applications without additional overheads.</p>
             {/* <div className="page-hero-actions">
               <a href="#mortgage-pricing" className="btn btn-gold">See pay-per-application pricing <ArrowRight size={15} /></a>
               <a href="#mortgage-models" className="btn btn-outline-gold">Compare ways to work</a>
             </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">2</span>
-                <span className="page-hero-stat-label">Service Models</span>
+                <span className="page-hero-stat-num">30%</span>
+                <span className="page-hero-stat-label">Reduced TAT</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">24hr</span>
-                <span className="page-hero-stat-label">Turnaround SLA</span>
+                <span className="page-hero-stat-num">99%</span>
+                <span className="page-hero-stat-label">SLA Compliance</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">100%</span>
-                <span className="page-hero-stat-label">ATO Compliant</span>
+                <span className="page-hero-stat-num">30+ Hours</span>
+                <span className="page-hero-stat-label">Saved Per Week</span>
               </div>
             </div>
           </div>

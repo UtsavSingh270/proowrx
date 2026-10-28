@@ -3,8 +3,9 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import {
-  CheckCircle2, Shield, FileCheck, TrendingUp, Clock,
-  Wallet, PiggyBank, FileText, CalendarCheck, Users,
+  CheckCircle2, Shield, TrendingUp, Clock,
+  Wallet, CalendarCheck, ClipboardList, Calculator, Landmark,
+  FileChartColumn, FileCheck2, Handshake, ScanSearch,
 } from 'lucide-react';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import ServiceBenefits from '@/components/shared/ServiceBenefits';
@@ -27,26 +28,26 @@ function useReveal() {
 /* ── Content ─────────────────────────────── */
 
 const introPoints = [
-  'Deliver clean, error-free pay runs ready for client review.',
-  'Prevent costly regulatory breaches with proactive award interpretation.',
-  'Scale practice capacity easily with dedicated offshore payroll support.',
-  'Integrate seamlessly with your existing cloud accounting software ecosystem.',
+  'Maintains accurate records for contributions, rollovers, expenses and pensions.',
+  'Reconciles investment values, property holdings and asset disposals seamlessly.',
+  'Coordinates annual audits and efficiently gathers required documentation.',
+  'Protects internal staff time and keeps fund workflows moving forward.',
 ];
 
 const provideItems = [
-  { icon: <Wallet size={20} />, title: 'Payroll Processing', body: 'We handle salary calculations, overtime, allowances, deductions, and reimbursements to ensure employees are paid each pay cycle correctly.' },
-  { icon: <PiggyBank size={20} />, title: 'PAYG & Payroll Tax Support', body: 'We calculate the tax that needs to be withheld from employee wages and help with payroll tax records and reporting, based on your practice’s requirements.' },
-  { icon: <FileText size={20} />, title: 'Pay Day Super Management', body: 'We help calculate super contributions, keep payment records up to date and manage the steps involved in making payments within the required timeframes.' },
-  { icon: <CalendarCheck size={20} />, title: 'Payroll Compliance & Reporting', body: 'We handle STP Phase 2 reporting and keep payroll information organised for ATO reporting. We also help maintain records relating to employee pay and applicable workplace requirements.' },
-  { icon: <Users size={20} />, title: 'Employee Payments & Records Management', body: 'From preparing payment details to updating employee information, we help keep payroll records current when salaries, working hours or other employment details change.' },
-  { icon: <CalendarCheck size={20} />, title: 'Leave & Entitlement Management', body: 'We track employee leave balances, including annual and personal leave, and help ensure they are recorded correctly in payroll.' },
+  { icon: <ClipboardList size={20} />, title: 'SMSF Administration & Day-to-Day Operations', body: 'We handle ongoing operational requirements, including new fund setups, member maintenance, contribution processing, pension administration, and structured working paper management.' },
+  { icon: <Calculator size={20} />, title: 'SMSF Accounting & Bookkeeping', body: 'Our team maintains accurate financial records throughout the year by processing transactions, managing bank reconciliations, recording expenses, and reconciling member accounts.' },
+  { icon: <Landmark size={20} />, title: 'SMSF Investment Accounting', body: 'We manage complex asset classes including listed shares, managed funds, term deposits, and direct property while reconciling purchase, disposal, and income transactions.' },
+  { icon: <CalendarCheck size={20} />, title: 'SMSF Year-End Finalisation & Workpapers', body: 'We review year-end transactions, reconcile bank and investment accounts, calculate capital gains, and prepare clean, audit-ready files to streamline your annual review process.' },
+  { icon: <FileChartColumn size={20} />, title: 'SMSF Financial Statement Preparation', body: 'We prepare structured financial statements, operating statements, member reports, and investment schedules to support an efficient independent audit.' },
+  { icon: <FileCheck2 size={20} />, title: 'SMSF Annual Return & Tax Preparation', body: 'We compile lodgement-ready annual returns, complete tax calculations, manage contribution and pension reporting, and prepare all necessary supporting tax schedules.' },
 ];
 
 const whyItems = [
-  { icon: <Shield size={20} />, title: 'Secure Data Management', body: 'Our dedicated team works securely directly inside leading platforms like Xero, MYOB, QuickBooks, and KeyPay under strict confidentiality protocols.' },
-  { icon: <Clock size={20} />, title: 'Turnaround Advantage', body: 'We complete pay run processing and timesheet reconciliations during off-hours, ensuring your internal accountants start every single morning with fully updated wage records.' },
-  { icon: <FileCheck size={20} />, title: 'AU Compliance Standards', body: 'Our operational processes are built specifically around Single Touch Payroll (STP Phase 2), modern awards, and strict data privacy regulations to eliminate risk.' },
-  { icon: <TrendingUp size={20} />, title: 'Flexible Overhead Control', body: 'Avoid expensive local recruitment and office desk costs by easily scaling your outsourced payroll support based on seasonal workloads.' },
+  { icon: <Wallet size={20} />, title: 'Cost-Effective Outsourcing', body: 'Reduce recruitment, training, and operational costs with our flexible SMSF support. Convert fixed overheads into manageable variable costs so you only pay for the capacity you need.' },
+  { icon: <TrendingUp size={20} />, title: 'Flexible & Scalable Support', body: 'Effortlessly manage tax-time surges and changing workloads without expanding your in-house headcount. Scale resource allocation up or down as your client portfolio evolves.' },
+  { icon: <Shield size={20} />, title: 'Secure & Confidential Operations', body: 'Protect sensitive financial information through strict role-based access control, encrypted systems, and compliant offshore work practices. Your data security and privacy remain our highest priority.' },
+  { icon: <Clock size={20} />, title: 'Reduced Administrative Burden', body: 'Reduce manual processing, repetitive documentation, and compliance tasks for your internal team. Free up your senior staff to focus on strategic growth and client relationships.' },
 ];
 
 export default function Smsf() {
@@ -62,8 +63,8 @@ export default function Smsf() {
         <div className="container">
           <div className="page-hero-content">
             <span className="chip chip-gold section-eyebrow">SMSF</span>
-            <h1>Hassle-Free SMSF Management for Accounting Practices</h1>
-            <p>Strengthen your practice with reliable back-office business SMSF services. Proowrx helps you manage SMSF compliance, reporting, and administration with absolute precision, so your team can focus on client growth.</p>
+            <h1>SMSF Outsourcing Services for Accounting Firms</h1>
+            <p>Manage growing SMSF accounting and administration workloads with flexible outsourcing support from Proowrx. Increase your team&apos;s capacity while maintaining your established accounting workflows and procedures.</p>
             <div className="page-hero-stats">
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">48hr</span>
@@ -71,13 +72,13 @@ export default function Smsf() {
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">Expert</span>
-                <span className="page-hero-stat-label">SMSF Specialists</span>
+                <span className="page-hero-stat-num">SMSF</span>
+                <span className="page-hero-stat-label">Specialists</span>
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">100%</span>
-                <span className="page-hero-stat-label">ATO & STP Compliant</span>
+                <span className="page-hero-stat-num">ATO & SIS</span>
+                <span className="page-hero-stat-label">Act Compliant</span>
               </div>
             </div>
           </div>
@@ -90,7 +91,7 @@ export default function Smsf() {
               sizes="(max-width: 960px) 100vw, 45vw"
             />
             <div className="page-hero-badge-float">
-              <span className="pr-hero-badge-icon" aria-hidden="true"><Wallet size={24} /></span>
+              <span className="pr-hero-badge-icon" aria-hidden="true"><Handshake size={24} /></span>
               <div>
                 <strong>No Lock-in Contract</strong>
                 <span>Flexible Support Plans</span>
@@ -105,9 +106,9 @@ export default function Smsf() {
         <div className="container pr-intro">
           <div ref={r1} className="reveal pr-intro-text">
             <span className="chip chip-sky section-eyebrow">THE PROBLEM WE SOLVE</span>
-            <h2 className="section-title">Seamless Payroll Management Built for Growing Practices</h2>
+            <h2 className="section-title">Expand Your SMSF Capacity With Outsourced Support</h2>
             <p className="section-body">
-              Australian payroll requires strict compliance with STP Phase 2, superannuation, and PAYG. We manage end-to-end processing for accounting firms, ensuring your practice meets every statutory obligation accurately and on time.
+              Proowrx helps accounting firms manage their SMSF workload without hiring more in-house staff. From accounting and reconciliations to annual accounts, member reporting, tax workpapers, and administration, we handle day-to-day processing across different types of SMSF portfolios. 
             </p>
             <ul className="pr-point-list">
               {introPoints.map((p, i) => (
@@ -132,9 +133,9 @@ export default function Smsf() {
         <div className="container">
           <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="chip chip-gold section-eyebrow">WHAT WE HANDLE</span>
-            <h2 className="section-title">End-to-End Payroll Support for Accounting Firms</h2>
+            <h2 className="section-title">Comprehensive SMSF Accounting Outsourcing Services</h2>
             <p className="section-body" style={{ maxWidth: 560, margin: '0 auto' }}>
-              Explore our outsourced payroll solutions, designed to help accounting firms manage client payroll efficiently, maintain accuracy, meet compliance requirements and ensure smooth payroll processing.
+              From transaction processing and reconciliations to annual accounts, member reporting, tax workpapers and fund administration, Proowrx provides reliable back-office support tailored to your firm&apos;s existing systems and procedures.
             </p>
           </div>
           <div className="pr-provide-grid">
@@ -151,11 +152,11 @@ export default function Smsf() {
         </div>
       </section>
 
-      <ServiceBenefits service="Payroll Processing" heading="Benefits of Outsourcing Payroll Processing Services" intro="Discover how outsourced payroll services help your accounting firm improve efficiency, maintain compliance and ensure seamless payroll operations for your clients." benefits={[
-        { title: 'Time Savings', text: 'Offloads repetitive tasks such as crunching hours, processing overtime, and generating payslips, freeing your internal team to focus on core advisory goals.' },
-        { title: 'Cost Reduction', text: 'Eliminates the need to buy and maintain expensive small business payroll software, server infrastructure, or hire specialised in-house staff.' },
-        { title: 'Compliance Management', text: 'Keeping your practice aligned with changing labour laws and tax withholding requirements protects your operations from financial risks and regulatory fines.' },
-        { title: 'Scalability', text: 'Easily adapting to shifting staff sizes or seasonal workforces provides operational agility without the administrative burden of managing internal personnel.' },
+      <ServiceBenefits service="SMSF Accounting" heading="Benefits of Outsourcing SMSF Accounting Services" intro="Protect your margins, stay aligned with SIS Act regulations, and give your team the capacity to focus on high-value client advisory." benefits={[
+        { title: 'Cost Efficiency', text: 'Reduce the high operating cost of hiring, training and retaining dedicated in-house superannuation staff while eliminating overhead and infrastructure expenses.' },
+        { title: 'Specialised Expertise', text: 'Access a dedicated team that stays completely up to date with complex SMSF regulations, ATO guidelines, and strict SIS Act compliance obligations.' },
+        { icon: TrendingUp, title: 'Scalability', text: 'Easily adjust your outsourced support levels based on seasonal demand, reporting deadlines, turnaround pressures or overall portfolio growth.' },
+        { icon: ScanSearch, title: 'Fewer Audit Surprises', text: 'Improve file readiness and thorough documentation prep to reduce unexpected issues, delays or adjustments discovered late in the annual audit cycle.' },
       ]} />
 
       {/* ── 4. Why Choose ── */}
@@ -163,7 +164,7 @@ export default function Smsf() {
         <div className="container">
           <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="chip chip-violet section-eyebrow">Why Proowrx</span>
-            <h2 className="section-title">Why Choose Proowrx Outsourced Payroll Services</h2>
+            <h2 className="section-title">Why Choose Proowrx for SMSF Outsourcing Services</h2>
           </div>
           <div className="pr-why-grid">
             {whyItems.map((w, i) => (
@@ -181,9 +182,9 @@ export default function Smsf() {
 
       {/* ── 5. FAQ ── */}
       <ServiceFaq
-        variant="payroll"
+        variant="smsf"
         title="Got Questions? We’ve Got Answers."
-        intro="Learn more about our payroll services, outsourcing models and approach to long-term client partnerships."
+        intro="Learn more about our SMSF outsourcing services, models and approach to long-term client partnerships."
       />
     </div>
   );

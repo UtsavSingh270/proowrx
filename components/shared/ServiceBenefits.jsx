@@ -40,7 +40,12 @@ export default function ServiceBenefits({ service, intro, benefits, heading }) {
 
             return (
               <article className="service-benefit-card" key={benefit.title}>
-                <div className="service-benefit-heading"><span className="service-benefit-icon" aria-hidden="true"><Icon size={22} /></span><h3>{benefit.title}</h3></div>
+                <div className="service-benefit-heading">
+                  <span className="service-benefit-icon" aria-hidden="true">
+                    <Icon size={22} />
+                  </span>
+                  <h3>{benefit.title}</h3>
+                </div>
                 <p>{benefit.text}</p>
               </article>
             );

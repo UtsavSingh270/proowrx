@@ -40,7 +40,7 @@ const SERVICE_GROUPS = [
       { label: 'Annual Tax Return', to: '/annual-tax-return', desc: 'Preparation support for busy tax periods', icon: Receipt },
       // { label: 'Tax Planning', to: '/tax-planning', desc: 'Year-end planning and scenario support', icon: Target },
       // { label: 'Tax & BAS', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: Receipt },
-      { label: 'SMSF', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: BarChart3 },
+      { label: 'SMSF', to: '/smsf', desc: 'Australian-compliant preparation and administration', icon: BarChart3 },
       { label: 'Payroll Processing', to: '/payroll', desc: 'Australian-compliant preparation and administration', icon: Wallet },
       // { label: 'Cash Forecast Statement', to: '/accounting#services', desc: 'Australian-compliant preparation and administration', icon: BarChart3 },
       // { label: 'Audit Support', to: '/audit-support', desc: 'Australian-compliant preparation and administration', icon: ShieldCheck },

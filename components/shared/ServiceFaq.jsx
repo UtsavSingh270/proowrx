@@ -54,6 +54,12 @@ const FAQ_SETS = {
     { question: 'Can you follow our brokerage-specific checklist?', answer: 'Yes. Your required documents, CRM stages, compliance checks and handover points are confirmed before processing begins.' },
     { question: 'Can we move to a dedicated resource later?', answer: 'Yes. If volume becomes consistent, the service model can be reviewed and moved to dedicated support.' },
   ],
+  smsf: [
+    { question: 'Can Proowrx prepare SMSF audit workpapers and organise supporting documents?', answer: 'Yes, we organise financial records, collate supporting documentation, and prepare clean, audit-ready workpapers to ensure a smooth, efficient, and hassle-free annual independent audit review process.' },
+    { question: 'Can Proowrx work with my existing SMSF accounting and audit software?', answer: 'Yes, our SMSF specialists work directly inside your existing software stack, including Class Super, BGL Simple Fund 360, and SuperConcepts, fitting seamlessly into your current daily workflows.' },
+    { question: 'How does Proowrx protect confidential SMSF and member information?', answer: 'We protect sensitive member data through strict ISO 27001-certified security protocols, secure cloud access controls, and comprehensive confidentiality agreements enforced across our dedicated offshore team.' },
+    { question: 'How much does outsourced SMSF audit support service cost?', answer: 'Our flexible, pay-per-requirement pricing model ensures you only pay for the specific fund volumes or services you use, avoiding fixed overheads and expensive domestic recruitment costs.' },
+  ],
   payroll: [
     { question: 'What payroll processing tasks can Australian accounting firms outsource to Proowrx?', answer: 'You can outsource end-to-end payroll processing services, including pay run execution, STP Phase 2 reporting, superannuation calculations, leave accrual tracking, termination calculations, and EOFY reconciliations, using your firm’s existing cloud payroll software.' },
     { question: 'Can Proowrx manage weekly, fortnightly and monthly payroll processing?', answer: 'Yes. As a flexible payroll service provider, our team manages weekly, fortnightly, and monthly pay runs for your clients, generating draft ABA payment files and employee pay slips ready for your firm’s final review.' },

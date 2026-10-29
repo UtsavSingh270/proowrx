@@ -24,7 +24,7 @@ export default function ResourcesPage() {
     <div className="container resources-hub-content">
       <header className="resources-hub-heading">
         <span className="chip chip-gold">Resources</span>
-        <h1>Knowledge for your next step.</h1>
+        <h1>Knowledge for Your Next Step</h1>
         <p>Explore how we work, learn from client stories, and find practical resources for your business.</p>
       </header>
       <nav className="resources-hub-grid" aria-label="Explore our resources">

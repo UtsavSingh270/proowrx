@@ -161,8 +161,8 @@
   justify-content: center;
 }
 
-.acc-software-marquee { overflow: hidden; width: 100%; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.acc-software-track { display: flex; width: max-content; gap: 16px; animation: accSoftwareMarquee 28s linear infinite; }
+.acc-software-marquee { overflow: hidden; width: 100%; padding-block: 10px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.acc-software-track { display: flex; align-items: center; width: max-content; gap: 16px; animation: accSoftwareMarquee 28s linear infinite; }
 .acc-software-marquee:hover .acc-software-track { animation-play-state: paused; }
 .acc-software-chip { min-width: 170px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; }
 .acc-software-chip img { width: 28px; height: 28px; object-fit: contain; }
@@ -186,6 +186,8 @@
 }
 
 .acc-software-chip:hover {
+  position: relative;
+  z-index: 1;
   background: var(--navy);
   color: var(--white);
   border-color: var(--navy);
@@ -337,6 +339,32 @@
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+}
+
+/* Keep the Digital Marketing CTA visually identical to the Mortgage page. */
+.accounting-marketing-cta { background-image: none !important; }
+.accounting-marketing-cta { background: #fff !important; }
+.accounting-marketing-cta .asset-finance-unique-cta-inner { background: #102c52; }
+.accounting-marketing-cta .asset-finance-unique-cta-inner::after { display: block; background: linear-gradient(120deg, rgba(5,16,36,.72), rgba(14,48,88,.48)); }
+.accounting-marketing-cta .asset-finance-unique-cta-image { opacity: .72; }
+
+/* This four-step onboarding sequence stays in one readable row on tablet and desktop. */
+@media (min-width: 768px) {
+  .marketing-site .acc-process-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: clamp(12px, 1.5vw, 24px);
+  }
+
+  .marketing-site .acc-process-step {
+    min-width: 0;
+    padding: clamp(20px, 2.5vw, 32px) clamp(14px, 1.6vw, 20px);
+  }
+
+  .marketing-site .acc-process-step h4 {
+    overflow-wrap: anywhere;
+    font-size: clamp(.88rem, 1.35vw, 1rem);
+    line-height: 1.35;
+  }
 }
 
 /* ── Responsive ──────────────────────────── */

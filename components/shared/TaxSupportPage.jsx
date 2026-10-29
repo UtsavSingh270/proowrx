@@ -27,14 +27,14 @@ function useReveal() {
   return ref;
 }
 
-export default function TaxSupportPage({ content }) {
+export default function TaxSupportPage({ content, className = '' }) {
   const introRef = useReveal();
   const visualRef = useReveal();
   const servicesRef = useReveal();
   const whyRef = useReveal();
 
   return (
-    <div>
+    <div className={className}>
       <section className="page-hero page-hero--split page-hero--img as-hero" style={{ '--hero-bg': `url("${content.heroImage}")` }}>
         <div className="container">
           <div className="page-hero-content">

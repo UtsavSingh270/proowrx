@@ -67,6 +67,30 @@
   width: min(100% - 48px, 1600px);
 }
 
+/* Annual Tax has eight detailed services. Keep the first six in two balanced
+   rows of three, then centre the final two cards on a wider third row. */
+@media (min-width: 1001px) {
+  .marketing-site .annual-tax-return-page .as-provide-container {
+    width: min(100% - 48px, 1500px) !important;
+  }
+
+  .marketing-site .annual-tax-return-page .as-provide-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+
+  .marketing-site .annual-tax-return-page .as-provide-item {
+    grid-column: span 2;
+  }
+
+  .marketing-site .annual-tax-return-page .as-provide-item:nth-child(7) {
+    grid-column: 2 / span 2;
+  }
+
+  .marketing-site .annual-tax-return-page .as-provide-item:nth-child(8) {
+    grid-column: 4 / span 2;
+  }
+}
+
 .as-provide-item {
   display: flex;
   flex-direction: column;

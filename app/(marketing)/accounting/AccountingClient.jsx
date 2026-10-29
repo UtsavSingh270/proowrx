@@ -10,6 +10,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ServiceFaq from '@/components/shared/ServiceFaq';
 import ServiceBenefits from '@/components/shared/ServiceBenefits';
+import '../GrowthPages.css';
 import './Accounting.css';
 
 function useReveal() {
@@ -273,6 +274,19 @@ export default function Accounting() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="asset-finance-unique-cta accounting-marketing-cta">
+        <div className="container asset-finance-unique-cta-inner">
+          <Image className="asset-finance-unique-cta-image" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=2200&q=85" alt="Finance professionals collaborating" fill sizes="100vw" />
+          <div className="asset-finance-unique-cta-content">
+            <div className="asset-finance-unique-cta-copy">
+              <h2>Explore Our Digital Marketing Services, Custom-Tailored for Accounting Firms</h2>
+              <p>Processing keeps your pipeline moving. Marketing keeps it full.</p>
+            </div>
+            <Link href="/digital-marketing" className="asset-finance-unique-cta-link">Explore Marketing Support <ArrowRight size={18} aria-hidden="true" /></Link>
           </div>
         </div>
       </section>

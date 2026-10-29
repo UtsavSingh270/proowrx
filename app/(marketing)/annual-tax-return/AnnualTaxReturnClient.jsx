@@ -23,7 +23,7 @@ const content = {
   stats: [
     { value: '48hr', label: 'Turnaround' },
     { value: 'Expert', label: 'Tax Preparation Team' },
-    { value: 'Peak Season', label: 'Capacity' },
+    { value: 'Peak', label: 'Season Capacity' },
   ],
   heroImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1800&q=85',
   heroImageAlt: 'Tax return preparation documents',
@@ -74,5 +74,5 @@ const content = {
 };
 
 export default function AnnualTaxReturnClient() {
-  return <TaxSupportPage content={content} />;
+  return <TaxSupportPage content={content} className="annual-tax-return-page" />;
 }

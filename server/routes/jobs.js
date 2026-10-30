@@ -7,7 +7,7 @@ const router = express.Router();
 
 /* ── Public ─────────────────────────────────────────────────── */
 
-// GET /api/jobs  — active jobs only
+// GET /api/jobs  - active jobs only
 router.get('/', async (req, res) => {
   try {
     const jobs = await Job.find({ status: 'active' }).sort({ displayOrder: 1, createdAt: -1 });
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 
 /* ── Admin ──────────────────────────────────────────────────── */
 
-// GET /api/jobs/admin/all  — all jobs
+// GET /api/jobs/admin/all  - all jobs
 router.get('/admin/all', requireAdmin, async (req, res) => {
   try {
     const jobs = await Job.find().sort({ displayOrder: 1, createdAt: -1 });

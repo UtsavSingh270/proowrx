@@ -36,7 +36,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  /* Dark on white right panel — always visible */
+  /* Dark on white right panel - always visible */
   background: var(--surface);
   border: 1.5px solid var(--border);
   color: var(--navy);
@@ -214,6 +214,39 @@
   appearance: none;
 }
 
+.cpopup-select-control {
+  position: relative;
+  width: 100%;
+}
+
+.cpopup-select-control select {
+  padding-right: 46px;
+  cursor: pointer;
+  color-scheme: light;
+}
+
+.cpopup-select-control svg {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 17px;
+  height: 17px;
+  color: var(--navy);
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: color .2s var(--ease), transform .2s var(--ease);
+}
+
+.cpopup-select-control:focus-within svg {
+  color: var(--gold);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.cpopup-form select option {
+  background: #fff;
+  color: #080f20;
+}
+
 .cpopup-form input:focus,
 .cpopup-form select:focus {
   border-color: var(--gold);
@@ -308,7 +341,7 @@ html.dark .cpopup-card {
   background: #111826;
 }
 
-/* Close button — white X on dark bg */
+/* Close button - white X on dark bg */
 html.dark .cpopup-close {
   background: rgba(255,255,255,0.08);
   border-color: rgba(255,255,255,0.12);
@@ -362,6 +395,8 @@ html.dark .cpopup-form select option {
   color: #fff;
 }
 
+html.dark .cpopup-select-control svg { color: rgba(255,255,255,.8); }
+
 html.dark .cpopup-privacy {
   color: rgba(255,255,255,0.30);
 }
@@ -378,7 +413,7 @@ html.dark .cpopup-success p {
 /* ── Responsive ──────────────────────────── */
 
 /*
- * Tablet / large phone — centered modal.
+ * Tablet / large phone - centered modal.
  * Key: card becomes a flex column so .cpopup-right (flex:1 + min-height:0)
  * is the ONLY scroll container. The close button (position:absolute in the
  * card) stays pinned at the top-right regardless of how far the user scrolls.
@@ -391,7 +426,7 @@ html.dark .cpopup-success p {
   .cpopup-card {
     display: flex;              /* override display:grid so flex-child scroll works */
     flex-direction: column;
-    max-height: 88vh;           /* vh fallback — browsers without dvh support */
+    max-height: 88vh;           /* vh fallback - browsers without dvh support */
     max-height: 88dvh;          /* dvh = excludes Chrome address-bar height */
     overflow: hidden;           /* clip card frame; close btn stays pinned */
   }
@@ -405,7 +440,7 @@ html.dark .cpopup-success p {
   }
 }
 
-/* Small phone — bottom-sheet slides up from bottom edge */
+/* Small phone - bottom-sheet slides up from bottom edge */
 @media (max-width: 480px) {
   .cpopup-overlay {
     padding: 0;

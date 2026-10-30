@@ -146,7 +146,7 @@ function MortgageTimeline() {
 const whyUs = [
   { icon: <Award size={24} aria-hidden="true" />, title: 'Industry Expertise', desc: 'Trained specifically on the Australian mortgage market by an experienced Australia-based broker.' },
   { icon: <Workflow size={24} aria-hidden="true" />, title: 'Streamlined Solutions', desc: 'Technology to automate manual tasks and plug seamlessly into your existing workflow.' },
-  { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Scalability', desc: 'From 1 file a week to 100 — our service adapts as your business grows.' },
+  { icon: <TrendingUp size={24} aria-hidden="true" />, title: 'Scalability', desc: 'From 1 file a week to 100 - our service adapts as your business grows.' },
   { icon: <ShieldCheck size={24} aria-hidden="true" />, title: 'Unwavering Support', desc: 'A dedicated team that helps you move faster, eliminate stress, and focus on clients.' },
 ];
 
@@ -172,7 +172,7 @@ const pricingPlans = [
   },
   {
     id: 'lodge',
-    stage: 'Stages 2–6: Process & track',
+    stage: 'Stages 2-6: Process & track',
     title: 'Lodge & Track',
     price: '$160',
     note: 'Minimum 5 cases commitment (pre-paid)',
@@ -186,7 +186,7 @@ const pricingPlans = [
   {
     id: 'bundle',
     featured: true,
-    stage: 'Stages 1–6',
+    stage: 'Stages 1-6',
     title: 'Assess, Lodge & Track',
     price: '$250',
     note: 'Minimum 5 cases commitment (pre-paid)',
@@ -325,7 +325,7 @@ export default function Mortgage() {
               Running a mortgage business means multitasking across loan applications, document verification, and tight compliance regulations. All of this hampers growth and limits time spent with clients.
             </p>
             <p style={{ marginTop: 16, color: 'var(--text-2)', lineHeight: 1.75 }}>
-              Proowrx takes the entire back-end processing load off your plate — loan processing, data entry, document handling, and more — so you can focus on growing your book, acquiring new clients, and increasing loan volume without hiring in-house.
+              Proowrx takes the entire back-end processing load off your plate - loan processing, data entry, document handling, and more - so you can focus on growing your book, acquiring new clients, and increasing loan volume without hiring in-house.
             </p>
           </div>
           <div ref={r2} className="reveal-right ma-intro-image">
@@ -762,7 +762,7 @@ export default function Mortgage() {
             <div className="partner-strip-divider" />
             <div className="partner-strip-item">
               <h4>Scale Efficiently</h4>
-              <p>Grow without adding staff overhead — flexible support at every stage.</p>
+              <p>Grow without adding staff overhead - flexible support at every stage.</p>
             </div>
           </div> */}
 

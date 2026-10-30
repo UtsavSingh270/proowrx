@@ -4,7 +4,7 @@ import ServicesClient from './ServicesClient';
 
 const metadata = {
   title: 'Our Services',
-  description: 'Expert back-office outsourcing for Australian mortgage brokers and accountants — mortgage processing, accounting, virtual assistants, and pay-per-application support.',
+  description: 'Expert back-office outsourcing for Australian mortgage brokers and accountants - mortgage processing, accounting, virtual assistants, and pay-per-application support.',
   alternates: { canonical: '/services' },
   openGraph: {
     title: 'Outsourcing, Anytime of the Day | Proowrx Services',

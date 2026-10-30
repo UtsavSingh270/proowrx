@@ -15,6 +15,7 @@ const worklifeRoutes = require('./routes/worklife');
 const auditLogRoutes = require('./routes/auditLogs');
 const uploadRoutes  = require('./routes/uploads');
 const analyticsRoutes = require('./routes/analytics');
+const settingsRoutes = require('./routes/settings');
 
 /* ── App ────────────────────────────────────── */
 const app = express();
@@ -70,6 +71,7 @@ app.use('/api/worklife', worklifeRoutes);
 app.use('/api/audit-logs', auditLogRoutes);
 app.use('/api/upload',   uploadRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/settings', settingsRoutes);
 
 /* ── 404 ──────────────────────────────────────── */
 app.use((req, res) => {

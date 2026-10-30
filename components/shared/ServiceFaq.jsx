@@ -66,6 +66,12 @@ const FAQ_SETS = {
     { question: 'How does Proowrx protect confidential employee and payroll information?', answer: 'Proowrx maintains strict, enterprise-grade security protocols, restricted user access, secure Australian server environments, and encrypted file transfers to protect sensitive employee pay details and tax file numbers.' },
     { question: 'What is Payday Super and how does Proowrx handle payroll around it?', answer: 'Payday Super requires employers to pay superannuation simultaneously with employee pay runs. Proowrx prepares your clients by configuring automated superannuation calculations, setting up clearing house workflows, and keeping client pay runs fully compliant.' },
   ],
+  digitalMarketing: [
+    { question: 'Can you work within our existing brand guidelines?', answer: 'Yes. We align our content, creative assets, and marketing activities with your existing brand guidelines, tone of voice and communication standards to maintain consistency across platforms.' },
+    { question: 'Which marketing activities can be supported?', answer: 'We offer support across paid advertising, SEO, email marketing, social media, content writing, website development, reputation management, webinar marketing, graphic design and video editing.' },
+    { question: 'Who approves content before publication?', answer: 'Content and creatives are shared for review and approval before publication, ensuring everything aligns with your brand and communication requirements.' },
+    { question: 'Can you support focus on selected channels only?', answer: 'Absolutely. You don\'t need to outsource your entire marketing function. We can support specific marketing channels or campaigns based on your business priorities and current requirements.' },
+  ],
   auditsupport: [
     { question: 'Why should an Australian accounting firm outsource audit work?', answer: 'Outsourcing audit preparation reduces administrative chaos during peak compliance windows and keeps your senior staff focused on high-value client advisory work year-round.' },
     { question: 'Can you help with ASIC-related audit requirements?', answer: 'Yes, we help compile structured audit documentation and financial reporting schedules aligned with ASIC guidelines, AASB frameworks, and Australian Auditing Standards.' },

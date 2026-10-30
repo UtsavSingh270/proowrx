@@ -1,7 +1,7 @@
 import React from 'react';
 
 // ════════════════════════════════════════════════════════════
-//  AI KNOWLEDGE BASE — shared by the floating Chatbot and the
+//  AI KNOWLEDGE BASE - shared by the floating Chatbot and the
 //  FAQ page's "Ask a Question" widget.
 // ════════════════════════════════════════════════════════════
 export const KB = [
@@ -12,7 +12,7 @@ export const KB = [
   },
   {
     keywords: ['service', 'offer', 'provide', 'do you do', 'specialise', 'specialize', 'what can', 'options'],
-    response: "Proowrx provides outsourced back-office support for Australian financial services firms. Our core services are:\n\n**Mortgage Processing** — Loan processing, document verification, compliance checks, and settlement support.\n\n**Accounting Services** — Bookkeeping, BAS/IAS, tax returns, SMSF administration, and payroll.\n\n**Virtual Assistant** — Dedicated remote staff for admin and client management.\n\n**Pay Per Application** — Flexible model where you pay only per application processed.",
+    response: "Proowrx provides outsourced back-office support for Australian financial services firms. Our core services are:\n\n**Mortgage Processing** - Loan processing, document verification, compliance checks, and settlement support.\n\n**Accounting Services** - Bookkeeping, BAS/IAS, tax returns, SMSF administration, and payroll.\n\n**Virtual Assistant** - Dedicated remote staff for admin and client management.\n\n**Pay Per Application** - Flexible model where you pay only per application processed.",
     buttons: ['Tell me about Mortgage Processing', 'Tell me about Accounting', 'What is Pay Per Application?'],
   },
   {
@@ -27,37 +27,37 @@ export const KB = [
   },
   {
     keywords: ['smsf', 'self managed super', 'superannuation', 'fund', 'sar', 'actuarial', 'class super', 'bgl'],
-    response: "Proowrx provides comprehensive SMSF administration support:\n\n- Fund establishment & trust deed coordination\n- Annual financial statements\n- Member statements\n- Investment transaction reconciliation (ASX, managed funds, property)\n- SMSF tax return preparation (SAR)\n- Actuarial certificate coordination\n- Audit preparation — full documentation package\n\nWe support practices managing 30 to 800+ funds.",
+    response: "Proowrx provides comprehensive SMSF administration support:\n\n- Fund establishment & trust deed coordination\n- Annual financial statements\n- Member statements\n- Investment transaction reconciliation (ASX, managed funds, property)\n- SMSF tax return preparation (SAR)\n- Actuarial certificate coordination\n- Audit preparation - full documentation package\n\nWe support practices managing 30 to 800+ funds.",
     buttons: ['What SMSF software do you support?', 'How does pricing work?'],
   },
   {
     keywords: ['virtual assistant', 'va ', 'remote staff', 'dedicated staff', 'remote worker', 'full time'],
-    response: "Our Virtual Assistant service provides dedicated remote staff members who work exclusively for your firm during your business hours.\n\nVAs can handle:\n- Client communications & scheduling\n- CRM management & data entry\n- Document preparation & filing\n- Email management\n- Research & reporting\n- Process documentation\n\nYour VA is fully integrated into your team — trained on your systems and processes.",
+    response: "Our Virtual Assistant service provides dedicated remote staff members who work exclusively for your firm during your business hours.\n\nVAs can handle:\n- Client communications & scheduling\n- CRM management & data entry\n- Document preparation & filing\n- Email management\n- Research & reporting\n- Process documentation\n\nYour VA is fully integrated into your team - trained on your systems and processes.",
     buttons: ['What are your business hours?', 'How does pricing work?'],
   },
   {
     keywords: ['pay per application', 'ppa', 'per application', 'no commitment', 'flexible', 'trial', 'test'],
-    response: "Pay Per Application is our most flexible engagement model — ideal for brokers who want to try outsourcing without a monthly commitment.\n\nHow it works:\n- Submit applications when you need them processed\n- Pay a fixed fee per application\n- No monthly retainer, no lock-in contract\n- Same quality as our full-service offering\n- Ideal for brokers writing 5–20 loans per month\n\nAs volume grows, we transition you to a more cost-effective monthly model.",
+    response: "Pay Per Application is our most flexible engagement model - ideal for brokers who want to try outsourcing without a monthly commitment.\n\nHow it works:\n- Submit applications when you need them processed\n- Pay a fixed fee per application\n- No monthly retainer, no lock-in contract\n- Same quality as our full-service offering\n- Ideal for brokers writing 5-20 loans per month\n\nAs volume grows, we transition you to a more cost-effective monthly model.",
     buttons: ['What does it cost per application?', 'How do I get started?'],
   },
   {
     keywords: ['price', 'cost', 'charge', 'fee', 'rate', 'expensive', 'affordable', 'how much', 'pricing', 'quote', 'invoice'],
-    response: "Proowrx pricing is tailored to your firm's volume and requirements:\n\n- **Pay Per Application** — fixed fee per loan processed (great for lower volume)\n- **Monthly retainer packages** — for firms with consistent workloads\n- **Dedicated VA** — monthly pricing for full-time equivalent staff\n\nAs a guide, our services typically cost **40–60% less** than equivalent in-house staff when you account for salary, super, leave, and overhead.\n\nContact us for a personalised quote.",
+    response: "Proowrx pricing is tailored to your firm's volume and requirements:\n\n- **Pay Per Application** - fixed fee per loan processed (great for lower volume)\n- **Monthly retainer packages** - for firms with consistent workloads\n- **Dedicated VA** - monthly pricing for full-time equivalent staff\n\nAs a guide, our services typically cost **40-60% less** than equivalent in-house staff when you account for salary, super, leave, and overhead.\n\nContact us for a personalised quote.",
     buttons: ['Book a call to discuss pricing', 'What services do you offer?'],
   },
   {
     keywords: ['where', 'located', 'office', 'address', 'india', 'australia', 'jaipur', 'sydney', 'country', 'based'],
-    response: "Proowrx has two offices:\n\n**Jaipur, India**\n1st Floor, Patrika Building, 5E, Jhalana Institutional Area, JLN Marg, Jaipur – 302004\nPhone: +91 96104 11400\n\n**Sydney, Australia**\nSuite 215, East Wing, 33 Lexington Drive, Bella Vista NSW – 2153\nPhone: 02 8834 1222\n\nEmail: support@proowrx.com",
+    response: "Proowrx has two offices:\n\n**Jaipur, India**\n1st Floor, Patrika Building, 5E, Jhalana Institutional Area, JLN Marg, Jaipur - 302004\nPhone: +91 96104 11400\n\n**Sydney, Australia**\nSuite 215, East Wing, 33 Lexington Drive, Bella Vista NSW - 2153\nPhone: 02 8834 1222\n\nEmail: support@proowrx.com",
     buttons: ['What are your business hours?', 'How do I contact you?'],
   },
   {
     keywords: ['contact', 'reach', 'email', 'phone', 'call', 'get in touch', 'speak', 'talk'],
-    response: "You can reach Proowrx through:\n\n**Email:** support@proowrx.com\n\n**Australia:** 02 8834 1222\n**India:** +91 96104 11400\n\n**Business Hours:** Monday – Friday, 9:00 AM – 6:00 PM (IST / AEDT)\n\nOr book a free 30-minute discovery call — our team will walk you through how we can support your practice.",
+    response: "You can reach Proowrx through:\n\n**Email:** support@proowrx.com\n\n**Australia:** 02 8834 1222\n**India:** +91 96104 11400\n\n**Business Hours:** Monday - Friday, 9:00 AM - 6:00 PM (IST / AEDT)\n\nOr book a free 30-minute discovery call - our team will walk you through how we can support your practice.",
     buttons: ['Book a discovery call', 'Send us a message'],
   },
   {
     keywords: ['hours', 'open', 'available', 'business hours', 'weekend', 'when', 'working hours'],
-    response: "Our standard business hours are:\n\n**Monday – Friday: 9:00 AM – 6:00 PM (IST / AEDT)**\n\nWeekend support is available for urgent files — please contact us directly to arrange.\n\nOur India team supports Australian business hours, so there's excellent overlap for collaboration and real-time communication.",
+    response: "Our standard business hours are:\n\n**Monday - Friday: 9:00 AM - 6:00 PM (IST / AEDT)**\n\nWeekend support is available for urgent files - please contact us directly to arrange.\n\nOur India team supports Australian business hours, so there's excellent overlap for collaboration and real-time communication.",
     buttons: ['How do I contact you?', 'What are your turnaround times?'],
   },
   {
@@ -72,12 +72,12 @@ export const KB = [
   },
   {
     keywords: ['turnaround', 'fast', 'quick', 'how long', 'speed', 'delivery', 'deadline', 'sla', 'days', 'timeline'],
-    response: "Our standard turnaround times:\n\n- **Loan applications (standard):** 24–48 business hours from document receipt\n- **BAS/IAS preparation:** 2–5 business days\n- **Tax return preparation:** 2–5 business days\n- **Bookkeeping:** Daily or weekly batches\n- **SMSF annual accounts:** 5–10 business days\n\nPriority processing is available for urgent files — please discuss specific requirements with our team.",
+    response: "Our standard turnaround times:\n\n- **Loan applications (standard):** 24-48 business hours from document receipt\n- **BAS/IAS preparation:** 2-5 business days\n- **Tax return preparation:** 2-5 business days\n- **Bookkeeping:** Daily or weekly batches\n- **SMSF annual accounts:** 5-10 business days\n\nPriority processing is available for urgent files - please discuss specific requirements with our team.",
     buttons: ['What are your business hours?', 'How do I get started?'],
   },
   {
     keywords: ['start', 'begin', 'onboard', 'sign up', 'get started', 'how to', 'process', 'join', 'try', 'next step'],
-    response: "Getting started with Proowrx is straightforward:\n\n1. **Book a discovery call** — 30 minutes to understand your needs\n2. **Proposal & agreement** — We prepare a tailored proposal\n3. **Onboarding** — System setup & team training (1–2 weeks)\n4. **Pilot batch** — Start with a small batch of real files\n5. **Scale** — Expand as your confidence grows\n\nMost clients are fully operational within **2–4 weeks** of signing.",
+    response: "Getting started with Proowrx is straightforward:\n\n1. **Book a discovery call** - 30 minutes to understand your needs\n2. **Proposal & agreement** - We prepare a tailored proposal\n3. **Onboarding** - System setup & team training (1-2 weeks)\n4. **Pilot batch** - Start with a small batch of real files\n5. **Scale** - Expand as your confidence grows\n\nMost clients are fully operational within **2-4 weeks** of signing.",
     buttons: ['Book a discovery call', 'How does pricing work?'],
   },
   {
@@ -97,7 +97,7 @@ export const KB = [
   },
   {
     keywords: ['why outsource', 'benefit', 'advantage', 'reason', 'should i', 'worth it', 'value', 'roi', 'return'],
-    response: "The main benefits of outsourcing with Proowrx:\n\n- **Cost savings:** 40–60% lower cost than in-house staff\n- **Speed:** Dedicated teams with fast turnaround\n- **Scalability:** Scale up or down as workload changes\n- **Focus:** Senior staff focus on clients & advisory\n- **Risk reduction:** No recruitment or turnover risk\n- **Compliance:** Work done by trained specialists\n\nMost clients see ROI within **60–90 days**.",
+    response: "The main benefits of outsourcing with Proowrx:\n\n- **Cost savings:** 40-60% lower cost than in-house staff\n- **Speed:** Dedicated teams with fast turnaround\n- **Scalability:** Scale up or down as workload changes\n- **Focus:** Senior staff focus on clients & advisory\n- **Risk reduction:** No recruitment or turnover risk\n- **Compliance:** Work done by trained specialists\n\nMost clients see ROI within **60-90 days**.",
     buttons: ['How much does it cost?', 'How do I get started?'],
   },
   {
@@ -107,7 +107,7 @@ export const KB = [
   },
   {
     keywords: ['payroll', 'stp', 'pay run', 'wages', 'employee pay', 'award', 'entitlement'],
-    response: "Our payroll processing service handles the complexity of Australian payroll:\n\n- Single Touch Payroll (STP Phase 2) compliant reporting\n- Award and EBA interpretation\n- Leave management and accruals\n- Superannuation calculations and remittance\n- PAYG withholding\n- End-of-year payment summaries\n\nYour clients get accurate, on-time payroll — your team gets time back.",
+    response: "Our payroll processing service handles the complexity of Australian payroll:\n\n- Single Touch Payroll (STP Phase 2) compliant reporting\n- Award and EBA interpretation\n- Leave management and accruals\n- Superannuation calculations and remittance\n- PAYG withholding\n- End-of-year payment summaries\n\nYour clients get accurate, on-time payroll - your team gets time back.",
     buttons: ['Tell me about Accounting services', 'What are your turnaround times?'],
   },
   {
@@ -123,7 +123,7 @@ export const KB = [
 ];
 
 export const FALLBACK = {
-    response: "Thanks for your question! I may not have a specific answer for that yet. For detailed enquiries, I'd recommend:\n\n- **Email:** support@proowrx.com\n- **Call (AU):** 02 8834 1222\n- **Book a call:** Free 30-min discovery call\n\nOr try rephrasing your question — I may have the answer under different keywords!",
+    response: "Thanks for your question! I may not have a specific answer for that yet. For detailed enquiries, I'd recommend:\n\n- **Email:** support@proowrx.com\n- **Call (AU):** 02 8834 1222\n- **Book a call:** Free 30-min discovery call\n\nOr try rephrasing your question - I may have the answer under different keywords!",
   buttons: ['What services do you offer?', 'How do I contact you?', 'Book a discovery call'],
 };
 

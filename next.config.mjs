@@ -79,7 +79,7 @@ const nextConfig = {
       "img-src 'self' data: blob: https://res.cloudinary.com https://images.unsplash.com https://proowrx.com https://commondatastorage.googleapis.com https://encrypted-tbn0.gstatic.com https://media.licdn.com https://flagcdn.com https://cdn.simpleicons.org https://logo.clearbit.com https://www.google.com https://icons.duckduckgo.com http://localhost:5000",
       "media-src 'self' blob: https://res.cloudinary.com",
       "connect-src 'self'",
-      "frame-src https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com",
+      "frame-src https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.google.com https://maps.google.com https://www.openstreetmap.org",
       "worker-src 'self' blob:",
       process.env.NODE_ENV === 'production' ? 'upgrade-insecure-requests' : '',
     ].filter(Boolean).join('; ');

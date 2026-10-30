@@ -65,13 +65,13 @@ export default function AnalyticsPanel() {
       <label>Period<select className="dash-form-select" value={draft.range} onChange={event => setDraft(current => ({ ...current, range: event.target.value }))}>{ranges.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label>
       <label>Reporting timezone<select className="dash-form-select" value={draft.timezone} onChange={event => setDraft(current => ({ ...current, timezone: event.target.value }))}>{['Australia/Sydney', 'Australia/Brisbane', 'Australia/Perth', 'UTC'].map(zone => <option key={zone}>{zone}</option>)}</select></label>
       {draft.range === 'custom' && <><label>From<input className="dash-form-input" type="date" required value={draft.start} onChange={event => setDraft(current => ({ ...current, start: event.target.value }))} /></label><label>Through (inclusive)<input className="dash-form-input" type="date" required min={draft.start} value={draft.end} onChange={event => setDraft(current => ({ ...current, end: event.target.value }))} /></label></>}
-      <label>Find a page<input className="dash-form-input" type="search" placeholder="Search title or URL…" value={pageSearch} onChange={event => setPageSearch(event.target.value)} /></label>
-      <label>Page<select className="dash-form-select" value={draft.path} onChange={event => setDraft(current => ({ ...current, path: event.target.value }))}><option value="">All pages</option>{filteredPages.map(page => <option key={page.path} value={page.path}>{page.label} — {page.path}</option>)}</select></label>
+      <label>Find a page<input className="dash-form-input" type="search" placeholder="Search title or URL..." value={pageSearch} onChange={event => setPageSearch(event.target.value)} /></label>
+      <label>Page<select className="dash-form-select" value={draft.path} onChange={event => setDraft(current => ({ ...current, path: event.target.value }))}><option value="">All pages</option>{filteredPages.map(page => <option key={page.path} value={page.path}>{page.label} - {page.path}</option>)}</select></label>
       <button className="dash-btn dash-btn-primary" disabled={loading}>Apply filters</button>
     </form>
     {pageError && <p role="status">{pageError}</p>}{error && <p role="alert" className="analytics-error">{error}</p>}
-    {loading ? <p className="dash-empty" role="status">Loading analytics…</p> : data && <>
-      <p className="analytics-period">{data.period.start} – {data.period.end} · {data.period.timezone} · {data.path || 'All pages'}</p>
+    {loading ? <p className="dash-empty" role="status">Loading analytics...</p> : data && <>
+      <p className="analytics-period">{data.period.start} - {data.period.end} · {data.period.timezone} · {data.path || 'All pages'}</p>
       <div className="analytics-metrics">{[['Page views', data.overview.pageViews], ['Unique visitors', data.overview.uniqueVisitors], ['Sessions', totalSessions], ['Pages per session', data.overview.pagesPerSession]].map(([label, value]) => <article className="analytics-metric" key={label}><div><span>{label}</span><strong>{number(value)}</strong><small>Selected period and page</small></div></article>)}</div>
       {!data.overview.pageViews && <p className="analytics-empty">No consented visits match these filters. SEO settings remain available below.</p>}
       <div className="analytics-grid">

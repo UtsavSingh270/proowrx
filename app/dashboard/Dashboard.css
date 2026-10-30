@@ -1,4 +1,4 @@
-﻿/* ═══════════════════════════════════════════
+/* ═══════════════════════════════════════════
    ADMIN DASHBOARD
 ═══════════════════════════════════════════ */
 
@@ -807,7 +807,7 @@
 
 .dash-editor-area p { margin: 0 0 14px; }
 
-/* Images inserted by admin — always full width, good aspect ratio */
+/* Images inserted by admin - always full width, good aspect ratio */
 .dash-editor-area img,
 .dash-editor-area .editor-inserted-img {
   width: 100% !important;

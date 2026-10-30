@@ -36,7 +36,7 @@ export default function AuditLogsPanel() {
 
   function formatDate(dateString) {
     const date = new Date(dateString);
-    if (Number.isNaN(date.getTime())) return '—';
+    if (Number.isNaN(date.getTime())) return '-';
     return date.toLocaleString('en-AU', {
       day: '2-digit',
       month: 'short',
@@ -167,7 +167,7 @@ export default function AuditLogsPanel() {
                     {log.itemName || '(unnamed)'}
                   </td>
                   <td style={{ fontSize: '0.78rem', color: '#9aa5be', maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {typeof log.changes === 'object' ? JSON.stringify(log.changes).substring(0, 50) + '...' : String(log.changes || '—').substring(0, 50)}
+                    {typeof log.changes === 'object' ? JSON.stringify(log.changes).substring(0, 50) + '...' : String(log.changes || '-').substring(0, 50)}
                   </td>
                 </tr>
               ))}

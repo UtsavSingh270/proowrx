@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════
-   NAVBAR — Premium 2025
+   NAVBAR - Premium 2025
    ══════════════════════════════════════════ */
 
 .topbar {
@@ -533,7 +533,7 @@ html:not(.dark) .topbar {
 .hamburger:hover { background: var(--surface); border-color: var(--gold); }
 .hamburger:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-/* ── Mobile Drawer — the ONLY scrollable nav surface ── */
+/* ── Mobile Drawer - the ONLY scrollable nav surface ── */
 .mobile-drawer {
   display: none;
   position: fixed;

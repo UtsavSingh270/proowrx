@@ -39,13 +39,13 @@ const plans = [
   {
     name: 'Part-Time VA',
     hours: '4 hrs / day',
-    days: 'Mon – Fri',
+    days: 'Mon - Fri',
     color: 'var(--sky)',
     glow: 'var(--sky-glow)',
     features: [
       'Dedicated VA allocated to your business',
       '20 hours per week (4 hrs × 5 days)',
-      'Morning or afternoon shift — your choice',
+      'Morning or afternoon shift - your choice',
       'Daily handover report via email',
       'Trained in Australian mortgage industry',
       'Access to your existing CRM & tools',
@@ -55,7 +55,7 @@ const plans = [
   {
     name: 'Full-Time VA',
     hours: '8 hrs / day',
-    days: 'Mon – Fri',
+    days: 'Mon - Fri',
     color: 'var(--gold)',
     glow: 'var(--gold-pale)',
     badge: 'Most Popular',
@@ -94,7 +94,7 @@ export default function VirtualAssistant() {
           <div className="page-hero-content">
             <span className="chip chip-gold section-eyebrow">Virtual Assistant</span>
             <h1>Your Dedicated Team Member</h1>
-            <p>A Proowrx Virtual Assistant works as a seamless extension of your brokerage — handling admin, CRM, follow-ups and paperwork so you can focus on clients and growth.</p>
+            <p>A Proowrx Virtual Assistant works as a seamless extension of your brokerage - handling admin, CRM, follow-ups and paperwork so you can focus on clients and growth.</p>
             <div className="page-hero-stats">
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">40+</span>
@@ -143,7 +143,7 @@ export default function VirtualAssistant() {
             <span className="chip chip-sky section-eyebrow">What We Handle</span>
             <h2 className="section-title">Tasks Your VA Takes Off Your Plate</h2>
             <p className="section-body" style={{ maxWidth: 560, margin: '0 auto' }}>
-              Your VA is trained in the Australian mortgage process — they understand industry terminology, aggregator systems, and lender requirements from day one.
+              Your VA is trained in the Australian mortgage process - they understand industry terminology, aggregator systems, and lender requirements from day one.
             </p>
           </div>
           <div className="va-tasks-grid" ref={r2}>
@@ -200,7 +200,7 @@ export default function VirtualAssistant() {
             ))}
           </div>
           <p className="va-plans-note">
-            Both plans are billed monthly with no lock-in contract. Pricing on request — contact us for a custom quote.
+            Both plans are billed monthly with no lock-in contract. Pricing on request - contact us for a custom quote.
           </p>
         </div>
       </section>

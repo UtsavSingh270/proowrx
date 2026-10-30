@@ -127,7 +127,7 @@ export default function ResourcePanel() {
       </div>
 
       {loading ? (
-        <div className="dash-empty">Loading…</div>
+        <div className="dash-empty">Loading...</div>
       ) : resources.length === 0 ? (
         <div className="dash-empty">No resources yet. Upload a file and create a downloadable.</div>
       ) : (
@@ -219,7 +219,7 @@ export default function ResourcePanel() {
             <div className="dash-modal-footer">
               <button className="dash-btn dash-btn-ghost" onClick={() => setModalOpen(false)} disabled={saving || uploading}>Cancel</button>
               <button className="dash-btn dash-btn-primary" onClick={handleSave} disabled={saving || uploading}>
-                <Save size={14} /> {saving ? 'Saving…' : 'Save Downloadable'}
+                <Save size={14} /> {saving ? 'Saving...' : 'Save Downloadable'}
               </button>
             </div>
           </div>

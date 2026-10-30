@@ -4,7 +4,7 @@ import { serverTeamMembers, serverWorkLife } from '@/lib/serverApi';
 
 const metadata = {
   title: 'Our Team',
-  description: 'Meet the leadership team behind Proowrx — experienced professionals dedicated to helping Australian mortgage brokers and accountants grow smarter.',
+  description: 'Meet the leadership team behind Proowrx - experienced professionals dedicated to helping Australian mortgage brokers and accountants grow smarter.',
   alternates: { canonical: '/our-team' },
   openGraph: {
     title: 'The People Behind Proowrx | Our Team',

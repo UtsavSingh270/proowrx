@@ -4,7 +4,7 @@ import { faqs } from '@/data/faqs';
 
 const metadata = {
   title: 'FAQ',
-  description: 'Clear answers about working with Proowrx — which services you can outsource, how we protect client data, and how to get started with mortgage or accounting back-office support.',
+  description: 'Clear answers about working with Proowrx - which services you can outsource, how we protect client data, and how to get started with mortgage or accounting back-office support.',
   alternates: { canonical: '/faq' },
   openGraph: {
     title: 'Frequently Asked Questions | Proowrx',

@@ -13,7 +13,7 @@ import './Home.css';
 
 const CLIENT_STORIES = [
   { text: 'Proowrx cut our average loan processing time from 4 days to overnight. My brokers now focus entirely on client relationships. Genuinely game-changing.', name: 'Sarah M.', role: 'Principal Broker, NSW' },
-  { text: 'The accounting team handles everything from BAS to year-end — all compliant, all on time. It\'s like having an in-house team at a fraction of the cost.', name: 'James T.', role: 'Accounting Practice Owner, VIC' },
+  { text: 'The accounting team handles everything from BAS to year-end - all compliant, all on time. It\'s like having an in-house team at a fraction of the cost.', name: 'James T.', role: 'Accounting Practice Owner, VIC' },
   { text: 'What surprised me most was the security. Australia-hosted, 2FA on every access point, audit logs. They take our data more seriously than most local firms.', name: 'Priya K.', role: 'Finance Broker, QLD' },
   { text: 'Our turnaround times are faster, our client communication is clearer, and the whole operation finally feels ready to scale.', name: 'Daniel R.', role: 'Mortgage Director, WA' },
 ];
@@ -23,7 +23,7 @@ const HERO_SLIDES = [
     eyebrow: 'Mortgage Process Outsourcing',
     title: 'Settle More Loans. Spend Less Time on Admin',
     description: 'Dedicated mortgage processing support handles submissions, lender follow-ups, document checks, and compliance admin, allowing you to spend more time with clients and less time chasing files.',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=88',
+    image: '/images/home-hero/mortgage-processing.png',
     primaryLabel: 'Explore Mortgage',
     primaryHref: '/mortgage',
     secondaryLabel: 'View All Services',
@@ -33,7 +33,7 @@ const HERO_SLIDES = [
     eyebrow: 'Accounting & Bookkeeping Support',
     title: 'Less Time on Bookkeeping. More Time for Your Clients',
     description: 'Australian-compliant bookkeeping, tax, and lodgement support that fits into your practice so you can take on more clients without hiring more staff.',
-    image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=2000&q=88',
+    image: '/images/home-hero/accounting-bookkeeping.png',
     primaryLabel: 'Explore Accounting',
     primaryHref: '/accounting',
     secondaryLabel: 'Book a Call',
@@ -43,7 +43,7 @@ const HERO_SLIDES = [
     eyebrow: 'Asset Finance Support',
     title: 'Keep Deals Moving From Application to Settlement',
     description: 'We help with application packaging, document collection, lender coordination, matrix checks and settlement tasks, so your asset finance deals keep moving forward.',
-    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=88',
+    image: '/images/home-hero/asset-finance.png',
     primaryLabel: 'Explore Asset Finance',
     primaryHref: '/asset-finance',
     secondaryLabel: 'How We Work',
@@ -53,7 +53,7 @@ const HERO_SLIDES = [
     eyebrow: 'Digital Marketing Support',
     title: 'Build Your Online Presence. With Dedicated Marketing Support',
     description: 'From SEO and social media to paid ads and content. We help financial services businesses build visibility, attract the right audience, and turn digital activity into real opportunities.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=88',
+    image: '/images/home-hero/digital-marketing.png',
     primaryLabel: 'Explore Marketing',
     primaryHref: '/digital-marketing',
     secondaryLabel: 'Talk to Our Team',
@@ -327,7 +327,7 @@ export default function HomeClient({ insights }) {
     <main className="home">
 
       {/* ══════════════════════════════════════
-    HERO — full-bleed image, white overlay
+    HERO - full-bleed image, white overlay
     fading left→right (text zone left,
     image fully visible on the right)
 ══════════════════════════════════════ */}
@@ -418,7 +418,7 @@ export default function HomeClient({ insights }) {
       </section>
 
              {/* ══════════════════════════════════════
-          WHY PROOWRX — Dynamic Interactive Panel
+          WHY PROOWRX - Dynamic Interactive Panel
       ══════════════════════════════════════ */}
       <section className="section why-dynamic-section" ref={whyFeatRef}>
         <div className="container">

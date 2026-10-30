@@ -16,7 +16,7 @@ export default function FaqAskBot() {
   const [messages, setMessages] = useState([
     {
       role: 'ai',
-      text: "Hi! Ask me anything about Proowrx's services, pricing, or how to get started — I'll do my best to answer right here.",
+      text: "Hi! Ask me anything about Proowrx's services, pricing, or how to get started - I'll do my best to answer right here.",
       buttons: STARTER_QUESTIONS,
     },
   ]);
@@ -52,7 +52,7 @@ export default function FaqAskBot() {
         <span className="faqbot-header-icon"><MessageCircle size={18} /></span>
         <div>
           <h3>Still Have Questions?</h3>
-          <p>Ask our assistant — it can answer most common questions instantly.</p>
+          <p>Ask our assistant - it can answer most common questions instantly.</p>
         </div>
       </div>
 
@@ -80,7 +80,7 @@ export default function FaqAskBot() {
           type="text"
           value={input}
           onChange={e => setInput(e.target.value)}
-          placeholder="Type your question…"
+          placeholder="Type your question..."
           aria-label="Ask a question"
         />
         <button type="submit" className="faqbot-send" disabled={!input.trim()} aria-label="Send">

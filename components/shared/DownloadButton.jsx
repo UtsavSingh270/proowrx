@@ -46,7 +46,7 @@ export default function DownloadButton({ resource }) {
         {[['name', 'Name', 'text'], ['email', 'Email', 'email'], ['phone', 'Contact number', 'tel']].map(([key, label, type]) => <label key={key}>{label} *<input required type={type} autoComplete={key === 'phone' ? 'tel' : key} value={form[key]} onChange={event => setForm(current => ({ ...current, [key]: event.target.value }))} maxLength={key === 'email' ? 254 : 160} /></label>)}
         <p>We’ll use these details to handle your resource enquiry. <Link href="/privacy-policy">Privacy policy</Link></p>
         {error && <p className="resource-error" role="alert">{error}</p>}
-        <button className="btn btn-gold" disabled={busy}>{busy ? 'Preparing…' : 'Get download'}</button>
+        <button className="btn btn-gold" disabled={busy}>{busy ? 'Preparing...' : 'Get download'}</button>
       </form>}
     </div></div>}
   </>;

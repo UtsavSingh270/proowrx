@@ -125,8 +125,6 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen]         = useState(false);
   const [openMega, setOpenMega]             = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
-  const [mobileServiceCat, setMobileServiceCat] = useState(null);
-  const [activeService, setActiveService]   = useState(SERVICE_GROUPS[0].id);
   const pathname   = usePathname();
   const closeTimer = useRef(null);
 
@@ -141,7 +139,6 @@ export default function Navbar() {
     setMobileOpen(false);
     setOpenMega(null);
     setMobileExpanded(null);
-    setMobileServiceCat(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -160,20 +157,13 @@ export default function Navbar() {
 
   const toggleMobileExpanded = label => {
     setMobileExpanded(prev => (prev === label ? null : label));
-    setMobileServiceCat(null);
   };
-  const toggleMobileServiceCat = id => setMobileServiceCat(prev => (prev === id ? null : id));
 
   const isActiveLink = item => {
     if (item.serviceMenu) return pathname === item.to || ALL_SERVICE_LINKS.some(l => l.to === pathname);
     if (item.mega) return pathname === item.to || pathname.startsWith(`${item.to}/`) || item.mega.filter(m => m.type !== 'heading').some(m => m.to === pathname || pathname.startsWith(`${m.to}/`));
     return pathname === item.to;
   };
-
-  const selectedService = SERVICE_GROUPS.find(s => s.id === activeService) || SERVICE_GROUPS[0];
-  const SelectedServiceIcon = selectedService.icon;
-  // 3 rows per column: up to 3 items -> 1 column, 4-6 items -> 2 columns
-  const subColumns = Math.min(2, Math.ceil(selectedService.children.length / 3));
 
   return (
     <>
@@ -206,7 +196,7 @@ export default function Navbar() {
           aria-label="Main navigation"
         >
           <div className="container nav-inner">
-            <Link href="/" className="nav-logo" aria-label="Proowrx — go to homepage">
+            <Link href="/" className="nav-logo" aria-label="Proowrx - go to homepage">
               <Image src={LOGO} alt="Proowrx" width={200} height={60} priority />
             </Link>
 
@@ -239,85 +229,34 @@ export default function Navbar() {
               ))}
             </ul>
 
-            {/* CENTERED DROPDOWNS — rendered once, positioned relative to the full-width navbar */}
+            {/* CENTERED DROPDOWNS - rendered once, positioned relative to the full-width navbar */}
             {nav.filter(hasDropdown).map(item => (
               <div
                 key={`mega-${item.label}`}
-                className={
-                  item.serviceMenu
-                    ? `services-mega mega-dropdown${openMega === item.label ? ' open' : ''}`
-                    : `mega-menu mega-dropdown${groupMegaColumns(item.mega).length > 1 ? ' mega-menu--wide' : ''}${openMega === item.label ? ' open' : ''}`
-                }
+                className={`mega-menu mega-dropdown${openMega === item.label ? ' open' : ''}`}
                 role="menu"
                 aria-hidden={openMega !== item.label}
                 onMouseEnter={() => openMenu(item.label)}
                 onMouseLeave={closeMenu}
               >
                 {item.serviceMenu ? (
-                  <>
-                    <div className="services-mega-header">
-                      <div>
-                        <span>Our expertise</span>
-                        <strong>Services built for finance professionals</strong>
-                      </div>
-                      <Link href="/services">View all services <ArrowRight size={14} /></Link>
+                  <div className="mega-inner" aria-label="Main services">
+                    <div className="mega-column">
+                      {SERVICE_GROUPS.map(service => {
+                        const ServiceIcon = service.icon;
+                        return (
+                          <Link key={service.id} href={service.to} className="mega-item" role="menuitem">
+                            <span className="mega-icon" aria-hidden="true"><ServiceIcon size={18} /></span>
+                            <div>
+                              <span className="mega-label">{service.label}</span>
+                              <span className="mega-desc">{service.description}</span>
+                            </div>
+                            <ArrowRight size={14} className="mega-arrow" aria-hidden="true" />
+                          </Link>
+                        );
+                      })}
                     </div>
-
-                    <div className="services-mega-grid">
-                      <div className="services-mega-list" aria-label="Service categories">
-                        {SERVICE_GROUPS.map(service => {
-                          const ServiceIcon = service.icon;
-                          const active = selectedService.id === service.id;
-                          return (
-                            <Link
-                              key={service.id}
-                              href={service.to}
-                              className={`services-mega-category${active ? ' active' : ''}`}
-                              onMouseEnter={() => setActiveService(service.id)}
-                              onFocus={() => setActiveService(service.id)}
-                            >
-                              <span className="services-mega-category-icon"><ServiceIcon size={19} /></span>
-                              <span><strong>{service.label}</strong><small>{service.description}</small></span>
-                              <ArrowRight size={14} />
-                            </Link>
-                          );
-                        })}
-                      </div>
-
-                      <div className="services-mega-detail" aria-live="polite">
-                        <Link href={selectedService.to} className="services-mega-detail-heading">
-                          <span className="services-mega-detail-icon"><SelectedServiceIcon size={21} /></span>
-                          <div><small>Explore</small><strong>{selectedService.label}</strong></div>
-                          <ArrowRight size={16} aria-hidden="true" />
-                        </Link>
-                        <div
-                          key={selectedService.id}
-                          className={`services-mega-subcategories services-mega-subcategories--cols-${subColumns}`}
-                        >
-                          {selectedService.children.map(child => {
-                            const ChildIcon = child.icon;
-                            return (
-                              <Link
-                                key={`${selectedService.id}-${child.label}`}
-                                href={child.to}
-                                className="services-mega-subcategory"
-                                role="menuitem"
-                              >
-                                <span><ChildIcon size={18} /></span>
-                                <div><strong>{child.label}</strong><small>{child.desc}</small></div>
-                                <ArrowRight size={14} aria-hidden="true" />
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="services-mega-footer">
-                      <span>Not sure which service fits your business?</span>
-                      <Link href="/contact">Talk to our team <ArrowRight size={14} /></Link>
-                    </div>
-                  </>
+                  </div>
                 ) : (
                   <div className={groupMegaColumns(item.mega).length > 1 ? 'mega-inner mega-inner--columns' : 'mega-inner'}>
                     {groupMegaColumns(item.mega).map((column, columnIndex) => (
@@ -398,42 +337,11 @@ export default function Navbar() {
                   >
                     {SERVICE_GROUPS.map(group => {
                       const GroupIcon = group.icon;
-                      const catOpen = mobileServiceCat === group.id;
                       return (
-                        <div key={group.id} className="mobile-service-group">
-                          <button
-                            className="mobile-service-cat"
-                            onClick={() => toggleMobileServiceCat(group.id)}
-                            aria-expanded={catOpen}
-                          >
-                            <span className="mobile-service-cat-icon"><GroupIcon size={17} /></span>
-                            <span className="mobile-service-cat-text">
-                              <strong>{group.label}</strong>
-                              <small>{group.description}</small>
-                            </span>
-                            <ChevronDown
-                              size={15}
-                              className={`mobile-chevron${catOpen ? ' open' : ''}`}
-                              aria-hidden="true"
-                            />
-                          </button>
-                          <div className={`mobile-service-children${catOpen ? ' open' : ''}`}>
-                            {group.children.map(child => {
-                              const ChildIcon = child.icon;
-                              return (
-                                <Link
-                                  key={`${group.id}-${child.label}`}
-                                  href={child.to}
-                                  className="mobile-nav-sub"
-                                  role="menuitem"
-                                >
-                                  <span className="mobile-sub-icon" aria-hidden="true"><ChildIcon size={15} /></span>
-                                  <span>{child.label}</span>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
+                        <Link key={group.id} href={group.to} className="mobile-nav-sub" role="menuitem">
+                          <span className="mobile-sub-icon" aria-hidden="true"><GroupIcon size={15} /></span>
+                          <span>{group.label}</span>
+                        </Link>
                       );
                     })}
                   </div>

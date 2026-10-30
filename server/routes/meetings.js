@@ -2,6 +2,7 @@ const express    = require('express');
 const nodemailer = require('nodemailer');
 const Meeting    = require('../models/Meeting');
 const { requireAdmin } = require('../middleware/auth');
+const { getNotificationCc } = require('../utils/notificationSettings');
 
 const router = express.Router();
 
@@ -59,7 +60,7 @@ function meetingDetailsTable(meeting, heading) {
 
 /* ── Public ─────────────────────────────────────────────────── */
 
-// GET /api/meetings/booked?person=&date=  — booked time slots for a person on a date
+// GET /api/meetings/booked?person=&date=  - booked time slots for a person on a date
 router.get('/booked', async (req, res) => {
   try {
     const { person, date } = req.query;
@@ -71,12 +72,12 @@ router.get('/booked', async (req, res) => {
   }
 });
 
-// POST /api/meetings — book a meeting
+// POST /api/meetings - book a meeting
 router.post('/', async (req, res) => {
   try {
     const { person, personEmail, date, time, timezone, name, email, phone, reason } = req.body;
-    if (!person || !date || !time || !name || !email) {
-      return res.status(400).json({ error: 'person, date, time, name and email are required' });
+    if (!person || !date || !time || !name || !email || !phone) {
+      return res.status(400).json({ error: 'person, date, time, name, email and phone are required' });
     }
 
     const clash = await Meeting.findOne({ person, date, time, status: { $ne: 'cancelled' } });
@@ -91,11 +92,11 @@ router.post('/', async (req, res) => {
     try {
       const transporter = createTransporter();
       const supportEmail = process.env.SUPPORT_EMAIL || process.env.EMAIL_TO;
-      const cc = [
+      const cc = await getNotificationCc([
         process.env.MEETING_CC_1,
         process.env.MEETING_CC_2,
         process.env.MEETING_CC_3,
-      ].filter(Boolean);
+      ]);
 
       await Promise.all([
         transporter.sendMail({
@@ -129,7 +130,7 @@ router.post('/', async (req, res) => {
 
 /* ── Admin ──────────────────────────────────────────────────── */
 
-// GET /api/meetings — list all meetings
+// GET /api/meetings - list all meetings
 router.get('/', requireAdmin, async (req, res) => {
   try {
     const meetings = await Meeting.find().sort({ createdAt: -1 });

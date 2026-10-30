@@ -6,7 +6,7 @@
 
 /* ── 1. Hero ─────────────────────────────── */
 /* Uses the shared .page-hero / .page-hero--split / .page-hero--img
-   system from the main services page — no overrides needed here. */
+   system from the main services page - no overrides needed here. */
 
 .smsf-hero-badge-icon {
   display: grid;

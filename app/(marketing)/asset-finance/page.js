@@ -35,7 +35,7 @@ const valueItems = [
   ['Improve Settlement Rates', 'Fast-track files with accurate pre-submission checks and daily tracking.'],
   ['Reduce Turnaround Times', 'Eliminate paperwork bottlenecks and clear conditional delays swiftly.'],
   ['Increase Customer Retention', 'Deliver faster outcomes and consistent communication to your clients.'],
-  ['Lower Operating Costs', 'Save up to 50–60% compared to local hiring expenses.'],
+  ['Lower Operating Costs', 'Save up to 50-60% compared to local hiring expenses.'],
   ['Enhance Compliance', 'Maintain strict alignment with aggregator rules and lender policies.'],
 ];
 function AssetFinancePage(){

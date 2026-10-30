@@ -27,7 +27,7 @@
   },
   "/services": {
     "title": "Our Services",
-    "description": "Expert back-office outsourcing for Australian mortgage brokers and accountants — mortgage processing, accounting, virtual assistants, and pay-per-application support.",
+    "description": "Expert back-office outsourcing for Australian mortgage brokers and accountants - mortgage processing, accounting, virtual assistants, and pay-per-application support.",
     "alternates": {
       "canonical": "/services"
     },
@@ -39,7 +39,7 @@
   },
   "/mortgage": {
     "title": "Mortgage Processing Outsourcing",
-    "description": "End-to-end mortgage loan processing for Australian brokers — data entry, compliance checks, lender submission, and post-submission follow-ups, so you can focus on closing deals.",
+    "description": "End-to-end mortgage loan processing for Australian brokers - data entry, compliance checks, lender submission, and post-submission follow-ups, so you can focus on closing deals.",
     "alternates": {
       "canonical": "/mortgage"
     },
@@ -51,31 +51,31 @@
   },
   "/virtual-assistant": {
     "title": "Virtual Assistant Services",
-    "description": "A dedicated Proowrx Virtual Assistant works as a seamless extension of your brokerage — handling admin, CRM management, follow-ups, and paperwork so you can focus on clients.",
+    "description": "A dedicated Proowrx Virtual Assistant works as a seamless extension of your brokerage - handling admin, CRM management, follow-ups, and paperwork so you can focus on clients.",
     "alternates": {
       "canonical": "/virtual-assistant"
     },
     "openGraph": {
       "title": "Your Dedicated Team Member | Proowrx Virtual Assistant",
-      "description": "Dedicated remote staff for admin, CRM management, and client follow-ups — fully integrated into your Australian brokerage.",
+      "description": "Dedicated remote staff for admin, CRM management, and client follow-ups - fully integrated into your Australian brokerage.",
       "url": "/virtual-assistant"
     }
   },
   "/pay-per-application": {
     "title": "Pay Per Application",
-    "description": "No lock-in contracts, no idle staff costs. Submit a mortgage file, we process it end-to-end, you close the loan — a flexible pay-per-file outsourcing model for Australian brokers.",
+    "description": "No lock-in contracts, no idle staff costs. Submit a mortgage file, we process it end-to-end, you close the loan - a flexible pay-per-file outsourcing model for Australian brokers.",
     "alternates": {
       "canonical": "/pay-per-application"
     },
     "openGraph": {
       "title": "Only Pay When You Have a File | Proowrx Pay Per Application",
-      "description": "A flexible, no-contract mortgage processing model — pay only for the files you submit.",
+      "description": "A flexible, no-contract mortgage processing model - pay only for the files you submit.",
       "url": "/pay-per-application"
     }
   },
   "/accounting": {
     "title": "Accounting Outsourcing Services",
-    "description": "Outsourced bookkeeping, tax, SMSF administration, and BAS/IAS/STP lodgements for Australian accounting firms — let your team focus on advisory work while we handle compliance.",
+    "description": "Outsourced bookkeeping, tax, SMSF administration, and BAS/IAS/STP lodgements for Australian accounting firms - let your team focus on advisory work while we handle compliance.",
     "alternates": {
       "canonical": "/accounting"
     },
@@ -137,7 +137,7 @@
   },
   "/digital-marketing": {
     "title": "Digital Marketing Support Services",
-    "description": "Outsourced digital marketing support for Australian mortgage brokers, accountants and finance businesses—content, social media, SEO, email campaigns and reporting.",
+    "description": "Outsourced digital marketing support for Australian mortgage brokers, accountants and finance businesses-content, social media, SEO, email campaigns and reporting.",
     "keywords": [
       "digital marketing outsourcing Australia",
       "mortgage broker marketing support",
@@ -156,7 +156,7 @@
   },
   "/our-team": {
     "title": "Our Team",
-    "description": "Meet the leadership team behind Proowrx — experienced professionals dedicated to helping Australian mortgage brokers and accountants grow smarter.",
+    "description": "Meet the leadership team behind Proowrx - experienced professionals dedicated to helping Australian mortgage brokers and accountants grow smarter.",
     "alternates": {
       "canonical": "/our-team"
     },
@@ -168,13 +168,13 @@
   },
   "/data-security": {
     "title": "Data Security",
-    "description": "AES-256 encryption, Australia-hosted servers, 2-factor authentication, and NDA-signed staff — how Proowrx protects sensitive mortgage and accounting client data at every level.",
+    "description": "AES-256 encryption, Australia-hosted servers, 2-factor authentication, and NDA-signed staff - how Proowrx protects sensitive mortgage and accounting client data at every level.",
     "alternates": {
       "canonical": "/data-security"
     },
     "openGraph": {
       "title": "Security at Every Level | Proowrx Data Security",
-      "description": "Our infrastructure is designed around protecting sensitive client data — Australia-hosted servers, encryption, and strict access controls.",
+      "description": "Our infrastructure is designed around protecting sensitive client data - Australia-hosted servers, encryption, and strict access controls.",
       "url": "/data-security"
     }
   },
@@ -218,7 +218,7 @@
   },
   "/career": {
     "title": "Careers",
-    "description": "Join a growing KPO team redefining back-office support for Australian mortgage brokers and accountants. Current openings in Jaipur, India — apply today.",
+    "description": "Join a growing KPO team redefining back-office support for Australian mortgage brokers and accountants. Current openings in Jaipur, India - apply today.",
     "alternates": {
       "canonical": "/career"
     },
@@ -230,7 +230,7 @@
   },
   "/blog": {
     "title": "Blog",
-    "description": "Industry insights, outsourcing guides, and practical tips for Australian mortgage brokers and accountants — from the Proowrx team.",
+    "description": "Industry insights, outsourcing guides, and practical tips for Australian mortgage brokers and accountants - from the Proowrx team.",
     "keywords": [
       "mortgage outsourcing Australia",
       "mortgage broker support",
@@ -278,7 +278,7 @@
   },
   "/contact": {
     "title": "Contact Us",
-    "description": "Get in touch with Proowrx — offices in Jaipur, India and Sydney, Australia. Send a message, book a 30-minute discovery call, or schedule a meeting directly with our leadership team.",
+    "description": "Get in touch with Proowrx - offices in Jaipur, India and Sydney, Australia. Send a message, book a 30-minute discovery call, or schedule a meeting directly with our leadership team.",
     "alternates": {
       "canonical": "/contact"
     },
@@ -290,7 +290,7 @@
   },
   "/faq": {
     "title": "FAQ",
-    "description": "Clear answers about working with Proowrx — which services you can outsource, how we protect client data, and how to get started with mortgage or accounting back-office support.",
+    "description": "Clear answers about working with Proowrx - which services you can outsource, how we protect client data, and how to get started with mortgage or accounting back-office support.",
     "alternates": {
       "canonical": "/faq"
     },
@@ -320,7 +320,7 @@
   },
   "/disclaimer": {
     "title": "Disclaimer",
-    "description": "General information disclaimer for the Proowrx website — content is not professional, legal, financial, tax, or compliance advice.",
+    "description": "General information disclaimer for the Proowrx website - content is not professional, legal, financial, tax, or compliance advice.",
     "alternates": {
       "canonical": "/disclaimer"
     }

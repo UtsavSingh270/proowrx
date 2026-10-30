@@ -16,7 +16,7 @@ export default function PagePicker({ value = [], onChange, contentLabel = 'insig
   return <div className="dash-form-group dash-page-picker" onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }} onKeyDown={event => { if (event.key === 'Escape') { input.current?.focus(); setOpen(false); } }}>
     <label className="dash-form-label" htmlFor={id}>Show this {contentLabel} on</label>
     <div className="dash-picker-search">
-      <input ref={input} id={id} className="dash-form-input" type="search" role="combobox" aria-autocomplete="list" value={query} placeholder="Search home or service pages…" aria-expanded={open} aria-controls={`${id}-options`} onFocus={() => setOpen(true)} onChange={event => { setQuery(event.target.value); setOpen(true); }} onKeyDown={event => { if (event.key === 'ArrowDown') { event.preventDefault(); setOpen(true); } }} />
+      <input ref={input} id={id} className="dash-form-input" type="search" role="combobox" aria-autocomplete="list" value={query} placeholder="Search home or service pages..." aria-expanded={open} aria-controls={`${id}-options`} onFocus={() => setOpen(true)} onChange={event => { setQuery(event.target.value); setOpen(true); }} onKeyDown={event => { if (event.key === 'ArrowDown') { event.preventDefault(); setOpen(true); } }} />
       <button type="button" className="dash-btn dash-btn-ghost dash-picker-toggle" onClick={() => setOpen(!open)} aria-label="Toggle page choices" aria-expanded={open}><ChevronDown size={17} /></button>
     </div>
     {open && <div id={`${id}-options`} className="dash-picker-options" role="group" aria-label="Insight destination pages">

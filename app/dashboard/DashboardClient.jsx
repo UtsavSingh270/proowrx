@@ -11,9 +11,9 @@ import {
   Clock3, Download, FileChartColumn, Images, Moon,
   Newspaper, PanelLeftOpen, PanelLeftClose, ScrollText, SearchCheck,
   ShieldUser, Sun, Table2, X, ExternalLink, Bold, Italic, Underline,
-  Heading2, Heading3, Pilcrow, List, ListOrdered, Link2, RemoveFormatting,
+  Heading2, Heading3, Pilcrow, List, ListOrdered, Link2, RemoveFormatting, Settings,
 } from 'lucide-react';
-import { auth, adminPosts, adminJobs, teamMembers, contact, newsletter, meetings } from '@/services/api';
+import { auth, adminPosts, adminJobs, teamMembers, contact, newsletter, meetings, settings } from '@/services/api';
 import { useTheme } from '@/components/providers/ThemeProvider';
 import './Dashboard.css';
 import FileUploadInput from '@/components/shared/FileUploadInput';
@@ -29,10 +29,10 @@ const AuditLogsPanel = dynamic(() => import('@/features/dashboard/components/Aud
 const ResourcePanel = dynamic(() => import('@/features/dashboard/components/ResourcePanel'));
 const WorkLifePanel = dynamic(() => import('@/features/dashboard/components/WorkLifePanel'));
 const AnalyticsPanel = dynamic(() => import('@/features/dashboard/components/AnalyticsPanel'), {
-  loading: () => <div className="dash-empty">Loading analytics…</div>,
+  loading: () => <div className="dash-empty">Loading analytics...</div>,
 });
 const IpExclusionsPanel = dynamic(() => import('@/features/dashboard/components/IpExclusionsPanel'), {
-  loading: () => <div className="dash-empty">Loading excluded IP addresses…</div>,
+  loading: () => <div className="dash-empty">Loading excluded IP addresses...</div>,
 });
 
 /* ─────────────────────── helpers ───────────────────────── */
@@ -57,7 +57,7 @@ function toLocalDateTimeInput(value) {
 
 function formatTimestamp(value, options = {}) {
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return '—';
+  if (Number.isNaN(date.getTime())) return '-';
   return new Intl.DateTimeFormat('en-AU', {
     day: '2-digit', month: 'short', year: 'numeric',
     hour: '2-digit', minute: '2-digit',
@@ -193,7 +193,7 @@ function RichEditor({ value, onChange }) {
     onChange(editorRef.current.innerHTML);
   }
 
-  /* open the image URL panel — save cursor first */
+  /* open the image URL panel - save cursor first */
   function openImgPanel() {
     saveSelection();
     setShowTablePanel(false);
@@ -263,7 +263,7 @@ function RichEditor({ value, onChange }) {
         <button type="button" className="dash-tool-btn" title="Link" aria-label="Insert link" onClick={() => { const u = prompt('URL:'); if (u) exec('createLink', u); }}><Link2 size={14} /></button>
         <button type="button" className="dash-tool-btn" title="Clear format" aria-label="Clear formatting" onClick={() => exec('removeFormat')}><RemoveFormatting size={15} /></button>
         <span className="dash-tool-btn sep" />
-        {/* Image button — always in toolbar, opens inline panel */}
+        {/* Image button - always in toolbar, opens inline panel */}
         <button
           type="button"
           className={`dash-tool-btn dash-tool-img-btn${showImgPanel ? ' active' : ''}`}
@@ -292,7 +292,7 @@ function RichEditor({ value, onChange }) {
         </button>
       </div>
 
-      {/* Inline image URL panel — appears between toolbar and editor */}
+      {/* Inline image URL panel - appears between toolbar and editor */}
       {showImgPanel && (
         <div className="dash-img-panel">
           <div className="dash-img-panel-hint">
@@ -380,7 +380,7 @@ function PostModal({ post, members, onClose, onSave }) {
 
   const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
 
-  /* live auto-calculated read time — never stored in form state */
+  /* live auto-calculated read time - never stored in form state */
   const autoReadTime = calcReadTime(form.htmlContent);
 
   const MAX_FAQS = 5;
@@ -464,10 +464,10 @@ function PostModal({ post, members, onClose, onSave }) {
               </select>
             </div>
             <div className="dash-form-group">
-              <label className="dash-form-label">Author — Team Member</label>
+              <label className="dash-form-label">Author - Team Member</label>
               <select className="dash-form-select" value={form.authorSource === 'team' ? form.authorId || '' : ''} onChange={e => selectAuthor(e.target.value)}>
                 <option value="">Select a team member</option>
-                {members.map(member => <option key={member._id} value={member._id}>{member.name} — {member.position}</option>)}
+                {members.map(member => <option key={member._id} value={member._id}>{member.name} - {member.position}</option>)}
               </select>
             </div>
           </div>
@@ -499,7 +499,7 @@ function PostModal({ post, members, onClose, onSave }) {
               <label className="dash-form-label">Read Time</label>
               <div className="dash-readtime-preview">
                 {autoReadTime}
-                <span style={{ fontSize: '0.72rem', color: '#9aa5be', marginLeft: 8, fontWeight: 400 }}>auto — updates as you write</span>
+                <span style={{ fontSize: '0.72rem', color: '#9aa5be', marginLeft: 8, fontWeight: 400 }}>auto - updates as you write</span>
               </div>
             </div>
           </div>
@@ -591,7 +591,7 @@ function PostModal({ post, members, onClose, onSave }) {
               Schedule
             </button>
             <button className="dash-btn dash-btn-primary" onClick={() => handleSave('published')} disabled={saving || uploading}>
-              {saving ? 'Saving…' : 'Publish'}
+              {saving ? 'Saving...' : 'Publish'}
             </button>
           </div>
         </div>
@@ -672,13 +672,13 @@ function JobModal({ job, onClose, onSave }) {
               </div>
               <div className="dash-form-group">
                 <label className="dash-form-label">Required Experience</label>
-                <input className="dash-form-input" value={form.experience} onChange={e => set('experience', e.target.value)} placeholder="e.g. 1–3 years" />
+                <input className="dash-form-input" value={form.experience} onChange={e => set('experience', e.target.value)} placeholder="e.g. 1-3 years" />
               </div>
             </div>
 
             <div className="dash-form-group">
               <label className="dash-form-label">Description *</label>
-              <textarea className="dash-form-textarea" rows={4} value={form.description} onChange={e => set('description', e.target.value)} placeholder="Role description, responsibilities, what you're looking for…" />
+              <textarea className="dash-form-textarea" rows={4} value={form.description} onChange={e => set('description', e.target.value)} placeholder="Role description, responsibilities, what you're looking for..." />
             </div>
 
             <div className="dash-form-group">
@@ -710,7 +710,7 @@ function JobModal({ job, onClose, onSave }) {
         <div className="dash-modal-footer">
           <button className="dash-btn dash-btn-ghost" onClick={onClose} disabled={saving}>Cancel</button>
           <button className="dash-btn dash-btn-primary" onClick={handleSave} disabled={saving}>
-            <Save size={14} /> {saving ? 'Saving…' : 'Save Job'}
+            <Save size={14} /> {saving ? 'Saving...' : 'Save Job'}
           </button>
         </div>
       </div>
@@ -776,7 +776,7 @@ function BlogPanel() {
         </button>
       </div>
 
-      <div className="dash-content-filters"><input type="search" aria-label="Search blogs" className="dash-form-input" placeholder="Search blog title, author, category or tags…" value={query} onChange={event => setQuery(event.target.value)} /><select aria-label="Blog status" className="dash-form-select" value={statusFilter} onChange={event => setStatusFilter(event.target.value)}><option value="">All statuses</option>{['published', 'draft', 'scheduled', 'paused'].map(status => <option key={status}>{status}</option>)}</select><span>{filteredPosts.length} results</span></div>
+      <div className="dash-content-filters"><input type="search" aria-label="Search blogs" className="dash-form-input" placeholder="Search blog title, author, category or tags..." value={query} onChange={event => setQuery(event.target.value)} /><select aria-label="Blog status" className="dash-form-select" value={statusFilter} onChange={event => setStatusFilter(event.target.value)}><option value="">All statuses</option>{['published', 'draft', 'scheduled', 'paused'].map(status => <option key={status}>{status}</option>)}</select><span>{filteredPosts.length} results</span></div>
       <div className="dash-subsection dash-author-source-note">
         <div>
           <div className="dash-subsection-title">Blog Authors</div>
@@ -787,7 +787,7 @@ function BlogPanel() {
 
       <div className="dash-table-wrap">
         {loading ? (
-          <div className="dash-empty">Loading…</div>
+          <div className="dash-empty">Loading...</div>
         ) : filteredPosts.length === 0 ? (
           <div className="dash-empty">No matching blogs. Try another search or create a post.</div>
         ) : (
@@ -807,7 +807,7 @@ function BlogPanel() {
                 <tr key={p._id}>
                   <td className="dash-table-title" title={p.title}>{p.title}</td>
                   <td>{p.category}</td>
-                  <td>{p.author || '—'}</td>
+                  <td>{p.author || '-'}</td>
                   <td style={{ whiteSpace: 'nowrap' }}>
                     {p.status === 'scheduled' && p.scheduledAt ? formatTimestamp(p.scheduledAt) : p.date}
                     {p.status === 'scheduled' && <small className="dash-table-time-note">Local time</small>}
@@ -897,7 +897,7 @@ function JobsPanel() {
 
       {loading ? (
         <div className="dash-empty dash-empty-card">
-          Loading…
+          Loading...
         </div>
       ) : jobs.length === 0 ? (
         <div className="dash-empty dash-empty-card">
@@ -1209,7 +1209,7 @@ function EnquiriesPanel() {
     <div>
       <div className="dash-section-header">
         <span className="dash-section-title">Website Form Enquiries</span>
-        <input className="dash-form-input" type="search" aria-label="Search enquiries" placeholder="Search contact, source or page…" value={query} onChange={event => setQuery(event.target.value)} />
+        <input className="dash-form-input" type="search" aria-label="Search enquiries" placeholder="Search contact, source or page..." value={query} onChange={event => setQuery(event.target.value)} />
       </div>
       <div className="dash-table-wrap">
         {loading ? <div className="dash-empty">Loading...</div> : entries.length === 0 ? (
@@ -1221,8 +1221,8 @@ function EnquiriesPanel() {
               <tr key={entry._id} className={entry.read ? '' : 'dash-unread-row'}>
                 <td><strong>{entry.name}</strong><br /><a href={`mailto:${entry.email}`}>{entry.email}</a></td>
                 <td><strong>{String(entry.source || 'contact_page').replaceAll('_', ' ')}</strong><br />{entry.sourceTitle && <span>{entry.sourceTitle}<br /></span>}{entry.sourcePage ? <a href={entry.sourcePage} target="_blank" rel="noreferrer">{entry.sourcePage}</a> : <small>Page not recorded for this older enquiry</small>}</td>
-                <td>{entry.phone || '—'}<br />{entry.company || entry.interest || '—'}</td>
-                <td className="dash-data-message">{entry.message || entry.interest || '—'}</td>
+                <td>{entry.phone || '-'}<br />{entry.company || entry.interest || '-'}</td>
+                <td className="dash-data-message">{entry.message || entry.interest || '-'}</td>
                 <td>{new Date(entry.createdAt).toLocaleString()}</td>
                 <td><div className="dash-table-actions">
                   {!entry.read && <button className="dash-btn dash-btn-ghost dash-btn-sm" onClick={() => markRead(entry)}>Mark Read</button>}
@@ -1325,9 +1325,9 @@ function MeetingsPanel() {
             <tbody>{items.map(item => (
               <tr key={item._id}>
                 <td><strong>{item.date}</strong><br />{item.time} · {item.timezone}</td>
-                <td>{item.person}<br />{item.personEmail || '—'}</td>
-                <td>{item.name}<br /><a href={`mailto:${item.email}`}>{item.email}</a><br />{item.phone || '—'}</td>
-                <td className="dash-data-message">{item.reason || '—'}</td>
+                <td>{item.person}<br />{item.personEmail || '-'}</td>
+                <td>{item.name}<br /><a href={`mailto:${item.email}`}>{item.email}</a><br />{item.phone || '-'}</td>
+                <td className="dash-data-message">{item.reason || '-'}</td>
                 <td><StatusBadge status={item.status} /></td>
                 <td><div className="dash-table-actions">
                   <select className="dash-form-select dash-status-select" value={item.status} onChange={event => changeStatus(item._id, event.target.value)}>
@@ -1340,6 +1340,57 @@ function MeetingsPanel() {
           </table>
         )}
       </div>
+    </div>
+  );
+}
+
+function SettingsPanel() {
+  const [emails, setEmails] = useState('');
+  const [busy, setBusy] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [status, setStatus] = useState('');
+
+  useEffect(() => {
+    settings.getNotifications()
+      .then(result => setEmails((result.contactCcEmails || []).join('\n')))
+      .catch(error => setStatus(error.message || 'Unable to load settings.'))
+      .finally(() => setBusy(false));
+  }, []);
+
+  async function save(event) {
+    event.preventDefault();
+    setSaving(true);
+    setStatus('');
+    try {
+      const result = await settings.updateNotifications({ contactCcEmails: emails });
+      setEmails((result.contactCcEmails || []).join('\n'));
+      setStatus('Notification CC recipients saved.');
+    } catch (error) {
+      setStatus(error.message || 'Unable to save settings.');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div>
+      <div className="dash-section-header"><span className="dash-section-title">Notification Settings</span></div>
+      <form className="dash-subsection" onSubmit={save} style={{ maxWidth: 720 }}>
+        <h3 style={{ marginTop: 0 }}>Email CC recipients</h3>
+        <p className="dash-muted">Add one email address per line. These recipients will receive copies of contact and meeting notifications.</p>
+        <textarea
+          className="dash-form-textarea"
+          rows={6}
+          value={emails}
+          onChange={event => setEmails(event.target.value)}
+          placeholder="team@example.com"
+          disabled={busy || saving}
+        />
+        {status && <p className="dash-muted" role="status">{status}</p>}
+        <button className="dash-btn dash-btn-primary" type="submit" disabled={busy || saving}>
+          <Save size={15} /> {saving ? 'Saving...' : 'Save CC recipients'}
+        </button>
+      </form>
     </div>
   );
 }
@@ -1394,7 +1445,7 @@ function LoginScreen({ onAuth }) {
           />
           {err && <div className="dash-login-err">{err}</div>}
           <button type="submit" className="dash-login-btn" style={{ marginTop: err ? 16 : 0 }} disabled={busy}>
-            {busy ? 'Signing In…' : 'Sign In'}
+            {busy ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
       </div>
@@ -1404,7 +1455,7 @@ function LoginScreen({ onAuth }) {
 
 /* ─────────────────────── Dashboard shell ────────────────── */
 export default function Dashboard() {
-  // Start false on both server and client to avoid a hydration mismatch —
+  // Start false on both server and client to avoid a hydration mismatch -
   // sessionStorage isn't available during server rendering of this client
   // component, so the real auth state is only known after mount.
   const [authed, setAuthed] = useState(false);
@@ -1413,7 +1464,7 @@ export default function Dashboard() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
 
-  // Intentional: resolves the real (client-only) auth state after mount —
+  // Intentional: resolves the real (client-only) auth state after mount -
   // see the hydration-mismatch note above.
   useEffect(() => {
     if (!auth.isLoggedIn()) return;
@@ -1519,6 +1570,9 @@ export default function Dashboard() {
           <button className={`dash-nav-btn${tab === 'ip-exclusions' ? ' active' : ''}`} onClick={() => selectTab('ip-exclusions')}>
             <Ban size={18} /> <span>Excluded IPs</span>
           </button>
+          <button className={`dash-nav-btn${tab === 'settings' ? ' active' : ''}`} onClick={() => selectTab('settings')}>
+            <Settings size={18} /> <span>Notification Settings</span>
+          </button>
           
           {user?.isSuperAdmin && (
             <>
@@ -1567,7 +1621,7 @@ export default function Dashboard() {
               <PanelLeftOpen size={19} />
             </button>
             <span className="dash-topbar-title">
-              {tab === 'case-studies' ? 'Case Studies' : tab === 'seo' ? 'Page SEO' : tab === 'blog' ? 'Blog Management' : tab === 'jobs' ? 'Job Postings' : tab === 'team' ? 'Team Members' : tab === 'resources' ? 'Downloadables' : tab === 'worklife' ? 'Team Culture Media' : tab === 'enquiries' ? 'Form Enquiries' : tab === 'newsletter' ? 'Newsletter Subscribers' : tab === 'meetings' ? 'Scheduled Meetings' : tab === 'analytics' ? 'Website Analytics' : tab === 'ip-exclusions' ? 'Excluded IP Addresses' : tab === 'admins' ? 'Admin Users' : 'Audit Logs'}
+              {tab === 'case-studies' ? 'Case Studies' : tab === 'seo' ? 'Page SEO' : tab === 'blog' ? 'Blog Management' : tab === 'jobs' ? 'Job Postings' : tab === 'team' ? 'Team Members' : tab === 'resources' ? 'Downloadables' : tab === 'worklife' ? 'Team Culture Media' : tab === 'enquiries' ? 'Form Enquiries' : tab === 'newsletter' ? 'Newsletter Subscribers' : tab === 'meetings' ? 'Scheduled Meetings' : tab === 'analytics' ? 'Website Analytics' : tab === 'ip-exclusions' ? 'Excluded IP Addresses' : tab === 'settings' ? 'Notification Settings' : tab === 'admins' ? 'Admin Users' : 'Audit Logs'}
             </span>
           </div>
           <div className="dash-topbar-user">
@@ -1604,6 +1658,7 @@ export default function Dashboard() {
           {tab === 'meetings' && <MeetingsPanel />}
           {tab === 'analytics' && <AnalyticsPanel />}
           {tab === 'ip-exclusions' && <IpExclusionsPanel />}
+          {tab === 'settings' && <SettingsPanel />}
           {tab === 'admins' && (
             user?.isSuperAdmin ? <AdminUsersPanel /> : <div className="dash-empty">Super Admin access only</div>
           )}

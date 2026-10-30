@@ -9,6 +9,7 @@ const PAGES_WITH_OWN_CTA = new Set([
   '/asset-finance',
   '/career',
   '/case-study',
+  '/contact',
   '/data-security',
   '/digital-marketing',
   '/faq',

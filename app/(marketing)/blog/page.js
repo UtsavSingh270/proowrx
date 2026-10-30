@@ -4,7 +4,7 @@ import { serverPosts } from '@/lib/serverApi';
 
 const metadata = {
   title: 'Blog',
-  description: 'Industry insights, outsourcing guides, and practical tips for Australian mortgage brokers and accountants — from the Proowrx team.',
+  description: 'Industry insights, outsourcing guides, and practical tips for Australian mortgage brokers and accountants - from the Proowrx team.',
   keywords: [
     'mortgage outsourcing Australia', 'mortgage broker support', 'loan processing outsourcing',
     'accounting outsourcing Australia', 'bookkeeping outsourcing', 'virtual assistant for mortgage brokers',

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   BLOG POST PAGE — Cross-browser safe styles
+   BLOG POST PAGE - Cross-browser safe styles
 ═══════════════════════════════════════════ */
 
 /* ── Hero ──────────────────────────────── */
@@ -13,11 +13,11 @@
       -ms-flex-align: center;
           align-items: center;
   overflow: hidden;
-  /* Fallback dark bg if image fails to load — keeps text readable */
+  /* Fallback dark bg if image fails to load - keeps text readable */
   background: #0a1324;
 }
 
-/* Absolutely-positioned image layer — explicit TRBL for full browser compat */
+/* Absolutely-positioned image layer - explicit TRBL for full browser compat */
 .post-hero-img-wrap {
   display: block;
   position: absolute;
@@ -36,7 +36,7 @@
   display: block;
 }
 
-/* Dark gradient overlay — always visible regardless of image */
+/* Dark gradient overlay - always visible regardless of image */
 .post-hero-overlay {
   position: absolute;
   top: 0;
@@ -67,7 +67,7 @@
   text-align: left;
 }
 
-/* Back link — always white so it's visible on the dark hero */
+/* Back link - always white so it's visible on the dark hero */
 .post-back-link {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -93,7 +93,7 @@
 
 .post-back-link:hover { color: var(--mode-accent); }
 
-/* Hero meta row — force white text over the dark overlay */
+/* Hero meta row - force white text over the dark overlay */
 .post-hero-meta {
   justify-content: flex-end;
   margin-bottom: 0;
@@ -196,7 +196,7 @@
   margin-bottom: 20px;
 }
 
-/* List — use ::before bullet instead of native marker for consistency */
+/* List - use ::before bullet instead of native marker for consistency */
 .post-list {
   list-style: none;
   padding: 0;

@@ -74,7 +74,7 @@ function GlobalReveal() {
   return null;
 }
 
-/* Mounted once in the (marketing) layout — Lenis smooth scroll, scroll-to-top
+/* Mounted once in the (marketing) layout - Lenis smooth scroll, scroll-to-top
    on route change, and the IntersectionObserver-driven .reveal animations
    used throughout every page. Not mounted on /dashboard. */
 export default function SiteEffects() {

@@ -1,4 +1,4 @@
-/* Small helpers for rendering post stats/URLs — all posts are DB-backed,
+/* Small helpers for rendering post stats/URLs - all posts are DB-backed,
    these just guard against undefined fields. */
 export function viewsOf(post) {
   return post.views || 0;

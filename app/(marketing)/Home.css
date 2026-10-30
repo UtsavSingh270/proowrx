@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════
-   HOME.CSS  —  Proowrx Modern Dark Theme
+   HOME.CSS  -  Proowrx Modern Dark Theme
 ═══════════════════════════════════════════════════ */
 
 .home {
@@ -102,7 +102,7 @@
 }
 
 /* ════════════════════════════════════════════════
-   HERO — content left, image right on desktop;
+   HERO - content left, image right on desktop;
    image on top, content below on mobile
 ════════════════════════════════════════════════ */
 .home .hero.hero-slider {
@@ -192,7 +192,7 @@
 .home .hero-slider-arrow:hover { color: #fff; border-color: #173f78; background: #173f78; transform: translateY(-1px); }
 
 /* ════════════════════════════════════════════════
-   HERO — full-bleed image, white gradient overlay
+   HERO - full-bleed image, white gradient overlay
    fading left (solid, text zone) → right (clear image)
 ════════════════════════════════════════════════ */
 .home .hero.hero-slider {
@@ -245,7 +245,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 600px;
+  max-width: 680px;
 }
 
 .home .hero-pill {
@@ -283,7 +283,8 @@
   font-size: clamp(0.95rem, 1.15vw, 1.15rem);
   color: #43587c;
   line-height: 1.72;
-  max-width: 500px;
+  width: min(100%, 680px);
+  max-width: 680px;
   margin-bottom: 30px;
 }
 .home .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
@@ -433,7 +434,7 @@
 .home .svc-link:hover { gap: 12px; }
 
 /* ════════════════════════════════════════════════
-   WHY PROOWRX — Dynamic Interactive Panel (Refined)
+   WHY PROOWRX - Dynamic Interactive Panel (Refined)
 ════════════════════════════════════════════════ */
 .home .why-dynamic-section { 
   background: #F8FAFC !important; 
@@ -913,7 +914,7 @@
 }
 
 /* ════════════════════════════════════════════════
-   RESPONSIVE — shared/remaining breakpoints
+   RESPONSIVE - shared/remaining breakpoints
 ════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .home .container { padding-inline: 18px; }

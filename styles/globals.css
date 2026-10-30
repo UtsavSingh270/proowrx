@@ -848,7 +848,8 @@ section[class*="-section"]:not([class*="hero"]),
 .page-hero-content p {
   font-size: 1.1rem;
   color: rgba(255,255,255,0.68);
-  max-width: 560px;
+  width: min(100%, 760px);
+  max-width: 760px;
   position: relative;
   z-index: 1;
   line-height: 1.75;
@@ -857,7 +858,7 @@ section[class*="-section"]:not([class*="hero"]),
 
 .page-hero:not(.page-hero--split) p {
   margin: 0 auto;
-  max-width: 640px;
+  max-width: 800px;
 }
 
 .page-hero:not(.page-hero--split) .page-hero-actions,

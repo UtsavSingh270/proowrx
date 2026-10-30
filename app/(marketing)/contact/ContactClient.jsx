@@ -5,6 +5,7 @@ import Image from 'next/image';
 import {
   ArrowRight,
   CheckCircle,
+  ChevronDown,
   Clock,
   Globe2,
   Mail,
@@ -35,18 +36,20 @@ const offices = [
   {
     icon: <MapPinned size={23} aria-hidden="true" />,
     city: 'Jaipur, India',
-    address: '2nd Floor, PTI Building, Jhalana Institutional Area, Jaipur – 302004',
+    address: '2nd Floor, PTI Building, Jhalana Institutional Area, Jaipur - 302004',
     phones: ['+91 96104 11400', '+91-141-2952294'],
-    emails: ['support@proowrx.com', 'naveenjain@proowrx.com'],
+    emails: ['support@proowrx.com'],
     color: '#1f9e8e',
+    mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=75.795%2C26.862%2C75.816%2C26.882&layer=mapnik&marker=26.8727%2C75.8057',
   },
   {
     icon: <MapPinned size={23} aria-hidden="true" />,
     city: 'Sydney, Australia',
-    address: 'Suite 215, East Wing, 33 Lexington Drive, Bella Vista NSW – 2153',
+    address: 'Suite 215, East Wing, 33 Lexington Drive, Bella Vista NSW - 2153',
     phones: ['02 8834 1222'],
-    emails: ['support@proowrx.com', 'deepika@proowrx.com'],
+    emails: ['support@proowrx.com'],
     color: '#c9a227',
+    mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=150.947%2C-33.746%2C150.969%2C-33.728&layer=mapnik&marker=-33.7374%2C150.9582',
   },
 ];
 
@@ -87,13 +90,13 @@ export default function Contact() {
           <div className="page-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 20 }}>Contact Us</span>
             <h1>Let&apos;s Start a<br />Conversation</h1>
-            <p>Ready to discuss how Proowrx can support your business? Get in touch — we&apos;d love to hear from you.</p>
-            <div className="page-hero-actions">
+            <p>Ready to discuss how Proowrx can support your business? Get in touch - we&apos;d love to hear from you.</p>
+            {/* <div className="page-hero-actions">
               <a href="https://calendly.com/proowrx/30min" target="_blank" rel="noreferrer" className="btn btn-gold">
                 Book a 30-min Call <ArrowRight size={15} />
               </a>
               <a href="mailto:support@proowrx.com" className="btn btn-ghost">Email Us</a>
-            </div>
+            </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
                 <span className="page-hero-stat-num">24hr</span>
@@ -117,7 +120,7 @@ export default function Contact() {
               <span className="contact-hero-badge-icon" aria-hidden="true"><PhoneCall size={24} /></span>
               <div>
                 <strong>Always Available</strong>
-                <span>Mon–Fri, 9AM–6PM</span>
+                <span>Mon-Fri, 9AM-6PM</span>
               </div>
             </div>
           </div>
@@ -128,45 +131,57 @@ export default function Contact() {
       <section className="section">
         <div className="container contact-grid">
 
-          {/* Left — Offices & info */}
+          {/* Left - Offices & info */}
           <div ref={r1} className="reveal-left contact-info">
-            <span className="chip chip-teal section-eyebrow">Our Offices</span>
+            {/* <span className="chip chip-teal section-eyebrow">Our Offices</span>
             <h2 className="section-title" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', marginBottom: 8 }}>Find Us</h2>
             <p style={{ color: 'var(--text-2)', marginBottom: 36, lineHeight: 1.7 }}>
               We have offices in India and Australia. No matter where you are, we&apos;re just a call or message away.
-            </p>
+            </p> */}
 
             {offices.map((o, i) => (
               <div key={i} className="office-info-card" style={{ '--office-color': o.color }}>
-                <div className="office-info-header">
-                  <span className="office-location-icon" aria-hidden="true">{o.icon}</span>
-                  <div>
-                    <h3 className="office-city">{o.city}</h3>
-                    <div className="office-color-bar" style={{ background: o.color }} />
-                  </div>
+                <div className="office-map">
+                  <iframe
+                    title={`Map of the Proowrx ${o.city} office`}
+                    src={o.mapEmbed}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
-                <div className="office-detail">
-                  <MapPin size={15} />
-                  <span>{o.address}</span>
+                <div className="office-card-content">
+                  <div className="office-info-header">
+                    <span className="office-location-icon" aria-hidden="true">{o.icon}</span>
+                    <div>
+                      <h3 className="office-city">{o.city}</h3>
+                      <div className="office-color-bar" style={{ background: o.color }} />
+                    </div>
+                  </div>
+                  <div className="office-detail">
+                    <MapPin size={15} />
+                    <span>{o.address}</span>
+                  </div>
+                  <div className="office-phone-row">
+                    {o.phones.map(p => (
+                      <div key={p} className="office-detail">
+                        <Phone size={15} />
+                        <a href={`tel:${p.replace(/\s/g, '')}`}>{p}</a>
+                      </div>
+                    ))}
+                  </div>
+                  {o.emails.map(em => (
+                    <div key={em} className="office-detail">
+                      <Mail size={15} />
+                      <a href={`mailto:${em}`}>{em}</a>
+                    </div>
+                  ))}
                 </div>
-                {o.phones.map(p => (
-                  <div key={p} className="office-detail">
-                    <Phone size={15} />
-                    <a href={`tel:${p.replace(/\s/g, '')}`}>{p}</a>
-                  </div>
-                ))}
-                {o.emails.map(em => (
-                  <div key={em} className="office-detail">
-                    <Mail size={15} />
-                    <a href={`mailto:${em}`}>{em}</a>
-                  </div>
-                ))}
               </div>
             ))}
 
           </div>
 
-          {/* Right — Contact Form */}
+          {/* Right - Contact Form */}
           <div ref={r2} className="reveal-right contact-form-wrap">
             <div className="contact-form-card">
               <h3>Send Us a Message</h3>
@@ -217,7 +232,7 @@ export default function Contact() {
                   </div>
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="cf-phone">Phone Number</label>
+                      <label htmlFor="cf-phone">Phone Number *</label>
                       <input
                         id="cf-phone"
                         name="phone"
@@ -225,22 +240,26 @@ export default function Contact() {
                         placeholder="02 8834 1222"
                         value={form.phone}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="form-group">
                       <label htmlFor="cf-service">Service Interested In</label>
-                      <select
-                        id="cf-service"
-                        name="service"
-                        value={form.service}
-                        onChange={handleChange}
-                      >
-                        <option value="">Select a service</option>
-                        <option value="mortgage">Mortgage Services</option>
-                        <option value="accounting">Accounting Services</option>
-                        <option value="both">Both Services</option>
-                        <option value="other">Other</option>
-                      </select>
+                      <div className="form-select-control">
+                        <select
+                          id="cf-service"
+                          name="service"
+                          value={form.service}
+                          onChange={handleChange}
+                        >
+                          <option value="">Select a service</option>
+                          <option value="mortgage">Mortgage Services</option>
+                          <option value="accounting">Accounting Services</option>
+                          <option value="both">Both Services</option>
+                          <option value="other">Other</option>
+                        </select>
+                        <ChevronDown size={17} aria-hidden="true" />
+                      </div>
                     </div>
                   </div>
                   <div className="form-group">
@@ -261,14 +280,14 @@ export default function Contact() {
                     disabled={status === 'sending'}
                   >
                     {status === 'sending' ? (
-                      <>Sending…<span className="contact-spinner" /></>
+                      <>Sending...<span className="contact-spinner" /></>
                     ) : (
                       <>Send Message <Send size={15} /></>
                     )}
                   </button>
                   {status === 'error' && <p className="contact-form-note" role="alert">Could not send your message. Please try again.</p>}
                   <p className="contact-form-note">
-                    We&apos;ll respond within 24 business hours. Your data is protected per our Privacy Policy.
+                    We&apos;ll respond within 72 business hours. Your data is protected per our Privacy Policy.
                   </p>
                 </form>
               )}
@@ -280,7 +299,7 @@ export default function Contact() {
                 <Clock size={18} color="var(--gold)" />
                 <strong>Business Hours</strong>
               </div>
-              <p>Monday – Friday: 9:00 AM – 6:00 PM (IST / AEDT)</p>
+              <p>Monday - Friday: 9:00 AM - 6:00 PM (IST / AEDT)</p>
               <p>Weekend support available for urgent files.</p>
             </div>
 
@@ -298,7 +317,7 @@ export default function Contact() {
       </section>
 
       {/* Map-like strip */}
-      <section className="contact-strip">
+      {/* <section className="contact-strip">
         <div className="container contact-strip-inner">
           <div className="contact-strip-item">
             <Mail size={22} color="var(--gold)" />
@@ -324,15 +343,8 @@ export default function Contact() {
             </div>
           </div>
           <div className="contact-strip-divider" />
-          {/* <div className="contact-strip-item">
-            <Clock size={22} color="var(--gold)" />
-            <div>
-              <strong>Response Time</strong>
-              <span>Within 24 hours</span>
-            </div>
-          </div> */}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

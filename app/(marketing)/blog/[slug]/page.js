@@ -33,7 +33,7 @@ export default async function Page({ params }) {
   const { post } = await resolvePost(slug);
   if (!post) notFound();
 
-  // Old shared links used the raw Mongo id — send them to the canonical slug URL.
+  // Old shared links used the raw Mongo id - send them to the canonical slug URL.
   if (post.slug && post.slug !== slug) {
     redirect(`/blog/${post.slug}`);
   }

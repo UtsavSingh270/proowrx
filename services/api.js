@@ -1,4 +1,4 @@
-import { apiClient, clearAuthToken, setAuthToken } from '../lib/apiClient';
+import { apiClient, apiUrl, clearAuthToken, setAuthToken } from '../lib/apiClient';
 
 function getToken() {
   if (typeof window === 'undefined') return null;
@@ -132,7 +132,7 @@ export const resources = {
   },
   requestDownload(data) { return apiClient.post('/resources/request-download', data); },
   downloadUrl(path) {
-    return path.startsWith('/api') ? path : `/api${path}`;
+    return apiUrl(path.startsWith('/api') ? path : `/api${path}`);
   },
   getAdminAll() {
     return apiClient.get('/resources/admin/all');
@@ -158,7 +158,7 @@ export const upload = {
       ...(getToken() ? { Authorization: `Bearer ${getToken()}` } : {}),
     };
 
-    const response = await fetch('/api/upload', {
+    const response = await fetch(apiUrl('/api/upload'), {
       method: 'POST',
       headers,
       body: formData,
@@ -285,6 +285,15 @@ export const meetings = {
   },
 };
 
+export const settings = {
+  getNotifications() {
+    return apiClient.get('/settings/notifications');
+  },
+  updateNotifications(data) {
+    return apiClient.put('/settings/notifications', data);
+  },
+};
+
 export const analytics = {
   getSummary(filters = {}) { return apiClient.get(`/analytics/summary?${new URLSearchParams(filters)}`); },
   getPages() { return apiClient.get('/analytics/pages'); },
@@ -301,7 +310,7 @@ export const analytics = {
 
 export async function checkBackend() {
   try {
-    const response = await fetch('/api/health', { signal: AbortSignal.timeout(3000) });
+    const response = await fetch(apiUrl('/api/health'), { signal: AbortSignal.timeout(3000) });
     return response.ok;
   } catch {
     return false;

@@ -14,5 +14,5 @@ export default function ImageUpload({ value, onChange, label = 'Image', onBusyCh
     catch (err) { setError(err.message); }
     finally { setBusy(false); onBusyChange?.(false); }
   }
-  return <fieldset disabled={busy} className="dash-upload-field"><FileUploadInput label={label} value={value} onChange={select} accept="image/jpeg,image/png,image/webp,image/gif" allowUrl={false} />{busy && <p role="status">Uploading image…</p>}{error && <p className="dash-login-err" role="alert">{error}</p>}</fieldset>;
+  return <fieldset disabled={busy} className="dash-upload-field"><FileUploadInput label={label} value={value} onChange={select} accept="image/jpeg,image/png,image/webp,image/gif" allowUrl={false} />{busy && <p role="status">Uploading image...</p>}{error && <p className="dash-login-err" role="alert">{error}</p>}</fieldset>;
 }

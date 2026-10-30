@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { apiUrl } from '@/lib/apiClient';
 
 const CONSENT_COOKIE = 'proowrx_cookie_consent';
 const VISITOR_COOKIE = 'proowrx_analytics_visitor';
-const API_URL = '';
 
 function readCookie(name) {
   return document.cookie.split('; ').find(row => row.startsWith(`${name}=`))?.split('=')[1] || '';
@@ -96,7 +96,7 @@ export default function AnalyticsTracker() {
         campaign: acquisition.campaign,
       });
 
-      fetch(`${API_URL}/api/analytics/events`, {
+      fetch(apiUrl('/api/analytics/events'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: payload,

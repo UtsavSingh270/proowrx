@@ -167,7 +167,7 @@ export default function CareerClient({ initialJobs }) {
           </div>
           {dynamicJobs.length === 0 && (
             <p style={{ textAlign: 'center', color: 'var(--text-3)', marginBottom: 32 }}>
-              No open roles right now — check back soon, or send us your CV below.
+              No open roles right now - check back soon, or send us your CV below.
             </p>
           )}
 
@@ -218,7 +218,7 @@ export default function CareerClient({ initialJobs }) {
                 <h4>Don&apos;t see a perfect match?</h4>
                 <p>We&apos;re always open to hearing from talented people. Send us your CV and tell us how you can add value to our team.</p>
               </div>
-              <a href="mailto:hr@proowrx.com?subject=Speculative Application – Proowrx" className="btn btn-gold">
+              <a href="mailto:hr@proowrx.com?subject=Speculative Application - Proowrx" className="btn btn-gold">
                 Send Your CV <ArrowRight size={14} />
               </a>
             </div>

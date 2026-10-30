@@ -4,7 +4,7 @@ import { serverJobs } from '@/lib/serverApi';
 
 const metadata = {
   title: 'Careers',
-  description: 'Join a growing KPO team redefining back-office support for Australian mortgage brokers and accountants. Current openings in Jaipur, India — apply today.',
+  description: 'Join a growing KPO team redefining back-office support for Australian mortgage brokers and accountants. Current openings in Jaipur, India - apply today.',
   alternates: { canonical: '/career' },
   openGraph: {
     title: 'Build Your Career with Purpose | Proowrx Careers',

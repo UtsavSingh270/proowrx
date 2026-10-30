@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, ArrowRight, Phone, Mail, Calendar, CircleCheckBig, LockKeyhole } from 'lucide-react';
+import { X, ArrowRight, Phone, Mail, Calendar, ChevronDown, CircleCheckBig, LockKeyhole } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import Image from 'next/image';
@@ -9,15 +9,9 @@ import { contact } from '@/services/api';
 import './ContactPopup.css';
 
 const LOGO = '/Proowrx_Logo.png';
-const CONSENT_COOKIE = 'proowrx_cookie_consent';
-
-function hasConsentChoice() {
-  return document.cookie.split('; ').some(row => row.startsWith(`${CONSENT_COOKIE}=`));
-}
-
 export default function ContactPopup() {
   const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', interest: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', interest: '' });
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
@@ -25,7 +19,7 @@ export default function ContactPopup() {
   useEffect(() => {
     let timer;
     const schedule = () => {
-      if (timer || sessionStorage.getItem('cpopup_shown') || !hasConsentChoice()) return;
+      if (timer || sessionStorage.getItem('cpopup_shown')) return;
       timer = setTimeout(() => {
         setOpen(true);
         sessionStorage.setItem('cpopup_shown', '1');
@@ -110,7 +104,7 @@ export default function ContactPopup() {
             <div className="cpopup-success">
               <div className="cpopup-success-check" aria-hidden="true"><CircleCheckBig size={34} strokeWidth={2} /></div>
               <h4>We&apos;ll be in touch!</h4>
-              <p>Thank you — our team will contact you within 24 hours.</p>
+              <p>Thank you - our team will contact you within 24 hours.</p>
             </div>
           ) : (
             <>
@@ -133,16 +127,26 @@ export default function ContactPopup() {
                   onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
                   required
                 />
-                <select
-                  value={form.interest}
-                  onChange={e => setForm(p => ({ ...p, interest: e.target.value }))}
-                >
-                  <option value="">I&apos;m Interested in… (Optional)</option>
-                  <option value="mortgage">Mortgage Services</option>
-                  <option value="accounting">Accounting Services</option>
-                  <option value="digital-marketing">Digital Marketing Services</option>
-                  <option value="asset-finance">Asset Finance Services</option>
-                </select>
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  value={form.phone}
+                  onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
+                  required
+                />
+                <div className="cpopup-select-control">
+                  <select
+                    value={form.interest}
+                    onChange={e => setForm(p => ({ ...p, interest: e.target.value }))}
+                  >
+                    <option value="">I&apos;m Interested in... (Optional)</option>
+                    <option value="mortgage">Mortgage Services</option>
+                    <option value="accounting">Accounting Services</option>
+                    <option value="digital-marketing">Digital Marketing Services</option>
+                    <option value="asset-finance">Asset Finance Services</option>
+                  </select>
+                  <ChevronDown size={17} aria-hidden="true" />
+                </div>
                 {error && <p className="cpopup-privacy" role="alert">{error}</p>}
                 <button type="submit" className="cpopup-submit" disabled={sending}>
                   {sending ? 'Sending...' : <>Book A Free Call <ArrowRight size={15} /></>}

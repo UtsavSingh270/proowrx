@@ -8,7 +8,7 @@ const MeetingSchema = new mongoose.Schema({
   timezone:    { type: String, default: 'Australia/Sydney' },
   name:        { type: String, required: true, trim: true },
   email:       { type: String, required: true, trim: true, lowercase: true },
-  phone:       { type: String, default: '' },
+  phone:       { type: String, required: true, trim: true },
   reason:      { type: String, default: '' },
   status:      { type: String, enum: ['pending', 'confirmed', 'cancelled'], default: 'pending' },
 }, { timestamps: true });

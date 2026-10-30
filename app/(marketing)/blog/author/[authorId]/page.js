@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
 
   const description = data.author.summary || data.author.description || `Read articles written by ${data.author.name}.`;
   return {
-    title: `${data.author.name} — Author`,
+    title: `${data.author.name} - Author`,
     description,
     alternates: { canonical: `/blog/author/${authorId}` },
   };

@@ -2,6 +2,7 @@ const express    = require('express');
 const nodemailer = require('nodemailer');
 const Contact    = require('../models/Contact');
 const { requireAdmin } = require('../middleware/auth');
+const { getNotificationCc } = require('../utils/notificationSettings');
 
 const router = express.Router();
 
@@ -23,7 +24,7 @@ function createTransporter() {
 router.post('/', async (req, res) => {
   try {
     const { name, email, phone, company, interest, message, source, sourcePage, sourceTitle } = req.body;
-    if (!name || !email) return res.status(400).json({ error: 'Name and email are required' });
+    if (!name || !email || !phone) return res.status(400).json({ error: 'Name, email and phone are required' });
 
     // Save to DB
     const entry = await Contact.create({ name, email, phone, company, interest, message, source: source || 'contact_page', sourcePage: typeof sourcePage === 'string' && /^\/(?!\/)/.test(sourcePage) ? sourcePage.split(/[?#]/)[0].slice(0, 500) : '', sourceTitle: String(sourceTitle || '').slice(0, 200) });
@@ -31,26 +32,28 @@ router.post('/', async (req, res) => {
     // Send email notification
     try {
       const transporter = createTransporter();
+      const cc = await getNotificationCc();
       await transporter.sendMail({
         from: process.env.EMAIL_FROM,
         to:   process.env.EMAIL_TO,
-        subject: `New enquiry from ${name} — Proowrx`,
+        cc,
+        subject: `New enquiry from ${name} - Proowrx`,
         html: `
           <h2>New Contact Enquiry</h2>
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif">
             <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Name</td><td style="padding:8px">${name}</td></tr>
             <tr style="background:#f8f9fc"><td style="padding:8px;font-weight:bold;color:#374a6e">Email</td><td style="padding:8px"><a href="mailto:${email}">${email}</a></td></tr>
-            <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Phone</td><td style="padding:8px">${phone || '—'}</td></tr>
-            <tr style="background:#f8f9fc"><td style="padding:8px;font-weight:bold;color:#374a6e">Company</td><td style="padding:8px">${company || '—'}</td></tr>
-            <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Interest</td><td style="padding:8px">${interest || '—'}</td></tr>
-            <tr style="background:#f8f9fc"><td style="padding:8px;font-weight:bold;color:#374a6e">Message</td><td style="padding:8px">${message || '—'}</td></tr>
+            <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Phone</td><td style="padding:8px">${phone || '-'}</td></tr>
+            <tr style="background:#f8f9fc"><td style="padding:8px;font-weight:bold;color:#374a6e">Company</td><td style="padding:8px">${company || '-'}</td></tr>
+            <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Interest</td><td style="padding:8px">${interest || '-'}</td></tr>
+            <tr style="background:#f8f9fc"><td style="padding:8px;font-weight:bold;color:#374a6e">Message</td><td style="padding:8px">${message || '-'}</td></tr>
             <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Source</td><td style="padding:8px">${source || 'contact_page'}</td></tr>
           </table>
         `,
       });
     } catch (mailErr) {
       console.error('Email send error:', mailErr.message);
-      // Don't fail the API call if email fails — entry is already saved to DB
+      // Don't fail the API call if email fails - entry is already saved to DB
     }
 
     res.status(201).json({ message: 'Enquiry received', id: entry._id });
@@ -61,7 +64,7 @@ router.post('/', async (req, res) => {
 
 /* ── Admin ──────────────────────────────────────────────────── */
 
-// GET /api/contact — list all enquiries (admin)
+// GET /api/contact - list all enquiries (admin)
 router.get('/', requireAdmin, async (req, res) => {
   try {
     const entries = await Contact.find().sort({ createdAt: -1 });
@@ -71,7 +74,7 @@ router.get('/', requireAdmin, async (req, res) => {
   }
 });
 
-// PATCH /api/contact/:id/read — mark as read
+// PATCH /api/contact/:id/read - mark as read
 router.patch('/:id/read', requireAdmin, async (req, res) => {
   try {
     const entry = await Contact.findByIdAndUpdate(req.params.id, { read: true }, { new: true });

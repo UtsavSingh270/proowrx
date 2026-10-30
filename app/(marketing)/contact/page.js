@@ -3,7 +3,7 @@ import ContactClient from './ContactClient';
 
 const metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with Proowrx — offices in Jaipur, India and Sydney, Australia. Send a message, book a 30-minute discovery call, or schedule a meeting directly with our leadership team.',
+  description: 'Get in touch with Proowrx - offices in Jaipur, India and Sydney, Australia. Send a message, book a 30-minute discovery call, or schedule a meeting directly with our leadership team.',
   alternates: { canonical: '/contact' },
   openGraph: {
     title: "Let's Start a Conversation | Contact Proowrx",

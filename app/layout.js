@@ -25,7 +25,7 @@ export const metadata = {
     template: '%s | Proowrx',
     default: 'Proowrx | Knowledge Process Outsourcing for Mortgage Brokers & Accountants',
   },
-  description: 'Proowrx is an Australian-owned KPO providing expert back-office support — mortgage processing, accounting, and virtual assistant services — for Australian mortgage brokers and accounting firms.',
+  description: 'Proowrx is an Australian-owned KPO providing expert back-office support - mortgage processing, accounting, and virtual assistant services - for Australian mortgage brokers and accounting firms.',
   icons: {
     icon: '/favicon.ico',
   },

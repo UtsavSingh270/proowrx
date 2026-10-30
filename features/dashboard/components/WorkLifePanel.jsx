@@ -146,7 +146,7 @@ export default function WorkLifePanel() {
       {!modalOpen && error && <p role="alert" className="dash-login-err">{error}</p>}
 
       {loading ? (
-        <div className="dash-empty">Loading…</div>
+        <div className="dash-empty">Loading...</div>
       ) : items.length === 0 ? (
         <div className="dash-empty">No images or videos uploaded yet. Add worklife media to populate the page.</div>
       ) : (
@@ -268,7 +268,7 @@ export default function WorkLifePanel() {
             <div className="dash-modal-footer">
               <button className="dash-btn dash-btn-ghost" onClick={() => setModalOpen(false)} disabled={saving}>Cancel</button>
               <button className="dash-btn dash-btn-primary" onClick={handleSave} disabled={saving}>
-                <Save size={14} /> {saving ? 'Saving…' : 'Save Item'}
+                <Save size={14} /> {saving ? 'Saving...' : 'Save Item'}
               </button>
             </div>
           </div>

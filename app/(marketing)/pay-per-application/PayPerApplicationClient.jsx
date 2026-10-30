@@ -54,7 +54,7 @@ const comparisons = [
 ];
 
 const whyItems = [
-  { icon: <TrendingUp size={20} />, title: 'Scale Without Overhead', body: 'Send one file or fifty — you only pay for what you use. No idle staff costs during quiet periods.' },
+  { icon: <TrendingUp size={20} />, title: 'Scale Without Overhead', body: 'Send one file or fifty - you only pay for what you use. No idle staff costs during quiet periods.' },
   { icon: <Clock size={20} />, title: '24-Hour Turnaround', body: 'Files submitted by 3 PM AEST are returned within 24 business hours, fully processed and ready to lodge.' },
   { icon: <FileCheck size={20} />, title: 'ATO & NCCP Compliant', body: 'Every application is checked against current compliance requirements before it leaves our team.' },
   { icon: <Shield size={20} />, title: 'Bank-Grade Security', body: 'All files are handled in our ISO-aligned secure environment with end-to-end encryption and audit trails.' },
@@ -62,7 +62,7 @@ const whyItems = [
 
 const process = [
   { n: '01', title: 'Submit Your File', body: 'Upload the client file and any instructions to our secure portal. Email or shared folder options available.' },
-  { n: '02', title: 'We Process It', body: 'Our trained team completes the relevant package tasks — AOL, CRM entry, compliance checks and lodgement.' },
+  { n: '02', title: 'We Process It', body: 'Our trained team completes the relevant package tasks - AOL, CRM entry, compliance checks and lodgement.' },
   { n: '03', title: 'Quality Check', body: 'A senior processor reviews the work before it leaves our team, catching errors before they reach the lender.' },
   { n: '04', title: 'File Returned', body: 'You receive the fully processed, lodged file with a completion checklist and all documents organised.' },
 ];
@@ -136,7 +136,7 @@ export default function PayPerApplication() {
             <span className="chip chip-sky section-eyebrow">Why Pay Per Application</span>
             <h2 className="section-title">The Flexible Alternative to Hiring</h2>
             <p className="section-body" style={{ maxWidth: 560, margin: '0 auto' }}>
-              For brokers with fluctuating volumes, a Pay Per Application model gives you professional processing capacity exactly when you need it — without the overhead of permanent staff.
+              For brokers with fluctuating volumes, a Pay Per Application model gives you professional processing capacity exactly when you need it - without the overhead of permanent staff.
             </p>
           </div>
           <div className="ppa-why-grid" ref={r2}>

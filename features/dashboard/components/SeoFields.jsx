@@ -22,8 +22,8 @@ export default function SeoFields({ value = {}, onChange, fallbackTitle = '', fa
       {fields.map(([key, label, placeholder]) => <label className="dash-form-group" key={key}>
         <span className="dash-form-label">{label}</span>
         {key.toLowerCase().includes('description') ? <textarea className="dash-form-textarea" rows={3} value={seo[key]} placeholder={placeholder} onChange={event => set(key, event.target.value)} maxLength={1000} /> : <input className="dash-form-input" value={seo[key]} placeholder={placeholder} onChange={event => set(key, event.target.value)} maxLength={key === 'title' ? 200 : 2000} />}
-        {key === 'title' && <small>{seo.title.length} characters · aim for about 50–60</small>}
-        {key === 'description' && <small>{seo.description.length} characters · aim for about 140–160</small>}
+        {key === 'title' && <small>{seo.title.length} characters · aim for about 50-60</small>}
+        {key === 'description' && <small>{seo.description.length} characters · aim for about 140-160</small>}
       </label>)}
     </div>
     <ImageUpload label="Social sharing image" value={seo.ogImage} onChange={value => set('ogImage', value)} onBusyChange={onUploadBusyChange} />

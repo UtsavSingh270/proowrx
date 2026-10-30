@@ -266,11 +266,11 @@ function ExpertView() {
       <form className="cb-form" onSubmit={submit}>
         <input name="name" placeholder="Your name *" value={form.name} onChange={change} required />
         <input name="email" type="email" placeholder="Email address *" value={form.email} onChange={change} required />
-        <input name="phone" type="tel" placeholder="Phone number" value={form.phone} onChange={change} />
+        <input name="phone" type="tel" placeholder="Phone number *" value={form.phone} onChange={change} required />
         <textarea name="message" placeholder="How can we help you? *" rows={3} value={form.message} onChange={change} required />
         {error && <p role="alert">{error}</p>}
         <button type="submit" className="cb-submit-btn" disabled={sending}>
-          {sending ? <><RefreshCw size={14} className="cb-spin" /> Sending…</> : <><Send size={14} /> Send Message</>}
+          {sending ? <><RefreshCw size={14} className="cb-spin" /> Sending...</> : <><Send size={14} /> Send Message</>}
         </button>
       </form>
 
@@ -520,7 +520,7 @@ function AIView() {
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={handleKey}
-          placeholder="Type your question…"
+          placeholder="Type your question..."
           disabled={thinking}
           maxLength={300}
         />
@@ -574,7 +574,7 @@ function ScheduleView() {
         <a href="tel:+919610411400" className="cb-contact-alt"><Phone size={14} /> +91 96104 11400 (IN)</a>
         <a href="mailto:support@proowrx.com" className="cb-contact-alt"><Mail size={14} /> support@proowrx.com</a>
       </div>
-      <p className="cb-schedule-hours"><Clock size={12} /> Mon–Fri · 9AM–6PM (IST / AEDT)</p>
+      <p className="cb-schedule-hours"><Clock size={12} /> Mon-Fri · 9AM-6PM (IST / AEDT)</p>
     </div>
   );
 }

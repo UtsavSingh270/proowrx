@@ -49,15 +49,15 @@ export default function SeoPanel() {
   return <div>
     <div className="dash-section-header"><h2 className="dash-section-title">Page SEO</h2></div>
     <p className="dash-field-help">Manage static pages here. Edit individual blog and insight SEO in the post editor.</p>
-    {loading ? <div className="dash-empty">Loading SEO settings…</div> : entries && <div className="dash-seo-layout">
-      <aside className="dash-seo-pages"><input aria-label="Search static pages" type="search" className="dash-form-input" placeholder="Search pages…" value={query} onChange={event => setQuery(event.target.value)} />
+    {loading ? <div className="dash-empty">Loading SEO settings...</div> : entries && <div className="dash-seo-layout">
+      <aside className="dash-seo-pages"><input aria-label="Search static pages" type="search" className="dash-form-input" placeholder="Search pages..." value={query} onChange={event => setQuery(event.target.value)} />
         {filtered.map(page => <button disabled={saving || uploading} type="button" className={`dash-seo-page${path === page.path ? ' active' : ''}`} key={page.path} onClick={() => select(page.path)} aria-current={path === page.path ? 'page' : undefined}>{page.label}<small>{page.path}</small></button>)}
         {!filtered.length && <p>No matching pages.</p>}
       </aside>
       <form onSubmit={save} className="dash-seo-editor">
         <h3>{pages.find(page => page.path === path)?.label}</h3>
         <fieldset disabled={saving || uploading} className="dash-seo-form-content"><SeoFields onUploadBusyChange={setUploading} value={seo} onChange={next => { setSeo(next); setDirty(true); setMessage(''); }} path={path} fallbackTitle={pages.find(page => page.path === path)?.label} /></fieldset>
-        <button className="dash-btn dash-btn-primary" disabled={saving || uploading || !dirty}>{saving ? 'Saving…' : 'Save SEO settings'}</button>
+        <button className="dash-btn dash-btn-primary" disabled={saving || uploading || !dirty}>{saving ? 'Saving...' : 'Save SEO settings'}</button>
         {message && <p role="status">{message}</p>}
       </form>
     </div>}

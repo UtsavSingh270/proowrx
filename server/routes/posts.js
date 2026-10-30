@@ -64,7 +64,7 @@ async function findPostByIdOrSlug(idOrSlug) {
 
 /* ── Public routes ──────────────────────────────────────────── */
 
-// GET /api/posts  — published posts (newest first)
+// GET /api/posts  - published posts (newest first)
 router.get('/', async (req, res) => {
   try {
     const posts = await Post.find(publicPostFilter())
@@ -76,7 +76,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/posts/author/:authorId — public author profile with paginated posts
+// GET /api/posts/author/:authorId - public author profile with paginated posts
 router.get('/author/:authorId', async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.authorId)) {
@@ -116,7 +116,7 @@ router.get('/author/:authorId', async (req, res) => {
   }
 });
 
-// GET /api/posts/:id  — single post by slug or Mongo id (any status OK for preview, views++, likes count)
+// GET /api/posts/:id  - single post by slug or Mongo id (any status OK for preview, views++, likes count)
 router.get('/:id', async (req, res) => {
   try {
     const post = await findPostByIdOrSlug(req.params.id);
@@ -125,7 +125,7 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-    // Increment view count (one per session tracked by client — server just counts)
+    // Increment view count (one per session tracked by client - server just counts)
     const excluded = await isExcludedRequest(req);
     const trackView = req.query.view === '1' && !excluded;
     if (trackView) {
@@ -147,7 +147,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/posts/:id/like  — toggle like (device-based), :id may be slug or Mongo id
+// POST /api/posts/:id/like  - toggle like (device-based), :id may be slug or Mongo id
 router.post('/:id/like', async (req, res) => {
   try {
     const { deviceId } = req.body;
@@ -322,7 +322,7 @@ router.get('/admin/all', requireAdmin, async (req, res) => {
   }
 });
 
-// GET /api/posts/admin/:id  — full post for editing
+// GET /api/posts/admin/:id  - full post for editing
 router.get('/admin/:id', requireAdmin, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -333,7 +333,7 @@ router.get('/admin/:id', requireAdmin, async (req, res) => {
   }
 });
 
-// POST /api/posts  — create new post
+// POST /api/posts  - create new post
 router.post('/', requireAdmin, async (req, res) => {
   try {
     const data = await normalizePostInput(req.body);
@@ -358,7 +358,7 @@ router.post('/', requireAdmin, async (req, res) => {
   }
 });
 
-// PUT /api/posts/:id  — update post (slug is immutable once set, so shared links keep working)
+// PUT /api/posts/:id  - update post (slug is immutable once set, so shared links keep working)
 router.put('/:id', requireAdmin, async (req, res) => {
   try {
     const data = await normalizePostInput(req.body);
@@ -392,7 +392,7 @@ router.put('/:id', requireAdmin, async (req, res) => {
   }
 });
 
-// PATCH /api/posts/:id/status  — change status only
+// PATCH /api/posts/:id/status  - change status only
 router.patch('/:id/status', requireAdmin, async (req, res) => {
   try {
     const { status } = req.body;
@@ -421,7 +421,7 @@ router.patch('/:id/status', requireAdmin, async (req, res) => {
   }
 });
 
-// PATCH /api/posts/:id/featured — toggle homepage/blog hero eligibility
+// PATCH /api/posts/:id/featured - toggle homepage/blog hero eligibility
 router.patch('/:id/featured', requireAdmin, async (req, res) => {
   try {
     const featured = req.body.featured === true;

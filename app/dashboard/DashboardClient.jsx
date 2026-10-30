@@ -1377,7 +1377,7 @@ function SettingsPanel() {
       <div className="dash-section-header"><span className="dash-section-title">Notification Settings</span></div>
       <form className="dash-subsection" onSubmit={save} style={{ maxWidth: 720 }}>
         <h3 style={{ marginTop: 0 }}>Email CC recipients</h3>
-        <p className="dash-muted">Add one email address per line. These recipients will receive copies of contact and meeting notifications.</p>
+        <p className="dash-muted">Website enquiries are sent to support@proowrx.com. Add one CC email address per line to send copies of contact, meeting and downloadable-resource notifications.</p>
         <textarea
           className="dash-form-textarea"
           rows={6}

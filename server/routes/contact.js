@@ -1,22 +1,9 @@
 const express    = require('express');
-const nodemailer = require('nodemailer');
 const Contact    = require('../models/Contact');
 const { requireAdmin } = require('../middleware/auth');
-const { getNotificationCc } = require('../utils/notificationSettings');
+const { sendContactNotifications } = require('../utils/mailer');
 
 const router = express.Router();
-
-function createTransporter() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT) || 587,
-    secure: Number(process.env.SMTP_PORT) === 465,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-}
 
 /* ── Public ─────────────────────────────────────────────────── */
 
@@ -24,33 +11,21 @@ function createTransporter() {
 router.post('/', async (req, res) => {
   try {
     const { name, email, phone, company, interest, message, source, sourcePage, sourceTitle } = req.body;
-    if (!name || !email || !phone) return res.status(400).json({ error: 'Name, email and phone are required' });
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    if (!String(name || '').trim() || !normalizedEmail || !String(phone || '').trim()) {
+      return res.status(400).json({ error: 'Name, email and phone are required' });
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+      return res.status(400).json({ error: 'Enter a valid email address' });
+    }
 
     // Save to DB
-    const entry = await Contact.create({ name, email, phone, company, interest, message, source: source || 'contact_page', sourcePage: typeof sourcePage === 'string' && /^\/(?!\/)/.test(sourcePage) ? sourcePage.split(/[?#]/)[0].slice(0, 500) : '', sourceTitle: String(sourceTitle || '').slice(0, 200) });
+    const entry = await Contact.create({ name: String(name).trim(), email: normalizedEmail, phone: String(phone).trim(), company, interest, message, source: source || 'contact_page', sourcePage: typeof sourcePage === 'string' && /^\/(?!\/)/.test(sourcePage) ? sourcePage.split(/[?#]/)[0].slice(0, 500) : '', sourceTitle: String(sourceTitle || '').slice(0, 200) });
 
-    // Send email notification
+    // Notify the support inbox and send the enquirer an acknowledgement.
     try {
-      const transporter = createTransporter();
-      const cc = await getNotificationCc();
-      await transporter.sendMail({
-        from: process.env.EMAIL_FROM,
-        to:   process.env.EMAIL_TO,
-        cc,
-        subject: `New enquiry from ${name} - Proowrx`,
-        html: `
-          <h2>New Contact Enquiry</h2>
-          <table style="border-collapse:collapse;width:100%;font-family:sans-serif">
-            <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Name</td><td style="padding:8px">${name}</td></tr>
-            <tr style="background:#f8f9fc"><td style="padding:8px;font-weight:bold;color:#374a6e">Email</td><td style="padding:8px"><a href="mailto:${email}">${email}</a></td></tr>
-            <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Phone</td><td style="padding:8px">${phone || '-'}</td></tr>
-            <tr style="background:#f8f9fc"><td style="padding:8px;font-weight:bold;color:#374a6e">Company</td><td style="padding:8px">${company || '-'}</td></tr>
-            <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Interest</td><td style="padding:8px">${interest || '-'}</td></tr>
-            <tr style="background:#f8f9fc"><td style="padding:8px;font-weight:bold;color:#374a6e">Message</td><td style="padding:8px">${message || '-'}</td></tr>
-            <tr><td style="padding:8px;font-weight:bold;color:#374a6e">Source</td><td style="padding:8px">${source || 'contact_page'}</td></tr>
-          </table>
-        `,
-      });
+      const mailResult = await sendContactNotifications(entry.toObject());
+      if (mailResult.skipped) console.warn('Email notifications skipped: SMTP is not configured');
     } catch (mailErr) {
       console.error('Email send error:', mailErr.message);
       // Don't fail the API call if email fails - entry is already saved to DB

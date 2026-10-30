@@ -245,7 +245,7 @@ function ExpertView() {
     <div className="cb-expert-success">
       <div className="cb-success-icon"><CheckCircle size={36} color="#10b981" /></div>
       <h4>Message Sent!</h4>
-      <p>Thanks, {form.name.split(' ')[0]}! One of our experts will reach out within a few hours.</p>
+      <p>Thanks, {form.name.split(' ')[0]}! One of our experts will reach out within 72 hours.</p>
       <div className="cb-contact-alts">
         <a href="tel:+61288341222" className="cb-contact-alt"><Phone size={14} /> 02 8834 1222</a>
         <a href="mailto:support@proowrx.com" className="cb-contact-alt"><Mail size={14} /> support@proowrx.com</a>
@@ -259,7 +259,7 @@ function ExpertView() {
         <span className="cb-view-icon" aria-hidden="true"><UserRound size={20} /></span>
         <div>
           <h4>Ask an Expert</h4>
-          <p>Leave your details and we&apos;ll be in touch within a few hours.</p>
+          <p>Leave your details and we&apos;ll be in touch within 72 hours.</p>
         </div>
       </div>
 

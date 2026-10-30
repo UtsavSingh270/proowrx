@@ -37,13 +37,19 @@ Analytics supports Today, Yesterday, Last 7 days, This month, Last 30 days, Last
 
 The single package lockfile covers the entire application. The database collections and existing content do not need migration. Legacy local assets are preserved in `server/uploads`; new uploads continue to use Cloudinary.
 
-## Deployment notes
+## Deploying on Cloudways
 
-Copy `.env.example` to `.env.production`, replace every placeholder, and keep that file outside source control. `JWT_SECRET` must be at least 32 characters and the bootstrap `ADMIN_PASSWORD` at least 14 characters in production. The application no longer creates an account from hardcoded credentials.
+Create a Node.js application in Cloudways and deploy this repository to its application directory. Configure the environment variables from `.env.example` in the Cloudways application settings, including the MongoDB, SMTP, Cloudinary and `NEXT_PUBLIC_SITE_URL` values. Keep production secrets out of source control.
 
-Vercel continues to provide the proxy and TLS layer for the current deployment; it ignores the repository's Docker and Nginx configuration. For a future self-hosted server, follow [deploy/README.md](deploy/README.md). The included setup provisions the standalone Next.js container, Nginx reverse proxy and Let's Encrypt certificate, then enables HTTPS redirects, connection/request limits, compression and immutable asset caching.
+Use the following commands for the application lifecycle:
 
-For a manual standalone deployment, copy `public` and `.next/static` alongside `.next/standalone` as required by Next.js. Preserve `server/uploads` if using legacy local files. Set `TRUST_PROXY=1` only when the application receives traffic through exactly one trusted reverse proxy; otherwise it trusts loopback proxies only.
+```bash
+npm ci
+npm run build
+npm start
+```
+
+Run the app on the port provided by Cloudways through `PORT`. The application serves its website and API from the same Next.js process, so no Docker, Nginx or separate Express process is required. New media uploads use Cloudinary; keep `server/uploads` only when serving legacy local files.
 
 Download links are signed, resource-scoped and expire after ten minutes, so they do not require shared in-memory state. API rate limits remain process-local; use a shared rate-limit store for multi-instance deployment.
 

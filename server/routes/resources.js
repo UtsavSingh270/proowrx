@@ -6,6 +6,7 @@ const Resource = require('../models/Resource');
 const { requireAdmin } = require('../middleware/auth');
 const { logAudit } = require('../utils/auditLog');
 const { deleteCloudinaryValue, deleteReplacedCloudinaryValue } = require('../utils/cloudinary');
+const { sendContactNotifications } = require('../utils/mailer');
 
 const router = express.Router();
 const Contact = require('../models/Contact');
@@ -134,7 +135,13 @@ router.post('/request-download', async (req, res) => {
     // A token is only returned after the enquiry has been durably saved.
     const token = createDownloadToken(resource._id);
     const sourcePage = typeof req.body.sourcePage === 'string' && /^\/(?!\/)/.test(req.body.sourcePage) ? req.body.sourcePage.split(/[?#]/)[0].slice(0, 500) : `/resources/${resource.slug}`;
-    await Contact.create({ ...details, source: 'downloadable', sourcePage, sourceTitle: resource.title, resourceId: resource._id, interest: resource.title, message: `Download requested: ${resource.title}` });
+    const entry = await Contact.create({ ...details, source: 'downloadable', sourcePage, sourceTitle: resource.title, resourceId: resource._id, interest: resource.title, message: `Download requested: ${resource.title}` });
+    try {
+      const mailResult = await sendContactNotifications(entry);
+      if (mailResult.skipped) console.warn('Download enquiry email skipped: SMTP is not configured');
+    } catch (mailError) {
+      console.error('Download enquiry email error:', mailError.message);
+    }
     res.status(201).json({ downloadUrl: `/api/resources/download/${token}` });
   } catch (error) { res.status(400).json({ error: error.message }); }
 });

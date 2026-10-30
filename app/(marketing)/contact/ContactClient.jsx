@@ -36,11 +36,13 @@ const offices = [
   {
     icon: <MapPinned size={23} aria-hidden="true" />,
     city: 'Jaipur, India',
-    address: '2nd Floor, PTI Building, Jhalana Institutional Area, Jaipur - 302004',
+    address: '2nd Floor, Press Trust Of India, 5 B, Jhalana Institutional Area, J L N Marg, Jaipur, Rajasthan 302004',
     phones: ['+91 96104 11400', '+91-141-2952294'],
     emails: ['support@proowrx.com'],
     color: '#1f9e8e',
-    mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=75.795%2C26.862%2C75.816%2C26.882&layer=mapnik&marker=26.8727%2C75.8057',
+    // mapEmbed: 'https://www.google.com/maps?q=2nd+Floor,+PTI+Building,+Jhalana+Institutional+Area,+Jaipur+302004&output=embed',
+    mapEmbed: 'https://www.google.com/maps?q=2nd+Floor%2C+Proowrx+LLP%2C+Press+Trust+Of+India%2C+5+B%2C+Jawahar+Lal+Nehru+Marg%2C+Jhalana+Institutional+Area%2C+Jhalana+Doongri%2C+Jaipur%2C+Rajasthan+302004%2C+India&output=embed',
+    // mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=75.795%2C26.862%2C75.816%2C26.882&layer=mapnik&marker=26.8727%2C75.8057',
   },
   {
     icon: <MapPinned size={23} aria-hidden="true" />,
@@ -49,7 +51,9 @@ const offices = [
     phones: ['02 8834 1222'],
     emails: ['support@proowrx.com'],
     color: '#c9a227',
-    mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=150.947%2C-33.746%2C150.969%2C-33.728&layer=mapnik&marker=-33.7374%2C150.9582',
+    mapEmbed: 'https://www.google.com/maps?q=Suite+215,+East+Wing,+33+Lexington+Drive,+Bella+Vista+NSW+2153&output=embed',
+    // mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=150.947%2C-33.746%2C150.969%2C-33.728&layer=mapnik&marker=-33.7374%2C150.9582',
+
   },
 ];
 
@@ -99,7 +103,7 @@ export default function Contact() {
             </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">24hr</span>
+                <span className="page-hero-stat-num">72hr</span>
                 <span className="page-hero-stat-label">Response Time</span>
               </div>
               <div className="page-hero-stat-divider" />
@@ -185,7 +189,7 @@ export default function Contact() {
           <div ref={r2} className="reveal-right contact-form-wrap">
             <div className="contact-form-card">
               <h3>Send Us a Message</h3>
-              <p>Fill in the form and we&apos;ll get back to you within 24 hours.</p>
+              <p>Fill in the form and we&apos;ll get back to you within 72 hours.</p>
 
               {status === 'success' ? (
                 <div className="contact-success">
@@ -193,7 +197,7 @@ export default function Contact() {
                     <CheckCircle size={32} color="var(--teal)" />
                   </div>
                   <h4>Message Sent!</h4>
-                  <p>Thank you for reaching out. Our team will be in touch with you within 24 hours.</p>
+                  <p>Thank you for reaching out. Our team will be in touch with you within 72 hours.</p>
                   <button
                     className="btn btn-outline-gold"
                     style={{ marginTop: 20 }}
@@ -287,7 +291,7 @@ export default function Contact() {
                   </button>
                   {status === 'error' && <p className="contact-form-note" role="alert">Could not send your message. Please try again.</p>}
                   <p className="contact-form-note">
-                    We&apos;ll respond within 72 business hours. Your data is protected per our Privacy Policy.
+                    We will respond within 72 hours. Your data is protected per our Privacy Policy.
                   </p>
                 </form>
               )}

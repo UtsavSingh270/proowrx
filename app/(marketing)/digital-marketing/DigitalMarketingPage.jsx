@@ -22,7 +22,23 @@ export default function DigitalMarketingPage() {
         <span className="growth-eyebrow">Digital Marketing Services</span>
         <h1>Your Business Needs Marketing Support That Grows It Smartly. We Provide It.</h1>
         <p>Build a stronger online presence, reach the right audience, and turn marketing efforts into business growth. Proowrx provides end-to-end digital marketing support to help your business stay visible, attract potential customers, and grow consistently.</p>
-        <Link className="btn btn-gold" href="/contact">Get Started Now <ArrowRight size={15}/></Link>
+        <div className="page-hero-stats growth-hero-stats" aria-label="Asset finance service highlights">
+          <div className="page-hero-stat">
+            <span className="page-hero-stat-num">20+ Years</span>
+            <span className="page-hero-stat-label">Marketing Expertise</span>
+          </div>
+          <div className="page-hero-stat-divider" aria-hidden="true" />
+          <div className="page-hero-stat">
+            <span className="page-hero-stat-num">100%</span>
+            <span className="page-hero-stat-label">ASIC Compliant</span>
+          </div>
+          <div className="page-hero-stat-divider" aria-hidden="true" />
+          <div className="page-hero-stat">
+            <span className="page-hero-stat-num">40%+</span>
+            <span className="page-hero-stat-label">Reduced Marketing Cost</span>
+          </div>
+        </div>
+        {/* <Link className="btn btn-gold" href="/contact">Get Started Now <ArrowRight size={15}/></Link> */}
       </div>
     </section>
 

@@ -104,7 +104,7 @@ export default function ContactPopup() {
             <div className="cpopup-success">
               <div className="cpopup-success-check" aria-hidden="true"><CircleCheckBig size={34} strokeWidth={2} /></div>
               <h4>We&apos;ll be in touch!</h4>
-              <p>Thank you - our team will contact you within 24 hours.</p>
+              <p>Thank you - our team will contact you within 72 hours.</p>
             </div>
           ) : (
             <>

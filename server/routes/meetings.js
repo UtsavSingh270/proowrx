@@ -1,22 +1,10 @@
 const express    = require('express');
-const nodemailer = require('nodemailer');
 const Meeting    = require('../models/Meeting');
 const { requireAdmin } = require('../middleware/auth');
 const { getNotificationCc } = require('../utils/notificationSettings');
+const { createSmtpTransporter, getFromAddress, getSupportEmail } = require('../utils/mailer');
 
 const router = express.Router();
-
-function createTransporter() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT) || 587,
-    secure: Number(process.env.SMTP_PORT) === 465,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-}
 
 function escapeHtml(value = '') {
   return String(value)
@@ -90,8 +78,10 @@ router.post('/', async (req, res) => {
     });
 
     try {
-      const transporter = createTransporter();
-      const supportEmail = process.env.SUPPORT_EMAIL || process.env.EMAIL_TO;
+      const transporter = createSmtpTransporter();
+      if (!transporter) throw new Error('SMTP is not configured');
+      const supportEmail = getSupportEmail();
+      const from = getFromAddress();
       const cc = await getNotificationCc([
         process.env.MEETING_CC_1,
         process.env.MEETING_CC_2,
@@ -100,9 +90,8 @@ router.post('/', async (req, res) => {
 
       await Promise.all([
         transporter.sendMail({
-          from: process.env.EMAIL_FROM,
+          from,
           to: email,
-          cc,
           subject: `Your Proowrx meeting with ${person} is confirmed`,
           html: `
             <p>Hello ${escapeHtml(name)},</p>
@@ -111,7 +100,7 @@ router.post('/', async (req, res) => {
           `,
         }),
         transporter.sendMail({
-          from: process.env.EMAIL_FROM,
+          from,
           to: [supportEmail, personEmail].filter(Boolean).join(','),
           cc,
           subject: `New meeting booked with ${person} - Proowrx`,

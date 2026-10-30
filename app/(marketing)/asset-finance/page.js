@@ -45,6 +45,22 @@ function AssetFinancePage(){
         <span className="growth-eyebrow">Asset Finance Services</span>
         <h1>Asset Finance Outsourcing Service </h1>
         <p>Reliable processing support for automobile, equipment, and commercial asset financing, from initial document collection and CRM administration to lender follow-up and settlement.</p>
+        <div className="page-hero-stats growth-hero-stats" aria-label="Asset finance service highlights">
+          <div className="page-hero-stat">
+            <span className="page-hero-stat-num">20+ Years</span>
+            <span className="page-hero-stat-label">Marketing Expertise</span>
+          </div>
+          <div className="page-hero-stat-divider" aria-hidden="true" />
+          <div className="page-hero-stat">
+            <span className="page-hero-stat-num">100%</span>
+            <span className="page-hero-stat-label">ASIC Compliant</span>
+          </div>
+          <div className="page-hero-stat-divider" aria-hidden="true" />
+          <div className="page-hero-stat">
+            <span className="page-hero-stat-num">40%+</span>
+            <span className="page-hero-stat-label">Reduced Marketing Cost</span>
+          </div>
+        </div>
         {/* <div className="growth-actions">
           <Link href="/contact" className="btn btn-gold">Book Your Discovery Call Today <ArrowRight size={15} />
           </Link>
@@ -57,7 +73,7 @@ function AssetFinancePage(){
           <span className="chip chip-gold">THE PROBLEM WE SOLVE</span>
           <h2>Flexible Outsourcing Support for Asset Finance Brokers</h2>
           <p>As your asset finance brokerage grows, so does the work involved in managing applications, meeting lender requirements and keeping deals on track. With Proowrx, you can manage this growing workload without the added costs and responsibilities of hiring more staff. We support Australian brokers with loan processing, documentation and lender follow-ups across vehicle, equipment, machinery and commercial finance. Our flexible outsourcing options allow you to get the support you need, whether for daily operations or during periods of increased demand.</p>
-          <div className="growth-actions"><Link href="/contact" className="btn btn-gold">Book Your Discovery Call Today <ArrowRight size={15} /></Link></div>
+          {/* <div className="growth-actions"><Link href="/contact" className="btn btn-gold">Book Your Discovery Call Today <ArrowRight size={15} /></Link></div> */}
         </div>
         <div className="asset-finance-flexible-image">
           <Image src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1200&q=85" alt="Asset finance documents and calculator" width={1200} height={900} sizes="(max-width: 900px) 100vw, 50vw" />

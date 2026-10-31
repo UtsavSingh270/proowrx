@@ -103,7 +103,7 @@ export default function Contact() {
             </div> */}
             <div className="page-hero-stats">
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num">72hr</span>
+                <span className="page-hero-stat-num">24hr</span>
                 <span className="page-hero-stat-label">Response Time</span>
               </div>
               <div className="page-hero-stat-divider" />
@@ -113,8 +113,8 @@ export default function Contact() {
               </div>
               <div className="page-hero-stat-divider" />
               <div className="page-hero-stat">
-                <span className="page-hero-stat-num contact-hero-stat-icon" aria-hidden="true"><Globe2 size={28} /></span>
-                <span className="page-hero-stat-label">AU &amp; IN Support</span>
+                <span className="page-hero-stat-num" aria-hidden="true">ISO 27001:2022</span>
+                <span className="page-hero-stat-label">Certified Organization</span>
               </div>
             </div>
           </div>

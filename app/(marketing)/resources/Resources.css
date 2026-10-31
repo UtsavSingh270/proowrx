@@ -43,7 +43,7 @@
 
 .marketing-site .resources-hub-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: clamp(14px, 1.4vw, 20px);
   width: min(100%, 1240px);
   margin-inline: auto;
@@ -126,7 +126,7 @@
 }
 
 .resources-hub-card > p {
-  max-width: 34ch;
+  max-width: 50ch;
   margin: 0;
   color: var(--text-2);
   font-size: .82rem;

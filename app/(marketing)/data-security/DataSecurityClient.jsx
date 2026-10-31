@@ -186,7 +186,7 @@ export default function DataSecurity() {
       </section>
 
       {/* 4 Pillars */}
-      <section className="section">
+      <section className="section ds-pillars-section">
         <div className="container">
           <div ref={r3} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="chip chip-teal section-eyebrow">The 4 Pillars</span>
@@ -225,10 +225,10 @@ export default function DataSecurity() {
       </section>
 
       {/* Feature Cards */}
-      <section className="section" style={{ background: 'var(--navy)' }}>
+      <section className="section ds-features-section" style={{ background: 'var(--navy)' }}>
         <div className="container">
           <div ref={r4} className="reveal" style={{ textAlign: 'center', marginBottom: 64 }}>
-            {/* <span className="chip chip-white section-eyebrow">In Detail</span> */}
+            <span className="chip chip-white section-eyebrow">Secure Workplace</span>
             <h2 className="section-title section-title--white"> Security Measures We Use to Protect Client Data</h2>
             <p className="section-body" style={{ maxWidth: '100%' }}>
               We have several practical measures in place across our workplace, devices, and systems to protect client information as our team works with it.

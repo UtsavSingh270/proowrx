@@ -77,6 +77,8 @@ export default function FaqAskBot() {
 
       <form className="faqbot-input-row" onSubmit={handleSubmit}>
         <input
+          id="faqbot-question"
+          name="question"
           type="text"
           value={input}
           onChange={e => setInput(e.target.value)}

@@ -19,10 +19,10 @@ export default function CtaBanner({ eyebrow = 'Get Started Today', heading = 'Cl
             ))}
           </div>
           <div className="cta-banner-buttons">
-            <a href={primaryHref} target={primaryHref.startsWith('http') ? '_blank' : undefined} rel={primaryHref.startsWith('http') ? 'noreferrer' : undefined} className="btn btn-gold">
+            <Link href="/contact" className="btn btn-ghost">Get Started Today</Link>
+            <a href={primaryHref} target={primaryHref.startsWith('http') ? '_blank' : undefined} rel={primaryHref.startsWith('http') ? 'noreferrer' : undefined} className="btn cta-banner-booking-btn">
               {primaryLabel} <ArrowRight size={15} />
             </a>
-            <Link href="/contact" className="btn btn-ghost">Send a Message</Link>
           </div>
         </div>
         <div className="cta-banner-visual" aria-label="Proowrx workplace gallery">

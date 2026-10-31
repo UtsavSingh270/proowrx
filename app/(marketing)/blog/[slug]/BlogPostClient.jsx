@@ -203,10 +203,10 @@ export default function BlogPostClient({ initialPost, allPosts, routeSlug }) {
             <div className="post-engagement-content">
               <form className="post-comment-form" onSubmit={handleCommentSubmit}>
                 <div className="post-comment-fields">
-                  <label>Name<input required maxLength={80} value={commentForm.name} onChange={event => setCommentForm(current => ({ ...current, name: event.target.value }))} placeholder="Your name" /></label>
-                  <label>Email<input required type="email" maxLength={160} value={commentForm.email} onChange={event => setCommentForm(current => ({ ...current, email: event.target.value }))} placeholder="you@example.com" /></label>
+                  <label htmlFor="comment-name">Name<input id="comment-name" name="name" required maxLength={80} value={commentForm.name} onChange={event => setCommentForm(current => ({ ...current, name: event.target.value }))} placeholder="Your name" /></label>
+                  <label htmlFor="comment-email">Email<input id="comment-email" name="email" required type="email" maxLength={160} value={commentForm.email} onChange={event => setCommentForm(current => ({ ...current, email: event.target.value }))} placeholder="you@example.com" /></label>
                 </div>
-                <label>Comment<textarea required maxLength={1500} rows={4} value={commentForm.comment} onChange={event => setCommentForm(current => ({ ...current, comment: event.target.value }))} placeholder="Share your thoughts about this article" /></label>
+                <label htmlFor="comment-body">Comment<textarea id="comment-body" name="comment" required maxLength={1500} rows={4} value={commentForm.comment} onChange={event => setCommentForm(current => ({ ...current, comment: event.target.value }))} placeholder="Share your thoughts about this article" /></label>
                 <div className="post-comment-submit"><small>Your email will never be displayed publicly.</small><button type="submit" className="post-comment-button" disabled={submittingComment}>{submittingComment ? 'Publishing...' : 'Publish Comment'}</button></div>
                 {commentStatus && <p className="post-comment-status" role="status">{commentStatus}</p>}
               </form>

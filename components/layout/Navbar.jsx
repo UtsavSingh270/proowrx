@@ -20,7 +20,7 @@ const SERVICE_GROUPS = [
   {
     id: 'mortgage',
     label: 'Mortgage',
-    description: 'End-to-end broker support',
+    description: 'End-to-End Broker Support',
     to: '/mortgage',
     icon: House,
     children: [
@@ -32,7 +32,7 @@ const SERVICE_GROUPS = [
   {
     id: 'accounting',
     label: 'Accounting',
-    description: 'Reliable finance operations',
+    description: 'Reliable Accounting Operations',
     to: '/accounting',
     icon: Calculator,
     children: [
@@ -50,7 +50,7 @@ const SERVICE_GROUPS = [
   {
     id: 'digital-marketing',
     label: 'Digital Marketing',
-    description: 'Consistent brand visibility',
+    description: 'Consistent Brand Visibility',
     to: '/digital-marketing',
     icon: Megaphone,
     children: [
@@ -65,7 +65,7 @@ const SERVICE_GROUPS = [
   {
     id: 'asset-finance',
     label: 'Asset Finance',
-    description: 'Faster application processing',
+    description: 'Faster Application Processing',
     to: '/asset-finance',
     icon: CarFront,
     children: [
@@ -85,9 +85,9 @@ const nav = [
     label: 'Resources', to: '/resources',
     mega: [
       { label: 'Data Security', to: '/data-security', desc: 'Data Security & Privacy at Proowrx', icon: Shield },
-      { label: 'Case Studies', to: '/case-study', desc: 'Read Case studies and success stories', icon: FileChartColumn },
-      { label: 'Blogs', to: '/blog', desc: 'Read Latest news and insights', icon: Newspaper },
-      { label: 'Downloadables', to: '/downloadable-resources', desc: 'Download E-Guides and Resources', icon: Download },
+      // { label: 'Case Studies', to: '/case-study', desc: 'Read Case studies and success stories', icon: FileChartColumn },
+      { label: 'Blogs', to: '/blog', desc: 'Read Our Latest Blogs', icon: Newspaper },
+      // { label: 'Downloadables', to: '/downloadable-resources', desc: 'Download E-Guides and Resources', icon: Download },
     ],
   },
   { label: 'Career', to: '/career' },
@@ -197,7 +197,7 @@ export default function Navbar() {
         >
           <div className="container nav-inner">
             <Link href="/" className="nav-logo" aria-label="Proowrx - go to homepage">
-              <Image src={LOGO} alt="Proowrx" width={200} height={60} priority />
+              <Image src={LOGO} alt="Proowrx" width={200} height={60} sizes="(max-width: 768px) 150px, 200px" />
             </Link>
 
             <ul className="nav-links" role="menubar">

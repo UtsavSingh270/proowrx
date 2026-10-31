@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { ArrowRight, BarChart3, Brush, Code2, Mail, Megaphone, PenLine, SearchCheck, ShieldCheck, Sparkles, Target, Users, Video, Wrench } from 'lucide-react';
 import CtaBanner from '@/components/shared/CtaBanner';
 import ServiceFaq from '@/components/shared/ServiceFaq';
@@ -75,7 +74,7 @@ export default function DigitalMarketingPage() {
           <p>{intro}</p>
         </div>
       <div className="growth-grid">{items.map(([name,text,slug,Icon])=>
-        <Link className="growth-card" href={`/digital-marketing/${slug}`} key={slug}>
+        <article className="growth-card" key={slug}>
           <div className="growth-card-header">
             <div className="growth-card-icon">
               <Icon size={22}/>
@@ -85,7 +84,7 @@ export default function DigitalMarketingPage() {
           <p>{text}</p>
           {/* <span className="growth-inline-link">View service <ArrowRight size={14}/>
           </span> */}
-        </Link>)}
+        </article>)}
       </div>
       </div>)}
       </div>

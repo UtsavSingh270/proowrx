@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LottieSvg } from 'lottie-react';
+import { LottieLight } from 'lottie-react';
 import {
   ArrowRight, ChevronLeft, ChevronRight, House, Calculator, Car, Megaphone,
   Check, ClipboardCheck, RefreshCw, GraduationCap, ShieldCheck, Star
@@ -378,7 +378,7 @@ export default function HomeClient({ insights }) {
         <div className="container">
           <div className={`section-head fade-up${svcVisible ? ' in' : ''}`}>
             <span className="pill">Our Services</span>
-            <h2 className="section-title">Four specialist services, one reliable team</h2>
+            <h2 className="section-title">Four Specialist Services, One Reliable Team</h2>
             <p className="section-sub">
               From mortgage and accounting operations to asset finance and digital marketing, our trained remote specialists integrate with your workflow and help your business move faster.
             </p>
@@ -424,7 +424,7 @@ export default function HomeClient({ insights }) {
         <div className="container">
           <div className={`section-head fade-up${whyFeatVisible ? ' in' : ''}`}>
             <span className="pill">Why Proowrx</span>
-            <h2 className="section-title">WHY YOU SHOULD PARTNER WITH PROOWRX</h2>
+            <h2 className="section-title">Why You Should Partner With Proowrx</h2>
             <p className="section-sub">
               Built to support your business beyond the daily back-office work. We help you stay secure, compliant, prepared, and ready for what’s next.
             </p>
@@ -487,7 +487,7 @@ export default function HomeClient({ insights }) {
         <div className="container">
           <div className={`section-head fade-up${procVisible ? ' in' : ''}`}>
             <span className="pill">How It Works</span>
-            <h2 className="section-title">From onboarding to output in days</h2>
+            <h2 className="section-title">From Onboarding to Output in Days</h2>
             <p className="section-sub">Getting started is effortless. We plug directly into your existing workflow with zero disruption to your operations.</p>
           </div>
 
@@ -500,8 +500,7 @@ export default function HomeClient({ insights }) {
                 style={{ transitionDelay: `${i * 110 + 150}ms` }}
               >
                 <div className="process-node" aria-hidden="true">
-                  {/* Keyframes work without the expression engine blocked by production CSP. */}
-                  <LottieSvg
+                  <LottieLight
                     key={`${step.animation}-${processStage === i + 1 ? 'active' : 'idle'}`}
                     src={step.animation}
                     className="process-node-animation"

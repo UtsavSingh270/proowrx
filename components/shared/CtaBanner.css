@@ -11,6 +11,18 @@
 .cta-banner-buttons { display: flex; align-items: center; gap: 12px; flex-wrap: nowrap; }
 .cta-banner-buttons .btn { min-height: 48px; justify-content: center; white-space: nowrap; }
 .cta-banner-buttons .btn-ghost { border-color: rgba(23,63,120,.25); color: #173f78; background: #fff; }
+.marketing-site .cta-banner-buttons .cta-banner-booking-btn {
+  color: #173f78 !important;
+  background: transparent !important;
+  border: 2px solid #173f78 !important;
+  box-shadow: none;
+}
+.marketing-site .cta-banner-buttons .cta-banner-booking-btn:hover {
+  color: #fff !important;
+  background: linear-gradient(135deg, #123665, #245a9b) !important;
+  border-color: transparent !important;
+  box-shadow: 0 16px 48px rgba(23,63,120,.24);
+}
 .cta-banner-visual { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, 190px); gap: 14px; min-height: 394px; }
 .cta-banner-image {
   --r: 20px;
@@ -81,6 +93,10 @@ html.dark .cta-banner-heading { color: #fff; }
 html.dark .cta-banner-sub, html.dark .cta-banner-assurance { color: rgba(255,255,255,.66); }
 html.dark .cta-banner-pill { border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.06); color: #f0b52d; }
 html.dark .cta-banner-buttons .btn-ghost { border-color: rgba(255,255,255,.25); background: transparent; color: #fff; }
+html.dark .marketing-site .cta-banner-buttons .cta-banner-booking-btn {
+  color: #fff !important;
+  border-color: rgba(255,255,255,.72) !important;
+}
 @media (max-width: 1050px) {
   .cta-banner-inner { grid-template-columns: 1fr; gap: 44px; }
   .cta-banner-copy { text-align: center; }

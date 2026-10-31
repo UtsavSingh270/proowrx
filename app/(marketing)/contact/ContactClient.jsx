@@ -35,17 +35,6 @@ function useReveal() {
 const offices = [
   {
     icon: <MapPinned size={23} aria-hidden="true" />,
-    city: 'Jaipur, India',
-    address: '2nd Floor, Press Trust Of India, 5 B, Jhalana Institutional Area, J L N Marg, Jaipur, Rajasthan 302004',
-    phones: ['+91 96104 11400', '+91-141-2952294'],
-    emails: ['support@proowrx.com'],
-    color: '#1f9e8e',
-    // mapEmbed: 'https://www.google.com/maps?q=2nd+Floor,+PTI+Building,+Jhalana+Institutional+Area,+Jaipur+302004&output=embed',
-    mapEmbed: 'https://www.google.com/maps?q=2nd+Floor%2C+Proowrx+LLP%2C+Press+Trust+Of+India%2C+5+B%2C+Jawahar+Lal+Nehru+Marg%2C+Jhalana+Institutional+Area%2C+Jhalana+Doongri%2C+Jaipur%2C+Rajasthan+302004%2C+India&output=embed',
-    // mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=75.795%2C26.862%2C75.816%2C26.882&layer=mapnik&marker=26.8727%2C75.8057',
-  },
-  {
-    icon: <MapPinned size={23} aria-hidden="true" />,
     city: 'Sydney, Australia',
     address: 'Suite 215, East Wing, 33 Lexington Drive, Bella Vista NSW - 2153',
     phones: ['02 8834 1222'],
@@ -54,6 +43,17 @@ const offices = [
     mapEmbed: 'https://www.google.com/maps?q=Suite+215,+East+Wing,+33+Lexington+Drive,+Bella+Vista+NSW+2153&output=embed',
     // mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=150.947%2C-33.746%2C150.969%2C-33.728&layer=mapnik&marker=-33.7374%2C150.9582',
 
+  },
+  {
+    icon: <MapPinned size={23} aria-hidden="true" />,
+    city: 'Jaipur, India',
+    address: '2nd Floor, Press Trust Of India, 5 B, Jhalana Institutional Area, J L N Marg, Jaipur, Rajasthan 302004',
+    phones: ['+91 96104 11400', '+91-141-2952294'],
+    emails: ['support@proowrx.com'],
+    color: '#1f9e8e',
+    // mapEmbed: 'https://www.google.com/maps?q=2nd+Floor,+PTI+Building,+Jhalana+Institutional+Area,+Jaipur+302004&output=embed',
+    mapEmbed: 'https://www.google.com/maps?q=2nd+Floor%2C+Proowrx+LLP%2C+Press+Trust+Of+India%2C+5+B%2C+Jawahar+Lal+Nehru+Marg%2C+Jhalana+Institutional+Area%2C+Jhalana+Doongri%2C+Jaipur%2C+Rajasthan+302004%2C+India&output=embed',
+    // mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=75.795%2C26.862%2C75.816%2C26.882&layer=mapnik&marker=26.8727%2C75.8057',
   },
 ];
 

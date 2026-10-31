@@ -777,7 +777,7 @@ export default function Mortgage() {
       
       <ServiceFaq
         variant="mortgage"
-        title="Mortgage outsourcing questions"
+        title="Mortgage Outsourcing Questions"
         intro="Quick answers for brokers considering processing or dedicated back-office support."
       />
     </div>

@@ -172,10 +172,10 @@ export default function Accounting() {
           </div>
           <div ref={r2} className="reveal-right acc-intro-image">
             <Image src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=85" alt="Accounting team" width={900} height={600} sizes="(max-width: 960px) 100vw, 45vw" />
-            <div className="acc-intro-badge">
+            {/* <div className="acc-intro-badge">
               <strong>8 Core Services</strong>
               <span>All under one roof</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -192,13 +192,10 @@ export default function Accounting() {
           </div>
           <div className="acc-services-grid">
             {services.map((svc, i) => {
-              const Card = svc.href ? Link : 'div';
-
-              return <Card
+              return <div
                 key={i}
                 className={`acc-svc-card reveal reveal-delay-${(i % 4) + 1}`}
                 style={{ '--acc-color': svc.color }}
-                {...(svc.href ? { href: svc.href, 'aria-label': `Explore ${svc.title}` } : {})}
               >
                 <div className="acc-svc-heading">
                   <div className="acc-svc-icon" style={{ color: svc.color, background: svc.color + '18' }}>
@@ -207,7 +204,7 @@ export default function Accounting() {
                   <h4><span>{svc.title}</span></h4>
                 </div>
                 <p>{svc.desc}</p>
-              </Card>;
+              </div>;
             })}
           </div>
         </div>
@@ -262,6 +259,8 @@ export default function Accounting() {
                       className="acc-software-logo"
                       src={softwareLogos[sw]}
                       alt={`${sw} logo`}
+                      width={32}
+                      height={32}
                       aria-hidden="true"
                       onError={(event) => event.currentTarget.classList.add('is-fallback')}
                     />

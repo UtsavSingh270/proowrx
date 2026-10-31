@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- The local upload preview uses an ephemeral blob URL. */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { Upload, Link as LinkIcon, FileText, Video } from 'lucide-react';
 
 function getAssetPreview(value) {
@@ -40,11 +40,14 @@ export default function FileUploadInput({
   placeholder = 'Choose file from device',
   allowUrl = true,
   description = '',
+  inputId,
 }) {
   const [mode, setMode] = useState(allowUrl ? 'url' : 'upload');
   const [error, setError] = useState('');
   const [blobPreview, setBlobPreview] = useState(null);
   const inputRef = useRef(null);
+  const generatedId = useId().replace(/:/g, '');
+  const fieldId = inputId || `file-upload-${generatedId}`;
 
   const currentPreview = getAssetPreview(value);
   const previewUrl = currentPreview.type === 'file' ? (blobPreview?.file === value ? blobPreview.url : '') : currentPreview.url;
@@ -77,7 +80,7 @@ export default function FileUploadInput({
 
   return (
     <div className="dash-form-group">
-      <label className="dash-form-label">{label}</label>
+      <label htmlFor={fieldId} className="dash-form-label">{label}</label>
 
       {allowUrl && (
         <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
@@ -102,6 +105,8 @@ export default function FileUploadInput({
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <input
             ref={inputRef}
+            id={fieldId}
+            name={fieldId}
             type="file"
             accept={accept}
             onChange={handleFileSelect}
@@ -118,6 +123,8 @@ export default function FileUploadInput({
         </div>
       ) : (
         <input
+          id={fieldId}
+          name={fieldId}
           className="dash-form-input"
           type="url"
           value={typeof value === 'string' ? value : ''}

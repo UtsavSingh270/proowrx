@@ -60,16 +60,6 @@ export default function Footer() {
           {/* Contact details, legal links, locations and certification */}
           <div className="footer-contact-area">
             <div className="footer-contact-layout">
-              <section className="footer-contact-details" aria-labelledby="footer-contact-title">
-                <h4 id="footer-contact-title" className="footer-heading">Contact</h4>
-                <div className="footer-phone-list">
-                  <a className="footer-phone-link" href="tel:+919610411400"><Phone size={14} aria-hidden="true" /><span>+91 96104 11400</span></a>
-                  <a className="footer-phone-link" href="tel:+911412952294"><Phone size={14} aria-hidden="true" /><span>+91-141-2952294</span></a>
-                  <a className="footer-phone-link" href="tel:+61288341222"><Phone size={14} aria-hidden="true" /><span>+61 02 8834 1222</span></a>
-                  <a className="footer-email-link" href="mailto:support@proowrx.com"><Mail size={14} aria-hidden="true" /><span>support@proowrx.com</span></a>
-                </div>
-              </section>
-
               <section className="footer-legal-details" aria-labelledby="footer-legal-title">
                 <h4 id="footer-legal-title" className="footer-heading">Legal</h4>
                 <ul className="footer-links footer-legal-menu">
@@ -85,6 +75,32 @@ export default function Footer() {
                   ))}
                 </ul>
               </section>
+
+              <section className="footer-contact-details" aria-labelledby="footer-contact-title">
+                <h4 id="footer-contact-title" className="footer-heading">Contact</h4>
+                <div className="footer-phone-list">
+                  <a className="footer-phone-link" href="tel:+919610411400"><Phone size={14} aria-hidden="true" /><span>+91 96104 11400</span></a>
+                  <a className="footer-phone-link" href="tel:+911412952294"><Phone size={14} aria-hidden="true" /><span>+91-141-2952294</span></a>
+                  <a className="footer-phone-link" href="tel:+61288341222"><Phone size={14} aria-hidden="true" /><span>+61 02 8834 1222</span></a>
+                  <a className="footer-email-link" href="mailto:support@proowrx.com"><Mail size={14} aria-hidden="true" /><span>support@proowrx.com</span></a>
+                </div>
+              </section>
+
+              {/* <section className="footer-legal-details" aria-labelledby="footer-legal-title">
+                <h4 id="footer-legal-title" className="footer-heading">Legal</h4>
+                <ul className="footer-links footer-legal-menu">
+                  {[
+                    ['/privacy-policy', 'Privacy Policy'],
+                    ['/terms-of-use', 'Terms of Use'],
+                    ['/disclaimer', 'Disclaimer'],
+                    ['/terms-of-access', 'Terms of Access'],
+                  ].map(([to, label]) => (
+                    <li key={to}>
+                      <Link href={to}>{label}<ArrowRight size={12} className="link-arrow" /></Link>
+                    </li>
+                  ))}
+                </ul>
+              </section> */}
 
               <div className="footer-newsletter">
                 {/* Replace this neutral slot with the approved ISO badge artwork when it is available. */}
@@ -115,11 +131,6 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
           <p>© {new Date().getFullYear()} Proowrx Knowledge Centre Pvt. Ltd. All rights reserved.</p>
-          {/* <div className="footer-legal">
-            <Link href="/privacy-policy">Privacy Policy</Link>
-            <Link href="/terms-of-use">Terms of Use</Link>
-            <Link href="/disclaimer">Disclaimer</Link>
-          </div> */}
         </div>
       </div>
     </footer>

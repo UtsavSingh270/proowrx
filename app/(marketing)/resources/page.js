@@ -6,9 +6,9 @@ import './Resources.css';
 
 const sections = [
   { href: '/data-security', title: 'Data Security', description: 'Data Security & Privacy at Proowrx', icon: ShieldCheck, detail: 'Learn how we protect your information and keep your operations secure.' },
-  { href: '/case-study', title: 'Case Studies', description: 'Read case studies and success stories', icon: FileChartColumn, detail: 'Explore real client challenges, our approach, and the results delivered.' },
+  // { href: '/case-study', title: 'Case Studies', description: 'Read case studies and success stories', icon: FileChartColumn, detail: 'Explore real client challenges, our approach, and the results delivered.' },
   { href: '/blog', title: 'Blogs', description: 'Read the latest news and insights', icon: Newspaper, detail: 'Find practical ideas on mortgage outsourcing, accounting, and business growth.' },
-  { href: '/downloadable-resources', title: 'Downloadables', description: 'Download e-guides and resources', icon: Download, detail: 'Browse guides, checklists, and tools to support your next step.' },
+  // { href: '/downloadable-resources', title: 'Downloadables', description: 'Download e-guides and resources', icon: Download, detail: 'Browse guides, checklists, and tools to support your next step.' },
 ];
 
 export function generateMetadata() {

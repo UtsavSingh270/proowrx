@@ -114,6 +114,8 @@ export default function ContactPopup() {
 
               <form onSubmit={handleSubmit} className="cpopup-form">
                 <input
+                  id="cpopup-name"
+                  name="name"
                   type="text"
                   placeholder="Your Full Name"
                   value={form.name}
@@ -121,6 +123,8 @@ export default function ContactPopup() {
                   required
                 />
                 <input
+                  id="cpopup-email"
+                  name="email"
                   type="email"
                   placeholder="Business Email Address"
                   value={form.email}
@@ -128,6 +132,8 @@ export default function ContactPopup() {
                   required
                 />
                 <input
+                  id="cpopup-phone"
+                  name="phone"
                   type="tel"
                   placeholder="Phone Number"
                   value={form.phone}
@@ -136,6 +142,8 @@ export default function ContactPopup() {
                 />
                 <div className="cpopup-select-control">
                   <select
+                    id="cpopup-interest"
+                    name="interest"
                     value={form.interest}
                     onChange={e => setForm(p => ({ ...p, interest: e.target.value }))}
                   >

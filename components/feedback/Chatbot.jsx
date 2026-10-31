@@ -295,12 +295,15 @@ const CALC_TABS = [
 ];
 
 function CalcInput({ label, value, onChange, prefix, suffix, min, max, step, type = 'number' }) {
+  const fieldId = `cb-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
   return (
     <div className="cb-calc-field">
-      <label>{label}</label>
+      <label htmlFor={fieldId}>{label}</label>
       <div className="cb-calc-input-wrap">
         {prefix && <span className="cb-calc-prefix">{prefix}</span>}
         <input
+          id={fieldId}
+          name={fieldId}
           type={type}
           value={value}
           onChange={e => onChange(e.target.value)}
@@ -374,13 +377,13 @@ function StampDutyCalc() {
     <div className="cb-calc-body">
       <CalcInput label="Property Value" value={value} onChange={setValue} prefix="$" min={50000} max={10000000} step={5000} />
       <div className="cb-calc-field">
-        <label>State / Territory</label>
-        <select value={state} onChange={e => setState(e.target.value)} className="cb-calc-select">
+        <label htmlFor="cb-state-territory">State / Territory</label>
+        <select id="cb-state-territory" name="cb-state-territory" value={state} onChange={e => setState(e.target.value)} className="cb-calc-select">
           {STATES.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
-      <label className="cb-calc-checkbox">
-        <input type="checkbox" checked={firstHome} onChange={e => setFirstHome(e.target.checked)} />
+      <label className="cb-calc-checkbox" htmlFor="cb-first-home-buyer">
+        <input id="cb-first-home-buyer" name="cb-first-home-buyer" type="checkbox" checked={firstHome} onChange={e => setFirstHome(e.target.checked)} />
         First Home Buyer
       </label>
       <div className="cb-results">
@@ -517,6 +520,8 @@ function AIView() {
       <div className="cb-ai-input">
         <input
           ref={inputRef}
+          id="cb-ai-question"
+          name="question"
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={handleKey}

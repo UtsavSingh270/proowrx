@@ -69,7 +69,7 @@ export default function CareerClient({ initialJobs }) {
         <div className="container career-hero-inner">
           <div className="career-hero-content">
             <span className="chip chip-gold" style={{ marginBottom: 16 }}>Careers at Proowrx</span>
-            <h1>Build Your Career<br />with the Right Purpose</h1>
+            <h1>Build Your Career<br />with The Right Purpose</h1>
             <p>Build an extraordinary global career supporting top-tier Australian financial and mortgage professionals. We invest in people with the right mindset.</p>
           </div>
           <div className="career-hero-stats">

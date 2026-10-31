@@ -84,10 +84,15 @@
 }
 
 /* ── Pillars ─────────────────────────────── */
+.ds-pillars-section .container,
+.ds-features-section .container {
+  max-width: 1440px;
+}
+
 .ds-pillars-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
 }
 
 .ds-pillar {
@@ -208,8 +213,8 @@
 /* ── Feature Cards ───────────────────────── */
 .ds-features-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .ds-feature-card {
@@ -358,7 +363,7 @@
 @media (max-width: 960px) {
   .ds-promise { grid-template-columns: 1fr; gap: 40px; }
   .ds-promise-image { display: none; }
-  .ds-pillars-grid { grid-template-columns: 1fr; }
+  .ds-pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ds-features-grid { grid-template-columns: repeat(2, 1fr); }
   .ds-trust-inner { flex-wrap: wrap; }
   .ds-trust-stat { padding: 28px 32px; }
@@ -366,6 +371,7 @@
 }
 
 @media (max-width: 640px) {
+  .ds-pillars-grid { grid-template-columns: 1fr; }
   .ds-pillar { padding: 30px 22px; }
   .ds-pillar-header { gap: 10px; }
   .ds-pillar-num { font-size: 2rem; }
